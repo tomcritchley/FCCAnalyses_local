@@ -14,8 +14,8 @@ Below is a description of how to modify 'make_selection.py' and 'make_plots.py'.
 ## make_selection.py
 This script is used to select the variables to be plotted. It returns a .root file containing the selected variables histograms. You must run it both for your Dirac and Majorana samples. 
 ### How to adapt it to your needs
-First, specify the path of the input file. The input file corresponds to the output file of 'analysis_final.py'. The path should look like :
-'/afs/cern.ch/user/d/dimoulin/FCCAnalyses_new/Analysis/outputs/HNL_Majorana_ejj_20GeV_1e-3Ve/output_finalSel/HNL_Majorana_ejj_20GeV_1e-3Ve_selNone_histo.root'
+First, specify the path of the input file. The input file corresponds to the output file of '''analysis_final.py'''. The path should look like :
+'''/afs/cern.ch/user/d/dimoulin/FCCAnalyses_new/Analysis/outputs/HNL_Majorana_ejj_20GeV_1e-3Ve/output_finalSel/HNL_Majorana_ejj_20GeV_1e-3Ve_selNone_histo.root'''
 Next, specify the variables to be plotted, e.g if you want to plot the reconstructed electron energy (RecoElectron_e) you must include the line :
 'histSelect.WriteObject(hist_file.Get("RecoElectron_e"), "RecoElectron_e")'
 Finally, specify the name of the output file e.g : 
