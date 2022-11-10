@@ -9,7 +9,7 @@
 ## Overview
 
 This text file describes how to produce ratio plots for comparing Dirac and Majorana HNLs.
-Below is a description of how to modify 'make_selection.py' and 'make_plots.py'.
+Below is a description of how to modify `make_selection.py` and `make_plots.py`.
 
 ## make_selection.py
 This script is used to select the variables to be plotted. It returns a .root file containing the selected variables histograms. You must run it both for your Dirac and Majorana samples. 
