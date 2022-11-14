@@ -8,9 +8,12 @@ ROOT.gStyle.SetOptStat(0)
 ROOT.gStyle.SetOptTitle(0)
 
 
-output_dir = "outputs/20GeV_ejj_plots/"
+output_dir = "test_log_false/"
 input_file_Dirac = 'histDirac_ejj_Select.root'
 input_file_Majorana = 'histMajorana_ejj_Select.root'
+
+# Set plot log-scale plots, default: False
+log_scale = False
 
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
@@ -94,11 +97,12 @@ variables_list = [
 ]
 
 files_list = [
-    [input_file_Majorana , 'Majorana 20 GeV semi-leptonic'],
-    [input_file_Dirac , 'Dirac 20 GeV semi-leptonic']
+    [input_file_Majorana , 'Majorana 20 GeV semi-leptonic', 'Majorana'],
+    [input_file_Dirac , 'Dirac 20 GeV semi-leptonic', 'Dirac']
 ]
 
 legend_list = [f[1] for f in files_list]
+ratio_list = [f[2] for f in files_list]
 colors = [609, 856, 410, 801, 629, 879, 602, 921, 622]
 
 def make_plot(h_list, plot_info, legend_list):
@@ -109,6 +113,7 @@ def make_plot(h_list, plot_info, legend_list):
 
     pad1.SetFillColor(0)
     pad1.SetBottomMargin(0.01)
+    if log_scale == True : pad1.SetLogy()
     pad1.SetTickx()
     pad1.SetTicky()
     pad1.Draw()
@@ -137,7 +142,7 @@ def make_plot(h_list, plot_info, legend_list):
         h.SetLineColor(colors[ih])
         h.SetLineWidth(3)
         h.GetXaxis().SetTitle(plot_info[1])        
-        h.GetYaxis().SetTitle(plot_info[2])
+        h.GetYaxis().SetTitle(plot_info[2]) if log_scale == False else h.GetYaxis().SetTitle("log " + plot_info[2])
         h.GetYaxis().SetTitleSize(h.GetYaxis().GetTitleSize()*1.5)
         h.GetYaxis().SetTitleOffset(0.8)
         h.SetMaximum(1.25*h_max)
@@ -163,7 +168,7 @@ def make_plot(h_list, plot_info, legend_list):
         h.SetMaximum(1.5)
         h.SetMinimum(0.5)
 
-        h.GetYaxis().SetTitle("Ratio to "+legend_list[0])
+        h.GetYaxis().SetTitle("Ratio to "+ratio_list[0])
         h.GetYaxis().SetLabelSize(h.GetYaxis().GetLabelSize()*1.6)
         h.GetYaxis().SetLabelOffset(0.01)
         h.GetYaxis().SetTitleSize(h.GetYaxis().GetTitleSize()*1.6)
