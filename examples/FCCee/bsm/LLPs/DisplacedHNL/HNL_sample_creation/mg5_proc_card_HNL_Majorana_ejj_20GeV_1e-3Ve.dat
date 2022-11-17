@@ -40,11 +40,9 @@ define l- = e- mu-
 define vl = ve vm vt
 define vl~ = ve~ vm~ vt~
 import model SM_HeavyN_CKM_AllMasses_LO
-generate e+ e-  > n1 ve , (n1 > ve e+ e-)
-add process e+ e- > n1 ve~ , (n1 > ve~ e+ e-)
-add process e+ e- > n1 ve , (n1 > e+ e- ve~)
-add process e+ e- > n1 ve~ , (n1 > e- e+ ve)
-add process e+ e- > n1 ve , (n1 > e+ j j)
+define e = e+ e-
+define nue = ve ve~
+generate e+ e- > n1 ve , (n1 > e+ j j)
 add process e+ e- > n1 ve , (n1 > e- j j)
 add process e+ e- > n1 ve~ , (n1 > e+ j j)
 add process e+ e- > n1 ve~ , (n1 > e- j j)

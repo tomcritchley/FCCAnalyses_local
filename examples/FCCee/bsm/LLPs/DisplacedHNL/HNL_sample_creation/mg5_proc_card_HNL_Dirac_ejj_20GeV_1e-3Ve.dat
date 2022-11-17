@@ -40,9 +40,9 @@ define l- = e- mu-
 define vl = ve vm vt
 define vl~ = ve~ vm~ vt~
 import model SM_HeavyN_Dirac_CKM_Masses_LO
-generate e+ e- > n1 ve~ , (n1 >  ve e+ e-)
-add process e+ e- > n1~ ve , (n1~ > e+ e- ve~)
-add process e+ e- > n1~ ve , (n1~ > e+ j j)
+define e = e+ e-
+define nue = ve ve~
+generate e+ e- > n1~ ve , (n1~ > e+ j j)
 add process e+ e- > n1 ve~ , (n1 > e- j j )
 output HNL_Dirac_ejj_20GeV_1e-3Ve
 launch HNL_Dirac_ejj_20GeV_1e-3Ve
@@ -65,5 +65,5 @@ set ven1 1e-3
 # if this is not done, lifetime calculations won'e be right
 set WN1 auto
 set time_of_flight 0
-set nevents 10000
+set nevents 50000
 done
