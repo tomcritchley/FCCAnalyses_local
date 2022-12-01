@@ -36,6 +36,13 @@ namespace MCParticle{
     ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
   };
 
+  struct selMC_leg{
+    selMC_leg( int idx );
+    int m_idx;
+    ROOT::VecOps::RVec<edm4hep::MCParticleData> operator() (ROOT::VecOps::RVec<int> list_of_indices,
+                      					    ROOT::VecOps::RVec<edm4hep::MCParticleData> in) ;
+};
+
   /// select MCParticles with their status
   struct sel_genStatus {
     sel_genStatus(int arg_status);

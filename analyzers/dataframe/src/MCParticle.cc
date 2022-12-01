@@ -36,6 +36,28 @@ ROOT::VecOps::RVec<edm4hep::MCParticleData>  sel_pdgID::operator() (ROOT::VecOps
   return result;
 }
 
+selMC_leg::selMC_leg( int idx ) {
+  m_idx = idx;
+};
+
+// I return a vector instead of a single particle :
+//   - such that the vector is empty when there is no such decay mode (instead
+//     of returning a dummy particle)
+//   - such that I can use the getMC_theta etc functions, which work with a
+//     ROOT::VecOps::RVec of particles, and not a single particle
+
+ROOT::VecOps::RVec<edm4hep::MCParticleData> selMC_leg::operator() ( ROOT::VecOps::RVec<int> list_of_indices,  ROOT::VecOps::RVec<edm4hep::MCParticleData> in) {
+  ROOT::VecOps::RVec<edm4hep::MCParticleData>  res;
+  if ( list_of_indices.size() == 0) return res;
+  if ( m_idx < list_of_indices.size() ) {
+	res.push_back( sel_byIndex( list_of_indices[m_idx], in ) );
+	return res;
+  }
+  else {
+	std::cout << "   !!!  in selMC_leg:  idx = " << m_idx << " but size of list_of_indices = " << list_of_indices.size() << std::endl;
+  }
+  return res;
+}
 
 
 get_decay::get_decay(int arg_mother, int arg_daughters, bool arg_inf){m_mother=arg_mother; m_daughters=arg_daughters; m_inf=arg_inf;};
