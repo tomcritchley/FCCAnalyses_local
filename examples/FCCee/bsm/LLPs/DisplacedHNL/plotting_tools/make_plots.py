@@ -7,10 +7,17 @@ ROOT.gStyle.SetOptStat(0)
 # no title shown 
 ROOT.gStyle.SetOptTitle(0)
 
+HNL_mass = "50GeV"
 
-output_dir = "test_log_false/"
-input_file_Dirac = 'histDirac_ejj_Select.root'
-input_file_Majorana = 'histMajorana_ejj_Select.root'
+selection = "selJetPtGt20"
+#selection = "selNone"
+
+output_dir =  HNL_mass + "_ejj_50k/"
+output_dir_sel = HNL_mass + "_ejj_50k/" + selection +'/'
+input_dir = "selected_hist/"
+
+input_file_Dirac = input_dir + 'histDirac_ejj_'+HNL_mass+'_'+selection+'.root'
+input_file_Majorana = input_dir + 'histMajorana_ejj_'+HNL_mass+'_'+selection+'.root'
 
 # Set plot log-scale plots, default: False
 log_scale = False
@@ -21,6 +28,11 @@ if not os.path.exists(output_dir):
 else:    
     print("Directory ",output_dir," already exists")
 
+if not os.path.exists(output_dir_sel):
+    os.mkdir(output_dir_sel)
+    print("Directory ",output_dir_sel," Created ")
+else:
+    print("Directory ",output_dir_sel," already exists")
 # list of lists
 # each internal list: hist name, x title, y title, rebin (if needed)
 variables_list = [
@@ -38,7 +50,7 @@ variables_list = [
      ["RecoMissingEnergy_theta", "Reco Missing_theta", "Entries", 3],
      ["RecoMissingEnergy_phi", "Reco Missing_phi", "Entries", 3],
      
-     ["n_RecoJets", "Number of RecoJets", "Entries", 3],
+     ["n_RecoJets", "Number of RecoJets", "Entries"],
      ["RecoJet_e", "Reco Jet energy", "Entries", 3],
      ["RecoJet_p", "Reco Jet p", "Entries", 3],
      ["RecoJet_pt", "Reco Jet pt", "Entries", 3],
@@ -53,6 +65,32 @@ variables_list = [
      ["RecoJetTrack_absZ0sig", "Reco Jet sigma(abs_Z0)", "Entries", 3],
      ["RecoJetTrack_D0cov", "Reco Jet cov(D0)", "Entries", 3],
      ["RecoJetTrack_Z0cov", "Reco Jet cov(Z0)", "Entries", 3],
+
+     ["RecoLeadJet_e", "Reco Lead Jet E", "Entries", 3],
+     ["RecoLeadJet_pt", "Reco Lead Jet p_{T}", "Entries", 3],
+     ["RecoLeadJet_eta", "Reco Lead Jet #eta", "Entries", 3],
+     ["RecoLeadJet_phi", "Reco Lead Jet #phi", "Entries", 3],
+     ["RecoSecondJet_e", "Reco Secondary Jet E", "Entries", 3],
+     ["RecoSecondJet_pt", "Reco Secondary Jet p_{T}", "Entries", 3],
+     ["RecoSecondJet_eta", "Reco Secondary Jet #eta", "Entries", 3],
+     ["RecoSecondJet_phi", "Reco Secondary Jet #phi", "Entries", 3],
+     ["RecoJetDelta_e", "Reco Jet #Delta E", "Entries", 3],
+     ["RecoJetDelta_pt", "Reco Jet #Delta p_{T}", "Entries", 3],
+     ["RecoJetDelta_phi", "Reco Jet #Delta #phi", "Entries", 3],
+     ["RecoJetDelta_eta", "Reco Jet #Delta #eta", "Entries", 3],
+     ["RecoJetDelta_R", "Reco Jet #Delta R", "Entries", 3],
+
+     ["GenHNLElectron_e", "GenHNLElectron E", "Entries", 3],
+     ["GenHNLElectron_pt", "GenHNLElectron p_{T}", "Entries", 3],
+     ["GenHNLElectron_eta", "GenHNLElectron #eta", "Entries", 3],
+     ["GenHNLElectron_phi", "GenHNLElectron #phi", "Entries", 3],
+
+     ["LeadJet_HNLELectron_Delta_e", "LeadJet Decay Ele #Delta E", "Entries", 3],
+     ["LeadJet_HNLELectron_Delta_pt", "LeadJet Decay Ele #Delta p_{T}", "Entries", 3],
+     ["LeadJet_HNLELectron_Delta_eta", "LeadJet Decay Ele #Delta #eta", "Entries", 3],
+     ["LeadJet_HNLELectron_Delta_phi", "LeadJet Decay Ele #Delta #phi", "Entries", 3],
+     ["LeadJet_HNLELectron_Delta_R", "LeadJet Decay Ele #Delta R", "Entries", 3],
+
 
 
 #    ['hnlLT', 'Lifetime [s]', 'Entries'],
@@ -97,8 +135,8 @@ variables_list = [
 ]
 
 files_list = [
-    [input_file_Majorana , 'Majorana 20 GeV semi-leptonic', 'Majorana'],
-    [input_file_Dirac , 'Dirac 20 GeV semi-leptonic', 'Dirac']
+    [input_file_Majorana , 'Majorana ' + HNL_mass + ' semi-leptonic', 'Majorana'],
+    [input_file_Dirac , 'Dirac ' + HNL_mass + ' semi-leptonic', 'Dirac']
 ]
 
 legend_list = [f[1] for f in files_list]
@@ -182,9 +220,8 @@ def make_plot(h_list, plot_info, legend_list):
         h.Draw('hist same')
         if ih>0:
             h.Draw('same E')
-    c.SaveAs(output_dir + plot_info[0]+'.png')
+    c.SaveAs(output_dir_sel + plot_info[0]+'.png') if log_scale == False else c.SaveAs(output_dir_sel + "log_" + plot_info[0]+'.png')
     return
-
 for plot_info in variables_list:
     h_list = []
     print('looking at histogram:', plot_info[0])
