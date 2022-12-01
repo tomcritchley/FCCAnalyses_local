@@ -31,13 +31,12 @@ prodTag     = "FCCee/spring2021/IDEA/"
 
 
 #Optional: output directory, default is local dir
-outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1/"
+outputDir = "outputs/HNL_Dirac_ejj_70GeV_1e-3Ve/output_stage1/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
 
-outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1/"
-#outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
-#eosType = "eosuser"
+HNL_id = "9990012" # Dirac
+#HNL_id = "9900012" # Majorana
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
@@ -146,7 +145,6 @@ class RDFanalysis():
                 .Define("FSGen_eenu_invMass", "if (n_FSGenElectron>1 && n_FSGenNeutrino>0) return sqrt(FSGen_eenu_energy*FSGen_eenu_energy - FSGen_eenu_px*FSGen_eenu_px - FSGen_eenu_py*FSGen_eenu_py - FSGen_eenu_pz*FSGen_eenu_pz ); else return float(-1.);")
                 
 
-
                 # MC event primary vertex
                 .Define("MC_PrimaryVertex",  "FCCAnalyses::MCParticle::get_EventPrimaryVertex(21)( Particle )" )
 
@@ -155,7 +153,7 @@ class RDFanalysis():
                 
 		#JETS
 		.Define("n_RecoJets", "ReconstructedParticle::get_n(Jet)") #count how many jets are in the event in total
-
+                .Define("n_GenJets" , "ReconstructedParticle::get_n(GenJet)") # Count number of jets per event (gen level)
 		#PHOTONS
 		.Alias("Photon0", "Photon#0.index") 
 		.Define("RecoPhotons",  "ReconstructedParticle::get(Photon0, ReconstructedParticles)")
@@ -188,6 +186,68 @@ class RDFanalysis():
                 .Define("RecoJetTrack_D0cov", "ReconstructedParticle2Track::getRP2TRK_D0_cov(Jet,EFlowTrack_1)") #variance (not sigma)
                 .Define("RecoJetTrack_Z0cov", "ReconstructedParticle2Track::getRP2TRK_Z0_cov(Jet,EFlowTrack_1)")
 
+                .Define("selected_Jets", "ReconstructedParticle::sel_pt(20.)(Jet)") #select only jets with a pt > 20 GeV
+                .Define("selectedJet_e",      "ReconstructedParticle::get_e(selected_Jets)")
+                .Define("selectedJet_pt",      "ReconstructedParticle::get_pt(selected_Jets)")               
+                
+                # Define Gen Jet variables
+                .Define("GenJet_e" ,    "ReconstructedParticle::get_e(GenJet)")
+                
+                .Define("GenLeadJet_e",  "if (n_GenJets >= 1) return (GenJet_e.at(0)); else return float(-10000.);")	 
+
+                # Leading Reconstructed jet variables
+                .Define("RecoLeadJet_e",  "if (n_RecoJets >= 1) return (RecoJet_e.at(0)); else return float(-10000.);")
+                .Define("RecoLeadJet_pt",  "if (n_RecoJets >= 1) return (RecoJet_pt.at(0)); else return float(-10000.);")
+                .Define("RecoLeadJet_phi",  "if (n_RecoJets >= 1) return (RecoJet_phi.at(0)); else return float(-10000.);")
+                .Define("RecoLeadJet_eta",  "if (n_RecoJets >= 1) return (RecoJet_eta.at(0)); else return float(-10000.);")
+                .Define("RecoLeadJet_px", "if (n_RecoJets >= 1) return (RecoJet_px.at(0)); else return float(-1.);")
+                .Define("RecoLeadJet_py", "if (n_RecoJets >= 1) return (RecoJet_py.at(0)); else return float(-1.);")
+                .Define("RecoLeadJet_pz", "if (n_RecoJets >= 1) return (RecoJet_pz.at(0)); else return float(-1.);")
+
+                # Secondary jet variables
+                .Define("RecoSecondJet_e",  "if (n_RecoJets > 1) return (RecoJet_e.at(1)); else return float(-1000.);")
+                .Define("RecoSecondJet_pt",  "if (n_RecoJets > 1) return (RecoJet_pt.at(1)); else return float(-1000.);")
+                .Define("RecoSecondJet_phi",  "if (n_RecoJets > 1) return (RecoJet_phi.at(1)); else return float(1000.);")
+                .Define("RecoSecondJet_eta",  "if (n_RecoJets > 1) return (RecoJet_eta.at(1)); else return float(1000.);")
+
+                # Difference between lead and secondary jet
+                .Define("RecoJetDelta_e", "return (RecoLeadJet_e - RecoSecondJet_e)")
+                .Define("RecoJetDelta_pt", "return (RecoLeadJet_pt - RecoSecondJet_pt)")
+                .Define("RecoJetDelta_phi", "if (RecoLeadJet_phi > -1000) return atan2(sin(RecoLeadJet_phi - RecoSecondJet_phi), cos(RecoLeadJet_phi - RecoSecondJet_phi)); else return float(100.);")
+                .Define("RecoJetDelta_eta", "return (RecoLeadJet_eta - RecoSecondJet_eta)")
+                .Define("RecoJetDelta_R", "return sqrt(RecoJetDelta_phi*RecoJetDelta_phi + RecoJetDelta_eta*RecoJetDelta_eta)")
+
+                # Define lead jet invariant mass
+                .Define("Reco_LeadJet_invMass", "if (n_RecoJets >= 1) return sqrt(RecoLeadJet_e*RecoLeadJet_e - RecoLeadJet_px*RecoLeadJet_px - RecoLeadJet_py*RecoLeadJet_py - RecoLeadJet_pz*RecoLeadJet_pz ); else return float(-1.);")
+
+                # Defining vector containing the HNL and its daughters, in order written
+                .Define("GenHNL_indices", "FCCAnalyses::MCParticle::get_indices(%s ,{11} , true, true, true, true)(Particle, Particle1)"%(HNL_id))
+                .Define("GenHNL", "FCCAnalyses::MCParticle::selMC_leg(0)(GenHNL_indices, Particle)")
+                .Define("GenHNLElectron", "FCCAnalyses::MCParticle::selMC_leg(1)(GenHNL_indices, Particle)")
+
+                #Define decay electron from HNL
+                .Define("GenHNLElectron_e", "FCCAnalyses::MCParticle::get_e(GenHNLElectron)")
+                .Define("GenHNLElectron_pt", "FCCAnalyses::MCParticle::get_pt(GenHNLElectron)")
+                .Define("GenHNLElectron_eta", "FCCAnalyses::MCParticle::get_eta(GenHNLElectron)")
+                .Define("GenHNLElectron_phi", "FCCAnalyses::MCParticle::get_phi(GenHNLElectron)")
+          
+                .Define("GenHNLElectron_vertex_x","return FCCAnalyses::MCParticle::get_vertex_x(GenHNLElectron)")
+                .Define("GenHNLElectron_vertex_y","return FCCAnalyses::MCParticle::get_vertex_y(GenHNLElectron)")
+                .Define("GenHNLElectron_vertex_z","return FCCAnalyses::MCParticle::get_vertex_z(GenHNLElectron)")
+                # Finding the Lxy of the HNL
+                # Definition: Lxy = math.sqrt( (branchGenPtcl.At(daut1).X)**2 + (branchGenPtcl.At(daut1).Y)**2 )
+                .Define("GenHNL_Lxy", "return sqrt(GenHNLElectron_vertex_x*GenHNLElectron_vertex_x + GenHNLElectron_vertex_y*GenHNLElectron_vertex_y)")
+                # Finding the Lxyz of the HNL
+                .Define("GenHNL_Lxyz", "return sqrt(GenHNLElectron_vertex_x*GenHNLElectron_vertex_x + GenHNLElectron_vertex_y*GenHNLElectron_vertex_y + GenHNLElectron_vertex_z*GenHNLElectron_vertex_z)")
+
+                #Differences Lead jet, decay electron
+                # Defining diff between lead jet and prompt electron
+                .Define("LeadJet_HNLELectron_Delta_e", "return GenHNLElectron_e - RecoLeadJet_e")
+                .Define("LeadJet_HNLELectron_Delta_pt", "return (GenHNLElectron_pt - RecoLeadJet_pt)")
+                .Define("LeadJet_HNLELectron_Delta_phi", "if (RecoLeadJet_phi < -1000) return float(-100.); else return atan2(sin(RecoLeadJet_phi - GenHNLElectron_phi.at(0)), cos(RecoLeadJet_phi - GenHNLElectron_phi.at(0)));")
+                .Define("LeadJet_HNLELectron_Delta_eta", "return (RecoLeadJet_eta - GenHNLElectron_eta)")
+                .Define("LeadJet_HNLELectron_Delta_R", "return sqrt(LeadJet_HNLELectron_Delta_phi*LeadJet_HNLELectron_Delta_phi + LeadJet_HNLELectron_Delta_eta*LeadJet_HNLELectron_Delta_eta)")
+ 
                 .Define("RecoElectron_e",      "ReconstructedParticle::get_e(RecoElectrons)")
                 .Define("RecoElectron_p",      "ReconstructedParticle::get_p(RecoElectrons)")
                 .Define("RecoElectron_pt",      "ReconstructedParticle::get_pt(RecoElectrons)")
@@ -309,6 +369,15 @@ class RDFanalysis():
                         "FSGenPhoton_phi",
                         "FSGenPhoton_charge",
 
+                        "n_GenJets",
+                        "GenJet_e",
+                        "GenLeadJet_e",
+  
+                        "GenHNLElectron_e",
+                        "GenHNLElectron_pt",
+                        "GenHNLElectron_eta",
+                        "GenHNLElectron_phi",
+
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
                         "n_RecoJets",
@@ -331,6 +400,35 @@ class RDFanalysis():
                         "RecoJetTrack_absZ0sig",
                         "RecoJetTrack_D0cov",
                         "RecoJetTrack_Z0cov",
+               
+                        "selectedJet_e",
+                        "selectedJet_pt",
+
+                        "RecoLeadJet_e",
+                        "RecoLeadJet_pt",
+                        "RecoLeadJet_eta",
+                        "RecoLeadJet_phi",
+                        "Reco_LeadJet_invMass",
+                        "RecoSecondJet_e",
+                        "RecoSecondJet_pt",
+                        "RecoSecondJet_eta",
+                        "RecoSecondJet_phi",
+  
+                        "RecoJetDelta_e",
+                        "RecoJetDelta_pt",
+                        "RecoJetDelta_phi",
+                        "RecoJetDelta_eta",
+                        "RecoJetDelta_R",
+
+                        "LeadJet_HNLELectron_Delta_e",
+                        "LeadJet_HNLELectron_Delta_pt",
+                        "LeadJet_HNLELectron_Delta_eta",
+                        "LeadJet_HNLELectron_Delta_phi",
+                        "LeadJet_HNLELectron_Delta_R",
+
+                        "GenHNL_Lxy",
+                        "GenHNL_Lxyz",
+
                         "RecoPhoton_e",
                         "RecoPhoton_p",
                         "RecoPhoton_pt",

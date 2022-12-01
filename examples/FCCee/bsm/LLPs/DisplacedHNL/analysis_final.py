@@ -1,51 +1,14 @@
 #Input directory where the files produced at the stage1 level are
-inputDir  = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1"
+inputDir  = "/afs/cern.ch/user/d/dimoulin/FCCAnalyses_new/FCC-LLP/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/outputs/HNL_Majorana_ejj_50GeV_1e-3Ve/output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #inputDir = "output_stage1/"
 
-#Output directory where the files produced at the final-selection level are
-outputDir  = "output_finalSel/"
-
-#Integrated luminosity for scaling number of events (required only if setting doScale to true)
-#intLumi = 150e6 #pb^-1
-
-#Scale event yields by intLumi and cross section (optional)
-#doScale = True
-
-#Save event yields in a table (optional)
-#saveTabular = True
+#Input directory where the files produced at the final-selection level are
+outputDir  = "outputs/HNL_Majorana_ejj_50GeV_1e-3Ve/output_finalSel/"
 
 processList = {
     #run over the full statistics from stage1
-
-    #backgrounds
-    'p8_ee_Zee_ecm91':{},
-    'p8_ee_Ztautau_ecm91':{},
-    'p8_ee_Zbb_ecm91':{},
-    'p8_ee_Zcc_ecm91':{},
-    'p8_ee_Zuds_ecm91':{},
-
-    #signals
-    'eenu_30GeV_1p41e-6Ve':{},
-    'eenu_50GeV_1p41e-6Ve':{},
-    'eenu_70GeV_1p41e-6Ve':{},
-    'eenu_90GeV_1p41e-6Ve':{},
-}
-
-###Dictionary for prettier names of processes (optional)
-processLabels = {
-    #backgrounds
-    'p8_ee_Zee_ecm91':"Z $\rightarrow$ ee",
-    'p8_ee_Ztautau_ecm91':"Z $\rightarrow \tau \tau$",
-    'p8_ee_Zbb_ecm91':"Z $\rightarrow$ bb",
-    'p8_ee_Zcc_ecm91':"Z $\rightarrow$ cc",
-    'p8_ee_Zuds_ecm91':"Z $\rightarrow$ uds",
-
-    #signals
-    'eenu_30GeV_1p41e-6Ve': "$m_N =$ 30 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
-    'eenu_50GeV_1p41e-6Ve': "$m_N =$ 50 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
-    'eenu_70GeV_1p41e-6Ve': "$m_N =$ 70 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
-    'eenu_90GeV_1p41e-6Ve': "$m_N =$ 90 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
+    'HNL_Majorana_ejj_50GeV_1e-3Ve':{},
 }
 
 #Link to the dictonary that contains all the cross section information etc...
@@ -54,14 +17,10 @@ procDict = "FCCee_procDict_spring2021_IDEA.json"
 #Add MySample_p8_ee_ZH_ecm240 as it is not an offical process
 procDictAdd={
     #"MySample_p8_ee_ZH_ecm240":{"numberOfEvents": 10000000, "sumOfWeights": 10000000, "crossSection": 0.201868, "kfactor": 1.0, "matchingEfficiency": 1.0}
-    "eenu_30GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.638e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "eenu_50GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.535e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "eenu_70GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.968e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "eenu_90GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.749e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 #Number of CPUs to use
-nCPUS = 2
+nCPUS = 4
 
 #produces ROOT TTrees, default is False
 doTree = False
@@ -69,27 +28,19 @@ doTree = False
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     "selNone": "n_RecoTracks > -1",
+    "selJetPtGt20":"RecoJet_pt[0]>20", 
     # "sel1FSGenEle": "n_FSGenElectron>0",
     # "sel1FSGenEle_eeInvMassGt80": "n_FSGenElectron>0 && FSGen_ee_invMass >80",
     # "sel1FSGenNu": "n_FSGenNeutrino>0",
-    "sel2RecoEle": "n_RecoElectrons==2",
-    "sel2RecoEle_vetoes": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0",
+    # "sel2RecoEle": "n_RecoElectrons==2",
+    # "sel2RecoEle_vetoes": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0",
     # "sel2RecoEle_absD0Gt0p1": "n_RecoElectrons==2 && RecoElectronTrack_absD0[0]>0.1 && RecoElectronTrack_absD0[1]>0.1", #both electrons displaced
     # "sel2RecoEle_chi2Gt0p1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1", #good vertex
     # "sel2RecoEle_chi2Gt0p1_LxyzGt1": "n_RecoElectrons==2 && RecoDecayVertex.chi2>0.1 && Reco_Lxyz>1", #displaced vertex
-    "sel2RecoEle_vetoes_MissingEnergyGt10": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10", #missing energy > 10 GeV
+    # "sel2RecoEle_vetoes_MissingEnergyGt10": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10", #missing energy > 10 GeV
     # "sel2RecoEle_vetoes_absD0Gt0p5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoElectronTrack_absD0[0]>0.5 && RecoElectronTrack_absD0[1]>0.5", #both electrons displaced
-    "sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoElectronTrack_absD0[0]>0.5 && RecoElectronTrack_absD0[1]>0.5", #both electrons displaced
+    #"sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoElectronTrack_absD0[0]>0.5 && RecoElectronTrack_absD0[1]>0.5", #both electrons displaced
     # "sel2RecoEle_vetoes_MissingEnergyGt10_chi2Gt1_LxyzGt5": "n_RecoElectrons==2 && n_RecoMuons==0 && n_RecoPhotons==0 && n_RecoJets==0 && n_RecoPhotons==0 && RecoMissingEnergy_p[0]>10 && RecoDecayVertex.chi2>1 && Reco_Lxyz>5", #displaced vertex
-}
-
-###Dictionary for prettier names of cuts (optional)
-cutLabels = {
-    "selNone": "Before selection",
-    "sel2RecoEle": "Exactly 2 electrons",
-    "sel2RecoEle_vetoes": "Veto photons, muons, and jets",
-    "sel2RecoEle_vetoes_MissingEnergyGt10": "$\\not\\! p >$ 10 GeV",
-    "sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5": "Electron $|d_0| >$ 0.5 mm",
 }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
@@ -143,9 +94,15 @@ histoList = {
     "FSGenPhoton_phi":                 {"name":"FSGenPhoton_phi",                "title":"Final state gen photons #phi",               "bin":64, "xmin":-3.2,"xmax":3.2},
     "FSGenPhoton_charge":              {"name":"FSGenPhoton_charge",             "title":"Final state gen photons charge",             "bin":3, "xmin":-1.5,"xmax":1.5},
 
+
+    "GenHNLElectron_e":        {"name":"GenHNLElectron_e",        "title":"Decay electron energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "GenHNLElectron_pt":        {"name":"GenHNLElectron_pt",        "title":"Decay electron p_{T} [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "GenHNLElectron_eta":        {"name":"GenHNLElectron_eta",        "title":"Decay electron #eta", "bin":60,"xmin":-3 ,"xmax":3},
+    "GenHNLElectron_phi":        {"name":"GenHNLElectron_phi",        "title":"Decay electron #phi", "bin":64,"xmin":-3.2 ,"xmax":3.2},
+
     #reco variables
     "n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",           "bin":5,"xmin":-0.5 ,"xmax":4.5},
-    "n_RecoJets":       {"name":"n_RecoJets",      "title":"Total number of reco jets",         "bin":5,"xmin":-0.5 ,"xmax":4.5},
+    "n_RecoJets":       {"name":"n_RecoJets",      "title":"Total number of reco jets",         "bin":11,"xmin":-0.5 ,"xmax":10.5},
     "n_RecoPhotons":    {"name":"n_RecoPhotons",   "title":"Total number of reco photons",      "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoElectrons":  {"name":"n_RecoElectrons", "title":"Total number of reco electrons",    "bin":5,"xmin":-0.5 ,"xmax":4.5},
     "n_RecoMuons":      {"name":"n_RecoMuons",     "title":"Total number of reco muons",        "bin":5,"xmin":-0.5 ,"xmax":4.5},
@@ -159,9 +116,39 @@ histoList = {
     "RecoJet_phi":      {"name":"RecoJet_phi",      "title":"Reco jet #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
     "RecoJet_charge":   {"name":"RecoJet_charge",   "title":"Reco jet charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
 
-    "RecoJetTrack_absD0":             {"name":"RecoJetTrack_absD0",     "title":"Reco jet tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    "GenJet_e":      {"name":"GenJet_e",     "title":"Gen jet energy [GeV]",      "bin":100,"xmin":0, "xmax":5},  
+    "GenLeadJet_e":      {"name":"GenLeadJet_e",     "title":"Gen Leading jet energy [GeV]",      "bin":100,"xmin":0, "xmax":50},   
+
+    "RecoLeadJet_e":      {"name":"RecoLeadJet_e",     "title":"Reco Leading jet energy [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "RecoLeadJet_e_scaled":      {"name":"RecoLeadJet_e",     "title":"Reco Leading jet energy_scaled [GeV]",      "bin":100,"xmin":0, "xmax":1},
+    "RecoLeadJet_pt":      {"name":"RecoLeadJet_pt",     "title":"Reco Leading jet p_{T} [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "RecoLeadJet_eta":      {"name":"RecoLeadJet_eta",     "title":"Reco Leading jet #eta",      "bin":64,"xmin":-3, "xmax":3},
+    "RecoLeadJet_phi":      {"name":"RecoLeadJet_phi",     "title":"Reco Leading jet #phi",      "bin":64,"xmin":-3.2, "xmax":3.2},
+    "RecoSecondJet_e":      {"name":"RecoSecondJet_e",     "title":"Reco Secondary jet energy [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "RecoSecondJet_pt":      {"name":"RecoSecondJet_pt",     "title":"Reco Secondary jet p_{T} [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "RecoSecondJet_eta":      {"name":"RecoSecondJet_eta",     "title":"Reco Secondary jet #eta",      "bin":64,"xmin":-3, "xmax":3},
+    "RecoSecondJet_phi":      {"name":"RecoSecondJet_phi",     "title":"Reco Secondary jet #phi",      "bin":64,"xmin":-3.2, "xmax":3.2},
+
+    "RecoJetDelta_e":      {"name":"RecoJetDelta_e",     "title":"Reco Jet #Delta E [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "RecoJetDelta_pt":      {"name":"RecoJetDelta_pt",     "title":"Reco Jet #Delta p_{T} [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "RecoJetDelta_phi":      {"name":"RecoJetDelta_phi",     "title":"Reco Jet #Delta #phi",      "bin":64,"xmin":-4, "xmax":4},
+    "RecoJetDelta_eta":      {"name":"RecoJetDelta_eta",     "title":"Reco Jet #Delta #eta",      "bin":64,"xmin":-7, "xmax":7},
+    "RecoJetDelta_R":      {"name":"RecoJetDelta_R",     "title":"Reco Jet #Delta R",      "bin":100,"xmin":0, "xmax":10},
+
+    "Reco_LeadJet_invMass":   {"name":"Reco_LeadJet_invMass",   "title":"Reco m_{Jet} [GeV]",           "bin":100,"xmin":0, "xmax":10},
+
+    "LeadJet_HNLELectron_Delta_e":      {"name":"LeadJet_HNLELectron_Delta_e",     "title":"RecoJet DecayEle #Delta E [GeV]",      "bin":100,"xmin":-50, "xmax":50},
+    "LeadJet_HNLELectron_Delta_pt":      {"name":"LeadJet_HNLELectron_Delta_pt",     "title":"RecoJet DecayEle #Delta p_{T} [GeV]",      "bin":100,"xmin":-50, "xmax":50},
+    "LeadJet_HNLELectron_Delta_phi":      {"name":"LeadJet_HNLELectron_Delta_phi",     "title":"RecoJet DecayEle #Delta #phi",      "bin":64,"xmin":-4, "xmax":4},
+    "LeadJet_HNLELectron_Delta_eta":      {"name":"LeadJet_HNLELectron_Delta_eta",     "title":"RecoJet DecayEle #Delta #eta",      "bin":64,"xmin":-7, "xmax":7},
+    "LeadJet_HNLELectron_Delta_R":      {"name":"LeadJet_HNLELectron_Delta_R",     "title":"RecoJet DecayEle #Delta R",      "bin":100,"xmin":0, "xmax":10},
+    
+    "GenHNL_Lxy":                     {"name":"GenHNL_Lxy",                    "title":"Gen L_{xy} [mm]",     "bin":50,"xmin":0 ,"xmax":0.01},
+    "GenHNL_Lxyz":                     {"name":"GenHNL_Lxyz",                    "title":"Gen L_{xyz} [mm]",     "bin":50,"xmin":0 ,"xmax":0.01},
+
+    "RecoJetTrack_absD0":             {"name":"RecoJetTrack_absD0",     "title":"Reco jet tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
     "RecoJetTrack_absD0_prompt":      {"name":"RecoJetTrack_absD0",     "title":"Reco jet tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
-    "RecoJetTrack_absZ0":             {"name":"RecoJetTrack_absZ0",     "title":"Reco jet tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    "RecoJetTrack_absZ0":             {"name":"RecoJetTrack_absZ0",     "title":"Reco jet tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
     "RecoJetTrack_absZ0_prompt":      {"name":"RecoJetTrack_absZ0",     "title":"Reco jet tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
     "RecoJetTrack_absD0sig":          {"name":"RecoJetTrack_absD0sig",  "title":"Reco jet tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
     "RecoJetTrack_absD0sig_prompt":   {"name":"RecoJetTrack_absD0sig",  "title":"Reco jet tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
