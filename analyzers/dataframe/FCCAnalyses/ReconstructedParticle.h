@@ -126,6 +126,25 @@ namespace ReconstructedParticle{
   /// return the TlorentzVector of the one input ReconstructedParticle
   TLorentzVector get_tlv(edm4hep::ReconstructedParticleData in);
 
+  /// return the TlorentzVector from the (pt,eta,phi,E) components
+  TLorentzVector get_tlv_PtEtaPhiE(float pt, float eta, float phi, float e);
+
+  /// Return the sum of two 4-vectors
+  TLorentzVector get_tlv_sum(TLorentzVector v1, TLorentzVector v2);
+
+  /// Return energy of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_e(TLorentzVector in);
+
+  /// Return phi of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_phi(TLorentzVector in);
+
+  /// Return pt of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_pt(TLorentzVector in);
+
+  /// Return eta of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_eta(TLorentzVector in);
+
+
   /// concatenate both input vectors and return the resulting vector
   ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> merge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> y);
 
