@@ -253,6 +253,7 @@ ROOT::VecOps::RVec<float> get_eta(ROOT::VecOps::RVec<edm4hep::ReconstructedParti
   return result;
 }
 
+
 ROOT::VecOps::RVec<float> get_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
@@ -356,6 +357,46 @@ TLorentzVector get_tlv(edm4hep::ReconstructedParticleData in) {
   result.SetXYZM(in.momentum.x, in.momentum.y, in.momentum.z, in.mass);
   return result;
 }
+
+TLorentzVector get_tlv_PtEtaPhiE(float pt, float eta, float phi, float e) {
+  TLorentzVector result;
+  if (e>-1)
+  result.SetPtEtaPhiE(pt, eta, phi, e);
+  else
+  result.SetPtEtaPhiE(0, 0, 0, -1);
+  return result;
+}
+
+TLorentzVector get_tlv_sum(TLorentzVector v1, TLorentzVector v2) {
+  TLorentzVector result;
+  result = v1 + v2;
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_phi(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Phi());
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_e(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Energy());
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_eta(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Eta());
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_pt(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Pt());
+  return result;
+}
+
 
 ROOT::VecOps::RVec<int>
 get_type(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in){
