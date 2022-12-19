@@ -143,7 +143,7 @@ fccanalysis run analysis_stage1.py --output <name_of_desired_output.root> --file
 ```
 Note : you can (must) specify the output directory by directly modifying ```analysis_stage1.py``` (l18)
 ### Final analysis
-The next step is to use ```final_analysis.py```. It must be modified in order to contain the correct inputDir and outputDir. Last test was to remove all processes from process_list and leave only the .root file created during stage1, so it looked like : 
+The next step is to use ```final_analysis.py```. It must be modified in order to contain the correct inputDir and outputDir. Finally, modify the processList to contain the .root files created during stage1 : 
 ```shell
 processList = {
     #run over the full statistics from stage1
