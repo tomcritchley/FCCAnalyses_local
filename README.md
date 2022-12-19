@@ -78,7 +78,7 @@ source ./setup.sh
 ```
 ## Madgraph installation
 
-Following the recomendations from https://twiki.cern.ch/twiki/bin/view/Main/MadgraphOnLxPlus, Madgraph was installed in the FCCAnalyses directory (only advice was to install it into the workspace). Moreover, we are moving away from Tanishq instructions, since the FCCeePhysicsPerformance git is no longer necessary according to Juliette, hence only FCCAnalyses has been installed properly. Therefore, will need to be careful about copying paths etc.. since Madgraph is installed in FCCAnalyses/
+Following the recomendations from https://twiki.cern.ch/twiki/bin/view/Main/MadgraphOnLxPlus, Madgraph was installed in the workspace. Moreover, we are moving away from Tanishq instructions, since the FCCeePhysicsPerformance git is no longer necessary according to Juliette, hence only FCCAnalyses has been installed properly. Therefore, will need to be careful about copying paths etc.. 
 
 ### Launching Madgraph
 In order to launch Madgraph : 
@@ -132,6 +132,7 @@ source /cvmfs/fcc.cern.ch/sw/latest/setup.sh
 DelphesPythia8_EDM4HEP ../../../../../../FCC-config/FCCee/Delphes/card_IDEA.tcl ../../../../../../FCC-config/FCCee/Delphes/edm4hep_IDEA.tcl HNL_eenu_pythia.cmnd HNL_ejj.root
 ```
 Where HNL_ejj.root is the output file
+Note, you might need to pull the repository containing FCC-config, located at : https://github.com/HEP-FCC/FCC-config
 
 ## Analysis
 ### Stage 1
