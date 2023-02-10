@@ -1,14 +1,14 @@
 #Input directory where the files produced at the stage1 level are
-inputDir  = "/afs/cern.ch/user/d/dimoulin/FCCAnalyses_new/FCC-LLP/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/outputs/HNL_Dirac_ejj_50GeV_1e-3Ve/output_stage1/"
+inputDir  = "/afs/cern.ch/user/d/dimoulin/FCCAnalyses_new/FCC-LLP/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/outputs/HNL_Dirac_ejj_20GeV_1e-3Ve/output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #inputDir = "output_stage1/"
 
 #Input directory where the files produced at the final-selection level are
-outputDir  = "outputs/HNL_Dirac_ejj_50GeV_1e-3Ve/output_finalSel/"
+outputDir  = "outputs/HNL_Dirac_ejj_20GeV_1e-3Ve/output_finalSel/"
 
 processList = {
     #run over the full statistics from stage1
-    'HNL_Dirac_ejj_50GeV_1e-3Ve':{},
+    'HNL_Dirac_ejj_20GeV_1e-3Ve':{},
 }
 
 #Link to the dictonary that contains all the cross section information etc...
@@ -28,7 +28,8 @@ doTree = False
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
     "selNone": "n_RecoTracks > -1",
-    "selJetPtGt20":"RecoJet_pt[0]>20", 
+    "selGenEleEGt30":"GenHNLElectron_e[0]>20", 
+    "selGenJetEGt20": "GenJet_e[0] > 20",   
     # "sel1FSGenEle": "n_FSGenElectron>0",
     # "sel1FSGenEle_eeInvMassGt80": "n_FSGenElectron>0 && FSGen_ee_invMass >80",
     # "sel1FSGenNu": "n_FSGenNeutrino>0",
@@ -81,6 +82,8 @@ histoList = {
     "FSGenNeutrino_phi":                 {"name":"FSGenNeutrino_phi",                "title":"Final state gen neutrinos #phi",             "bin":64, "xmin":-3.2,"xmax":3.2},
     "FSGenNeutrino_charge":              {"name":"FSGenNeutrino_charge",             "title":"Final state gen neutrinos charge",           "bin":3, "xmin":-1.5,"xmax":1.5},
 
+    "n_GenJets":       {"name":"n_GenJets",      "title":"Number of gen jets per event",         "bin":11,"xmin":-0.5 ,"xmax":20.5},
+
     "FSGen_ee_invMass":   {"name":"FSGen_ee_invMass",   "title":"Gen m_{ee} [GeV]",           "bin":100,"xmin":0, "xmax":100},
     "FSGen_eenu_invMass": {"name":"FSGen_eenu_invMass", "title":"Gen m_{ee#nu} [GeV]",           "bin":100,"xmin":0, "xmax":100},
 
@@ -93,12 +96,18 @@ histoList = {
     "FSGenPhoton_theta":               {"name":"FSGenPhoton_theta",              "title":"Final state gen photons #theta",             "bin":64, "xmin":0,"xmax":3.2},
     "FSGenPhoton_phi":                 {"name":"FSGenPhoton_phi",                "title":"Final state gen photons #phi",               "bin":64, "xmin":-3.2,"xmax":3.2},
     "FSGenPhoton_charge":              {"name":"FSGenPhoton_charge",             "title":"Final state gen photons charge",             "bin":3, "xmin":-1.5,"xmax":1.5},
-
+    
+    "GenHNL_electron_e":        {"name":"GenHNL_electron_e",        "title":"Decay electron(-) energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "GenHNL_electron_pt":        {"name":"GenHNL_electron_pt",        "title":"Decay electron(-) pt [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    
+    "GenHNL_positron_e":        {"name":"GenHNL_positron_e",        "title":"Decay positron(+) energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "GenHNL_positron_pt":        {"name":"GenHNL_positron_pt",        "title":"Decay positron(+) pt [GeV]", "bin":100,"xmin":0 ,"xmax":50},
 
     "GenHNLElectron_e":        {"name":"GenHNLElectron_e",        "title":"Decay electron energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     "GenHNLElectron_pt":        {"name":"GenHNLElectron_pt",        "title":"Decay electron p_{T} [GeV]", "bin":100,"xmin":0 ,"xmax":50},
     "GenHNLElectron_eta":        {"name":"GenHNLElectron_eta",        "title":"Decay electron #eta", "bin":60,"xmin":-3 ,"xmax":3},
     "GenHNLElectron_phi":        {"name":"GenHNLElectron_phi",        "title":"Decay electron #phi", "bin":64,"xmin":-3.2 ,"xmax":3.2},
+
 
     #reco variables
     "n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",           "bin":5,"xmin":-0.5 ,"xmax":4.5},
@@ -118,6 +127,18 @@ histoList = {
 
     "GenJet_e":      {"name":"GenJet_e",     "title":"Gen jet energy [GeV]",      "bin":100,"xmin":0, "xmax":5},  
     "GenLeadJet_e":      {"name":"GenLeadJet_e",     "title":"Gen Leading jet energy [GeV]",      "bin":100,"xmin":0, "xmax":50},   
+
+    "GenLeadJet_phi_e":      {"name":"GenLeadJet_phi_e",     "title":"Gen Leading jet energy phi_sel [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "GenLeadJet_phi_pt":      {"name":"GenLeadJet_phi_pt",     "title":"Gen Leading jet pt phi_sel [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "GenSecondJet_phi_e":      {"name":"GenSecondJet_phi_e",     "title":"Gen Second jet energy phi_sel [GeV]",      "bin":100,"xmin":0, "xmax":50},
+    "GenSecondJet_phi_pt":      {"name":"GenSecondJet_phi_pt",     "title":"Gen Second jet pt phi_sel [GeV]",      "bin":100,"xmin":0, "xmax":50},
+
+
+    "GenDiJet_invMass":   {"name":"GenDiJet_invMass",   "title":"Gen DiJet mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
+
+    "GenDiJetElectron_invMass":   {"name":"GenDiJetElectron_invMass",   "title":"Gen DiJet - Electron mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "GenDiJet_electron_invMass":   {"name":"GenDiJet_electron_invMass",   "title":"Gen DiJet - electron mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "GenDiJet_positron_invMass":   {"name":"GenDiJet_positron_invMass",   "title":"Gen DiJet - positron mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
 
     "RecoLeadJet_e":      {"name":"RecoLeadJet_e",     "title":"Reco Leading jet energy [GeV]",      "bin":100,"xmin":0, "xmax":50},
     "RecoLeadJet_e_scaled":      {"name":"RecoLeadJet_e",     "title":"Reco Leading jet energy_scaled [GeV]",      "bin":100,"xmin":0, "xmax":1},
@@ -141,7 +162,13 @@ histoList = {
     "RecoJetDelta_eta":      {"name":"RecoJetDelta_eta",     "title":"Reco Jet #Delta #eta",      "bin":64,"xmin":-7, "xmax":7},
     "RecoJetDelta_R":      {"name":"RecoJetDelta_R",     "title":"Reco Jet #Delta R",      "bin":100,"xmin":0, "xmax":10},
 
-    "Reco_LeadJet_invMass":   {"name":"Reco_LeadJet_invMass",   "title":"Reco m_{Jet} [GeV]",           "bin":100,"xmin":0, "xmax":10},
+    
+    "RecoDiJet_invMass":   {"name":"RecoDiJet_invMass",   "title":"Gen DiJet mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "RecoDiJetElectron_invMass":   {"name":"RecoDiJetElectron_invMass",   "title":"Reco DiJet-Electrons mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "RecoDiJet_electron_invMass":   {"name":"RecoDiJet_electron_invMass",   "title":"Reco DiJet-electron (-) mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "RecoDiJet_positron_invMass":   {"name":"RecoDiJet_positron_invMass",   "title":"Reco DiJet-positron (-) mass [GeV]",           "bin":100,"xmin":0, "xmax":100},
+
+    
 
     "LeadJet_HNLELectron_Delta_e":      {"name":"LeadJet_HNLELectron_Delta_e",     "title":"RecoJet DecayEle #Delta E [GeV]",      "bin":100,"xmin":-50, "xmax":50},
     "LeadJet_HNLELectron_Delta_pt":      {"name":"LeadJet_HNLELectron_Delta_pt",     "title":"RecoJet DecayEle #Delta p_{T} [GeV]",      "bin":100,"xmin":-50, "xmax":50},
@@ -155,7 +182,28 @@ histoList = {
     "DiJet_HNLElectron_Delta_phi":      {"name":"DiJet_HNLElectron_Delta_phi",     "title":"DiJet DecayEle #Delta #phi",      "bin":64,"xmin":-4, "xmax":4},
     "DiJet_HNLElectron_Delta_eta":      {"name":"DiJet_HNLElectron_Delta_eta",     "title":"DiJet DecayEle #Delta #eta",      "bin":64,"xmin":-7, "xmax":7},
     "DiJet_HNLElectron_Delta_R":      {"name":"DiJet_HNLElectron_Delta_R",     "title":"DiJet DecayEle #Delta R",      "bin":100,"xmin":0, "xmax":10},
+
+    #Diff in theta 
+    "GenHNL_DiJet_Delta_theta":      {"name":"GenHNL_DiJet_Delta_theta",     "title":"HNL - DiJet #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenHNL_Electron_Delta_theta":      {"name":"GenHNL_Electron_Delta_theta",     "title":"HNL - Electrons #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenHNLelectron_Delta_theta":      {"name":"GenHNLelectron_Delta_theta",     "title":"HNL - electron #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenHNLpositron_Delta_theta":      {"name":"GenHNLpositron_Delta_theta",     "title":"HNL - positron #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenHNLElectron_DiJet_Delta_theta":      {"name":"GenHNLElectron_DiJet_Delta_theta",     "title":"Electrons - DiJet #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenHNL_electron_DiJet_Delta_theta":      {"name":"GenHNL_electron_DiJet_Delta_theta",     "title":"electron - Dijet #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenHNL_positron_DiJet_Delta_theta":      {"name":"GenHNL_positron_DiJet_Delta_theta",     "title":"positron - DiJet #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenDiJetElectron_Electron_Delta_theta":      {"name":"GenDiJetElectron_Electron_Delta_theta",     "title":"DiJetElectron - Electron #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenDiJet_electron_electron_Delta_theta":      {"name":"GenDiJet_electron_electron_Delta_theta",     "title":"DiJet-electron-electron #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "GenDiJet_positron_positron_Delta_theta":      {"name":"GenDiJet_positron_positron_Delta_theta",     "title":"DiJet-positron-positron #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
     
+
+    "RecoHNLElectron_DiJet_Delta_theta":      {"name":"RecoHNLElectron_DiJet_Delta_theta",     "title":"HNLElectron - DiJet #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "RecoHNL_electron_DiJet_Delta_theta":      {"name":"RecoHNL_electron_DiJet_Delta_theta",     "title":"HNLelectron (-) - DiJet #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "RecoHNL_positron_DiJet_Delta_theta":      {"name":"RecoHNL_positron_DiJet_Delta_theta",     "title":"HNLpositron - DiJet #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+
+    "RecoDiJetElectron_Electron_Delta_theta":      {"name":"RecoDiJetElectron_Electron_Delta_theta",     "title":"RecoHNL - Electron #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "RecoDiJet_electron_electron_Delta_theta":      {"name":"RecoDiJet_electron_electron_Delta_theta",     "title":"RecoHNL - electron (-) #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+    "RecoDiJet_positron_positron_Delta_theta":      {"name":"RecoDiJet_positron_positron_Delta_theta",     "title":"RecoHNL - positron #Delta #theta",      "bin":64,"xmin":-4, "xmax":4},
+
     "GenHNL_Lxy":                     {"name":"GenHNL_Lxy",                    "title":"Gen L_{xy} [mm]",     "bin":50,"xmin":0 ,"xmax":0.01},
     "GenHNL_Lxyz":                     {"name":"GenHNL_Lxyz",                    "title":"Gen L_{xyz} [mm]",     "bin":50,"xmin":0 ,"xmax":0.01},
 
@@ -179,13 +227,26 @@ histoList = {
     "RecoElectron_phi":      {"name":"RecoElectron_phi",      "title":"Reco electron #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
     "RecoElectron_charge":   {"name":"RecoElectron_charge",   "title":"Reco electron charge",       "bin":3, "xmin":-1.5,"xmax":1.5},
 
-    "RecoElectronTrack_absD0":             {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
-    "RecoElectronTrack_absD0_med":         {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":10},
-    "RecoElectronTrack_absD0_prompt":      {"name":"RecoElectronTrack_absD0",     "title":"Reco electron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
-    "RecoElectronTrack_absZ0":             {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
-    "RecoElectronTrack_absZ0_prompt":      {"name":"RecoElectronTrack_absZ0",     "title":"Reco electron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
-    "RecoElectronTrack_absD0sig":          {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
-    "RecoElectronTrack_absD0sig_prompt":   {"name":"RecoElectronTrack_absD0sig",  "title":"Reco electron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
+    "RecoHNL_electron_e":        {"name":"RecoHNL_electron_e",        "title":"Reco electron (-) energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "RecoHNL_electron_pt":       {"name":"RecoHNL_electron_pt",       "title":"Reco electron (-) p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
+    "RecoHNL_electron_eta":      {"name":"RecoHNL_electron_eta",      "title":"Reco electron (-) #eta",         "bin":60, "xmin":-3,"xmax":3},
+    "RecoHNL_electron_theta":    {"name":"RecoHNL_electron_theta",    "title":"Reco electron (-) #theta",       "bin":64, "xmin":0,"xmax":3.2},
+    "RecoHNL_electron_phi":      {"name":"RecoHNL_electron_phi",      "title":"Reco electron (-) #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
+
+    "RecoHNL_positron_e":        {"name":"RecoHNL_positron_e",        "title":"Reco positron (+) energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "RecoHNL_positron_pt":       {"name":"RecoHNL_positron_pt",       "title":"Reco positron (+) p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
+    "RecoHNL_positron_eta":      {"name":"RecoHNL_positron_eta",      "title":"Reco positron (+) #eta",         "bin":60, "xmin":-3,"xmax":3},
+    "RecoHNL_positron_theta":    {"name":"RecoHNL_positron_theta",    "title":"Reco positron (+) #theta",       "bin":64, "xmin":0,"xmax":3.2},
+    "RecoHNL_positron_phi":      {"name":"RecoHNL_positron_phi",      "title":"Reco positron (+) #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
+
+
+    "RecoElectronTrack_absD0":             {"name":"RecoElectronTrack_absD0",     "title":"Reco positron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    "RecoElectronTrack_absD0_med":         {"name":"RecoElectronTrack_absD0",     "title":"Reco positron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":10},
+    "RecoElectronTrack_absD0_prompt":      {"name":"RecoElectronTrack_absD0",     "title":"Reco positron tracks |d_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
+    "RecoElectronTrack_absZ0":             {"name":"RecoElectronTrack_absZ0",     "title":"Reco positron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":2000},
+    "RecoElectronTrack_absZ0_prompt":      {"name":"RecoElectronTrack_absZ0",     "title":"Reco positron tracks |z_{0}| [mm]",      "bin":100,"xmin":0, "xmax":1},
+    "RecoElectronTrack_absD0sig":          {"name":"RecoElectronTrack_absD0sig",  "title":"Reco positron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
+    "RecoElectronTrack_absD0sig_prompt":   {"name":"RecoElectronTrack_absD0sig",  "title":"Reco positron tracks |d_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
     "RecoElectronTrack_absZ0sig":          {"name":"RecoElectronTrack_absZ0sig",  "title":"Reco electron tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":600000},
     "RecoElectronTrack_absZ0sig_prompt":   {"name":"RecoElectronTrack_absZ0sig",  "title":"Reco electron tracks |z_{0} significance|",      "bin":100,"xmin":0, "xmax":5},
     "RecoElectronTrack_D0cov":      {"name":"RecoElectronTrack_D0cov",     "title":"Reco electron tracks d_{0} #sigma^{2}",      "bin":100,"xmin":0, "xmax":0.5},

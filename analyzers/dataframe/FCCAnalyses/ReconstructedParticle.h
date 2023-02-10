@@ -144,6 +144,17 @@ namespace ReconstructedParticle{
   /// Return eta of TLorentzVector
   ROOT::VecOps::RVec<float> get_tlv_eta(TLorentzVector in);
 
+  /// Return theta of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_theta(TLorentzVector in);
+ 
+  /// Return px of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_px(TLorentzVector in);
+
+  /// Return py of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_py(TLorentzVector in);
+
+  /// Return pz of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_pz(TLorentzVector in);
 
   /// concatenate both input vectors and return the resulting vector
   ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> merge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> y);
