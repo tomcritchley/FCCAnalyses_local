@@ -435,6 +435,57 @@ int getJet_ntags(ROOT::VecOps::RVec<bool> in) {
   return result;
 }
 
+///////////////////////////////////////
+ROOT::VecOps::RVec<float> minDR(
+                        ROOT::VecOps::RVec<float> jpt,
+                        ROOT::VecOps::RVec<float> jeta,
+                        ROOT::VecOps::RVec<float> jphi,
+                        ROOT::VecOps::RVec<float> jpt_ref,
+                        ROOT::VecOps::RVec<float> jeta_ref,
+                        ROOT::VecOps::RVec<float> jphi_ref,
+                        float ptThr,
+                        float maxDr = 0.3 
+                                   ){
+         ROOT::VecOps::RVec<int> idx, match_idx, ref_matched_idx;
+         ROOT::VecOps::RVec<float> minDRVec; 
+         for(int i=0; i < jpt.size(); i++) idx.push_back(i);
+
+         for(int i=0; i < jpt_ref.size() && idx.size()>0; i++){
+            ROOT::VecOps::RVec<float> pt = ROOT::VecOps::Take(jpt, idx);
+            ROOT::VecOps::RVec<float> eta = ROOT::VecOps::Take(jeta, idx);
+            ROOT::VecOps::RVec<float> phi = ROOT::VecOps::Take(jphi, idx);
+
+            float minDr = 999;
+            std::vector<float> dr;
+            const float ptRef = jpt_ref.at(i);
+            const float etaRef = jeta_ref.at(i);
+            const float phiRef = jphi_ref.at(i);  
+
+            for (int j=0; j < idx.size(); j++){
+                //if(std::abs(pt.at(j)-ptRef)/ptRef <= ptThr){
+                   float deta = std::abs(etaRef - eta.at(j)); 
+                   float dphi = std::abs(acos(cos(phiRef - phi.at(j)))); 
+                   float dR = std::sqrt(std::pow(deta,2)+std::pow(dphi, 2));
+                   dr.push_back(dR);                         
+               // }  else dr.push_back(99.);
+            }
+            
+            if(dr.size()>0){
+                int min_id = std::distance(std::begin(dr), std::min_element(std::begin(dr), std::end(dr)));
+                if (dr.at(min_id) <= minDr){
+                    minDr = dr.at(min_id);  
+                    minDRVec.push_back(minDr);
+                }
+                if (dr.at(min_id) <= maxDr){
+                    match_idx.push_back(idx[min_id]);
+                    ref_matched_idx.push_back(i);
+                }  
+            }
+         }
+         return minDRVec;
+      }
+/////////////////////////////////////
+
 }//end NS ReconstructedParticle
 
 }//end NS FCCAnalyses

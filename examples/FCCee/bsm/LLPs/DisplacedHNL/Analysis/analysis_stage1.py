@@ -337,6 +337,9 @@ class RDFanalysis():
                 .Define("Reco_ee_pz", "if (n_RecoElectrons>1) return (RecoElectron_pz.at(0) + RecoElectron_pz.at(1)); else return float(-1.);")
                 .Define("Reco_ee_invMass", "if (n_RecoElectrons>1) return sqrt(Reco_ee_energy*Reco_ee_energy - Reco_ee_px*Reco_ee_px - Reco_ee_py*Reco_ee_py - Reco_ee_pz*Reco_ee_pz ); else return float(-1.);")
 
+                # minDR (reco electrons, reco jets)
+                .Define("RecoElRecoJet_minDR", "ReconstructedParticle::minDR(RecoJet_pt, RecoJet_eta, RecoJet_phi, RecoElectron_pt, RecoElectron_eta, RecoElectron_phi, 10000, 0.3)")
+
 
                )
                 return df2
@@ -451,6 +454,8 @@ class RDFanalysis():
                         "DiJet_HNLElectron_Delta_phi",
                         "DiJet_HNLElectron_Delta_eta",
                         "DiJet_HNLElectron_Delta_R",
+                      
+                        "RecoElRecoJet_minDR", 
 
                         "GenHNL_Lxy",
                         "GenHNL_Lxyz",
