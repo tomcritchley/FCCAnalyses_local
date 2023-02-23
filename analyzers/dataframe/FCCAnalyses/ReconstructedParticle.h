@@ -171,6 +171,9 @@ namespace ReconstructedParticle{
   /// get number of b-jets
   int getJet_ntags(ROOT::VecOps::RVec<bool> in);
 
+  /// get minimum dR between two reco particles
+  ROOT::VecOps::RVec<float> minDR(ROOT::VecOps::RVec<float> jpt, ROOT::VecOps::RVec<float> jeta, ROOT::VecOps::RVec<float> jphi, ROOT::VecOps::RVec<float> jpt_ref, ROOT::VecOps::RVec<float> jeta_ref, ROOT::VecOps::RVec<float> jphi_ref, float ptThr, float maxDr);
+
 }//end NS ReconstructedParticle
 
 }//end NS FCCAnalyses
