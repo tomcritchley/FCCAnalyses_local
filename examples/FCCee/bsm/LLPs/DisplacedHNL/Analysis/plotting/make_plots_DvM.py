@@ -9,19 +9,22 @@ ROOT.gStyle.SetOptTitle(0)
 
 HNL_mass = "50GeV"
 
+#selection = "selRecoMinDrGt04"
 #selection = "selGenEleEGt30"
 #selection = "selJetPtGt20"
 selection = "selNone"
+#selection = "selRecoEleGt0"
 
-output_dir =  HNL_mass + "_ejj_50k/"
-output_dir_sel = HNL_mass + "_ejj_50k/" + selection +'/'
+output_dir =  HNL_mass + "_ejj_W2023/"
+output_dir_sel = HNL_mass + "_ejj_W2023/" + selection +'/'
 input_dir = "selected_hist/"
 
 #input_file_Dirac = input_dir + 'histDirac_ejj_'+HNL_mass+'_AE10_'+selection+'.root'
 #input_file_Majorana = input_dir + 'histDirac_ejj_'+HNL_mass+'_AE100_'+selection+'.root'
 
-input_file_Dirac = input_dir + 'histDirac_ejj_'+HNL_mass+'_1e-3Ve_'+selection+'.root'
-input_file_Majorana = input_dir + 'histMajorana_ejj_'+HNL_mass+'_1e-3Ve_'+selection+'.root'
+#input_file_Dirac_W2023 = input_dir + 'histDirac_ejj_'+HNL_mass+'_1e-3Ve_W2023_'+selection+'.root'
+input_file_Majorana = input_dir + 'histMajorana_ejj_'+HNL_mass+'_1e-3Ve_W2023_'+selection+'.root'
+input_file_Dirac = input_dir + 'histDirac_ejj_'+HNL_mass+'_1e-3Ve_W2023_'+selection+'.root'
 
 # Set plot log-scale plots, default: False
 log_scale = False
@@ -59,6 +62,11 @@ variables_list = [
      ["RecoMissingEnergy_theta", "Reco Missing_theta", "Entries", 3],
      ["RecoMissingEnergy_phi", "Reco Missing_phi", "Entries", 3],
 
+     ["RecoElectron_lead_e", "Reco Electron (from HNL) energy", "Entries", 3],
+     ["RecoElectron_lead_pt", "Reco Electron (from HNL) p_{T}", "Entries", 3],
+     ["RecoElectron_lead_eta", "Reco Electron (from HNL) #eta", "Entries", 3],
+     ["RecoElectron_lead_phi", "Reco Electron (from HNL) #phi", "Entries", 3],
+
      ["RecoHNL_electron_e", "Reco electron (-) energy", "Entries", 3],
      ["RecoHNL_electron_pt", "Reco electron (-) pt", "Entries", 3],
      ["RecoHNL_electron_phi", "Reco electron (-) phi", "Entries", 3],
@@ -71,22 +79,14 @@ variables_list = [
      ["RecoHNL_positron_theta", "Reco positron (+) theta", "Entries", 3],
      ["RecoHNL_positron_eta", "Reco positron (+) energy", "Entries", 3],
 
+     #["RecoElRecoJets_ee_kt_minDR", "Reco Electron - Reco Jet min #Delta R", "Entries", 3],
+     #["GenElRecoJets_ee_kt_minDR", "Gen Electron - Reco Jet min #Delta R", "Entries", 3],
      
-     ["n_RecoJets", "Number of RecoJets", "Entries"],
-     ["RecoJet_e", "Reco Jet energy", "Entries", 3],
-     ["RecoJet_p", "Reco Jet p", "Entries", 3],
-     ["RecoJet_pt", "Reco Jet pt", "Entries", 3],
-     ["RecoJet_pz", "Reco Jet pz", "Entries", 3],
-     ["RecoJet_eta", "Reco Jet eta", "Entries", 3],
-     ["RecoJet_theta", "Reco Jet theta", "Entries", 3],
-     ["RecoJet_phi", "Reco Jet phi", "Entries", 3],
-     ["RecoJet_charge", "Reco Jet charge", "Entries", 3],
-     ["RecoJetTrack_absD0", "Reco Jet abs_DO", "Entries", 3],
-     ["RecoJetTrack_absZ0", "Reco Jet abs_Z0", "Entries", 3],
-     ["RecoJetTrack_absD0sig", "Reco Jet sigma(abs_D0)", "Entries", 3],
-     ["RecoJetTrack_absZ0sig", "Reco Jet sigma(abs_Z0)", "Entries", 3],
-     ["RecoJetTrack_D0cov", "Reco Jet cov(D0)", "Entries", 3],
-     ["RecoJetTrack_Z0cov", "Reco Jet cov(Z0)", "Entries", 3],
+     ["RecoJets_ee_kt_e", "Reco Jet energy", "Entries", 3],
+     ["RecoJets_ee_kt_pt", "Reco Jet pt", "Entries", 3],
+     ["RecoJets_ee_kt_eta", "Reco Jet eta", "Entries", 3],
+     ["RecoJets_ee_kt_theta", "Reco Jet theta", "Entries", 3],
+     ["RecoJets_ee_kt_phi", "Reco Jet phi", "Entries", 3],
 
      ["RecoLeadJet_e", "Reco Lead Jet E", "Entries", 3],
      ["RecoLeadJet_pt", "Reco Lead Jet p_{T}", "Entries", 3],
@@ -104,48 +104,49 @@ variables_list = [
      ["RecoDiJet_phi", "Reco Di-Jet #phi", "Entries", 3],
 
 
-     ["RecoJetDelta_e", "Reco Jet #Delta E", "Entries", 3],
-     ["RecoJetDelta_pt", "Reco Jet #Delta p_{T}", "Entries", 3],
-     ["RecoJetDelta_phi", "Reco Jet #Delta #phi", "Entries", 3],
-     ["RecoJetDelta_eta", "Reco Jet #Delta #eta", "Entries", 3],
-     ["RecoJetDelta_R", "Reco Jet #Delta R", "Entries", 3],
+     ["RecoJets_ee_ktDelta_e", "Reco Jet #Delta E", "Entries", 3],
+     ["RecoJets_ee_ktDelta_pt", "Reco Jet #Delta p_{T}", "Entries", 3],
+     ["RecoJets_ee_ktDelta_phi", "Reco Jet #Delta #phi", "Entries", 3],
+     ["RecoJets_ee_ktDelta_eta", "Reco Jet #Delta #eta", "Entries", 3],
+     ["RecoJets_ee_ktDelta_R", "Reco Jet #Delta R", "Entries", 3],
 
-     ["GenHNLElectron_e", "GenHNLElectron E", "Entries", 3],
-     ["GenHNLElectron_pt", "GenHNLElectron p_{T}", "Entries", 3],
-     ["GenHNLElectron_eta", "GenHNLElectron #eta", "Entries", 3],
-     ["GenHNLElectron_phi", "GenHNLElectron #phi", "Entries", 3],
+     #["GenHNLElectron_e", "GenHNLElectron E", "Entries", 3],
+     #["GenHNLElectron_pt", "GenHNLElectron p_{T}", "Entries", 3],
+     #["GenHNLElectron_eta", "GenHNLElectron #eta", "Entries", 3],
+     #["GenHNLElectron_phi", "GenHNLElectron #phi", "Entries", 3],
 
-     ["LeadJet_HNLELectron_Delta_e", "LeadJet Decay Ele #Delta E", "Entries", 3],
-     ["LeadJet_HNLELectron_Delta_pt", "LeadJet Decay Ele #Delta p_{T}", "Entries", 3],
-     ["LeadJet_HNLELectron_Delta_eta", "LeadJet Decay Ele #Delta #eta", "Entries", 3],
-     ["LeadJet_HNLELectron_Delta_phi", "LeadJet Decay Ele #Delta #phi", "Entries", 3],
-     ["LeadJet_HNLELectron_Delta_R", "LeadJet Decay Ele #Delta R", "Entries", 3],
+     #["LeadJet_HNLELectron_Delta_e", "LeadJet Decay Ele #Delta E", "Entries", 3],
+     #["LeadJet_HNLELectron_Delta_pt", "LeadJet Decay Ele #Delta p_{T}", "Entries", 3],
+     #["LeadJet_HNLELectron_Delta_eta", "LeadJet Decay Ele #Delta #eta", "Entries", 3],
+     #["LeadJet_HNLELectron_Delta_phi", "LeadJet Decay Ele #Delta #phi", "Entries", 3],
+     #["LeadJet_HNLELectron_Delta_R", "LeadJet Decay Ele #Delta R", "Entries", 3],
 
-     ["DiJet_HNLElectron_Delta_e", "Di-Jet Decay Ele #Delta E", "Entries", 3],
-     ["DiJet_HNLElectron_Delta_pt", "Di-Jet Decay Ele #Delta p_{T}", "Entries", 3],
-     ["DiJet_HNLElectron_Delta_phi", "Di-Jet Decay Ele #Delta #phi", "Entries", 3],
-     ["DiJet_HNLElectron_Delta_eta", "Di-Jet Decay Ele #Delta #eta", "Entries", 3],
-     ["DiJet_HNLElectron_Delta_R", "Di-Jet Decay Ele #Delta R", "Entries", 3],
+     #["DiJet_HNLElectron_Delta_e", "Di-Jet Decay Ele #Delta E", "Entries", 3],
+     #["DiJet_HNLElectron_Delta_pt", "Di-Jet Decay Ele #Delta p_{T}", "Entries", 3],
+     #["DiJet_HNLElectron_Delta_phi", "Di-Jet Decay Ele #Delta #phi", "Entries", 3],
+     #["DiJet_HNLElectron_Delta_eta", "Di-Jet Decay Ele #Delta #eta", "Entries", 3],
+     #["DiJet_HNLElectron_Delta_R", "Di-Jet Decay Ele #Delta R", "Entries", 3],
 
-     ["GenDiJet_invMass", "Gen Di-Jet invariant mass [GeV]", "Entries", 3],
-     ["GenDiJetElectron_invMass", "Gen Di-Jet-Electrons invariant mass [GeV]", "Entries", 3],
-     ["GenDiJet_electron_invMass", "Gen Di-Jet-electron (-) invariant mass [GeV]", "Entries", 3],
-     ["GenDiJet_positron_invMass", "Gen Di-Jet-positron(+) invariant mass [GeV]", "Entries", 3],
+     #["GenDiJet_invMass", "Gen Di-Jet invariant mass [GeV]", "Entries", 3],
+     #["GenDiJetElectron_invMass", "Gen Di-Jet-Electrons invariant mass [GeV]", "Entries", 3],
+     #["GenDiJet_electron_invMass", "Gen Di-Jet-electron (-) invariant mass [GeV]", "Entries", 3],
+     #["GenDiJet_positron_invMass", "Gen Di-Jet-positron(+) invariant mass [GeV]", "Entries", 3],
 
-     ["GenHNL_DiJet_Delta_theta", "HNL - DiJet #Delta #theta", "Entries", 3],
-     ["GenHNL_Electron_Delta_theta", "HNL - Electrons #Delta #theta", "Entries", 3],
-     ["GenHNLelectron_Delta_theta", "HNL - electron(-) #Delta #theta", "Entries", 3],
-     ["GenHNLpositron_Delta_theta", "HNL - positron (+) #Delta #theta", "Entries", 3],
-     ["GenHNLElectron_DiJet_Delta_theta", "Electron - DiJet #Delta #theta", "Entries", 3],
-     ["GenHNL_electron_DiJet_Delta_theta", "electron (-) - DiJet #Delta #theta", "Entries", 3],
-     ["GenHNL_positron_DiJet_Delta_theta", "positron(+) - DiJet #Delta #theta", "Entries", 3],
-     ["GenDiJetElectron_Electron_Delta_theta", "DiJet-Electron-Electron #Delta #theta", "Entries", 3],
-     ["GenDiJet_electron_electron_Delta_theta", "DiJet-electron-electron #Delta #theta", "Entries", 3],
-     ["GenDiJet_positron_positron_Delta_theta", "DiJet-positron-positron #Delta #theta", "Entries", 3],
-     ["GenHNL_positron_e", "positron energy [GeV]", "Entries", 3],
-     ["GenHNL_positron_pt", "positron p_{T} [GeV]", "Entries", 3],
-     ["GenHNL_electron_e", "electron (-) energy [GeV]", "Entries", 3],
-     ["GenHNL_electron_pt", "electron (-) p_{T}", "Entries", 3],
+     #["GenHNL_DiJet_Delta_theta", "HNL - DiJet #Delta #theta", "Entries", 3],
+     #["GenHNL_Electron_Delta_theta", "HNL - Electrons #Delta #theta", "Entries", 3],
+     #["GenHNL_Electron_cos_theta", "HNL - Electrons cos #Delta#theta", "Entries", 3],
+     #["GenHNLelectron_Delta_theta", "HNL - electron(-) #Delta #theta", "Entries", 3],
+     #["GenHNLpositron_Delta_theta", "HNL - positron (+) #Delta #theta", "Entries", 3],
+     #["GenHNLElectron_DiJet_Delta_theta", "Electron - DiJet #Delta #theta", "Entries", 3],
+     #["GenHNL_electron_DiJet_Delta_theta", "electron (-) - DiJet #Delta #theta", "Entries", 3],
+     #["GenHNL_positron_DiJet_Delta_theta", "positron(+) - DiJet #Delta #theta", "Entries", 3],
+     #["GenDiJetElectron_Electron_Delta_theta", "DiJet-Electron-Electron #Delta #theta", "Entries", 3],
+     #["GenDiJet_electron_electron_Delta_theta", "DiJet-electron-electron #Delta #theta", "Entries", 3],
+     #["GenDiJet_positron_positron_Delta_theta", "DiJet-positron-positron #Delta #theta", "Entries", 3],
+     #["GenHNL_positron_e", "positron energy [GeV]", "Entries", 3],
+     #["GenHNL_positron_pt", "positron p_{T} [GeV]", "Entries", 3],
+     #["GenHNL_electron_e", "electron (-) energy [GeV]", "Entries", 3],
+     #["GenHNL_electron_pt", "electron (-) p_{T}", "Entries", 3],
 
      ["RecoHNLElectron_DiJet_Delta_theta", "Reco DiJet - Electrons #Delta #theta", "Entries", 3],
      ["RecoHNL_electron_DiJet_Delta_theta", "Reco DiJet - electron (-) #Delta #theta", "Entries", 3],
@@ -160,14 +161,19 @@ variables_list = [
      ["RecoDiJet_electron_invMass", "Reco Di-Jet-electron (-) invariant mass [GeV]", "Entries", 3],
      ["RecoDiJet_positron_invMass", "Reco Di-Jet-positron(+) invariant mass [GeV]", "Entries", 3],
 
-     
-     ["GenHNL_Lxy", "GenHNL_Lxy", "Entries", 3],
-     ["GenHNL_Lxyz", "GenHNL_Lxyz", "Entries", 3],
+     ["RecoDiJetElectron_e", "Reco Di-Jet-Electrons energy [GeV]", "Entries", 3],
+     ["RecoDiJetElectron_px", "Reco Di-Jet-Electrons px [GeV]", "Entries", 3],
+     ["RecoDiJetElectron_py", "Reco Di-Jet-Electrons py [GeV]", "Entries", 3],
+     ["RecoDiJetElectron_pz", "Reco Di-Jet-Electrons pz [GeV]", "Entries", 3],
 
-     ["GenLeadJet_phi_e", "LeadJet phi select E [GeV]", "Entries", 3],
-     ["GenLeadJet_phi_pt", "LeadJet phi select pt [GeV]", "Entries", 3],
-     ["GenSecondJet_phi_e", "SecondJet phi select E [GeV]", "Entries", 3],
-     ["GenSecondJet_phi_pt", "SecondJet phi select pt [GeV]", "Entries", 3],
+     
+     #["GenHNL_Lxy", "GenHNL_Lxy", "Entries", 3],
+     #["GenHNL_Lxyz", "GenHNL_Lxyz", "Entries", 3],
+
+     #["GenLeadJet_phi_e", "LeadJet phi select E [GeV]", "Entries", 3],
+     #["GenLeadJet_phi_pt", "LeadJet phi select pt [GeV]", "Entries", 3],
+     #["GenSecondJet_phi_e", "SecondJet phi select E [GeV]", "Entries", 3],
+     #["GenSecondJet_phi_pt", "SecondJet phi select pt [GeV]", "Entries", 3],
 #    ['hnlLT', 'Lifetime [s]', 'Entries'],
 #    ['angsepR', 'Reco Cos#theta ee', 'Entries', 5],
 #    ['angsep', 'Cos#theta ee', 'Entries', 5],
@@ -211,6 +217,7 @@ variables_list = [
 
 files_list = [
     [input_file_Majorana , 'Majorana ' + HNL_mass + ' semi-leptonic', 'Majorana'],
+    #[input_file_Dirac_W2023, "Dirac 2023 - " + HNL_mass, 'Dirac 2023'],
     [input_file_Dirac , 'Dirac ' + HNL_mass + ' semi-leptonic', 'Dirac']
 ]
 
