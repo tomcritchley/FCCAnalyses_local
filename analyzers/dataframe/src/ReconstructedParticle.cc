@@ -375,6 +375,15 @@ TLorentzVector get_tlv_sum(TLorentzVector v1, TLorentzVector v2) {
   return result;
 }
 
+TLorentzVector get_tlv_sum3(TLorentzVector v1, TLorentzVector v2, TLorentzVector v3) {
+  TLorentzVector result;
+  if (v1.Energy() > -1)
+  result = v1 + v2 + v3;
+  else result.SetPtEtaPhiE(0, 0, 0, -1);
+  return result;
+}
+
+
 ROOT::VecOps::RVec<float> get_tlv_phi(TLorentzVector in) {
   ROOT::VecOps::RVec<float> result;
   result.push_back(in.Phi());
@@ -423,6 +432,13 @@ ROOT::VecOps::RVec<float> get_tlv_pz(TLorentzVector in) {
   result.push_back(in.Pz());
   return result;
 }
+
+ROOT::VecOps::RVec<float> get_tlv_mass(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.M());
+  return result;
+}
+
 
 ROOT::VecOps::RVec<int>
 get_type(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in){

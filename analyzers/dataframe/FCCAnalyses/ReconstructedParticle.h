@@ -132,6 +132,9 @@ namespace ReconstructedParticle{
   /// Return the sum of two 4-vectors
   TLorentzVector get_tlv_sum(TLorentzVector v1, TLorentzVector v2);
 
+  /// Return the sum of three 4-vectors
+  TLorentzVector get_tlv_sum3(TLorentzVector v1, TLorentzVector v2, TLorentzVector v3);
+  
   /// Return energy of TLorentzVector
   ROOT::VecOps::RVec<float> get_tlv_e(TLorentzVector in);
 
@@ -155,6 +158,9 @@ namespace ReconstructedParticle{
 
   /// Return pz of TLorentzVector
   ROOT::VecOps::RVec<float> get_tlv_pz(TLorentzVector in);
+
+  /// Return mass of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_mass(TLorentzVector in);
 
   /// concatenate both input vectors and return the resulting vector
   ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> merge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> y);
