@@ -3,7 +3,7 @@ processList = {
 
         #centrally-produced backgrounds
         #'p8_ee_Zee_ecm91':{'chunks':100},
-        #'p8_ee_Zbb_ecm91':{'chunks':100},
+        #'p8_ee_Zcc_ecm91':{'chunks':100},
         #'p8_ee_Ztautau_ecm91':{'chunks':100},
         #'p8_ee_Zuds_ecm91':{'chunks':100},
         #'p8_ee_Zcc_ecm91':{'chunks':100},
@@ -15,7 +15,7 @@ processList = {
         #'eenu_90GeV_1p41e-6Ve':{},
 
         #test
-        'p8_ee_Zcc_ecm91':{'fraction':0.0000005},
+        'p8_ee_Zcc_ecm91':{'fraction':0.1},
         #'p8_ee_Zuds_ecm91':{'chunks':10,'fraction':0.000001},
 }
 
@@ -31,12 +31,11 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 
 #Optional: output directory, default is local dir
-outputDir = "outputs/HNL_Majorana_ejj_50GeV_1e-3Ve_W2023/output_stage1/"
-#outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
-#outputDir = "output_stage1/"
+#outputDir = "outputs/p8_ee_Zcc_ecm91_W2023/output_stage1/"
+outputDir = "/eos/user/d/dimoulin/analysis_outputs/HNL_Dirac_ejj_70GeV_1e-3Ve_W2023/output_stage1/"
 
-#HNL_id = "9990012" # Dirac
-HNL_id = "9900012" # Majorana
+HNL_id = "9990012" # Dirac
+#HNL_id = "9900012" # Majorana
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
@@ -159,12 +158,20 @@ class RDFanalysis():
                 # Reconstructed particles
                 .Define("n_RecoTracks","ReconstructedParticle2Track::getTK_n(EFlowTrack_1)")
                 
-		#JETS
+		.Define("GenMuon_PID", "FCCAnalyses::MCParticle::sel_pdgID(13, true)(Particle)")
+                .Define("FSGenMuon", "FCCAnalyses::MCParticle::sel_genStatus(1)(GenMuon_PID)") #gen status==1 means final state particle (FS)
+
+
+                #JETS
                 #.Define("n_GenJets" , "ReconstructedParticle::get_n(GenJet)") # Count number of jets per event (gen level)
 
                 #Define Gen-level jets
                 #Remove electrons/muons from jets
-                .Define("Jet_GenParticles", "MCParticle::remove(Particle, FSGenElectron)")
+                .Define("MCParticles", "FCCAnalyses::MCParticle::sel_genStatus(1)(Particle)") #select final state particles
+                .Define("n_MCParticles", "FCCAnalyses::MCParticle::get_n(MCParticles)")
+
+                .Define("Jet_GenParticles0", "MCParticle::remove(MCParticles, FSGenElectron)") #remove electron
+                .Define("Jet_GenParticles", "MCParticle::remove(Jet_GenParticles0, FSGenNeutrino)") #remove neutrino
 
                 .Define("GP_px",          "FCCAnalyses::MCParticle::get_px(Jet_GenParticles)")
                 .Define("GP_py",          "FCCAnalyses::MCParticle::get_py(Jet_GenParticles)")
@@ -195,7 +202,7 @@ class RDFanalysis():
                 .Define("GenSecondJet_phi", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_phi.at(1); else return float(-100.)")
                 .Define("GenSecondJet_theta", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_theta.at(1); else return float(-100.)")
 
-                #Remove electrons/muons from jets :
+                #Remove electrons from jets :
                 .Define("Jet_ReconstructedParticles", "ReconstructedParticle::remove(ReconstructedParticles, RecoElectrons)")                  
 
                 .Define("RP_px",          "ReconstructedParticle::get_px(Jet_ReconstructedParticles)")
@@ -205,6 +212,7 @@ class RDFanalysis():
 
                 .Define("RecoPseudo_jets",    "JetClusteringUtils::set_pseudoJets(RP_px, RP_py, RP_pz, RP_e)")
 
+                #.Define("FCCAnalysesRecoJets_eekt", "JetClustering::clustering_antikt(1, 2, 2, 0, 0)(RecoPseudo_jets)")
                 .Define("FCCAnalysesRecoJets_eekt", "JetClustering::clustering_ee_kt(2, 2, 0, 0)(RecoPseudo_jets)")
                 .Define("RecoJets_ee_kt",           "JetClusteringUtils::get_pseudoJets(FCCAnalysesRecoJets_eekt)")
 
@@ -238,27 +246,6 @@ class RDFanalysis():
                 #.Define("Reco_selectedJet_pt",      "ReconstructedParticle::get_pt(Reco_selected_Jets)")               
                 #.Define("Reco_selectedJet_n", "ReconstructedParticle::get_n(Reco_selected_Jets)")
  
-                # Define Gen Jet variables
-                #.Define("GenJets_ee_ktn", "ReconstructedParticle::get_n(GenJets_ee_kt)")
-                #.Define("GenJets_ee_kte" ,    "ReconstructedParticle::get_e(GenJet)")
-                #.Define("GenJets_ee_ktpt" ,    "ReconstructedParticle::get_pt(GenJet)")
-                #.Define("GenJets_ee_kteta" ,    "ReconstructedParticle::get_eta(GenJet)")
-                #.Define("GenJets_ee_ktphi" ,    "ReconstructedParticle::get_phi(GenJet)")
-
-                #.Define("Gen_selected_Jets", "ReconstructedParticle::sel_pt(20.)(GenJet)") #select only jets with a pt > 20 GeV
-                #.Define("Gen_selectedJet_n", "ReconstructedParticle::get_n(Gen_selected_Jets)")
-
-                # Define lead and second Gen Jet variables 
-                #.Define("GenLeadJet_e",  "if (n_GenJets >= 1) return (GenJets_ee_kte.at(0)); else return float(-10000.);")	 
-                #.Define("GenLeadJet_pt",  "if (n_GenJets >= 1) return (GenJets_ee_ktpt.at(0)); else return float(-10000.);")
-                #.Define("GenLeadJet_eta",  "if (n_GenJets >= 1) return (GenJets_ee_kteta.at(0)); else return float(-10000.);")
-                #.Define("GenLeadJet_phi",  "if (n_GenJets >= 1) return (GenJets_ee_ktphi.at(0)); else return float(-10000.);")
-
-                #.Define("GenSecondJet_e",  "if (n_GenJets > 1) return (GenJets_ee_kte.at(1)); else return float(-10000.);")
-                #.Define("GenSecondJet_pt",  "if (n_GenJets > 1) return (GenJets_ee_ktpt.at(1)); else return float(-10000.);")
-                #.Define("GenSecondJet_eta",  "if (n_GenJets > 1) return (GenJets_ee_kteta.at(1)); else return float(-10000.);")
-                #.Define("GenSecondJet_phi",  "if (n_GenJets > 1) return (GenJets_ee_ktphi.at(1)); else return float(-10000.);")
-
                 # Difference between lead and secondary jet
                 #.Define("GenJetDelta_e", "return (GenLeadJet_e - GenSecondJet_e)")
                 #.Define("GenJetDelta_pt", "return (GenLeadJet_pt - GenSecondJet_pt)")
@@ -268,20 +255,20 @@ class RDFanalysis():
  
 
                 # Building gen-level di-jet 4-vect
-                #.Define("GenLeadJet4Vect", "ReconstructedParticle::get_tlv_PtEtaPhiE(GenLeadJet_pt, GenLeadJet_eta, GenLeadJet_phi, GenLeadJet_e)")
-                #.Define("GenSecondJet4Vect", "ReconstructedParticle::get_tlv_PtEtaPhiE(GenSecondJet_pt, GenSecondJet_eta, GenSecondJet_phi, GenSecondJet_e)")
-                #.Define("GenDiJet", "ReconstructedParticle::get_tlv_sum(GenLeadJet4Vect, GenSecondJet4Vect)")
+                .Define("GenLeadJet4Vect", "ReconstructedParticle::get_tlv_PtEtaPhiE(GenLeadJet_pt, GenLeadJet_eta, GenLeadJet_phi, GenLeadJet_e)")
+                .Define("GenSecondJet4Vect", "ReconstructedParticle::get_tlv_PtEtaPhiE(GenSecondJet_pt, GenSecondJet_eta, GenSecondJet_phi, GenSecondJet_e)")
+                .Define("GenDiJet", "ReconstructedParticle::get_tlv_sum(GenLeadJet4Vect, GenSecondJet4Vect)")
 
                 # Define gen-level di-jet variables
-                #.Define("GenDiJet_e", "return ReconstructedParticle::get_tlv_e(GenDiJet).at(0)")
-                #.Define("GenDiJet_pt", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_pt(GenDiJet).at(0); else return float(-1.);")
-                #.Define("GenDiJet_eta", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_eta(GenDiJet).at(0); else return float(-100.);")
-                #.Define("GenDiJet_phi", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_phi(GenDiJet).at(0); else return float(-100.);")
-                #.Define("GenDiJet_theta", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_theta(GenDiJet).at(0); else return float(-100.);")
-                #.Define("GenDiJet_px", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_px(GenDiJet).at(0); else return float(-1.);")
-                #.Define("GenDiJet_py", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_py(GenDiJet).at(0); else return float(-1.);")
-                #.Define("GenDiJet_pz", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_pz(GenDiJet).at(0); else return float(-1.);")
-                #.Define("GenDiJet_invMass", "if (GenDiJet_e > -1) return  sqrt(GenDiJet_e*GenDiJet_e - GenDiJet_px*GenDiJet_px - GenDiJet_py*GenDiJet_py - GenDiJet_pz*GenDiJet_pz); else return float(-1.);")
+                .Define("GenDiJet_e", "return ReconstructedParticle::get_tlv_e(GenDiJet).at(0)")
+                .Define("GenDiJet_pt", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_pt(GenDiJet).at(0); else return float(-1.);")
+                .Define("GenDiJet_eta", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_eta(GenDiJet).at(0); else return float(-100.);")
+                .Define("GenDiJet_phi", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_phi(GenDiJet).at(0); else return float(-100.);")
+                .Define("GenDiJet_theta", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_theta(GenDiJet).at(0); else return float(-100.);")
+                .Define("GenDiJet_px", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_px(GenDiJet).at(0); else return float(-1.);")
+                .Define("GenDiJet_py", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_py(GenDiJet).at(0); else return float(-1.);")
+                .Define("GenDiJet_pz", "if (GenDiJet_e > -1) return ReconstructedParticle::get_tlv_pz(GenDiJet).at(0); else return float(-1.);")
+                .Define("GenDiJet_invMass", "if (GenDiJet_e > -1) return  sqrt(GenDiJet_e*GenDiJet_e - GenDiJet_px*GenDiJet_px - GenDiJet_py*GenDiJet_py - GenDiJet_pz*GenDiJet_pz); else return float(-1.);")
                 # Phi analysis study
                 #.Define("GenLeadJet_phi_e", "if (GenLeadJet_phi > -1 && GenLeadJet_phi < 1) return float(-1.); else return GenJets_ee_kte.at(0);")
                 #.Define("GenLeadJet_phi_pt", "if (GenLeadJet_phi > -1 && GenLeadJet_phi < 1) return float(-1.); else return GenJets_ee_ktpt.at(0);")
@@ -292,7 +279,7 @@ class RDFanalysis():
                 # Difference between lead and secondary jet
                 .Define("RecoJets_ee_ktDelta_e", "return (RecoLeadJet_e - RecoSecondJet_e)")
                 .Define("RecoJets_ee_ktDelta_pt", "return (RecoLeadJet_pt - RecoSecondJet_pt)")
-                .Define("RecoJets_ee_ktDelta_phi", "if (RecoLeadJet_phi > -1000) return atan2(sin(RecoLeadJet_phi - RecoSecondJet_phi), cos(RecoLeadJet_phi - RecoSecondJet_phi)); else return float(100.);")
+                .Define("RecoJets_ee_ktDelta_phi", "if (RecoLeadJet_phi > -10) return atan2(sin(RecoLeadJet_phi - RecoSecondJet_phi), cos(RecoLeadJet_phi - RecoSecondJet_phi)); else return float(100.);")
                 .Define("RecoJets_ee_ktDelta_eta", "return (RecoLeadJet_eta - RecoSecondJet_eta)")
                 .Define("RecoJets_ee_ktDelta_R", "return sqrt(RecoJets_ee_ktDelta_phi*RecoJets_ee_ktDelta_phi + RecoJets_ee_ktDelta_eta*RecoJets_ee_ktDelta_eta)")
 
@@ -489,6 +476,26 @@ class RDFanalysis():
                 .Define("RecoHNL_positron_theta", "if (n_RecoElectrons >= 1 && RecoElectron_charge.at(0) > 0) return RecoElectron_theta.at(0); else return float(-100.);")
                 .Define("RecoHNL_positron_4Vect", "ReconstructedParticle::get_tlv_PtEtaPhiE(RecoHNL_positron_pt, RecoHNL_positron_eta, RecoHNL_positron_phi, RecoHNL_positron_e)")
 
+                #Build Delta phi/eta between variables (electron, jets)
+                .Define("RecoElectron_LeadJet_delta_phi", "if (RecoLeadJet_phi < -10) return float(1000.); else return atan2(sin(RecoLeadJet_phi - RecoElectron_lead_phi), cos(RecoLeadJet_phi - RecoElectron_lead_phi));")
+                .Define("RecoElectron_SecondJet_delta_phi", "if (RecoSecondJet_phi < -10) return float(1000.); else return atan2(sin(RecoSecondJet_phi - RecoElectron_lead_phi), cos(RecoSecondJet_phi - RecoElectron_lead_phi));")
+                .Define("RecoElectron_DiJet_delta_phi", "if (RecoDiJet_phi > 100) return float(1000.); else return atan2(sin(RecoDiJet_phi - RecoElectron_lead_phi), cos(RecoDiJet_phi - RecoElectron_lead_phi));")
+                .Define("RecoDiJet_delta_phi", "if (RecoLeadJet_phi < -10) return float(1000.); else return atan2(sin(RecoLeadJet_phi - RecoSecondJet_phi), cos(RecoLeadJet_phi - RecoSecondJet_phi));")
+
+                .Define("RecoElectron_LeadJet_delta_eta", "if (RecoLeadJet_eta < -10) return float(1000.); else return atan2(sin(RecoLeadJet_eta - RecoElectron_lead_eta), cos(RecoLeadJet_eta - RecoElectron_lead_eta));")
+                .Define("RecoElectron_SecondJet_delta_eta", "if (RecoSecondJet_eta < -10) return float(1000.); else return atan2(sin(RecoSecondJet_eta - RecoElectron_lead_eta), cos(RecoSecondJet_eta - RecoElectron_lead_eta));")
+                .Define("RecoElectron_DiJet_delta_eta", "if (RecoDiJet_eta > 10) return float(1000.); else return atan2(sin(RecoDiJet_eta - RecoElectron_lead_eta), cos(RecoDiJet_eta - RecoElectron_lead_eta));")
+                .Define("RecoDiJet_delta_eta", "if (RecoLeadJet_eta < -10) return float(1000.); else return atan2(sin(RecoLeadJet_eta - RecoSecondJet_eta), cos(RecoLeadJet_eta - RecoSecondJet_eta));")
+
+                #Build Delta_R between electron and jets:
+                .Define("RecoElectron_LeadJet_delta_R", "return sqrt(RecoElectron_LeadJet_delta_phi*RecoElectron_LeadJet_delta_phi + RecoElectron_LeadJet_delta_eta*RecoElectron_LeadJet_delta_eta)") 
+                .Define("RecoElectron_SecondJet_delta_R", "return sqrt(RecoElectron_SecondJet_delta_phi*RecoElectron_SecondJet_delta_phi + RecoElectron_SecondJet_delta_eta*RecoElectron_SecondJet_delta_eta)") 
+                .Define("RecoElectron_DiJet_delta_R", "return sqrt(RecoElectron_DiJet_delta_phi*RecoElectron_DiJet_delta_phi + RecoElectron_DiJet_delta_eta*RecoElectron_DiJet_delta_eta)")         
+                .Define("RecoDiJet_delta_R", "return sqrt(RecoDiJet_delta_phi*RecoDiJet_delta_phi + RecoDiJet_delta_eta*RecoDiJet_delta_eta)")       
+
+
+
+
                 # Build DiJet + Electron 4 Vect (Reco-level)
                 .Define("RecoDiJetElectron4Vect", "ReconstructedParticle::get_tlv_sum(RecoElectron_4Vect, RecoDiJet)")
                 .Define("RecoDiJetElectron_e", "return ReconstructedParticle::get_tlv_e(RecoDiJetElectron4Vect).at(0)")
@@ -605,6 +612,7 @@ class RDFanalysis():
         def output():
                 branchList = [
                         ######## Monte-Carlo particles #######
+                        "n_MCParticles", 
                         "n_FSGenElectron",
                         "FSGenElectron_e",
                         "FSGenElectron_p",
@@ -648,35 +656,30 @@ class RDFanalysis():
                         "GenJets_ee_kt_e",
 
                         #"n_GenJets",
-                        #"GenJets_ee_kte",
-                        #"GenJets_ee_ktpt",
-                        #"GenJets_ee_kteta",
-                        #"GenJets_ee_ktphi",
 
                         #"Gen_selectedJet_n",
 
-                        #"GenLeadJet_e",
-                        #"GenLeadJet_pt",
-                        #"GenLeadJet_eta",
-                        #"GenLeadJet_phi",
+                        "GenLeadJet_e",
+                        "GenLeadJet_pt",
+                        "GenLeadJet_eta",
+                        "GenLeadJet_phi",
 
-                        #"GenSecondJet_e",
-                        #"GenSecondJet_pt",
-                        #"GenSecondJet_eta",
-                        #"GenSecondJet_phi",
+                        "GenSecondJet_e",
+                        "GenSecondJet_pt",
+                        "GenSecondJet_eta",
+                        "GenSecondJet_phi",
 
                         #"GenJetDelta_e",
                         #"GenJetDelta_pt",
                         #"GenJetDelta_eta",
                         #"GenJetDelta_phi",
  
-                        #"GenDiJet_e",
-                        #"GenDiJet_pt",
-                        #"GenDiJet_eta",
-                        #"GenDiJet_phi",
-                        
-                        #"GenDiJet_theta",
-                        #"GenDiJet_invMass",
+                        "GenDiJet_e",
+                        "GenDiJet_pt",
+                        "GenDiJet_eta",
+                        "GenDiJet_phi",                      
+                        "GenDiJet_theta",
+                        "GenDiJet_invMass",
 
                         #"GenHNL_theta", 
  
@@ -754,6 +757,21 @@ class RDFanalysis():
                         "RecoJets_ee_ktDelta_phi",
                         "RecoJets_ee_ktDelta_eta",
                         "RecoJets_ee_ktDelta_R",
+
+                        "RecoElectron_LeadJet_delta_phi",
+                        "RecoElectron_SecondJet_delta_phi",
+                        "RecoElectron_DiJet_delta_phi",
+                        "RecoDiJet_delta_phi",
+
+                        "RecoElectron_LeadJet_delta_eta",
+                        "RecoElectron_SecondJet_delta_eta",
+                        "RecoElectron_DiJet_delta_eta",
+                        "RecoDiJet_delta_eta",
+
+                        "RecoElectron_LeadJet_delta_R",
+                        "RecoElectron_SecondJet_delta_R",
+                        "RecoElectron_DiJet_delta_R",
+                        "RecoDiJet_delta_R",
 
                         #"LeadJet_HNLELectron_Delta_e",
                         #"LeadJet_HNLELectron_Delta_pt",
