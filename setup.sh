@@ -19,22 +19,3 @@ if [ "${0}" != "${BASH_SOURCE}" ]; then
 else
   echo "ERROR: This script is meant to be sourced!"
 fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
