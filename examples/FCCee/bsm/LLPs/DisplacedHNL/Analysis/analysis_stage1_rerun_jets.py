@@ -10,7 +10,7 @@ processList = {
 
         #privately-produced signals
         #'eenu_30GeV_1p41e-6Ve':{},
-        #'eenu_50GeV_1p41e-6Ve':{},
+        #'eenu_70GeV_1p41e-6Ve':{},
         #'eenu_70GeV_1p41e-6Ve':{},
         #'eenu_90GeV_1p41e-6Ve':{},
 
@@ -32,10 +32,10 @@ prodTag     = "FCCee/winter2023/IDEA/"
 
 #Optional: output directory, default is local dir
 #outputDir = "outputs/p8_ee_Zcc_ecm91_W2023/output_stage1/"
-outputDir = "/eos/user/d/dimoulin/analysis_outputs/HNL_Dirac_ejj_70GeV_1e-3Ve_W2023/output_stage1/"
+outputDir = "/eos/user/d/dimoulin/analysis_outputs/HNL_Majorana_ejj_70GeV_1e-3Ve_W2023/output_stage1/"
 
-HNL_id = "9990012" # Dirac
-#HNL_id = "9900012" # Majorana
+#HNL_id = "9990012" # Dirac
+HNL_id = "9900012" # Majorana
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
