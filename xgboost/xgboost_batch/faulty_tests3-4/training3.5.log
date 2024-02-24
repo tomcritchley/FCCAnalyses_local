@@ -1,0 +1,769 @@
+using mass: 10GeV, coupling 1e-2
+using mass: 10GeV, coupling 1e-2p5
+using mass: 10GeV, coupling 1e-3
+using mass: 10GeV, coupling 1e-3p5
+using mass: 10GeV, coupling 1e-4
+using mass: 10GeV, coupling 1e-4p5
+using mass: 10GeV, coupling 1e-5
+using mass: 20GeV, coupling 1e-2
+using mass: 20GeV, coupling 1e-2p5
+using mass: 20GeV, coupling 1e-3
+using mass: 20GeV, coupling 1e-3p5
+using mass: 20GeV, coupling 1e-4
+using mass: 20GeV, coupling 1e-4p5
+using mass: 20GeV, coupling 1e-5
+using mass: 30GeV, coupling 1e-2
+using mass: 30GeV, coupling 1e-2p5
+using mass: 30GeV, coupling 1e-3
+using mass: 30GeV, coupling 1e-3p5
+using mass: 30GeV, coupling 1e-4
+using mass: 30GeV, coupling 1e-4p5
+file /eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-4p5Ve.root does not exist, moving to next file
+using mass: 30GeV, coupling 1e-5
+file /eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-5Ve.root does not exist, moving to next file
+using mass: 40GeV, coupling 1e-2
+using mass: 40GeV, coupling 1e-2p5
+using mass: 40GeV, coupling 1e-3
+using mass: 40GeV, coupling 1e-3p5
+using mass: 40GeV, coupling 1e-4
+using mass: 40GeV, coupling 1e-4p5
+file /eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-4p5Ve.root does not exist, moving to next file
+using mass: 40GeV, coupling 1e-5
+using mass: 50GeV, coupling 1e-2
+using mass: 50GeV, coupling 1e-2p5
+using mass: 50GeV, coupling 1e-3
+using mass: 50GeV, coupling 1e-3p5
+using mass: 50GeV, coupling 1e-4
+using mass: 50GeV, coupling 1e-4p5
+file /eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-4p5Ve.root does not exist, moving to next file
+using mass: 50GeV, coupling 1e-5
+using mass: 60GeV, coupling 1e-2
+using mass: 60GeV, coupling 1e-2p5
+using mass: 60GeV, coupling 1e-3
+using mass: 60GeV, coupling 1e-3p5
+using mass: 60GeV, coupling 1e-4
+using mass: 60GeV, coupling 1e-4p5
+using mass: 60GeV, coupling 1e-5
+using mass: 70GeV, coupling 1e-2
+using mass: 70GeV, coupling 1e-2p5
+using mass: 70GeV, coupling 1e-3
+using mass: 70GeV, coupling 1e-3p5
+using mass: 70GeV, coupling 1e-4
+using mass: 70GeV, coupling 1e-4p5
+using mass: 70GeV, coupling 1e-5
+using mass: 80GeV, coupling 1e-2
+using mass: 80GeV, coupling 1e-2p5
+using mass: 80GeV, coupling 1e-3
+using mass: 80GeV, coupling 1e-3p5
+using mass: 80GeV, coupling 1e-4
+using mass: 80GeV, coupling 1e-4p5
+using mass: 80GeV, coupling 1e-5
+[['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-2Ve.root', 'signal_10GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-2p5Ve.root', 'signal_10GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-3p5Ve.root', 'signal_10GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-4Ve.root', 'signal_10GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-4p5Ve.root', 'signal_10GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-5Ve.root', 'signal_10GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-2Ve.root', 'signal_20GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-2p5Ve.root', 'signal_20GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-3Ve.root', 'signal_20GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-3p5Ve.root', 'signal_20GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-4Ve.root', 'signal_20GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-4p5Ve.root', 'signal_20GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-5Ve.root', 'signal_20GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-2Ve.root', 'signal_30GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-2p5Ve.root', 'signal_30GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-3Ve.root', 'signal_30GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-3p5Ve.root', 'signal_30GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-4Ve.root', 'signal_30GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-2Ve.root', 'signal_40GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-2p5Ve.root', 'signal_40GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-3Ve.root', 'signal_40GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-3p5Ve.root', 'signal_40GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-4Ve.root', 'signal_40GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-5Ve.root', 'signal_40GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-2Ve.root', 'signal_50GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-2p5Ve.root', 'signal_50GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-3Ve.root', 'signal_50GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-3p5Ve.root', 'signal_50GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-4Ve.root', 'signal_50GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-5Ve.root', 'signal_50GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-2Ve.root', 'signal_60GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-2p5Ve.root', 'signal_60GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-3Ve.root', 'signal_60GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-3p5Ve.root', 'signal_60GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-4Ve.root', 'signal_60GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-4p5Ve.root', 'signal_60GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-5Ve.root', 'signal_60GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-2Ve.root', 'signal_70GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-2p5Ve.root', 'signal_70GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-3Ve.root', 'signal_70GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-3p5Ve.root', 'signal_70GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-4Ve.root', 'signal_70GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-4p5Ve.root', 'signal_70GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-5Ve.root', 'signal_70GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-2Ve.root', 'signal_80GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-2p5Ve.root', 'signal_80GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-3Ve.root', 'signal_80GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-3p5Ve.root', 'signal_80GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-4Ve.root', 'signal_80GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-4p5Ve.root', 'signal_80GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-5Ve.root', 'signal_80GeV_1e-5']]
+data is: [['placeholder', 'background_total'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-2Ve.root', 'signal_10GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-2p5Ve.root', 'signal_10GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-3p5Ve.root', 'signal_10GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-4Ve.root', 'signal_10GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-4p5Ve.root', 'signal_10GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_10GeV_1e-5Ve.root', 'signal_10GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-2Ve.root', 'signal_20GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-2p5Ve.root', 'signal_20GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-3Ve.root', 'signal_20GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-3p5Ve.root', 'signal_20GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-4Ve.root', 'signal_20GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-4p5Ve.root', 'signal_20GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_20GeV_1e-5Ve.root', 'signal_20GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-2Ve.root', 'signal_30GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-2p5Ve.root', 'signal_30GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-3Ve.root', 'signal_30GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-3p5Ve.root', 'signal_30GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_30GeV_1e-4Ve.root', 'signal_30GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-2Ve.root', 'signal_40GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-2p5Ve.root', 'signal_40GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-3Ve.root', 'signal_40GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-3p5Ve.root', 'signal_40GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-4Ve.root', 'signal_40GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_40GeV_1e-5Ve.root', 'signal_40GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-2Ve.root', 'signal_50GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-2p5Ve.root', 'signal_50GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-3Ve.root', 'signal_50GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-3p5Ve.root', 'signal_50GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-4Ve.root', 'signal_50GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_50GeV_1e-5Ve.root', 'signal_50GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-2Ve.root', 'signal_60GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-2p5Ve.root', 'signal_60GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-3Ve.root', 'signal_60GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-3p5Ve.root', 'signal_60GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-4Ve.root', 'signal_60GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-4p5Ve.root', 'signal_60GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_60GeV_1e-5Ve.root', 'signal_60GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-2Ve.root', 'signal_70GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-2p5Ve.root', 'signal_70GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-3Ve.root', 'signal_70GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-3p5Ve.root', 'signal_70GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-4Ve.root', 'signal_70GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-4p5Ve.root', 'signal_70GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_70GeV_1e-5Ve.root', 'signal_70GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-2Ve.root', 'signal_80GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-2p5Ve.root', 'signal_80GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-3Ve.root', 'signal_80GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-3p5Ve.root', 'signal_80GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-4Ve.root', 'signal_80GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-4p5Ve.root', 'signal_80GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs/stage1/HNL_Dirac_ejj_80GeV_1e-5Ve.root', 'signal_80GeV_1e-5']]
+{'train_signal_10GeV_1e-2.root': 0.40570925999999996, 'train_signal_10GeV_1e-2p5.root': 0.040570927, 'train_signal_10GeV_1e-3.root': 0.004057092599999999, 'train_signal_10GeV_1e-3p5.root': 4.0570927e-06, 'train_signal_10GeV_1e-4.root': 4.0570926000000006e-05, 'train_signal_10GeV_1e-4p5.root': 4.0570927e-08, 'train_signal_10GeV_1e-5.root': 4.0570925999999996e-07, 'train_signal_20GeV_1e-2.root': 0.37748615, 'train_signal_20GeV_1e-2p5.root': 0.037746001, 'train_signal_20GeV_1e-3.root': 0.0037754195, 'train_signal_20GeV_1e-3p5.root': 3.7748558e-06, 'train_signal_20GeV_1e-4.root': 3.7749972000000006e-05, 'train_signal_20GeV_1e-4p5.root': 3.7750025e-08, 'train_signal_20GeV_1e-5.root': 3.7756809e-07, 'train_signal_30GeV_1e-2.root': 0.33664022, 'train_signal_30GeV_1e-2p5.root': 0.033661973, 'train_signal_30GeV_1e-3.root': 0.0033661962, 'train_signal_30GeV_1e-3p5.root': 3.3663939e-06, 'train_signal_30GeV_1e-4.root': 3.366196200000001e-05, 'train_signal_30GeV_1e-4p5.root': 3.3662059e-08, 'train_signal_30GeV_1e-5.root': 3.3665197999999997e-07, 'train_signal_40GeV_1e-2.root': 0.2865873, 'train_signal_40GeV_1e-2p5.root': 0.02865873, 'train_signal_40GeV_1e-3.root': 0.002865873, 'train_signal_40GeV_1e-3p5.root': 2.865873e-06, 'train_signal_40GeV_1e-4.root': 2.865873e-05, 'train_signal_40GeV_1e-4p5.root': 2.8658730000000002e-08, 'train_signal_40GeV_1e-5.root': 2.8658730000000003e-07, 'train_signal_50GeV_1e-2.root': 0.22683354, 'train_signal_50GeV_1e-2p5.root': 0.022683354000000003, 'train_signal_50GeV_1e-3.root': 0.0022683354, 'train_signal_50GeV_1e-3p5.root': 2.2683354e-06, 'train_signal_50GeV_1e-4.root': 2.2682654e-05, 'train_signal_50GeV_1e-4p5.root': 2.2683354e-08, 'train_signal_50GeV_1e-5.root': 2.2683354e-07, 'train_signal_60GeV_1e-2.root': 0.159075833, 'train_signal_60GeV_1e-2p5.root': 0.0159075833, 'train_signal_60GeV_1e-3.root': 0.0015907583299999998, 'train_signal_60GeV_1e-3p5.root': 1.5907583300000001e-06, 'train_signal_60GeV_1e-4.root': 1.5907583299999998e-05, 'train_signal_60GeV_1e-4p5.root': 1.59075833e-08, 'train_signal_60GeV_1e-5.root': 1.5907583300000002e-07, 'train_signal_70GeV_1e-2.root': 0.09058119722034, 'train_signal_70GeV_1e-2p5.root': 0.009058119721033, 'train_signal_70GeV_1e-3.root': 0.0009058119722033999, 'train_signal_70GeV_1e-3p5.root': 9.058119721033e-07, 'train_signal_70GeV_1e-4.root': 9.058119722034e-06, 'train_signal_70GeV_1e-4p5.root': 9.058119721033e-09, 'train_signal_70GeV_1e-5.root': 9.058119722034e-08, 'train_signal_80GeV_1e-2.root': 0.18481068698000003, 'train_signal_80GeV_1e-2p5.root': 0.018481068686000003, 'train_signal_80GeV_1e-3.root': 0.0018481068698000002, 'train_signal_80GeV_1e-3p5.root': 1.8481068685999999e-06, 'train_signal_80GeV_1e-4.root': 1.8481068698e-05, 'train_signal_80GeV_1e-4p5.root': 1.8481068686e-08, 'train_signal_80GeV_1e-5.root': 1.8481068698000002e-07}
+getting label for mass: 10GeV, coupling 1e-2
+getting label for mass: 10GeV, coupling 1e-2p5
+getting label for mass: 10GeV, coupling 1e-3
+getting label for mass: 10GeV, coupling 1e-3p5
+getting label for mass: 10GeV, coupling 1e-4
+getting label for mass: 10GeV, coupling 1e-4p5
+getting label for mass: 10GeV, coupling 1e-5
+getting label for mass: 20GeV, coupling 1e-2
+getting label for mass: 20GeV, coupling 1e-2p5
+getting label for mass: 20GeV, coupling 1e-3
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+getting label for mass: 20GeV, coupling 1e-3p5
+getting label for mass: 20GeV, coupling 1e-4
+getting label for mass: 20GeV, coupling 1e-4p5
+getting label for mass: 20GeV, coupling 1e-5
+getting label for mass: 30GeV, coupling 1e-2
+getting label for mass: 30GeV, coupling 1e-2p5
+getting label for mass: 30GeV, coupling 1e-3
+getting label for mass: 30GeV, coupling 1e-3p5
+getting label for mass: 30GeV, coupling 1e-4
+getting label for mass: 30GeV, coupling 1e-4p5
+file train_signal_30GeV_1e-4p5.root does not exist, moving to next file
+getting label for mass: 30GeV, coupling 1e-5
+file train_signal_30GeV_1e-5.root does not exist, moving to next file
+getting label for mass: 40GeV, coupling 1e-2
+getting label for mass: 40GeV, coupling 1e-2p5
+getting label for mass: 40GeV, coupling 1e-3
+getting label for mass: 40GeV, coupling 1e-3p5
+getting label for mass: 40GeV, coupling 1e-4
+getting label for mass: 40GeV, coupling 1e-4p5
+file train_signal_40GeV_1e-4p5.root does not exist, moving to next file
+getting label for mass: 40GeV, coupling 1e-5
+getting label for mass: 50GeV, coupling 1e-2
+getting label for mass: 50GeV, coupling 1e-2p5
+getting label for mass: 50GeV, coupling 1e-3
+getting label for mass: 50GeV, coupling 1e-3p5
+getting label for mass: 50GeV, coupling 1e-4
+getting label for mass: 50GeV, coupling 1e-4p5
+file train_signal_50GeV_1e-4p5.root does not exist, moving to next file
+getting label for mass: 50GeV, coupling 1e-5
+getting label for mass: 60GeV, coupling 1e-2
+getting label for mass: 60GeV, coupling 1e-2p5
+getting label for mass: 60GeV, coupling 1e-3
+getting label for mass: 60GeV, coupling 1e-3p5
+getting label for mass: 60GeV, coupling 1e-4
+getting label for mass: 60GeV, coupling 1e-4p5
+getting label for mass: 60GeV, coupling 1e-5
+getting label for mass: 70GeV, coupling 1e-2
+getting label for mass: 70GeV, coupling 1e-2p5
+getting label for mass: 70GeV, coupling 1e-3
+getting label for mass: 70GeV, coupling 1e-3p5
+getting label for mass: 70GeV, coupling 1e-4
+getting label for mass: 70GeV, coupling 1e-4p5
+getting label for mass: 70GeV, coupling 1e-5
+getting label for mass: 80GeV, coupling 1e-2
+getting label for mass: 80GeV, coupling 1e-2p5
+getting label for mass: 80GeV, coupling 1e-3
+getting label for mass: 80GeV, coupling 1e-3p5
+getting label for mass: 80GeV, coupling 1e-4
+getting label for mass: 80GeV, coupling 1e-4p5
+getting label for mass: 80GeV, coupling 1e-5
+['signal_60GeV_1e-2', 'signal_60GeV_1e-2p5', 'signal_60GeV_1e-3', 'signal_60GeV_1e-3p5', 'signal_60GeV_1e-4', 'signal_60GeV_1e-4p5', 'signal_60GeV_1e-5', 'signal_70GeV_1e-2', 'signal_70GeV_1e-2p5', 'signal_70GeV_1e-3', 'signal_70GeV_1e-3p5', 'signal_70GeV_1e-4', 'signal_70GeV_1e-4p5', 'signal_70GeV_1e-5', 'signal_80GeV_1e-2', 'signal_80GeV_1e-2p5', 'signal_80GeV_1e-3', 'signal_80GeV_1e-3p5', 'signal_80GeV_1e-4', 'signal_80GeV_1e-4p5', 'signal_80GeV_1e-5']
+Loading data: train_signal_60GeV_1e-2.root
+train_signal_60GeV_1e-2.root
+cross section for train_signal_60GeV_1e-2.root is 0.159075833
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444247, 9)
+y type: <class 'numpy.ndarray'> y shape: (444247,)
+w type: <class 'numpy.ndarray'> w shape: (444247,)
+Sample elements in x: [[3.3437249660491943 1.960184139396229 2.948777675628662
+  array([0.40791282]) array([0.00315947]) 2.004457473754883
+  array([0.19515696]) array([26.04418755]) 41.98447799682617]
+ [3.8163399696350098 2.463784559112108 3.5272555351257324
+  array([0.76920271]) array([0.00200001]) 2.6704678535461426
+  array([2.04457784]) array([25.75293732]) 34.33156967163086]
+ [1.1767739057540894 1.1157756912354944 2.925623893737793
+  array([0.68071514]) array([0.00167359]) 1.3818325996398926
+  array([0.69736987]) array([25.71805573]) 38.23063659667969]
+ [1.1546435356140137 1.1374600875724958 2.509596347808838
+  array([0.77407658]) array([0.00201881]) 2.221440076828003
+  array([0.82329196]) array([25.88933563]) 26.68211555480957]
+ [2.2795486450195312 2.003456575620112 2.5467116832733154
+  array([0.27436578]) array([0.00068963]) 1.0705175399780273
+  array([2.36649919]) array([25.8325119]) 31.437728881835938]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.01590758 0.01590758 0.01590758 0.01590758 0.01590758]
+Done Loading
+Training done on  444247 events. Saving model in tmva_signal_60GeV_1e-2.root
+Loading data: train_signal_60GeV_1e-2p5.root
+train_signal_60GeV_1e-2p5.root
+cross section for train_signal_60GeV_1e-2p5.root is 0.0159075833
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444247, 9)
+y type: <class 'numpy.ndarray'> y shape: (444247,)
+w type: <class 'numpy.ndarray'> w shape: (444247,)
+Sample elements in x: [[0.48233821988105774 0.478887474849705 2.318493127822876
+  array([0.09073414]) array([0.00022437]) -1.3682173490524292
+  array([1.46250284]) array([25.86142921]) 32.64257049560547]
+ [2.6456167697906494 2.354236534458333 3.013381242752075
+  array([0.58732605]) array([0.00164829]) -0.3981155753135681
+  array([2.52711964]) array([25.35758209]) 33.83222961425781]
+ [0.803523600101471 0.7480971593669309 2.8546481132507324
+  array([0.17421496]) array([0.00054218]) -0.9489796161651611
+  array([0.89175433]) array([25.21234512]) 34.22953796386719]
+ [2.1712276935577393 1.9197449180572308 3.2231836318969727
+  array([0.33665901]) array([0.00135292]) 2.1928584575653076
+  array([2.67629027]) array([26.52044678]) 27.059036254882812]
+ [1.8600374460220337 1.5010533633032914 2.86806321144104
+  array([1.63633263]) array([0.00393789]) 0.43403467535972595
+  array([1.67425048]) array([26.38762665]) 40.4011116027832]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.00159076 0.00159076 0.00159076 0.00159076 0.00159076]
+Done Loading
+Training done on  444247 events. Saving model in tmva_signal_60GeV_1e-2p5.root
+Loading data: train_signal_60GeV_1e-3.root
+train_signal_60GeV_1e-3.root
+cross section for train_signal_60GeV_1e-3.root is 0.0015907583299999998
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444245, 9)
+y type: <class 'numpy.ndarray'> y shape: (444245,)
+w type: <class 'numpy.ndarray'> w shape: (444245,)
+Sample elements in x: [[3.3437249660491943 1.960184139396229 2.948777675628662
+  array([0.40980995]) array([0.00317416]) 2.004457473754883
+  array([0.19515696]) array([26.04418755]) 41.98447799682617]
+ [3.8163399696350098 2.463784507928919 3.5272555351257324
+  array([0.78443944]) array([0.00203963]) 2.6704678535461426
+  array([2.04457784]) array([25.75293732]) 34.33156967163086]
+ [1.1767739057540894 1.1157756912354944 2.925623893737793
+  array([0.68049866]) array([0.00167306]) 1.3818325996398926
+  array([0.69736987]) array([25.71805573]) 38.23063659667969]
+ [1.1546435356140137 1.1374600875724958 2.509596347808838
+  array([0.63873303]) array([0.00166583]) 2.221440076828003
+  array([0.82329196]) array([25.88933563]) 26.68211555480957]
+ [2.2795486450195312 2.003456557844366 2.5467116832733154
+  array([0.19686319]) array([0.00049482]) 1.0705174207687378
+  array([2.36649919]) array([25.83250999]) 31.437728881835938]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.00015908 0.00015908 0.00015908 0.00015908 0.00015908]
+Done Loading
+Training done on  444245 events. Saving model in tmva_signal_60GeV_1e-3.root
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Loading data: train_signal_60GeV_1e-3p5.root
+train_signal_60GeV_1e-3p5.root
+cross section for train_signal_60GeV_1e-3p5.root is 1.5907583300000001e-06
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444207, 9)
+y type: <class 'numpy.ndarray'> y shape: (444207,)
+w type: <class 'numpy.ndarray'> w shape: (444207,)
+Sample elements in x: [[2.3883345127105713 2.0712509038430005 3.1096184253692627
+  array([5.34960127]) array([0.01305773]) 2.3284833431243896
+  array([1.97735524]) array([25.91576195]) 35.76078796386719]
+ [0.6218172311782837 0.5989815480016176 3.192537307739258
+  array([7.30392647]) array([0.02104411]) -2.8411381244659424
+  array([0.89445782]) array([25.82828331]) 25.13864517211914]
+ [2.9647035598754883 2.7139260771599836 3.378173828125
+  array([2.38338709]) array([0.00588662]) 0.6327103972434998
+  array([1.01993871]) array([25.74591827]) 32.94839859008789]
+ [2.840808153152466 2.363929202558141 2.4215500354766846
+  array([25.12172508]) array([0.0769527]) -0.7464634776115417
+  array([1.11558342]) array([26.14274597]) 29.45334243774414]
+ [3.8540704250335693 1.4015724492504116 3.70961856842041
+  array([26.34146881]) array([0.07155869]) 1.624727725982666
+  array([0.84591079]) array([29.49468613]) 41.12501525878906]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [1.59075833e-07 1.59075833e-07 1.59075833e-07 1.59075833e-07
+ 1.59075833e-07]
+Done Loading
+Training done on  444207 events. Saving model in tmva_signal_60GeV_1e-3p5.root
+Loading data: train_signal_60GeV_1e-4.root
+train_signal_60GeV_1e-4.root
+cross section for train_signal_60GeV_1e-4.root is 1.5907583299999998e-05
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444213, 9)
+y type: <class 'numpy.ndarray'> y shape: (444213,)
+w type: <class 'numpy.ndarray'> w shape: (444213,)
+Sample elements in x: [[1.1257145404815674 1.093181299273817 2.8381474018096924
+  array([1.27988899]) array([0.00314471]) -2.8331849575042725
+  array([2.4986515]) array([25.97030067]) 39.18037033081055]
+ [0.9010140299797058 0.5321974912900772 3.0920281410217285
+  array([2.3863225]) array([0.0058994]) -2.172767400741577
+  array([1.6529547]) array([25.96042442]) 38.5829963684082]
+ [0.9942079186439514 0.8897880837990066 2.322700262069702
+  array([0.60139304]) array([0.00158608]) -0.2637437880039215
+  array([1.51647222]) array([25.71854782]) 25.316055297851562]
+ [2.3027138710021973 2.169583635020199 2.9314451217651367
+  array([1.45606565]) array([0.00381042]) 1.5253773927688599
+  array([0.7462045]) array([25.90897942]) 36.11650085449219]
+ [3.206658363342285 2.0326810339735646 2.472196578979492
+  array([3.2000196]) array([0.0092664]) 0.48429858684539795
+  array([2.0818193]) array([26.83440971]) 31.945541381835938]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [1.59075833e-06 1.59075833e-06 1.59075833e-06 1.59075833e-06
+ 1.59075833e-06]
+Done Loading
+Training done on  444213 events. Saving model in tmva_signal_60GeV_1e-4.root
+Loading data: train_signal_60GeV_1e-4p5.root
+train_signal_60GeV_1e-4p5.root
+cross section for train_signal_60GeV_1e-4p5.root is 1.59075833e-08
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444251, 9)
+y type: <class 'numpy.ndarray'> y shape: (444251,)
+w type: <class 'numpy.ndarray'> w shape: (444251,)
+Sample elements in x: [[3.6154236793518066 1.782521754526909 2.2951536178588867
+  array([4696.31787109]) array([38.06036758]) -0.8027206659317017
+  array([1.09790182]) array([25.70871544]) 30.43442153930664]
+ [1.402260422706604 1.2762763909308472 2.3883066177368164
+  array([5544.07080078]) array([48.2193222]) 2.0639843940734863
+  array([1.07976699]) array([25.89218903]) 25.68368148803711]
+ [3.0843937397003174 2.6204521734230894 3.053414821624756
+  array([567.11968994]) array([1.70237696]) -1.1317741870880127
+  array([1.20305586]) array([25.99455261]) 34.861515045166016]
+ [1.0577545166015625 0.7161837892895021 2.623262882232666
+  array([4215.47949219]) array([39.88362122]) -2.241016387939453
+  array([1.54616904]) array([26.30708885]) 32.96462631225586]
+ [2.693990468978882 1.404330116212382 4.048549652099609
+  array([137.91299438]) array([0.34200147]) -2.658860683441162
+  array([1.45466685]) array([25.7758522]) 34.873329162597656]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [1.59075833e-09 1.59075833e-09 1.59075833e-09 1.59075833e-09
+ 1.59075833e-09]
+Done Loading
+Training done on  444251 events. Saving model in tmva_signal_60GeV_1e-4p5.root
+Loading data: train_signal_60GeV_1e-5.root
+train_signal_60GeV_1e-5.root
+cross section for train_signal_60GeV_1e-5.root is 1.5907583300000002e-07
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444138, 9)
+y type: <class 'numpy.ndarray'> y shape: (444138,)
+w type: <class 'numpy.ndarray'> w shape: (444138,)
+Sample elements in x: [[1.1787711381912231 1.1175419706280294 2.2910706996917725
+  array([883.26483154]) array([2.19569111]) -0.39801570773124695
+  array([1.26567733]) array([25.91072655]) 30.279462814331055]
+ [0.7916220426559448 0.7649854583312704 2.4548957347869873
+  array([552.13226318]) array([1.36418128]) 2.3563735485076904
+  array([2.18841195]) array([25.50384521]) 33.32719802856445]
+ [2.7489545345306396 2.6541729465043025 2.234407424926758
+  array([876.51867676]) array([2.1733973]) 2.837334632873535
+  array([1.62009394]) array([25.9438858]) 31.539579391479492]
+ [2.5662410259246826 1.8867137981694169 2.7821943759918213
+  array([391.35549927]) array([1.47150421]) 0.3122374415397644
+  array([1.14946556]) array([25.88981628]) 31.489049911499023]
+ [2.091869592666626 1.7485567838838911 2.38132905960083
+  array([730.12182617]) array([1.82710302]) -1.7817931175231934
+  array([0.93763882]) array([26.13408279]) 31.405258178710938]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [1.59075833e-08 1.59075833e-08 1.59075833e-08 1.59075833e-08
+ 1.59075833e-08]
+Done Loading
+Training done on  444138 events. Saving model in tmva_signal_60GeV_1e-5.root
+Loading data: train_signal_70GeV_1e-2.root
+train_signal_70GeV_1e-2.root
+cross section for train_signal_70GeV_1e-2.root is 0.09058119722034
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444715, 9)
+y type: <class 'numpy.ndarray'> y shape: (444715,)
+w type: <class 'numpy.ndarray'> w shape: (444715,)
+Sample elements in x: Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+/cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/python3.9/site-packages/xgboost/plotting.py:113: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  _, ax = plt.subplots(1, 1)
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+[[2.074147939682007 1.8688914446113516 3.1168718338012695
+  array([1.26704979]) array([0.00350113]) 1.6108109951019287
+  array([0.33504501]) array([18.64281273]) 32.7468147277832]
+ [2.2145371437072754 1.9105398168798267 2.798037052154541
+  array([0.74776566]) array([0.00195382]) -0.28772497177124023
+  array([1.43856454]) array([18.75859642]) 30.694299697875977]
+ [2.621232271194458 2.407316811313181 2.9752347469329834
+  array([0.37961388]) array([0.00095737]) 1.241325855255127
+  array([1.03173876]) array([17.30839539]) 30.360538482666016]
+ [0.4385794699192047 0.43776723373978665 2.6552884578704834
+  array([2.35373616]) array([0.00570469]) 2.045348644256592
+  array([1.84957492]) array([18.5515461]) 38.14149475097656]
+ [1.8847752809524536 1.8574377867094691 3.0305373668670654
+  array([1.48485839]) array([0.00367162]) 1.3712564706802368
+  array([2.34058166]) array([18.69943428]) 33.45501708984375]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.00905812 0.00905812 0.00905812 0.00905812 0.00905812]
+Done Loading
+Training done on  444715 events. Saving model in tmva_signal_70GeV_1e-2.root
+Loading data: train_signal_70GeV_1e-2p5.root
+train_signal_70GeV_1e-2p5.root
+cross section for train_signal_70GeV_1e-2p5.root is 0.009058119721033
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444715, 9)
+y type: <class 'numpy.ndarray'> y shape: (444715,)
+w type: <class 'numpy.ndarray'> w shape: (444715,)
+Sample elements in x: [[1.2428066730499268 1.1766968786287046 2.833090305328369
+  array([0.80050486]) array([0.00193972]) 0.8263513445854187
+  array([1.36105442]) array([18.69779778]) 40.87205123901367]
+ [1.138962984085083 0.9207012412832652 3.10966420173645
+  array([0.24694988]) array([0.00063031]) 2.8449361324310303
+  array([2.83249903]) array([19.71769142]) 26.725833892822266]
+ [2.8170106410980225 1.9380042145899063 3.4949135780334473
+  array([1.36665189]) array([0.00636679]) 1.016721487045288
+  array([2.67462206]) array([18.46758652]) 36.476863861083984]
+ [2.807363748550415 2.7218734447296553 2.895484209060669
+  array([0.24238087]) array([0.00062023]) 2.371154546737671
+  array([0.66550756]) array([18.64522171]) 25.000106811523438]
+ [0.691857099533081 0.6156961134810013 3.204038619995117
+  array([0.37893522]) array([0.00100978]) 1.7499616146087646
+  array([1.28757811]) array([19.43940353]) 25.77695083618164]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.00090581 0.00090581 0.00090581 0.00090581 0.00090581]
+Done Loading
+Training done on  444715 events. Saving model in tmva_signal_70GeV_1e-2p5.root
+Loading data: train_signal_70GeV_1e-3.root
+train_signal_70GeV_1e-3.root
+cross section for train_signal_70GeV_1e-3.root is 0.0009058119722033999
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444715, 9)
+y type: <class 'numpy.ndarray'> y shape: (444715,)
+w type: <class 'numpy.ndarray'> w shape: (444715,)
+Sample elements in x: [[1.2428066730499268 1.1766968786287046 2.833090305328369
+  array([0.79899877]) array([0.00193607]) 0.8263513445854187
+  array([1.36105442]) array([18.69779778]) 40.87205123901367]
+ [1.138962984085083 0.9207012412832652 3.10966420173645
+  array([0.24032697]) array([0.0006134]) 2.8449361324310303
+  array([2.83249903]) array([19.71769142]) 26.725833892822266]
+ [2.8170106410980225 1.9380042145899063 3.4949135780334473
+  array([1.36769509]) array([0.00637165]) 1.016721487045288
+  array([2.67462206]) array([18.46758652]) 36.476863861083984]
+ [2.807363748550415 2.7218734447296553 2.895484209060669
+  array([0.22925131]) array([0.00058664]) 2.371154546737671
+  array([0.66550756]) array([18.64522171]) 25.000106811523438]
+ [0.691857099533081 0.6156961134810013 3.204038619995117
+  array([0.37935376]) array([0.00101089]) 1.7499616146087646
+  array([1.28757811]) array([19.43940353]) 25.77695083618164]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [9.05811972e-05 9.05811972e-05 9.05811972e-05 9.05811972e-05
+ 9.05811972e-05]
+Done Loading
+Training done on  444715 events. Saving model in tmva_signal_70GeV_1e-3.root
+Loading data: train_signal_70GeV_1e-3p5.root
+train_signal_70GeV_1e-3p5.root
+cross section for train_signal_70GeV_1e-3p5.root is 9.058119721033e-07
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444689, 9)
+y type: <class 'numpy.ndarray'> y shape: (444689,)
+w type: <class 'numpy.ndarray'> w shape: (444689,)
+Sample elements in x: [[2.7659006118774414 0.8397007564914767 3.605867624282837
+  array([1.95088732]) array([0.0054984]) 1.6699036359786987
+  array([1.60105503]) array([18.40357399]) 37.23618698120117]
+ [0.3492261469364166 0.345277071040417 2.8274993896484375
+  array([41.77151489]) array([0.1077954]) -0.4515066146850586
+  array([1.9455725]) array([18.96580505]) 28.3433837890625]
+ [2.090106248855591 1.8858483933210661 2.5844078063964844
+  array([7.87255192]) array([0.02098605]) -1.9628247022628784
+  array([1.53117681]) array([18.42862511]) 26.552194595336914]
+ [2.431389331817627 1.9615353083515574 3.2123148441314697
+  array([4.97247553]) array([0.01246398]) -2.681635856628418
+  array([2.1434176]) array([18.7785244]) 29.30971336364746]
+ [4.069517135620117 2.1841258077355117 2.6153697967529297
+  array([0.13420306]) array([0.00034692]) 1.0276602506637573
+  array([0.78661346]) array([20.55912781]) 25.06667709350586]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [9.05811972e-08 9.05811972e-08 9.05811972e-08 9.05811972e-08
+ 9.05811972e-08]
+Done Loading
+Training done on  444689 events. Saving model in tmva_signal_70GeV_1e-3p5.root
+Loading data: train_signal_70GeV_1e-4.root
+train_signal_70GeV_1e-4.root
+cross section for train_signal_70GeV_1e-4.root is 9.058119722034e-06
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444680, 9)
+y type: <class 'numpy.ndarray'> y shape: (444680,)
+w type: <class 'numpy.ndarray'> w shape: (444680,)
+Sample elements in x: [[2.95780611038208 2.840757179132094 2.9632222652435303
+  array([1.03786194]) array([0.00266772]) -0.7894665598869324
+  array([1.04843426]) array([18.72942352]) 29.27895736694336]
+ [3.1595804691314697 2.869589243256755 3.3410754203796387
+  array([1.31791914]) array([0.00412415]) 2.4308838844299316
+  array([3.12633061]) array([19.5365696]) 26.853260040283203]
+ [3.041855812072754 1.6908163588091267 3.092533826828003
+  array([1.22849143]) array([0.00417081]) 2.925191640853882
+  array([2.19092464]) array([18.81362343]) 26.15715980529785]
+ [1.7518138885498047 1.5909000158714384 2.6295394897460938
+  array([1.72239912]) array([0.00430914]) 3.024632215499878
+  array([1.89373314]) array([18.61732483]) 33.28976821899414]
+ [2.629666566848755 1.9546534601953565 3.967095136642456
+  array([0.9210586]) array([0.00403215]) -0.3546777069568634
+  array([2.75431919]) array([17.38560104]) 36.54764175415039]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [9.05811972e-07 9.05811972e-07 9.05811972e-07 9.05811972e-07
+ 9.05811972e-07]
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Done Loading
+Training done on  444680 events. Saving model in tmva_signal_70GeV_1e-4.root
+Loading data: train_signal_70GeV_1e-4p5.root
+train_signal_70GeV_1e-4p5.root
+cross section for train_signal_70GeV_1e-4p5.root is 9.058119721033e-09
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444869, 9)
+y type: <class 'numpy.ndarray'> y shape: (444869,)
+w type: <class 'numpy.ndarray'> w shape: (444869,)
+Sample elements in x: [[1.9288932085037231 1.6846080206135832 2.779817819595337
+  array([888.60107422]) array([2.25788569]) 0.369978666305542
+  array([2.22104955]) array([19.5907917]) 28.917327880859375]
+ [3.167722225189209 1.0071988173630777 3.8328745365142822
+  array([18.03329468]) array([0.04825929]) 2.952395439147949
+  array([0.79939371]) array([27.04369736]) 39.158390045166016]
+ [2.9185330867767334 2.356960722731575 2.7818706035614014
+  array([532.17340088]) array([1.43125963]) 2.1321661472320557
+  array([0.72931296]) array([18.65690231]) 30.32573699951172]
+ [2.681493043899536 2.6116479199574476 2.910224199295044
+  array([263.43188477]) array([0.738545]) 3.080151081085205
+  array([0.48748204]) array([18.52417374]) 28.625080108642578]
+ [3.1722283363342285 2.1223323902749818 3.302276611328125
+  array([371.05874634]) array([0.94071269]) 1.2944666147232056
+  array([1.17123461]) array([18.54911423]) 35.6617431640625]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [9.05811972e-10 9.05811972e-10 9.05811972e-10 9.05811972e-10
+ 9.05811972e-10]
+Done Loading
+Training done on  444869 events. Saving model in tmva_signal_70GeV_1e-4p5.root
+Loading data: train_signal_70GeV_1e-5.root
+train_signal_70GeV_1e-5.root
+cross section for train_signal_70GeV_1e-5.root is 9.058119722034e-08
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (444679, 9)
+y type: <class 'numpy.ndarray'> y shape: (444679,)
+w type: <class 'numpy.ndarray'> w shape: (444679,)
+Sample elements in x: [[2.9590208530426025 2.8440294831272457 2.954634428024292
+  array([0.12369333]) array([0.00031794]) -0.7830947637557983
+  array([1.04381287]) array([18.70153809]) 29.30400276184082]
+ [3.1592140197753906 2.8611915554437397 3.320247173309326
+  array([1.09025323]) array([0.00341172]) 2.423457622528076
+  array([3.09828424]) array([20.23352242]) 26.826200485229492]
+ [3.036534070968628 1.691676716531603 3.0979397296905518
+  array([68.47762299]) array([0.23248592]) 2.9295742511749268
+  array([2.19029737]) array([18.77401733]) 26.04360580444336]
+ [1.7438424825668335 1.5827262829782476 2.6135005950927734
+  array([141.88755798]) array([0.35497746]) 3.046142816543579
+  array([1.86215138]) array([19.00447845]) 33.351661682128906]
+ [2.599250078201294 1.9251841921344066 3.7973504066467285
+  array([18.57045937]) array([0.08129655]) -0.055258046835660934
+  array([2.64500308]) array([18.66187477]) 36.6749267578125]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [9.05811972e-09 9.05811972e-09 9.05811972e-09 9.05811972e-09
+ 9.05811972e-09]
+Done Loading
+Training done on  444679 events. Saving model in tmva_signal_70GeV_1e-5.root
+Loading data: train_signal_80GeV_1e-2.root
+train_signal_80GeV_1e-2.root
+cross section for train_signal_80GeV_1e-2.root is 0.18481068698000003
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (441288, 9)
+y type: <class 'numpy.ndarray'> y shape: (441288,)
+w type: <class 'numpy.ndarray'> w shape: (441288,)
+Sample elements in x: [[1.661080241203308 0.9881742708685599 3.5574395656585693
+  array([0.56757534]) array([0.00163948]) 0.6420483589172363
+  array([1.0946902]) array([10.52211857]) 35.39111328125]
+ [1.5840705633163452 0.4647794154339978 3.574448347091675
+  array([1.4368397]) array([0.00644394]) -0.22441977262496948
+  array([2.35078669]) array([10.28033638]) 36.18114471435547]
+ [1.6638593673706055 1.5263835894771984 3.047718048095703
+  array([0.81793469]) array([0.00206307]) -1.1033531427383423
+  array([1.77242839]) array([11.75760651]) 28.179855346679688]
+ [1.4238651990890503 1.3888671258389798 3.1320927143096924
+  array([0.14200173]) array([0.00034559]) -1.9959079027175903
+  array([0.69098032]) array([10.39444351]) 36.82063674926758]
+ [2.130108594894409 1.4212468926159523 3.7179713249206543
+  array([1.73581553]) array([0.00527623]) 1.0729093551635742
+  array([1.91519988]) array([10.24748611]) 37.500797271728516]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.01848107 0.01848107 0.01848107 0.01848107 0.01848107]
+Done Loading
+Training done on  441288 events. Saving model in tmva_signal_80GeV_1e-2.root
+Loading data: train_signal_80GeV_1e-2p5.root
+train_signal_80GeV_1e-2p5.root
+cross section for train_signal_80GeV_1e-2p5.root is 0.018481068686000003
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (441292, 9)
+y type: <class 'numpy.ndarray'> y shape: (441292,)
+w type: <class 'numpy.ndarray'> w shape: (441292,)
+Sample elements in x: [[1.8163306713104248 1.6436743054981635 2.924978256225586
+  array([0.06979918]) array([0.00017131]) -1.8415422439575195
+  array([2.29766893]) array([10.54348469]) 34.23002243041992]
+ [2.3105063438415527 1.2666129663779468 3.3431596755981445
+  array([0.0738789]) array([0.000183]) -1.3278933763504028
+  array([1.80688536]) array([11.37111568]) 41.717002868652344]
+ [0.4982331097126007 0.49456973740175814 2.8843793869018555
+  array([0.71584851]) array([0.00173094]) 2.4774930477142334
+  array([1.56698191]) array([10.52366447]) 38.60172653198242]
+ [1.088855504989624 0.43077723607001817 4.095515251159668
+  array([0.1108511]) array([0.00048944]) -0.4956369698047638
+  array([0.11414496]) array([10.24753571]) 44.24236297607422]
+ [2.945439100265503 2.1268095609805484 3.8923704624176025
+  array([1.47826445]) array([0.00538586]) 1.424830436706543
+  array([0.90441954]) array([10.47503281]) 33.621131896972656]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.00184811 0.00184811 0.00184811 0.00184811 0.00184811]
+Done Loading
+Training done on  441292 events. Saving model in tmva_signal_80GeV_1e-2p5.root
+Loading data: train_signal_80GeV_1e-3.root
+train_signal_80GeV_1e-3.root
+cross section for train_signal_80GeV_1e-3.root is 0.0018481068698000002
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (441292, 9)
+y type: <class 'numpy.ndarray'> y shape: (441292,)
+w type: <class 'numpy.ndarray'> w shape: (441292,)
+Sample elements in x: Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+Fontconfig warning: ignoring UTF-8: not a valid region tag
+[[0.2475956827402115 0.22431308222205826 3.045224666595459
+  array([0.1197182]) array([0.00029699]) 2.919710874557495
+  array([2.02643251]) array([10.5911932]) 40.13649368286133]
+ [3.1056160926818848 2.420706664746229 3.1874427795410156
+  array([0.3259306]) array([0.00084697]) -2.25038743019104
+  array([1.15219533]) array([10.28214741]) 29.701549530029297]
+ [2.0655508041381836 1.937342612962403 2.9329171180725098
+  array([0.15746552]) array([0.00040935]) 1.6692392826080322
+  array([1.38141501]) array([10.46224117]) 29.074417114257812]
+ [1.9789670705795288 1.8677218486184715 2.886043071746826
+  array([0.78106254]) array([0.00195777]) -2.5897786617279053
+  array([1.89428401]) array([10.51770401]) 28.748668670654297]
+ [1.9000414609909058 1.6424328029534176 3.1420464515686035
+  array([1.0258584]) array([0.00269523]) -1.4076584577560425
+  array([2.34682465]) array([9.61368465]) 32.298648834228516]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [0.00018481 0.00018481 0.00018481 0.00018481 0.00018481]
+Done Loading
+Training done on  441292 events. Saving model in tmva_signal_80GeV_1e-3.root
+Loading data: train_signal_80GeV_1e-3p5.root
+train_signal_80GeV_1e-3p5.root
+cross section for train_signal_80GeV_1e-3p5.root is 1.8481068685999999e-06
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (441191, 9)
+y type: <class 'numpy.ndarray'> y shape: (441191,)
+w type: <class 'numpy.ndarray'> w shape: (441191,)
+Sample elements in x: [[0.478502482175827 0.40529158010728067 3.282027244567871
+  array([7.46491241]) array([0.01869149]) -2.3969950675964355
+  array([2.50185609]) array([10.55128098]) 43.97151565551758]
+ [2.3622939586639404 2.1359351494673207 2.7971363067626953
+  array([6.69984865]) array([0.01719817]) 0.451588898897171
+  array([1.94633412]) array([10.75451756]) 25.095882415771484]
+ [2.5351035594940186 2.513461857382678 2.942742109298706
+  array([1.25148785]) array([0.00308269]) -1.8333996534347534
+  array([1.42032003]) array([10.6362009]) 34.9460334777832]
+ [2.068537950515747 1.3869916504963486 3.527401924133301
+  array([4.58807182]) array([0.01309436]) 1.1688569784164429
+  array([2.58483458]) array([10.32436085]) 27.812185287475586]
+ [1.7833714485168457 1.673807996476623 2.8490209579467773
+  array([30.51759529]) array([0.07505857]) -2.367011308670044
+  array([1.14370763]) array([11.0588522]) 34.20889663696289]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [1.84810687e-07 1.84810687e-07 1.84810687e-07 1.84810687e-07
+ 1.84810687e-07]
+Done Loading
+Training done on  441191 events. Saving model in tmva_signal_80GeV_1e-3p5.root
+Loading data: train_signal_80GeV_1e-4.root
+train_signal_80GeV_1e-4.root
+cross section for train_signal_80GeV_1e-4.root is 1.8481068698e-05
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (441302, 9)
+y type: <class 'numpy.ndarray'> y shape: (441302,)
+w type: <class 'numpy.ndarray'> w shape: (441302,)
+Sample elements in x: [[2.923830032348633 1.3035923130884655 3.344371795654297
+  array([1.66098177]) array([0.00469455]) -2.5309817790985107
+  array([1.49949193]) array([10.52058315]) 32.87217330932617]
+ [0.8951290845870972 0.7141454950265486 3.4196062088012695
+  array([1.27068448]) array([0.00351155]) 1.1219666004180908
+  array([1.47723711]) array([11.02123451]) 33.36373519897461]
+ [2.269569158554077 1.8587892195790432 2.805818796157837
+  array([1.29716039]) array([0.00332169]) -1.9277193546295166
+  array([1.60518718]) array([10.61750889]) 25.52962875366211]
+ [2.743257761001587 2.0124279604209527 2.9849421977996826
+  array([2.3731792]) array([0.0061931]) -2.069300413131714
+  array([0.77049208]) array([11.36884975]) 30.17155647277832]
+ [0.815143883228302 0.6590687352347121 3.306737184524536
+  array([1.92948437]) array([0.0047347]) -1.1794135570526123
+  array([0.96802026]) array([10.13103962]) 44.27690887451172]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [1.84810687e-06 1.84810687e-06 1.84810687e-06 1.84810687e-06
+ 1.84810687e-06]
+Done Loading
+Training done on  441302 events. Saving model in tmva_signal_80GeV_1e-4.root
+Loading data: train_signal_80GeV_1e-4p5.root
+train_signal_80GeV_1e-4p5.root
+cross section for train_signal_80GeV_1e-4p5.root is 1.8481068686e-08
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (441292, 9)
+y type: <class 'numpy.ndarray'> y shape: (441292,)
+w type: <class 'numpy.ndarray'> w shape: (441292,)
+Sample elements in x: [[2.404804229736328 1.8421716264167736 3.7971863746643066
+  array([2149.79272461]) array([8.1642313]) -0.5968184471130371
+  array([2.20000482]) array([10.7487421]) 27.89765167236328]
+ [1.0365869998931885 0.9341266990321723 3.031161069869995
+  array([4184.8828125]) array([8.34791851]) 2.76263165473938
+  array([1.90485489]) array([10.47301769]) 40.79854965209961]
+ [2.537761926651001 1.8357967867890996 3.1342806816101074
+  array([1455.74230957]) array([3.72776461]) 0.9525052309036255
+  array([1.41228354]) array([10.42705345]) 32.41755294799805]
+ [3.847034454345703 2.6256404590306848 3.8742809295654297
+  array([267.19012451]) array([1.08962917]) 1.5909154415130615
+  array([2.25312757]) array([8.08116627]) 25.37635612487793]
+ [1.3704053163528442 0.9447299021410709 3.4398014545440674
+  array([132.23913574]) array([0.33200175]) 2.401546001434326
+  array([0.6656968]) array([10.56420231]) 37.757198333740234]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: [1.84810687e-09 1.84810687e-09 1.84810687e-09 1.84810687e-09
+ 1.84810687e-09]
+Done Loading
+Training done on  441292 events. Saving model in tmva_signal_80GeV_1e-4p5.root
+Loading data: train_signal_80GeV_1e-5.root
+train_signal_80GeV_1e-5.root
+cross section for train_signal_80GeV_1e-5.root is 1.8481068698000002e-07
+number of background = 428984
+number of bb: 374820; number of cc: 50787; number of 4body: 3377
+total background 428984
+weights background = [0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274, 0.1516725320911274]
+x type: <class 'numpy.ndarray'> x shape: (441280, 9)
+y type: <class 'numpy.ndarray'> y shape: (441280,)
+w type: <class 'numpy.ndarray'> w shape: (441280,)
+Sample elements in x: [[3.1760971546173096 2.208405606693417 3.1178841590881348
+  array([21.19690704]) array([0.05600359]) 1.5515979528427124
+  array([0.56249326]) array([17.11249542]) 27.188552856445312]
+ [2.520413637161255 2.405082566262168 3.1050705909729004
+  array([487.90130615]) array([1.26947987]) -1.3523821830749512
+  array([1.69175851]) array([10.4404335]) 33.00027084350586]
+ [1.224947452545166 1.0367450818568233 3.2041964530944824
+  array([5.56961346]) array([0.01384729]) 2.899489641189575
+  array([1.82242072]) array([10.44360256]) 39.94548416137695]
+ [2.634136915206909 1.5341570120486623 3.973395347595215
+  array([118.31591034]) array([0.37993789]) -0.20239856839179993
+  array([1.62601471]) array([9.73644924]) 36.684696197509766]
+ [1.6539134979248047 1.4741401955221574 3.052788496017456
+  array([11.99222851]) array([0.0297623]) -0.5275241732597351
+  array([0.2872102]) array([10.27232647]) 31.1848201751709]]
+Sample elements in y: [1. 1. 1. 1. 1.]
+Sample elements in w: Fontconfig warning: ignoring UTF-8: not a valid region tag
+[1.84810687e-08 1.84810687e-08 1.84810687e-08 1.84810687e-08
+ 1.84810687e-08]
+Done Loading
+Training done on  441280 events. Saving model in tmva_signal_80GeV_1e-5.root

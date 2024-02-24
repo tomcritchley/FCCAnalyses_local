@@ -1,0 +1,67 @@
+########################
+# HTCondor Submission File
+# see for all possible options
+# http://research.cs.wisc.edu/htcondor/manual/v8.5/condor_submit.html
+########################
+
+# # submit this file 'test_description.condor' to the scheduler on condor01
+# # SHELL> condor_submit -remote condor01 test_description.condor
+
+
+#####
+# # Basic job setup
+######
+# ## the executable to be run
+executable     = bdt_testing.sh
+# ## which universe (plain vanilla probably in most cases)
+universe       = vanilla
+# ## some arguments for the executable
+ arguments    = $(ClusterId) $(ProcId)
+# ## do not copy the executable but assume that it is already locally available under the 'excecutable' path
+# transfer_executable = True
+# ## note: if you use a share file system, performace may depend on the number of parallel accesses to a file
+
+#####
+# # Input and output files
+# # note: on the worker node all input & output files will normally live in the flat directory of the executable
+######
+# ## changing the local base path for all input & output files
+# initialdir   = /some/other/path
+# ## copy this single input file to the worker node if necessary
+#input          = test_payload.data
+# ## if necessary, copy further input file(s) and directories to the worker node as a comma separated list. Can also be http URLs
+# transfer_input_files = data2.file, data3.file
+# ## name of the output file(s) to be copied back after the job has finished
+output         = bdt_testing.$(ClusterId).$(ProcId).out
+# ## name of the stderr file
+error          = bdt_testing.$(ClusterId).$(ProcId).error
+# ## name of the stdout file
+log            = bdt_testing.$(ClusterId).$(ProcId).log
+# ## copy executable and input file (if any) to the worker node?
+should_transfer_files   = Yes
+# ## when to transfer output? 
+when_to_transfer_output = ON_EXIT
+
+
+#####
+# # Resource Requests
+######
+# ## request more than one core
+# request_cpus = 2
+# ## request ???? KiB of available disk space, if you know to need more than the default ~10GB
+# request_disk = 1234
+# ## request #### MiB of memory, if your job hungers for more than the default 2GB/CPU
+# request_memory = 5678
+# ## btw: exceeding the requested resources or default ones may get your job killed if it hampers other jobs
+# ## btw2: larger resource requests will make your job have to wait longer for the resources to get carved out
+
+#####
+# # Miscellaneous
+######
+# ## place some environment variables in the jobs enironment
+environment 	= "TESTVAR1=1 TESTVAR2=""2"" TESTVAR3='spacey ''quoted'' value'"
+# ## encrypt all job files transparently if you are paranoid about the possibility to leave files readable after a crash. Costs you CPU and any option for recovery
+# encrypt_execute_directory = True
++JobFlavour = "espresso"
+# how many instances of the job should be run - if no value is set run just one instance
+queue
