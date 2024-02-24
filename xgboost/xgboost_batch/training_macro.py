@@ -14,7 +14,7 @@ with open('/afs/cern.ch/user/t/tcritchl/xgboost_batch/configuration.json') as co
     config = json.load(config_file)
 
 run = config["run_number"]
-train_or_test = config["train_or_test"]
+train_or_test = config["train_or_test"].strip()
 
 labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/training{run}/"
