@@ -90,20 +90,20 @@ def load_data(signal_filename, background_filename):
         if cross_section == 6654.46:
             num_bb += 1
             #weights.append(6654.46*10000/438738637)
-            weights.append(6654.46*150000000/438738637)
+            weights.append(6654.46*10000/438738637)
         elif cross_section == 5215.46:
             num_cc += 1
             #weights.append(5215.46*10000/499786495)
-            weights.append(6654.46*150000000/438738637)
+            weights.append(6654.46*10000/438738637)
         elif cross_section == 0.014:
             num_4body += 1
             #weights.append(0.014*10000/100000)
-            weights.append(0.014*150000000/100000)
+            weights.append(0.014*10000/100000)
             
     print(f"number of bb: {num_bb}; number of cc: {num_cc}; number of 4body: {num_4body}")
     print(f"total background {num_bb+num_cc+num_4body}")
     print(f"weights background = {weights[:10]}")
-    
+
     if signal == "test_signal_40Gev_1e-5.root":
         print(f"using the signal with less events {signal} :(")
         w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/7196), #scale factor = target lumi * x-sec / number of generated events
