@@ -1,0 +1,579 @@
+TUnixSystem::SetDisplay:0: RuntimeWarning: DISPLAY not set, setting it to lxplus720.cern.ch:0.0
+#--------------------------------------------------------------------------
+#                         FastJet release 3.3.4
+#                 M. Cacciari, G.P. Salam and G. Soyez                  
+#     A software package for jet finding and analysis at colliders      
+#                           http://fastjet.fr                           
+#	                                                                      
+# Please cite EPJC72(2012)1896 [arXiv:1111.6097] if you use this package
+# for scientific work and optionally PLB641(2006)57 [hep-ph/0512210].   
+#                                                                       
+# FastJet is provided without warranty under the GNU GPL v2 or higher.  
+# It uses T. Chan's closest pair algorithm, S. Fortune's Voronoi code
+# and 3rd party plugin jet algorithms. See COPYING file for details.
+#--------------------------------------------------------------------------
+----> Info: Loading analyzers from libFCCAnalyses... 
+----> Info: Loading analysis file:
+      /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/HNLs/analysis_stage1_HNLs.py
+The variable <outputDirEos> is optional in your analysis.py file, return default empty string
+The variable <runBatch> is optional in your analysis.py file, return default value False
+----> Running process HNL_Dirac_ejj_40GeV_1e-2Ve with fraction=1, output=HNL_Dirac_ejj_40GeV_1e-2Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_40GeV_1e-2Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:01
+Events Processed/Second  :   1622
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_40GeV_1e-2p5Ve with fraction=1, output=HNL_Dirac_ejj_40GeV_1e-2p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_40GeV_1e-2p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:52
+Events Processed/Second  :   1899
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_40GeV_1e-3Ve with fraction=1, output=HNL_Dirac_ejj_40GeV_1e-3Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_40GeV_1e-3Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:40
+Events Processed/Second  :   2490
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_40GeV_1e-3p5Ve with fraction=1, output=HNL_Dirac_ejj_40GeV_1e-3p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_40GeV_1e-3p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:49
+Events Processed/Second  :   2021
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_40GeV_1e-4Ve with fraction=1, output=HNL_Dirac_ejj_40GeV_1e-4Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_40GeV_1e-4Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:42
+Events Processed/Second  :   2337
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_40GeV_1e-4p5Ve with fraction=1, output=HNL_Dirac_ejj_40GeV_1e-4p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_40GeV_1e-4p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:34
+Events Processed/Second  :   2915
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_40GeV_1e-5Ve with fraction=1, output=HNL_Dirac_ejj_40GeV_1e-5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_40GeV_1e-5Ve.root
+----> nevents original=0  local=7196
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 7196 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:09
+Events Processed/Second  :   763
+Total Events Processed   :   7196
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_50GeV_1e-2Ve with fraction=1, output=HNL_Dirac_ejj_50GeV_1e-2Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_50GeV_1e-2Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:52
+Events Processed/Second  :   1918
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_50GeV_1e-2p5Ve with fraction=1, output=HNL_Dirac_ejj_50GeV_1e-2p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_50GeV_1e-2p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:48
+Events Processed/Second  :   2079
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_50GeV_1e-3Ve with fraction=1, output=HNL_Dirac_ejj_50GeV_1e-3Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_50GeV_1e-3Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:44
+Events Processed/Second  :   2264
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_50GeV_1e-3p5Ve with fraction=1, output=HNL_Dirac_ejj_50GeV_1e-3p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_50GeV_1e-3p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:50
+Events Processed/Second  :   1974
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_50GeV_1e-4Ve with fraction=1, output=HNL_Dirac_ejj_50GeV_1e-4Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_50GeV_1e-4Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:57
+Events Processed/Second  :   1739
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_50GeV_1e-4p5Ve with fraction=1, output=HNL_Dirac_ejj_50GeV_1e-4p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_50GeV_1e-4p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:41
+Events Processed/Second  :   2426
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_50GeV_1e-5Ve with fraction=1, output=HNL_Dirac_ejj_50GeV_1e-5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_50GeV_1e-5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:44
+Events Processed/Second  :   2245
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_60GeV_1e-2Ve with fraction=1, output=HNL_Dirac_ejj_60GeV_1e-2Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_60GeV_1e-2Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:56
+Events Processed/Second  :   1774
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_60GeV_1e-2p5Ve with fraction=1, output=HNL_Dirac_ejj_60GeV_1e-2p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_60GeV_1e-2p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:50
+Events Processed/Second  :   1992
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_60GeV_1e-3Ve with fraction=1, output=HNL_Dirac_ejj_60GeV_1e-3Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_60GeV_1e-3Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:49
+Events Processed/Second  :   2035
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_60GeV_1e-3p5Ve with fraction=1, output=HNL_Dirac_ejj_60GeV_1e-3p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_60GeV_1e-3p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:44
+Events Processed/Second  :   2253
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_60GeV_1e-4Ve with fraction=1, output=HNL_Dirac_ejj_60GeV_1e-4Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_60GeV_1e-4Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:41
+Events Processed/Second  :   2404
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_60GeV_1e-4p5Ve with fraction=1, output=HNL_Dirac_ejj_60GeV_1e-4p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_60GeV_1e-4p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:42
+Events Processed/Second  :   2346
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_60GeV_1e-5Ve with fraction=1, output=HNL_Dirac_ejj_60GeV_1e-5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_60GeV_1e-5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:00:44
+Events Processed/Second  :   2242
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_70GeV_1e-2Ve with fraction=1, output=HNL_Dirac_ejj_70GeV_1e-2Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_70GeV_1e-2Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:02:28
+Events Processed/Second  :   674
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_70GeV_1e-2p5Ve with fraction=1, output=HNL_Dirac_ejj_70GeV_1e-2p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_70GeV_1e-2p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:16
+Events Processed/Second  :   1299
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_70GeV_1e-3Ve with fraction=1, output=HNL_Dirac_ejj_70GeV_1e-3Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_70GeV_1e-3Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:06
+Events Processed/Second  :   1494
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_70GeV_1e-3p5Ve with fraction=1, output=HNL_Dirac_ejj_70GeV_1e-3p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_70GeV_1e-3p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:12
+Events Processed/Second  :   1370
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_70GeV_1e-4Ve with fraction=1, output=HNL_Dirac_ejj_70GeV_1e-4Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_70GeV_1e-4Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:05
+Events Processed/Second  :   1526
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_70GeV_1e-4p5Ve with fraction=1, output=HNL_Dirac_ejj_70GeV_1e-4p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_70GeV_1e-4p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:09
+Events Processed/Second  :   1438
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_70GeV_1e-5Ve with fraction=1, output=HNL_Dirac_ejj_70GeV_1e-5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_70GeV_1e-5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:03
+Events Processed/Second  :   1567
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_80GeV_1e-2Ve with fraction=1, output=HNL_Dirac_ejj_80GeV_1e-2Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_80GeV_1e-2Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:42
+Events Processed/Second  :   979
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_80GeV_1e-2p5Ve with fraction=1, output=HNL_Dirac_ejj_80GeV_1e-2p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_80GeV_1e-2p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:40
+Events Processed/Second  :   996
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_80GeV_1e-3Ve with fraction=1, output=HNL_Dirac_ejj_80GeV_1e-3Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_80GeV_1e-3Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:12
+Events Processed/Second  :   1373
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_80GeV_1e-3p5Ve with fraction=1, output=HNL_Dirac_ejj_80GeV_1e-3p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_80GeV_1e-3p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:14
+Events Processed/Second  :   1334
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_80GeV_1e-4Ve with fraction=1, output=HNL_Dirac_ejj_80GeV_1e-4Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_80GeV_1e-4Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:37
+Events Processed/Second  :   1030
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_80GeV_1e-4p5Ve with fraction=1, output=HNL_Dirac_ejj_80GeV_1e-4p5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_80GeV_1e-4p5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:39
+Events Processed/Second  :   1002
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 
+----> Running process HNL_Dirac_ejj_80GeV_1e-5Ve with fraction=1, output=HNL_Dirac_ejj_80GeV_1e-5Ve, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation//HNL_Dirac_ejj_80GeV_1e-5Ve.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysis.py file, return default value empty string
+The variable <readoutName> is optional in your analysis.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+==============================SUMMARY==============================
+Elapsed time (H:M:S)     :   00:01:15
+Events Processed/Second  :   1326
+Total Events Processed   :   100000
+Reduction factor local   :   1.0
+===================================================================
+ 
+ 

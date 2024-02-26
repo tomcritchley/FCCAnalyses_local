@@ -1,27 +1,27 @@
 #Mandatory: List of processes
 processList = {
         # Private signals
-        'HNL_Dirac_ejj_10GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-5Ve': {},
         'HNL_Dirac_ejj_40GeV_1e-2Ve': {},
         'HNL_Dirac_ejj_40GeV_1e-2p5Ve': {},
         'HNL_Dirac_ejj_40GeV_1e-3Ve': {},
@@ -66,7 +66,7 @@ inputDir = "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LL
 outputDir = "/eos/user/t/tcritchl/HNLs_Feb24/"
 
 #Optional running on HTCondor, default is False
-runBatch    = True
+#runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
