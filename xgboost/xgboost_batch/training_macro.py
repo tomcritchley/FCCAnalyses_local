@@ -18,16 +18,32 @@ train_or_test = config["train_or_test"].strip()
 
 labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/training{run}/"
-json_file = "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/event_info.json"
-
-
+json_file = "/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb24.json"
 
 
 with open(json_file, 'r') as f:
     json_data = json.load(f)
-#have to edit if it is training or testing e.g. test_signal vs train_signal
-cross_section_dict = {f"{train_or_test}_signal_{mass}_{coupling.replace('Ve', '')}.root": cross_section for coupling, mass, cross_section, _ in json_data}
+
+cross_section_dict = {}
+
+for key, value in json_data.items():
+    parts = key.split("_")
+    mass = parts[-2]
+    coupling = parts[-1]
+
+    # Generate the key for the cross-section dictionary
+    # Assuming you have a variable `train_or_test` that indicates if it's training or testing
+    root_file_name = f"{train_or_test}_signal_{mass}_{coupling.replace('Ve', '')}.root"
+
+    # Add the cross-section value to the dictionary
+    cross_section_dict[root_file_name] = value["cross_section_pb"]
+
+# Print the cross-section dictionary
 print(cross_section_dict)
+
+#have to edit if it is training or testing e.g. test_signal vs train_signal
+#cross_section_dict = {f"{train_or_test}_signal_{mass}_{coupling.replace('Ve', '')}.root": cross_section for coupling, mass, cross_section, _ in json_data}
+#print(cross_section_dict)
 
 for mass in masses:
     for coupling in couplings:
