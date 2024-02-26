@@ -2,7 +2,7 @@
 processList = {
 
         #centrally-produced backgrounds
-        #'p8_ee_Zcc_ecm91':{'chunks':200},
+        'p8_ee_Zcc_ecm91':{'chunks':200},
         #'p8_ee_Zbb_ecm91':{'fraction':0.0000000001},
         
         #private signals
@@ -18,19 +18,19 @@ processList = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag= "FCCee/winter2023/IDEA/"
+prodTag= "FCCee/winter2023/IDEA/"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
 #inputDir = "/eos/user/t/tcritchl/HNLs/stage1/"
-inputDir = "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
+#inputDir = "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
 #inputDir = "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
 #ouput --> change for each
 #outputDir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/"
 outputDir = "/eos/user/t/tcritchl/xgBOOST/teststats/withvertex/"
 #Optional running on HTCondor, default is False
 #runBatch    = True
-#runBatch    = True
+runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 #batchQueue = "longlunch"
@@ -635,14 +635,10 @@ class RDFanalysis():
                         "RecoMissingEnergy_e",
                         "RecoDiJetElectron_invMass",
                         "cross_section",
-			            "Vertex_chi2",
-			            "PrimaryTracks",
-			            "Vertex_x",
-			            "Vertex_y",
-			            "Vertex_z",
-			            "n_primt",
-			            "Vertex_ntrk",
-			            "VertexObject",
-			            "ntracks",]
+			"Vertex_chi2",
+			"PrimaryTracks",
+			"n_primt",
+			"Vertex_ntrk",
+			"ntracks",]
 
                 return branchList

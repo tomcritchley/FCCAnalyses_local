@@ -1,6 +1,6 @@
 ! File: HNL_Dirac_ejj_10GeV_1e-3Ve.cmnd
 Random:setSeed = on
-Main:timesAllowErrors = 1000         ! how many aborts before run stops
+Main:timesAllowErrors = 10000         ! how many aborts before run stops
 Main:numberOfEvents = 100000         ! number of events to generate
 
 

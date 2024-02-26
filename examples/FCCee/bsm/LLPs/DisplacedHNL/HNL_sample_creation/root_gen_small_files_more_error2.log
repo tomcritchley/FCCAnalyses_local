@@ -1,0 +1,512 @@
+Warning in <UnknownClass::SetDisplay>: DISPLAY not set, setting it to lxplus720.cern.ch:0.0
+
+ *------------------------------------------------------------------------------------* 
+ |                                                                                    | 
+ |  *------------------------------------------------------------------------------*  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  |   PPP   Y   Y  TTTTT  H   H  III    A      Welcome to the Lund Monte Carlo!  |  | 
+ |  |   P  P   Y Y     T    H   H   I    A A     This is PYTHIA version 8.306      |  | 
+ |  |   PPP     Y      T    HHHHH   I   AAAAA    Last date of change: 28 Jun 2021  |  | 
+ |  |   P       Y      T    H   H   I   A   A                                      |  | 
+ |  |   P       Y      T    H   H  III  A   A    Now is 25 Feb 2024 at 16:44:18    |  | 
+ |  |                                                                              |  | 
+ |  |   Program documentation and an archive of historic versions is found on:     |  | 
+ |  |                                                                              |  | 
+ |  |                               https://pythia.org/                            |  | 
+ |  |                                                                              |  | 
+ |  |   PYTHIA is authored by a collaboration consisting of:                       |  | 
+ |  |                                                                              |  | 
+ |  |   Christian Bierlich, Nishita Desai, Leif Gellersen, Ilkka Helenius, Philip  |  | 
+ |  |   Ilten, Leif Lönnblad, Stephen Mrenna, Stefan Prestel, Christian Preuss,    |  | 
+ |  |   Torbjörn Sjöstrand, Peter Skands, Marius Utheim and Rob Verheyen.          |  | 
+ |  |                                                                              |  | 
+ |  |   The complete list of authors, including contact information and            |  | 
+ |  |   affiliations, can be found on https://pythia.org/.                         |  | 
+ |  |   Problems or bugs should be reported on email at authors@pythia.org.        |  | 
+ |  |                                                                              |  | 
+ |  |   The main program reference is 'An Introduction to PYTHIA 8.2',             |  | 
+ |  |   T. Sjöstrand et al, Comput. Phys. Commun. 191 (2015) 159                   |  | 
+ |  |   [arXiv:1410.3012 [hep-ph]]                                                 |  | 
+ |  |                                                                              |  | 
+ |  |   The main physics reference is the 'PYTHIA 6.4 Physics and Manual',         |  | 
+ |  |   T. Sjöstrand, S. Mrenna and P. Skands, JHEP05 (2006) 026 [hep-ph/0603175]  |  | 
+ |  |                                                                              |  | 
+ |  |   PYTHIA is released under the GNU General Public Licence version 2 or later.|  | 
+ |  |   Please respect the MCnet Guidelines for Event Generator Authors and Users. |  | 
+ |  |                                                                              |  | 
+ |  |   Disclaimer: this program comes without any guarantees.                     |  | 
+ |  |   Beware of errors and use common sense when interpreting results.           |  | 
+ |  |                                                                              |  | 
+ |  |   Copyright (C) 2021 Torbjörn Sjöstrand                                      |  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  *------------------------------------------------------------------------------*  | 
+ |                                                                                    | 
+ *------------------------------------------------------------------------------------* 
+
+ *-----------------------  SusyLesHouches SUSY/BSM Interface  ------------------------*
+ | Last Change 12 Apr 2017 - P. Skands
+ | Parsing: /afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_Dirac_ejj_30GeV_1e-5Ve/Events/run_01/HNL_Dirac_ejj_30GeV_1e-5Ve.lhe
+ | (SLHA::readFile) line 345 - storing non-SLHA(2) block: ckmblock
+ | (SLHA::readFile) line 377 - storing non-SLHA(2) block: numixing
+ | (SLHA::readFile) line 397 - storing non-SLHA(2) block: yukawa
+ | (SLHA::readFile) line 409 - storing QNUMBERS for id = 9990012   n1
+ | (SLHA::readFile) line 417 - storing QNUMBERS for id = 9990014   n2
+ | (SLHA::readFile) line 425 - storing QNUMBERS for id = 9990016   n3
+ *------------------------------------------------------------------------------------*
+ PYTHIA Info from SLHAinterface::initSLHA: No MODSEL found, keeping internal SUSY switched off  
+ PYTHIA Info from SLHAinterface::initSLHA: importing MASS entries for id = {9990012,9990014,9990016}
+ PYTHIA Warning in SLHAinterface::initSLHA: ignoring MASS entries for id = {1,2,3,4,5,11,12,13,14,15,16,21,22,23,24} (m0 < SLHA:minMassSM)
+ PYTHIA Info from SLHAinterface::initSLHA: importing DECAY tables for id = {9990012}
+ PYTHIA Warning in SLHAinterface::initSLHA: ignoring DECAY tables for id = {1,2,3,4,5,11,12,13,14,15,16,21,22,23,24} (m0 < SLHA:minMassSM)
+ PYTHIA Warning in SLHAinterface::initSLHA: ignoring empty DECAY tables for id = {6,25,9990014,9990016} (total width provided but no Branching Ratios)
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide e+ with e- at a CM energy of 9.119e+01 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Les Houches User Process(es)                  9999 |   2.000e-09 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | Beams:frameType                               |                        4 |            1           1           5 | 
+ | Beams:LHEF                                    | /afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_Dirac_ejj_30GeV_1e-5Ve/Events/run_01/HNL_Dirac_ejj_30GeV_1e-5Ve.lhe |         void | 
+ | LesHouches:setLifetime                        |                        2 |            1           0           2 | 
+ | Main:numberOfEvents                           |                   100000 |         1000           0             | 
+ | Main:timesAllowErrors                         |                     1000 |           10           0             | 
+ | Next:numberCount                              |                      100 |         1000           0             | 
+ | Random:setSeed                                |                       on |          off                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+
+ --------  PYTHIA Particle Data Table (changed only)  ------------------------------------------------------------------------------
+ 
+      id   name            antiName         spn chg col      m0        mWidth      mMin       mMax       tau0    res dec ext vis wid
+             no onMode   bRatio   meMode     products 
+
+       6  t                tbar               2   2   1  171.00000    1.30203  164.25000  177.75000  1.51554e-13   1   1   0   1   0
+              0     1   0.0000664    0       24        1 
+              1     1   0.0017362    0       24        3 
+              2     1   0.9981973    0       24        5 
+              3     0   0.0000000    0       37        5 
+
+      25  h0                                  1   0   0  125.00000    0.00408  124.97915  125.02085  4.83238e-11   1   1   0   0   0
+              0     1   0.0000009    0        1       -1 
+              1     1   0.0000002    0        2       -2 
+              2     1   0.0002163    0        3       -3 
+              3     1   0.0288493    0        4       -4 
+              4     1   0.5768873    0        5       -5 
+              5     1   0.0000000    0        6       -6 
+              6     1   0.0000000    0       11      -11 
+              7     1   0.0002185    0       13      -13 
+              8     1   0.0628569    0       15      -15 
+              9     1   0.0850383    0       21       21 
+             10     1   0.0022965    0       22       22 
+             11     1   0.0016155    0       22       23 
+             12     1   0.0261758    0       23       23 
+             13     1   0.2158445    0       24      -24 
+             14     1   0.0000000  103  1000022  1000022 
+             15     1   0.0000000  103  1000023  1000022 
+             16     1   0.0000000  103  1000023  1000023 
+             17     1   0.0000000  103  1000025  1000022 
+             18     1   0.0000000  103  1000025  1000023 
+             19     1   0.0000000  103  1000025  1000025 
+             20     1   0.0000000  103  1000035  1000022 
+             21     1   0.0000000  103  1000035  1000023 
+             22     1   0.0000000  103  1000035  1000025 
+             23     1   0.0000000  103  1000035  1000035 
+             24     1   0.0000000  103  1000024 -1000024 
+             25     1   0.0000000  103  1000024 -1000037 
+             26     1   0.0000000  103  1000037 -1000024 
+             27     1   0.0000000  103  1000037 -1000037 
+             28     1   0.0000000  103  1000001 -1000001 
+             29     1   0.0000000  103  2000001 -2000001 
+             30     1   0.0000000  103  1000001 -2000001 
+             31     1   0.0000000  103 -1000001  2000001 
+             32     1   0.0000000  103  1000002 -1000002 
+             33     1   0.0000000  103  2000002 -2000002 
+             34     1   0.0000000  103  1000002 -2000002 
+             35     1   0.0000000  103 -1000002  2000002 
+             36     1   0.0000000  103  1000003 -1000003 
+             37     1   0.0000000  103  2000003 -2000003 
+             38     1   0.0000000  103  1000003 -2000003 
+             39     1   0.0000000  103 -1000003  2000003 
+             40     1   0.0000000  103  1000004 -1000004 
+             41     1   0.0000000  103  2000004 -2000004 
+             42     1   0.0000000  103  1000004 -2000004 
+             43     1   0.0000000  103 -1000004  2000004 
+             44     1   0.0000000  103  1000005 -1000005 
+             45     1   0.0000000  103  2000005 -2000005 
+             46     1   0.0000000  103  1000005 -2000005 
+             47     1   0.0000000  103 -1000005  2000005 
+             48     1   0.0000000  103  1000006 -1000006 
+             49     1   0.0000000  103  2000006 -2000006 
+             50     1   0.0000000  103  1000006 -2000006 
+             51     1   0.0000000  103 -1000006  2000006 
+             52     1   0.0000000  103  1000011 -1000011 
+             53     1   0.0000000  103  2000011 -2000011 
+             54     1   0.0000000  103  1000011 -2000011 
+             55     1   0.0000000  103 -1000011  2000011 
+             56     1   0.0000000  103  1000012 -1000012 
+             57     1   0.0000000  103  2000012 -2000012 
+             58     1   0.0000000  103  1000012 -2000012 
+             59     1   0.0000000  103 -1000012  2000012 
+             60     1   0.0000000  103  1000013 -1000013 
+             61     1   0.0000000  103  2000013 -2000013 
+             62     1   0.0000000  103  1000013 -2000013 
+             63     1   0.0000000  103 -1000013  2000013 
+             64     1   0.0000000  103  1000014 -1000014 
+             65     1   0.0000000  103  2000014 -2000014 
+             66     1   0.0000000  103  1000014 -2000014 
+             67     1   0.0000000  103 -1000014  2000014 
+             68     1   0.0000000  103  1000015 -1000015 
+             69     1   0.0000000  103  2000015 -2000015 
+             70     1   0.0000000  103  1000015 -2000015 
+             71     1   0.0000000  103 -1000015  2000015 
+             72     1   0.0000000  103  1000016 -1000016 
+             73     1   0.0000000  103  2000016 -2000016 
+             74     1   0.0000000  103  1000016 -2000016 
+             75     1   0.0000000  103 -1000016  2000016 
+
+ 9990012                   n1                 2   0   0   30.00000    0.00000   30.00000   30.00000  2.76918e+02   1   1   0   1   0
+              0     1   0.2431717  100       -1        2       11 
+              1     1   0.2409545  100       -3        4       11 
+              2     1   0.0858974  100      -13       11       14 
+              3     1   0.0835819  100      -15       11       16 
+              4     1   0.0506762  100      -11       11       12 
+              5     1   0.0469405  100       -1        1       12 
+              6     1   0.0466233  100       -3        3       12 
+              7     1   0.0365066  100       -2        2       12 
+              8     1   0.0350500  100       -4        4       12 
+              9     1   0.0311276  100       -5        5       12 
+             10     1   0.0210074  100      -14       12       14 
+             11     1   0.0210074  100      -16       12       16 
+             12     1   0.0132632  100       -3        2       11 
+             13     1   0.0128843  100       -1        4       11 
+             14     1   0.0107783  100      -13       12       13 
+             15     1   0.0106441  100      -12       12       12 
+             16     1   0.0098857  100      -15       12       15 
+
+ 9990014                   n2                 2   0   0  1.000e+04  1.500e+00  9.992e+03  1.001e+04  1.31551e-13   0   0   0   1   0
+
+ 9990016                   n3                 2   0   0  1.000e+04  1.230e+01  9.938e+03  1.006e+04  1.60428e-14   0   0   0   1   0
+
+ --------  End PYTHIA Particle Data Table  -----------------------------------------------------------------------------------------
+
+** INFO: adding module        TruthVertexFinder        TruthVertexFinder        
+** INFO: adding module        UnstablePropagator       UnstablePropagator       
+** INFO: adding module        ParticlePropagator       ParticlePropagator       
+** INFO: adding module        Efficiency               ChargedHadronTrackingEfficiency
+** INFO: adding module        Efficiency               ElectronTrackingEfficiency
+** INFO: adding module        Efficiency               MuonTrackingEfficiency   
+** INFO: adding module        Merger                   TrackMergerPre           
+** INFO: adding module        TrackCovariance          TrackSmearing            
+** INFO: adding module        ClusterCounting          ClusterCounting          
+** INFO: adding module        TimeSmearing             TimeSmearing             
+** INFO: adding module        TimeOfFlight             TimeOfFlight             
+** INFO: adding module        Merger                   TrackMerger              
+** INFO: adding module        Efficiency               ForwardLooperTracks      
+** INFO: adding module        DualReadoutCalorimeter   Calorimeter              
+** INFO: adding module        TimeSmearing             TimeSmearingNeutrals     
+** INFO: adding module        TimeOfFlight             TimeOfFlightNeutralHadron
+** INFO: adding module        Merger                   EFlowTrackMerger         
+** INFO: adding module        Merger                   EFlowMerger              
+** INFO: adding module        Merger                   TowerMerger              
+** INFO: adding module        Efficiency               PhotonEfficiency         
+** INFO: adding module        Isolation                PhotonIsolation          
+** INFO: adding module        PdgCodeFilter            ElectronFilter           
+** INFO: adding module        PdgCodeFilter            MuonFilter               
+** INFO: adding module        Efficiency               ElectronEfficiency       
+** INFO: adding module        Isolation                ElectronIsolation        
+** INFO: adding module        Efficiency               MuonEfficiency           
+** INFO: adding module        Isolation                MuonIsolation            
+** INFO: adding module        Merger                   MissingET                
+** INFO: adding module        PdgCodeFilter            NeutrinoFilter           
+** INFO: adding module        FastJetFinder            GenJetFinderDurhamN2     
+** INFO: adding module        FastJetFinder            FastJetFinderDurhamN2    
+** INFO: adding module        FastJetFinder            GenJetFinder             
+** INFO: adding module        Merger                   GenMissingET             
+** INFO: adding module        FastJetFinder            FastJetFinder            
+** INFO: adding module        EnergyScale              JetEnergyScale           
+** INFO: adding module        JetFlavorAssociation     JetFlavorAssociation     
+** INFO: adding module        BTagging                 BTagging                 
+** INFO: adding module        BTagging                 CTagging                 
+** INFO: adding module        TauTagging               TauTagging               
+** INFO: adding module        TreeWriter               TreeWriter               
+** INFO: adding module        EDM4HepOutput            EDM4HepOutput            
+** INFO: initializing module  Delphes                  
+** INFO: initializing module  TruthVertexFinder        
+** INFO: initializing module  ParticlePropagator       
+** INFO: initializing module  ChargedHadronTrackingEfficiency
+** INFO: initializing module  ElectronTrackingEfficiency
+** INFO: initializing module  MuonTrackingEfficiency   
+** INFO: initializing module  TrackMergerPre           
+** INFO: initializing module  TrackSmearing            
+AcceptanceClx:: Acceptance generation completed after 6 cycles and a total number of 90 splits
+AcceptanceClx:: Acceptance encoding with 26 pt nodes and 89 theta nodes
+** INFO: initializing module  ClusterCounting          
+** INFO: initializing module  TimeSmearing             
+** INFO: initializing module  TimeOfFlight             
+** INFO: initializing module  TrackMerger              
+** INFO: initializing module  ForwardLooperTracks      
+** INFO: initializing module  Calorimeter              
+** INFO: initializing module  TimeSmearingNeutrals     
+** INFO: initializing module  TimeOfFlightNeutralHadron
+** INFO: initializing module  EFlowTrackMerger         
+** INFO: initializing module  EFlowMerger              
+** INFO: initializing module  PhotonEfficiency         
+** INFO: initializing module  PhotonIsolation          
+** INFO: initializing module  MuonFilter               
+** INFO: initializing module  TowerMerger              
+** INFO: initializing module  ElectronFilter           
+** INFO: initializing module  ElectronEfficiency       
+** INFO: initializing module  ElectronIsolation        
+** INFO: initializing module  MuonEfficiency           
+** INFO: initializing module  MuonIsolation            
+** INFO: initializing module  MissingET                
+** INFO: initializing module  NeutrinoFilter           
+** INFO: initializing module  GenJetFinder             
+#--------------------------------------------------------------------------
+#                         FastJet release 3.3.4
+#                 M. Cacciari, G.P. Salam and G. Soyez                  
+#     A software package for jet finding and analysis at colliders      
+#                           http://fastjet.fr                           
+#	                                                                      
+# Please cite EPJC72(2012)1896 [arXiv:1111.6097] if you use this package
+# for scientific work and optionally PLB641(2006)57 [hep-ph/0512210].   
+#                                                                       
+# FastJet is provided without warranty under the GNU GPL v2 or higher.  
+# It uses T. Chan's closest pair algorithm, S. Fortune's Voronoi code
+# and 3rd party plugin jet algorithms. See COPYING file for details.
+#--------------------------------------------------------------------------
+** INFO: initializing module  GenMissingET             
+** INFO: initializing module  FastJetFinder            
+** INFO: initializing module  JetEnergyScale           
+** INFO: initializing module  GenJetFinderDurhamN2     
+** INFO: initializing module  FastJetFinderDurhamN2    
+** INFO: initializing module  JetFlavorAssociation     
+** INFO: initializing module  BTagging                 
+** INFO: initializing module  CTagging                 
+** INFO: initializing module  TauTagging               
+** INFO: initializing module  TreeWriter               
+
+ --------  LHA event information and listing  ---------------------------------------------------------------------- 
+
+    process = 1           weight = 3.3648e-07       scale = 5.0529e+01   (GeV) 
+                        alpha_em = 7.8162e-03      alpha_strong = 1.3004e-01  
+
+    Participating Particles 
+    no        id stat     mothers     colours      p_x        p_y        p_z         e          m        tau    spin 
+1     -11       -1   0     0     0     0     0.000      0.000      45.594     45.594     0.001      0.000   1.000   
+2     11        -1   0     0     0     0     -0.000     -0.000     -45.594    45.594     0.001      0.000   -1.000  
+3     -9990012  2    1     2     0     0     -1.726     -39.524    -9.383     50.529     30.000     217.660 0.000   
+4     -11       1    3     3     0     0     2.064      -21.701    0.088      21.799     0.001      0.000   1.000   
+5     1         1    3     3     501   0     4.578      -2.239     -9.792     11.038     0.005      0.000   -1.000  
+6     -2        1    3     3     0     501   -8.367     -15.585    0.321      17.692     0.003      0.000   1.000   
+7     12        1    1     2     0     0     1.726      39.524     9.383      40.659     0.000      0.000   -1.000  
+
+ --------  End LHA event information and listing  ------------------------------------------------------------------ 
+
+ --------  PYTHIA Info Listing  ---------------------------------------- 
+ 
+ Beam A: id = -11   , pz = 4.559e+01 , e = 4.559e+01 , m = 5.110e-04 .
+ Beam B: id = 11    , pz = -4.559e+01, e = 4.559e+01 , m = 5.110e-04 .
+
+ In 1: id = -11 , x = 1.000e+00 , pdf = 0.000e+00  at Q2 = 2.553e+03 .
+ In 2: id = 11  , x = 1.000e+00 , pdf = 0.000e+00  at same Q2.
+
+ Process Les Houches User Process(es) with code 9999 is 2 -> 2.
+ Subprocess user process 1 with code 1 is 2 -> 2.
+ It has sHat = 8.315e+03 ,    tHat = -4.563e+03,    uHat = -2.852e+03,
+       pTHat = 3.956e+01 ,   m3Hat = 3.000e+01 ,   m4Hat = 0.000e+00 ,
+    thetaHat = 1.804e+00 ,  phiHat = -1.614e+00.
+     alphaEM = 7.816e-03 ,  alphaS = 1.300e-01     at Q2 = 2.553e+03 .
+
+ Impact parameter b = 0.000e+00  gives enhancement factor = 1.000e+00 .
+ Max pT scale for MPI = 9.119e+01 , ISR = 9.119e+01 , FSR = 9.119e+01 .
+ Number of MPI = 1    , ISR = 0    , FSRproc = 0    , FSRreson = 6    .
+
+ --------  End PYTHIA Info Listing  ------------------------------------
+
+ --------  PYTHIA Event Listing  (hard process)  -----------------------------------------------------------------------------------
+ 
+    no         id  name            status     mothers   daughters     colours      p_x        p_y        p_z         e          m 
+0     90           (system)           -11     0     0     0     0     0     0      0.000      0.000      0.000     91.188     91.188
+     1        -11  (e+)               -12     0     0     3     0     0     0      0.000      0.000     45.594     45.594      0.001
+     2         11  (e-)               -12     0     0     4     0     0     0      0.000      0.000    -45.594     45.594      0.001
+     3        -11  (e+)               -21     1     0     5     6     0     0      0.000      0.000     45.594     45.594      0.000
+     4         11  (e-)               -21     2     0     5     6     0     0      0.000      0.000    -45.594     45.594      0.000
+     5   -9990012  (n1)               -22     3     4     7     9     0     0     -1.726    -39.524     -9.383     50.529     30.000
+     6         12  nu_e                23     3     4     0     0     0     0      1.726     39.524      9.383     40.659      0.000
+     7        -11  e+                  23     5     0     0     0     0     0      2.064    -21.701      0.088     21.799      0.001
+     8          1  d                   23     5     0     0     0   501     0      4.578     -2.239     -9.792     11.038      0.005
+     9         -2  ubar                23     5     0     0     0     0   501     -8.367    -15.585      0.321     17.692      0.003
+                                   Charge sum:  0.000           Momentum sum:      0.000     -0.000     -0.000     91.188     91.188
+
+ --------  End PYTHIA Event Listing  -----------------------------------------------------------------------------------------------
+
+ --------  PYTHIA Event Listing  (complete event)  ---------------------------------------------------------------------------------
+ 
+    no         id  name            status     mothers   daughters     colours      p_x        p_y        p_z         e          m 
+     0         90  (system)           -11     0     0     0     0     0     0      0.000      0.000      0.000     91.188     91.188
+     1        -11  (e+)               -12     0     0     3     0     0     0      0.000      0.000     45.594     45.594      0.001
+     2         11  (e-)               -12     0     0     4     0     0     0      0.000      0.000    -45.594     45.594      0.001
+     3        -11  (e+)               -21     1     0     5     6     0     0      0.000      0.000     45.594     45.594      0.000
+     4         11  (e-)               -21     2     0     5     6     0     0      0.000      0.000    -45.594     45.594      0.000
+     5   -9990012  (n1)               -22     3     4     7     9     0     0     -1.726    -39.524     -9.383     50.529     30.000
+     6         12  nu_e                23     3     4     0     0     0     0      1.726     39.524      9.383     40.659      0.000
+     7        -11  e+                  23     5     0     0     0     0     0      2.064    -21.701      0.088     21.799      0.001
+     8          1  (d)                -23     5     0    10    11   501     0      4.578     -2.239     -9.792     11.038      0.005
+     9         -2  (ubar)             -23     5     0    12    12     0   501     -8.367    -15.585      0.321     17.692      0.003
+    10          1  (d)                -51     8     0    15    15   502     0      5.489     -3.407     -5.840      8.709      0.005
+    11         21  (g)                -51     8     0    13    14   501   502     -1.887     -0.650     -3.914      4.394      0.000
+    12         -2  (ubar)             -52     9     9    35    35     0   501     -7.391    -13.767      0.283     15.628      0.003
+    13         21  (g)                -51    11     0    16    17   501   503     -0.644      1.057     -0.235      1.260      0.000
+    14         21  (g)                -51    11     0    18    18   503   502      2.054     -3.753     -7.186      8.363      0.000
+    15          1  (d)                -52    10    10    19    20   502     0      2.193     -1.361     -2.333      3.479      0.005
+    16         21  (g)                -51    13     0    34    34   501   504     -0.469      0.757     -1.149      1.454      0.000
+    17         21  (g)                -51    13     0    22    23   504   503     -0.029      0.032      0.401      0.403      0.000
+    18         21  (g)                -52    14    14    21    21   503   502      1.907     -3.485     -6.673      7.766      0.000
+    19          1  (d)                -51    15     0    30    30   505     0      2.520     -1.559     -3.039      4.245      0.005
+    20         21  (g)                -51    15     0    28     0   502   505      0.382     -1.099     -1.778      2.125      0.000
+    21         21  (g)                -52    18    18    24    24   503   502      1.197     -2.188     -4.189      4.875      0.000
+    22         21  (g)                -51    17     0    25    26   504   506      0.137     -0.665      0.146      0.695      0.000
+    23         21  (g)                -51    17     0    27    27   506   503      0.050      0.303     -0.500      0.587      0.000
+    24         21  (g)                -52    21    21    28     0   503   502      0.981     -1.793     -3.434      3.996      0.000
+    25         21  (g)                -51    22     0    33    33   504   507      0.516     -0.059      0.135      0.537      0.000
+    26         21  (g)                -51    22     0    29     0   507   506     -0.339     -0.362     -0.393      0.633      0.000
+    27         21  (g)                -52    23    23    29     0   506   503      0.010      0.058     -0.096      0.112      0.000
+    28         21  (g)                -73    20    24    31    31   503   505      1.364     -2.893     -5.212      6.121      0.284
+    29         21  (g)                -73    26    27    32    32   507   503     -0.329     -0.304     -0.489      0.745      0.340
+    30          1  (d)                -71    19    19    36    47   505     0      2.520     -1.559     -3.039      4.245      0.005
+    31         21  (g)                -71    28    28    36    47   503   505      1.364     -2.893     -5.212      6.121      0.284
+    32         21  (g)                -71    29    29    36    47   507   503     -0.329     -0.304     -0.489      0.745      0.340
+    33         21  (g)                -71    25    25    36    47   504   507      0.516     -0.059      0.135      0.537      0.000
+    34         21  (g)                -71    16    16    36    47   501   504     -0.469      0.757     -1.149      1.454      0.000
+    35         -2  (ubar)             -71    12    12    36    47     0   501     -7.391    -13.767      0.283     15.628      0.003
+    36       -213  (rho-)             -83    30    35    48    49     0     0      1.522     -2.007     -3.982      4.778      0.793
+    37        211  pi+                 83    30    35     0     0     0     0      1.867     -1.467     -2.023      3.123      0.140
+    38        111  (pi0)              -83    30    35    57    58     0     0     -0.247     -0.113     -0.280      0.413      0.135
+    39       -211  pi-                 83    30    35     0     0     0     0      0.640     -0.806     -0.892      1.369      0.140
+    40        323  (K*+)              -83    30    35    50    51     0     0     -0.087      0.367     -1.777      2.012      0.865
+    41       -323  (K*-)              -83    30    35    52    53     0     0     -0.418     -0.324     -0.823      1.305      0.864
+    42        213  (rho+)             -84    30    35    54    55     0     0     -0.625     -1.324      0.138      1.791      1.022
+    43       -211  pi-                 84    30    35     0     0     0     0     -0.161     -0.776     -0.006      0.804      0.140
+    44        211  pi+                 84    30    35     0     0     0     0     -0.451     -0.284     -0.055      0.554      0.140
+    45       -211  pi-                 84    30    35     0     0     0     0     -1.396     -2.230     -0.210      2.643      0.140
+    46        211  pi+                 84    30    35     0     0     0     0     -1.685     -3.664     -0.063      4.036      0.140
+    47       -211  pi-                 84    30    35     0     0     0     0     -2.747     -5.198      0.501      5.902      0.140
+    48       -211  pi-                 91    36     0     0     0     0     0     -0.033     -0.192     -0.267      0.358      0.140
+    49        111  (pi0)              -91    36     0    59    60     0     0      1.554     -1.815     -3.715      4.419      0.135
+    50        311  (K0)               -91    40     0    56    56     0     0     -0.055      0.214     -0.574      0.791      0.498
+    51        211  pi+                 91    40     0     0     0     0     0     -0.032      0.154     -1.203      1.221      0.140
+    52       -321  K-                  91    41     0     0     0     0     0     -0.231     -0.149     -0.844      1.016      0.494
+    53        111  (pi0)              -91    41     0    61    62     0     0     -0.187     -0.175      0.021      0.290      0.135
+    54        211  pi+                 91    42     0     0     0     0     0     -0.397     -1.192     -0.264      1.292      0.140
+    55        111  (pi0)              -91    42     0    63    64     0     0     -0.228     -0.132      0.402      0.500      0.135
+    56        130  K_L0                91    50    50     0     0     0     0     -0.055      0.214     -0.574      0.791      0.498
+    57         22  gamma               91    38     0     0     0     0     0     -0.246     -0.064     -0.226      0.340      0.000
+    58         22  gamma               91    38     0     0     0     0     0     -0.002     -0.049     -0.055      0.073      0.000
+    59         22  gamma               91    49     0     0     0     0     0      0.866     -1.113     -2.186      2.601      0.000
+    60         22  gamma               91    49     0     0     0     0     0      0.689     -0.702     -1.529      1.818      0.000
+    61         22  gamma               91    53     0     0     0     0     0     -0.032     -0.002     -0.039      0.050      0.000
+    62         22  gamma               91    53     0     0     0     0     0     -0.155     -0.173      0.060      0.240      0.000
+    63         22  gamma               91    55     0     0     0     0     0      0.004     -0.047      0.087      0.098      0.000
+    64         22  gamma               91    55     0     0     0     0     0     -0.233     -0.085      0.316      0.401      0.000
+                                   Charge sum:  0.000           Momentum sum:      0.000     -0.000     -0.000     91.188     91.188
+
+ --------  End PYTHIA Event Listing  -----------------------------------------------------------------------------------------------
+** 1 events processed** 2 events processed** 3 events processed** 4 events processed** 5 events processed** 6 events processed** 7 events processed** 8 events processed** 9 events processed** 10 events processed** 11 events processed** 12 events processed** 13 events processed** 14 events processed** 15 events processed** 16 events processed** 17 events processed** 18 events processed** 19 events processed** 20 events processed** 21 events processed** 22 events processed** 23 events processed** 24 events processed** 25 events processed** 26 events processed** 27 events processed** 28 events processed** 29 events processed** 30 events processed** 31 events processed** 32 events processed** 33 events processed** 34 events processed** 35 events processed** 36 events processed** 37 events processed** 38 events processed** 39 events processed** 40 events processed** 41 events processed** 42 events processed** 43 events processed** 44 events processed** 45 events processed** 46 events processed** 47 events processed** 48 events processed** 49 events processed** 50 events processed** 51 events processed** 52 events processed** 53 events processed** 54 events processed** 55 events processed** 56 events processed** 57 events processed** 58 events processed** 59 events processed** 60 events processed** 61 events processed** 62 events processed** 63 events processed** 64 events processed** 65 events processed** 66 events processed** 67 events processed** 68 events processed** 69 events processed** 70 events processed** 71 events processed** 72 events processed** 73 events processed** 74 events processed** 75 events processed** 76 events processed** 77 events processed** 78 events processed** 79 events processed** 80 events processed** 81 events processed** 82 events processed** 83 events processed** 84 events processed** 85 events processed** 86 events processed** 87 events processed** 88 events processed** 89 events processed** 90 events processed** 91 events processed** 92 events processed** 93 events processed** 94 events processed** 95 events processed** 96 events processed** 97 events processed** 98 events processed** 99 events processed
+ Pythia::next(): 100 events have been generated 
+** 100 events processed** 101 events processed** 102 events processed** 103 events processed** 104 events processed** 105 events processed** 106 events processed** 107 events processed** 108 events processed** 109 events processed** 110 events processed** 111 events processed** 112 events processed** 113 events processed** 114 events processed** 115 events processed** 116 events processed** 117 events processed** 118 events processed** 119 events processed** 120 events processed** 121 events processed** 122 events processed** 123 events processed** 124 events processed** 125 events processed** 126 events processed** 127 events processed** 128 events processed** 129 events processed** 130 events processed** 131 events processed** 132 events processed** 133 events processed** 134 events processed** 135 events processed** 136 events processed** 137 events processed** 138 events processed** 139 events processed** 140 events processed** 141 events processed** 142 events processed** 143 events processed** 144 events processed** 145 events processed** 146 events processed** 147 events processed** 148 events processed** 149 events processed** 150 events processed** 151 events processed** 152 events processed** 153 events processed** 154 events processed** 155 events processed** 156 events processed** 157 events processed** 158 events processed** 159 events processed** 160 events processed** 161 events processed** 162 events processed** 163 events processed** 164 events processed** 165 events processed** 166 events processed** 167 events processed** 168 events processed** 169 events processed** 170 events processed** 171 events processed** 172 events processed** 173 events processed** 174 events processed** 175 events processed** 176 events processed** 177 events processed** 178 events processed** 179 events processed** 180 events processed** 181 events processed** 182 events processed** 183 events processed** 184 events processed** 185 events processed** 186 events processed** 187 events processed** 188 events processed** 189 events processed** 190 events processed** 191 events processed** 192 events processed** 193 events processed** 194 events processed** 195 events processed** 196 events processed** 197 events processed** 198 events processed** 199 events processed
+ Pythia::next(): 200 events have been generated 
+** 200 events processed** 201 events processed** 202 events processed** 203 events processed** 204 events processed** 205 events processed** 206 events processed** 207 events processed** 208 events processed** 209 events processed** 210 events processed** 211 events processed** 212 events processed** 213 events processed** 214 events processed** 215 events processed** 216 events processed** 217 events processed** 218 events processed** 219 events processed** 220 events processed** 221 events processed** 222 events processed** 223 events processed** 224 events processed** 225 events processed** 226 events processed** 227 events processed** 228 events processed** 229 events processed** 230 events processed** 231 events processed** 232 events processed** 233 events processed** 234 events processed** 235 events processed** 236 events processed** 237 events processed** 238 events processed** 239 events processed** 240 events processed** 241 events processed** 242 events processed** 243 events processed** 244 events processed** 245 events processed** 246 events processed** 247 events processed** 248 events processed** 249 events processed** 250 events processed** 251 events processed** 252 events processed** 253 events processed** 254 events processed** 255 events processed** 256 events processed** 257 events processed** 258 events processed** 259 events processed** 260 events processed** 261 events processed** 262 events processed** 263 events processed** 264 events processed** 265 events processed** 266 events processed** 267 events processed** 268 events processed** 269 events processed** 270 events processed** 271 events processed** 272 events processed** 273 events processed** 274 events processed** 275 events processed** 276 events processed** 277 events processed** 278 events processed** 279 events processed** 280 events processed** 281 events processed** 282 events processed** 283 events processed** 284 events processed** 285 events processed** 286 events processed** 287 events processed** 288 events processed** 289 events processed** 290 events processed** 291 events processed** 292 events processed** 293 events processed** 294 events processed** 295 events processed** 296 events processed** 297 events processed** 298 events processed** 299 events processed
+ Pythia::next(): 300 events have been generated 
+** 300 events processed** 301 events processed** 302 events processed** 303 events processed** 304 events processed** 305 events processed** 306 events processed** 307 events processed** 308 events processed** 309 events processed** 310 events processed** 311 events processed** 312 events processed** 313 events processed** 314 events processed** 315 events processed** 316 events processed** 317 events processed** 318 events processed** 319 events processed** 320 events processed** 321 events processed** 322 events processed** 323 events processed** 324 events processed** 325 events processed** 326 events processed** 327 events processed** 328 events processed** 329 events processed** 330 events processed** 331 events processed** 332 events processed** 333 events processed** 334 events processed** 335 events processed** 336 events processed** 337 events processed** 338 events processed** 339 events processed** 340 events processed** 341 events processed** 342 events processed** 343 events processed** 344 events processed** 345 events processed** 346 events processed** 347 events processed** 348 events processed** 349 events processed** 350 events processed** 351 events processed** 352 events processed** 353 events processed** 354 events processed** 355 events processed** 356 events processed** 357 events processed** 358 events processed** 359 events processed** 360 events processed** 361 events processed** 362 events processed** 363 events processed** 364 events processed** 365 events processed** 366 events processed** 367 events processed** 368 events processed** 369 events processed** 370 events processed** 371 events processed** 372 events processed** 373 events processed** 374 events processed** 375 events processed** 376 events processed** 377 events processed** 378 events processed** 379 events processed** 380 events processed** 381 events processed** 382 events processed** 383 events processed** 384 events processed** 385 events processed** 386 events processed** 387 events processed** 388 events processed** 389 events processed** 390 events processed** 391 events processed** 392 events processed** 393 events processed** 394 events processed** 395 events processed** 396 events processed** 397 events processed** 398 events processed** 399 events processed
+ Pythia::next(): 400 events have been generated 
+** 400 events processed** 401 events processed** 402 events processed** 403 events processed** 404 events processed** 405 events processed** 406 events processed** 407 events processed** 408 events processed** 409 events processed** 410 events processed** 411 events processed** 412 events processed** 413 events processed** 414 events processed** 415 events processed** 416 events processed** 417 events processed** 418 events processed** 419 events processed** 420 events processed** 421 events processed** 422 events processed** 423 events processed** 424 events processed** 425 events processed** 426 events processed** 427 events processed** 428 events processed** 429 events processed** 430 events processed** 431 events processed** 432 events processed** 433 events processed** 434 events processed** 435 events processed** 436 events processed** 437 events processed** 438 events processed** 439 events processed** 440 events processed** 441 events processed** 442 events processed** 443 events processed** 444 events processed** 445 events processed** 446 events processed** 447 events processed** 448 events processed** 449 events processed** 450 events processed** 451 events processed** 452 events processed** 453 events processed** 454 events processed** 455 events processed** 456 events processed** 457 events processed** 458 events processed** 459 events processed** 460 events processed** 461 events processed** 462 events processed** 463 events processed** 464 events processed** 465 events processed** 466 events processed** 467 events processed** 468 events processed** 469 events processed** 470 events processed** 471 events processed** 472 events processed** 473 events processed** 474 events processed** 475 events processed** 476 events processed** 477 events processed** 478 events processed** 479 events processed** 480 events processed** 481 events processed** 482 events processed** 483 events processed** 484 events processed** 485 events processed** 486 events processed** 487 events processed** 488 events processed** 489 events processed** 490 events processed** 491 events processed** 492 events processed** 493 events processed** 494 events processed** 495 events processed** 496 events processed** 497 events processed** 498 events processed** 499 events processed
+ Pythia::next(): 500 events have been generated 
+** 500 events processed** 501 events processed** 502 events processed** 503 events processed** 504 events processed** 505 events processed** 506 events processed** 507 events processed** 508 events processed** 509 events processed** 510 events processed** 511 events processed** 512 events processed** 513 events processed** 514 events processed** 515 events processed** 516 events processed** 517 events processed** 518 events processed** 519 events processed** 520 events processed** 521 events processed** 522 events processed** 523 events processed** 524 events processed** 525 events processed** 526 events processed** 527 events processed** 528 events processed** 529 events processed** 530 events processed** 531 events processed** 532 events processed** 533 events processed** 534 events processed** 535 events processed** 536 events processed** 537 events processed** 538 events processed** 539 events processed** 540 events processed** 541 events processed** 542 events processed** 543 events processed** 544 events processed** 545 events processed** 546 events processed** 547 events processed** 548 events processed** 549 events processed** 550 events processed** 551 events processed** 552 events processed** 553 events processed** 554 events processed** 555 events processed** 556 events processed** 557 events processed** 558 events processed** 559 events processed** 560 events processed** 561 events processed** 562 events processed** 563 events processed** 564 events processed** 565 events processed** 566 events processed** 567 events processed** 568 events processed** 569 events processed** 570 events processed** 571 events processed** 572 events processed** 573 events processed** 574 events processed** 575 events processed** 576 events processed** 577 events processed** 578 events processed** 579 events processed** 580 events processed** 581 events processed** 582 events processed** 583 events processed** 584 events processed** 585 events processed** 586 events processed** 587 events processed** 588 events processed** 589 events processed** 590 events processed** 591 events processed** 592 events processed** 593 events processed** 594 events processed** 595 events processed** 596 events processed** 597 events processed** 598 events processed** 599 events processed
+ Pythia::next(): 600 events have been generated 
+** 600 events processed** 601 events processed** 602 events processed** 603 events processed** 604 events processed** 605 events processed** 606 events processed** 607 events processed** 608 events processed** 609 events processed** 610 events processed** 611 events processed** 612 events processed** 613 events processed** 614 events processed** 615 events processed** 616 events processed** 617 events processed** 618 events processed** 619 events processed** 620 events processed** 621 events processed** 622 events processed** 623 events processed** 624 events processed** 625 events processed** 626 events processed** 627 events processed** 628 events processed** 629 events processed** 630 events processed** 631 events processed** 632 events processed** 633 events processed** 634 events processed** 635 events processed** 636 events processed** 637 events processed** 638 events processed** 639 events processed** 640 events processed** 641 events processed** 642 events processed** 643 events processed** 644 events processed** 645 events processed** 646 events processed** 647 events processed** 648 events processed** 649 events processed** 650 events processed** 651 events processed** 652 events processed** 653 events processed** 654 events processed** 655 events processed** 656 events processed** 657 events processed** 658 events processed** 659 events processed** 660 events processed** 661 events processed** 662 events processed** 663 events processed** 664 events processed** 665 events processed** 666 events processed** 667 events processed** 668 events processed** 669 events processed** 670 events processed** 671 events processed** 672 events processed** 673 events processed** 674 events processed** 675 events processed** 676 events processed** 677 events processed** 678 events processed** 679 events processed** 680 events processed** 681 events processed** 682 events processed** 683 events processed** 684 events processed** 685 events processed** 686 events processed** 687 events processed** 688 events processed** 689 events processed** 690 events processed** 691 events processed** 692 events processed** 693 events processed** 694 events processed** 695 events processed** 696 events processed** 697 events processed** 698 events processed** 699 events processed
+ Pythia::next(): 700 events have been generated 
+** 700 events processed** 701 events processed** 702 events processed** 703 events processed** 704 events processed** 705 events processed** 706 events processed** 707 events processed** 708 events processed** 709 events processed** 710 events processed** 711 events processed** 712 events processed** 713 events processed** 714 events processed** 715 events processed** 716 events processed** 717 events processed** 718 events processed** 719 events processed** 720 events processed** 721 events processed** 722 events processed** 723 events processed** 724 events processed** 725 events processed** 726 events processed** 727 events processed** 728 events processed** 729 events processed** 730 events processed** 731 events processed** 732 events processed** 733 events processed** 734 events processed** 735 events processed** 736 events processed** 737 events processed** 738 events processed** 739 events processed** 740 events processed** 741 events processed** 742 events processed** 743 events processed** 744 events processed** 745 events processed** 746 events processed** 747 events processed** 748 events processed** 749 events processed** 750 events processed** 751 events processed** 752 events processed** 753 events processed** 754 events processed** 755 events processed** 756 events processed** 757 events processed** 758 events processed** 759 events processed** 760 events processed** 761 events processed** 762 events processed** 763 events processed** 764 events processed** 765 events processed** 766 events processed** 767 events processed** 768 events processed** 769 events processed** 770 events processed** 771 events processed** 772 events processed** 773 events processed** 774 events processed** 775 events processed** 776 events processed** 777 events processed** 778 events processed** 779 events processed** 780 events processed** 781 events processed** 782 events processed** 783 events processed** 784 events processed** 785 events processed** 786 events processed** 787 events processed** 788 events processed** 789 events processed** 790 events processed** 791 events processed** 792 events processed** 793 events processed** 794 events processed** 795 events processed** 796 events processed** 797 events processed** 798 events processed** 799 events processed
+ Pythia::next(): 800 events have been generated 
+** 800 events processed** 801 events processed** 802 events processed** 803 events processed** 804 events processed** 805 events processed** 806 events processed** 807 events processed** 808 events processed** 809 events processed** 810 events processed** 811 events processed** 812 events processed** 813 events processed** 814 events processed** 815 events processed** 816 events processed** 817 events processed** 818 events processed** 819 events processed** 820 events processed** 821 events processed** 822 events processed** 823 events processed** 824 events processed** 825 events processed** 826 events processed** 827 events processed** 828 events processed** 829 events processed** 830 events processed** 831 events processed** 832 events processed** 833 events processed** 834 events processed** 835 events processed** 836 events processed** 837 events processed** 838 events processed** 839 events processed** 840 events processed** 841 events processed** 842 events processed** 843 events processed** 844 events processed** 845 events processed** 846 events processed** 847 events processed** 848 events processed** 849 events processed** 850 events processed** 851 events processed** 852 events processed** 853 events processed** 854 events processed** 855 events processed** 856 events processed** 857 events processed** 858 events processed** 859 events processed** 860 events processed** 861 events processed** 862 events processed** 863 events processed** 864 events processed** 865 events processed** 866 events processed** 867 events processed** 868 events processed** 869 events processed** 870 events processed** 871 events processed** 872 events processed** 873 events processed** 874 events processed** 875 events processed** 876 events processed** 877 events processed** 878 events processed** 879 events processed** 880 events processed** 881 events processed** 882 events processed** 883 events processed** 884 events processed** 885 events processed** 886 events processed** 887 events processed** 888 events processed** 889 events processed** 890 events processed** 891 events processed** 892 events processed** 893 events processed** 894 events processed** 895 events processed** 896 events processed** 897 events processed** 898 events processed** 899 events processed
+ Pythia::next(): 900 events have been generated 
+** 900 events processed** 901 events processed** 902 events processed** 903 events processed** 904 events processed** 905 events processed** 906 events processed** 907 events processed** 908 events processed** 909 events processed** 910 events processed** 911 events processed** 912 events processed** 913 events processed** 914 events processed** 915 events processed** 916 events processed** 917 events processed** 918 events processed** 919 events processed** 920 events processed** 921 events processed** 922 events processed** 923 events processed** 924 events processed** 925 events processed** 926 events processed** 927 events processed** 928 events processed** 929 events processed** 930 events processed** 931 events processed** 932 events processed** 933 events processed** 934 events processed** 935 events processed** 936 events processed** 937 events processed** 938 events processed** 939 events processed** 940 events processed** 941 events processed** 942 events processed** 943 events processed** 944 events processed** 945 events processed** 946 events processed** 947 events processed** 948 events processed** 949 events processed** 950 events processed** 951 events processed** 952 events processed** 953 events processed** 954 events processed** 955 events processed** 956 events processed** 957 events processed** 958 events processed** 959 events processed** 960 events processed** 961 events processed** 962 events processed** 963 events processed** 964 events processed** 965 events processed** 966 events processed** 967 events processed** 968 events processed** 969 events processed** 970 events processed** 971 events processed** 972 events processed** 973 events processed** 974 events processed** 975 events processed** 976 events processed** 977 events processed** 978 events processed** 979 events processed** 980 events processed** 981 events processed** 982 events processed** 983 events processed** 984 events processed** 985 events processed** 986 events processed** 987 events processed** 988 events processed** 989 events processed** 990 events processed** 991 events processed** 992 events processed** 993 events processed** 994 events processed** 995 events processed** 996 events processed** 997 events processed** 998 events processed** 999 events processed
+ Pythia::next(): 1000 events have been generated 
+** 1000 events processed** 1001 events processed** 1002 events processed** 1003 events processed** 1004 events processed** 1005 events processed** 1006 events processed** 1007 events processed** 1008 events processed** 1009 events processed** 1010 events processed** 1011 events processed** 1012 events processed** 1013 events processed** 1014 events processed** 1015 events processed** 1016 events processed** 1017 events processed** 1018 events processed** 1019 events processed** 1020 events processed** 1021 events processed** 1022 events processed** 1023 events processed** 1024 events processed** 1025 events processed** 1026 events processed** 1027 events processed** 1028 events processed** 1029 events processed** 1030 events processed** 1031 events processed** 1032 events processed** 1033 events processed** 1034 events processed** 1035 events processed** 1036 events processed** 1037 events processed** 1038 events processed** 1039 events processed** 1040 events processed** 1041 events processed** 1042 events processed** 1043 events processed** 1044 events processed** 1045 events processed** 1046 events processed** 1047 events processed** 1048 events processed** 1049 events processed** 1050 events processed** 1051 events processed** 1052 events processed** 1053 events processed** 1054 events processed** 1055 events processed** 1056 events processed** 1057 events processed** 1058 events processed** 1059 events processed** 1060 events processed** 1061 events processed** 1062 events processed** 1063 events processed** 1064 events processed** 1065 events processed** 1066 events processed** 1067 events processed** 1068 events processed** 1069 events processed** 1070 events processed** 1071 events processed** 1072 events processed** 1073 events processed** 1074 events processed** 1075 events processed** 1076 events processed** 1077 events processed** 1078 events processed** 1079 events processed** 1080 events processed** 1081 events processed** 1082 events processed** 1083 events processed** 1084 events processed** 1085 events processed** 1086 events processed** 1087 events processed** 1088 events processed** 1089 events processed** 1090 events processed** 1091 events processed** 1092 events processed** 1093 events processed** 1094 events processed** 1095 events processed** 1096 events processed** 1097 events processed** 1098 events processed** 1099 events processed
+ Pythia::next(): 1100 events have been generated 
+** 1100 events processed** 1101 events processed** 1102 events processed** 1103 events processed** 1104 events processed** 1105 events processed** 1106 events processed** 1107 events processed** 1108 events processed** 1109 events processed** 1110 events processed** 1111 events processed** 1112 events processed** 1113 events processed** 1114 events processed** 1115 events processed** 1116 events processed** 1117 events processed** 1118 events processed** 1119 events processed** 1120 events processed** 1121 events processed** 1122 events processed** 1123 events processed** 1124 events processed** 1125 events processed** 1126 events processed** 1127 events processed** 1128 events processed** 1129 events processed** 1130 events processed** 1131 events processed** 1132 events processed** 1133 events processed** 1134 events processed** 1135 events processed** 1136 events processed** 1137 events processed** 1138 events processed** 1139 events processed** 1140 events processed** 1141 events processed** 1142 events processed** 1143 events processed** 1144 events processed** 1145 events processed** 1146 events processed** 1147 events processed** 1148 events processed** 1149 events processed** 1150 events processed** 1151 events processed** 1152 events processed** 1153 events processed** 1154 events processed** 1155 events processed** 1156 events processed** 1157 events processed** 1158 events processed** 1159 events processed** 1160 events processed** 1161 events processed** 1162 events processed** 1163 events processed** 1164 events processed** 1165 events processed** 1166 events processed** 1167 events processed** 1168 events processed** 1169 events processed** 1170 events processed** 1171 events processed** 1172 events processed** 1173 events processed** 1174 events processed** 1175 events processed** 1176 events processed** 1177 events processed** 1178 events processed** 1179 events processed** 1180 events processed** 1181 events processed** 1182 events processed** 1183 events processed** 1184 events processed** 1185 events processed** 1186 events processed** 1187 events processed** 1188 events processed** 1189 events processed** 1190 events processed** 1191 events processed** 1192 events processed** 1193 events processed** 1194 events processed** 1195 events processed** 1196 events processed** 1197 events processed** 1198 events processed** 1199 events processed
+ Pythia::next(): 1200 events have been generated 
+** 1200 events processed** 1201 events processed** 1202 events processed** 1203 events processed** 1204 events processed** 1205 events processed** 1206 events processed** 1207 events processed** 1208 events processed** 1209 events processed** 1210 events processed** 1211 events processed** 1212 events processed** 1213 events processed** 1214 events processed** 1215 events processed** 1216 events processed** 1217 events processed** 1218 events processed** 1219 events processed** 1220 events processed** 1221 events processed** 1222 events processed** 1223 events processed** 1224 events processed** 1225 events processed** 1226 events processed** 1227 events processed** 1228 events processed** 1229 events processed** 1230 events processed** 1231 events processed** 1232 events processed** 1233 events processed** 1234 events processed** 1235 events processed** 1236 events processed** 1237 events processed** 1238 events processed** 1239 events processed** 1240 events processed** 1241 events processedError in <TDecompChol::Decompose()>: matrix not positive definite
+TrkUtil::CovSmear: covariance matrix is not positive definite. Aborting.
+Skipping HNL_Dirac_ejj_10GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_10GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_10GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_10GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_10GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_10GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_10GeV_1e-5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_20GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_20GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_20GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_20GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_20GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_20GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_20GeV_1e-5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_30GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_30GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_30GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_30GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_30GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_30GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Executed command for HNL_Dirac_ejj_30GeV_1e-5Ve.cmnd
+Skipping HNL_Dirac_ejj_40GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_40GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_40GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_40GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_40GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_40GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_40GeV_1e-5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_50GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_50GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_50GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_50GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_50GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_50GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_50GeV_1e-5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_60GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_60GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_60GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_60GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_60GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_60GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_60GeV_1e-5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_70GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_70GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_70GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_70GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_70GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_70GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_70GeV_1e-5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_80GeV_1e-2Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_80GeV_1e-2p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_80GeV_1e-3Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_80GeV_1e-3p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_80GeV_1e-4Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_80GeV_1e-4p5Ve.cmnd, corresponding .root file already exists
+Skipping HNL_Dirac_ejj_80GeV_1e-5Ve.cmnd, corresponding .root file already exists
