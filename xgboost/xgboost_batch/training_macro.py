@@ -103,21 +103,25 @@ def load_data(signal_filename, background_filename):
     print(f"number of bb: {num_bb}; number of cc: {num_cc}; number of 4body: {num_4body}")
     print(f"total background {num_bb+num_cc+num_4body}")
     print(f"weights background = {weights[:10]}")
-
+    
     if signal == "test_signal_40Gev_1e-5.root":
         print(f"using the signal with less events {signal} :(")
-        w = np.hstack([np.ones(num_sig)*(cross_section_signal*150000000/7188), #scale factor = target lumi * x-sec / number of generated events
+        w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/7196), #scale factor = target lumi * x-sec / number of generated events
                    np.ones(num_bkg)*weights])
     elif signal == "test_signal_20Gev_1e-5.root":
         print(f"using the signal with less events {signal} :(")
-        w = np.hstack([np.ones(num_sig)*(cross_section_signal*150000000/31046), #scale factor = target lumi * x-sec / number of generated events
+        w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/45948), #scale factor = target lumi * x-sec / number of generated events
                    np.ones(num_bkg)*weights])
-    elif signal == "test_signal_20GeV_1e-3p5.root":
+    elif signal == "test_signal_20GeV_1e-4p5.root":
         print(f"using the signal with less events {signal} :(")
-        w = np.hstack([np.ones(num_sig)*(cross_section_signal*150000000/9707), #scale factor = target lumi * x-sec / number of generated events
+        w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/9707), #scale factor = target lumi * x-sec / number of generated events
+                   np.ones(num_bkg)*weights])
+    elif signal == "test_signal_10GeV_1e-3p5.root":
+        print(f"using the signal with less events {signal} :(")
+        w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/9707), #scale factor = target lumi * x-sec / number of generated events
                    np.ones(num_bkg)*weights])
     else:
-        w = np.hstack([np.ones(num_sig)*(cross_section_signal*150000000/100000), #scale factor = target lumi * x-sec / number of generated events
+        w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/100000), #scale factor = target lumi * x-sec / number of generated events
                    np.ones(num_bkg)*weights])
 
     #Compute weights balancing both classes so you have the same number for each
@@ -125,7 +129,6 @@ def load_data(signal_filename, background_filename):
     w_training = np.hstack([np.ones(num_sig) * num_all / num_sig, np.ones(num_bkg) * num_all / num_bkg])
     
     return x, y, w, w_training
-
 
 if __name__ == "__main__":
     #Load data
