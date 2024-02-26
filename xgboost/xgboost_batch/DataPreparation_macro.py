@@ -196,7 +196,7 @@ if __name__ == "__main__":
     plt.title("Correlation Matrix Heatmap")
     plt.xticks(rotation=90)
     plt.tight_layout()
-    plt.savefig(f"/afs/cern.ch/work/t/tcritchl/xgboost_plots{run}/correlation_heatmap.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/correlation_heatmap.pdf")
 
     scatter_matrix(df_selected, alpha=0.8, figsize=(15, 15), diagonal='kde')
     plt.suptitle("Pair Plot", y=1.02)

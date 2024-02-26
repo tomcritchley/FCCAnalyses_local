@@ -1,5 +1,5 @@
 ########################
-# HTCondor Submission File
+#HTCondor Submission File
 # see for all possible options
 # http://research.cs.wisc.edu/htcondor/manual/v8.5/condor_submit.html
 ########################
@@ -12,7 +12,7 @@
 # # Basic job setup
 ######
 # ## the executable to be run
-executable     = bdt_testing.sh
+executable     = bdt_training.sh
 # ## which universe (plain vanilla probably in most cases)
 universe       = vanilla
 # ## some arguments for the executable
@@ -32,11 +32,11 @@ universe       = vanilla
 # ## if necessary, copy further input file(s) and directories to the worker node as a comma separated list. Can also be http URLs
 # transfer_input_files = data2.file, data3.file
 # ## name of the output file(s) to be copied back after the job has finished
-output         = bdt_testing.$(ClusterId).$(ProcId).out
+output         = bdt_training.$(ClusterId).$(ProcId).out
 # ## name of the stderr file
-error          = bdt_testing.$(ClusterId).$(ProcId).error
+error          = bdt_training.$(ClusterId).$(ProcId).error
 # ## name of the stdout file
-log            = bdt_testing.$(ClusterId).$(ProcId).log
+log            = bdt_training.$(ClusterId).$(ProcId).log
 # ## copy executable and input file (if any) to the worker node?
 should_transfer_files   = Yes
 # ## when to transfer output? 
