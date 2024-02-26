@@ -67,7 +67,8 @@ print(signal_files)
 
 def filter_events(df):
 
-    df = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 35 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5 && ROOT::VecOps::All(RecoElectronTrack_absD0sig < 5)", "Exactly one electron final state with lead electron energy E > 35 GeV and D0_sig < 5 (prompt decay)")
+    #df = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 35 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5 && ROOT::VecOps::All(RecoElectronTrack_absD0sig < 5)", "Exactly one electron final state with lead electron energy E > 35 GeV and D0_sig < 5 (prompt decay)") FOR LLPS
+    df = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 35 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5", "Exactly one electron final state with lead electron energy E > 35 GeV")
     
     return df
 

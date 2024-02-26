@@ -43,5 +43,5 @@ test_loss, test_acc = model.evaluate(X_test, y_test, verbose=2)
 print(f'\nTest accuracy: {test_acc*100:.2f}%')
 
 # Save the final model
-model.save('final_atlas_dnn_model.h5')
+model.save('DNN_HNLs.h5')
 
