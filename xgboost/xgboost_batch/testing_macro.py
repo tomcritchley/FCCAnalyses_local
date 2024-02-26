@@ -12,7 +12,7 @@ import json
 ###################################### INPUTS ####################################################################
 ##################################################################################################################
 
-with open('/afs/cern.ch/user/t/tcritchl/xgboost/configuration.json') as config_file:
+with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/configuration.json') as config_file:
     config = json.load(config_file)
 
 run = config["run_number"]
