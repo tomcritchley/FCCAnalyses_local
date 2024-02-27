@@ -31,14 +31,10 @@ for key, value in json_data.items():
     mass = parts[-2]
     coupling = parts[-1]
 
-    # Generate the key for the cross-section dictionary
-    # Assuming you have a variable `train_or_test` that indicates if it's training or testing
     root_file_name = f"{train_or_test}_signal_{mass}_{coupling.replace('Ve', '')}.root"
 
-    # Add the cross-section value to the dictionary
     cross_section_dict[root_file_name] = value["cross_section_pb"]
 
-# Print the cross-section dictionary
 print(cross_section_dict)
 
 #have to edit if it is training or testing e.g. test_signal vs train_signal

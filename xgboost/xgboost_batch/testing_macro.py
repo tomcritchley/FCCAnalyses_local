@@ -273,7 +273,7 @@ for label in labels:
         else:
             print(f"File {filepath} does not exist, skipping.")
 
-json_file_path = f"/afs/cern.ch/user/t/tcritchl/xgboost_batch/test_xgboost_results{run}_10fb.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_10fb.json"
 
 with open(json_file_path, "w") as json_file:
     json.dump(results_dict, json_file, indent=2)
