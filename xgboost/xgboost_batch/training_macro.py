@@ -15,7 +15,7 @@ with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/
 
 run = config["run_number"]
 train_or_test = config["train_or_test"].strip()
-
+print(f"are we training or testing: {train_or_test}")
 labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/training{run}/"
 json_file = "/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb24.json"

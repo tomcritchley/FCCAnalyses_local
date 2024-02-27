@@ -61,7 +61,8 @@ when_to_transfer_output = ON_EXIT
 # ## place some environment variables in the jobs enironment
 environment 	= "TESTVAR1=1 TESTVAR2=""2"" TESTVAR3='spacey ''quoted'' value'"
 # ## encrypt all job files transparently if you are paranoid about the possibility to leave files readable after a crash. Costs you CPU and any option for recovery
+requirements = (OpSysAndVer =?= "CentOS7")
 # encrypt_execute_directory = True
-+JobFlavour = "espresso"
++JobFlavour = "workday"
 # how many instances of the job should be run - if no value is set run just one instance
 queue
