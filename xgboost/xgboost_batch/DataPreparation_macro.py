@@ -77,9 +77,9 @@ def filter_events(df):
 
 variables = [
     "RecoDiJet_delta_R",
-    "RecoDiJet_angle", 
+    #"RecoDiJet_angle", 
     "RecoElectron_DiJet_delta_R",
-    "RecoElectronTrack_absD0sig", 
+    #"RecoElectronTrack_absD0sig", 
     "RecoElectronTrack_absD0",
     "RecoDiJet_phi",
     "RecoMissingEnergy_theta",
