@@ -16,8 +16,8 @@ with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/
     config = json.load(config_file)
 
 run = config["run_number"]
-bkg_norm = config["bkg_normalisation_factor"]
-sgl_norm = config["signal_normalisation_factor"]
+#bkg_norm = config["bkg_normalisation_factor"]
+#sgl_norm = config["signal_normalisation_factor"]
 
 
 labels = []
@@ -114,8 +114,8 @@ for label in labels:
 
     # weight the signals with the normalisation factors x 2 since we have half of the data set
    
-    weightsSIG = np.ones_like(S) * w_signal * sgl_norm #used half of the background
-    weightsBKG = np.ones_like(B) * w_background * bkg_norm # using 2/3 for the test here so since w = x_sec x lumi / N_gen, then you multiply by [N_samp / fraction used = N_gen]...  
+    weightsSIG = np.ones_like(S) * w_signal * 2 #sgl_norm #used half of the background
+    weightsBKG = np.ones_like(B) * w_background * 3/2 #bkg_norm # using 2/3 for the test here so since w = x_sec x lumi / N_gen, then you multiply by [N_samp / fraction used = N_gen]...  
 
     print(f"weights of the signal first 10: {weightsSIG[:10]}")
     print(f"weights of the background first 15: {weightsBKG[:15]}")
