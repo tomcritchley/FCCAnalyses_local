@@ -134,20 +134,48 @@ for label in labels:
     plt.ylabel('True Positive Rate')
     plt.legend(loc='lower right')
     plt.gca().set_aspect('equal', adjustable='box')
-    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/ROC_xgboost_{label}.pdf")
-
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/ROC_xgboost_{label}_5.pdf")
     ##################################################################################################################
     ###################################### BDT OUTPUT PLOTS ##########################################################
     ##################################################################################################################
 
+    #### logic for calculating the ideal bin range ###
+
+    ## need to calculate the bdt score for each signal event between 0 and 1.0 and say break it into 1000 so between 0.001 and 1.000 ##
+
+    ## then find the peak and do +/- 0.10 for the peak number of events in the bin and set them equal to min and max bin, with 2000 bins.
+    
+    bin_width = 0.0001 #in the region of interest, binning resolution
+    
+    full_range_bins = np.linspace(np.min(y_pred_np), np.max(y_pred_np), 1000) #scan over full range with 1000 bins
+    print(f"scanning over all bins for mass point {label}")
+
+    # Calculate histogram for signal events over the full range
+    signal_hist, _ = np.histogram(S, bins=full_range_bins, weights=weightsSIG)
+    peak_bin = np.argmax(signal_hist)
+    peak_value = full_range_bins[peak_bin]
+
+    range_width = 0.1  # Width of the range around the peak
+    if peak_value + range_width > 1.0:
+        #If the peak is close to the maximum possible output of 1.0, set max_bin to 1.0
+        max_bin = 1.0 + bin_width #e.g 1.0001
+        min_bin = peak_value - range_width #e.g 0.9000
+    else:
+        #Otherwise, set the range around the peak bin as usual
+        min_bin = peak_value - range_width
+        max_bin = peak_value + range_width + bin_width
+    
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
 
     for axis in ax:
         axis.tick_params(axis='both', direction='in', which='both', top=True, right=True)
 
-    bin_width = 0.0001 #change to 0.0001 for the same results as for the most recent plot
     ##optimise this to scan over the full range of significances?
-    bins_a = np.arange(0.8000, 1.0001, bin_width) ##change to 0.8000 -> 1.0001 for most recent plot
+    
+    #bins_a = np.arange(0.8000, 1.0001, bin_width) ##change to 0.8000 -> 1.0001 for most recent plot
+
+    bins_a = np.arrange(min_bin, max_bin, bin_width)
+
 
     hB, bins = np.histogram(B, bins=bins_a, weights=weightsBKG)
     hS, bins = np.histogram(S, bins=bins_a, weights=weightsSIG)
@@ -166,7 +194,7 @@ for label in labels:
 
     fig.text(0.175, 0.85, "FCCee Simulation (DELPHES)", ha='left', va='center', fontsize=8, weight='bold')
     fig.text(0.175, 0.81, "Exactly one recontructed electron, E > 30 GeV", ha='left', va='center', fontsize=8)
-    fig.text(0.175, 0.77, r"$\sqrt{s} = 91$ GeV, $\int L \, dt = 150 \, \text{ab}^{-1}$", ha='left', va='center', fontsize=8)
+    fig.text(0.175, 0.77, r"$\sqrt{s} = 91$ GeV, $\int L \, dt = 10 \, \text{fb}^{-1}$", ha='left', va='center', fontsize=8)
 
     def make_cumulative_significance_matplotlib(signal_hist, background_hist, significance_direction, uncertainty_count_factor=0.1):
         
@@ -225,7 +253,7 @@ for label in labels:
     ax[1].legend()
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/BDT_output_{label}_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/BDT_output_{label}_5_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
@@ -235,9 +263,8 @@ for label in labels:
         
     signal = [f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_{label}.root", "signal"] #second entry was preivously just {label} but the name was acting in a strange way when looking at the bdt output
     background = [f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_background_total.root", "background_total"]
-
-    for filepath, label in [signal, background]:
-        try:
+    try:
+        for filepath, label in [signal, background]:
             print(">>> Extract the training and testing events for {} from the {} dataset.".format(label, filepath))
 
             if os.path.exists(filepath):
@@ -273,9 +300,10 @@ for label in labels:
 
             else:
                 print(f"File {filepath} does not exist, skipping.")
-        except:
-            print("file saving loop broken")
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_10fb.json"
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_5_10fb.json"
 
 with open(json_file_path, "w") as json_file:
     json.dump(results_dict, json_file, indent=2)
