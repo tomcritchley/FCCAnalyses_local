@@ -237,42 +237,44 @@ for label in labels:
     background = [f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_background_total.root", "background_total"]
 
     for filepath, label in [signal, background]:
-        print(">>> Extract the training and testing events for {} from the {} dataset.".format(label, filepath))
+        try:
+            print(">>> Extract the training and testing events for {} from the {} dataset.".format(label, filepath))
 
-        if os.path.exists(filepath):
-            print("Opened " + filepath)
+            if os.path.exists(filepath):
+                print("Opened " + filepath)
 
-            file = ROOT.TFile(filepath, "UPDATE")
-            tree = file.Get("events")
+                file = ROOT.TFile(filepath, "UPDATE")
+                tree = file.Get("events")
 
-            new_tree = tree.CloneTree(0)
-            new_tree.SetName(f"events_modified_{label}")
-            
-            if label.startswith("signal"):
-                bdt_output_branch = np.zeros_like(S, dtype=np.float32)
-                new_tree.Branch(f"bdt_output_{label}", bdt_output_branch, 'bdt_output/F')
-            elif label.startswith("background"):
-                bdt_output_branch = np.zeros_like(B, dtype=np.float32)
-                new_tree.Branch(f"bdt_output_{label}", bdt_output_branch, 'bdt_output/F')
-
-            print(f"the shape of S is {S.shape}")
-            print(f"the shape of B is {B.shape}")
-            print(f"tree has entries: {tree.GetEntries()}")
-            for idx in range(tree.GetEntries()):
-                tree.GetEntry(idx)
+                new_tree = tree.CloneTree(0)
+                new_tree.SetName(f"events_modified_{label}")
+                
                 if label.startswith("signal"):
-                    bdt_output_branch[idx] = S[idx]
+                    bdt_output_branch = np.zeros_like(S, dtype=np.float32)
+                    new_tree.Branch(f"bdt_output_{label}", bdt_output_branch, 'bdt_output/F')
                 elif label.startswith("background"):
-                    bdt_output_branch[idx] = B[idx]
-                new_tree.Fill()
-            print(f"writing file")
-            file.Write()
-            file.Close()
-            print(f"Successfully done")
+                    bdt_output_branch = np.zeros_like(B, dtype=np.float32)
+                    new_tree.Branch(f"bdt_output_{label}", bdt_output_branch, 'bdt_output/F')
 
-        else:
-            print(f"File {filepath} does not exist, skipping.")
+                print(f"the shape of S is {S.shape}")
+                print(f"the shape of B is {B.shape}")
+                print(f"tree has entries: {tree.GetEntries()}")
+                for idx in range(tree.GetEntries()):
+                    tree.GetEntry(idx)
+                    if label.startswith("signal"):
+                        bdt_output_branch[idx] = S[idx]
+                    elif label.startswith("background"):
+                        bdt_output_branch[idx] = B[idx]
+                    new_tree.Fill()
+                print(f"writing file")
+                file.Write()
+                file.Close()
+                print(f"Successfully done")
 
+            else:
+                print(f"File {filepath} does not exist, skipping.")
+        except:
+            print("file saving loop broken")
 json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_10fb.json"
 
 with open(json_file_path, "w") as json_file:
