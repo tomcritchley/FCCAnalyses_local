@@ -174,7 +174,7 @@ for label in labels:
     
     #bins_a = np.arange(0.8000, 1.0001, bin_width) ##change to 0.8000 -> 1.0001 for most recent plot
 
-    bins_a = np.arrange(min_bin, max_bin, bin_width)
+    bins_a = np.arange(min_bin, max_bin, bin_width)
 
 
     hB, bins = np.histogram(B, bins=bins_a, weights=weightsBKG)

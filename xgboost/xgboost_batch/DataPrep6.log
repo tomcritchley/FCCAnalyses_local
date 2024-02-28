@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "DataPreparation_macro.py", line 2, in <module>
-    import pandas as pd
-  File "/usr/lib64/python3.6/site-packages/ROOT/_facade.py", line 150, in _importhook
-    return _orig_ihook(name, *args, **kwds)
-ModuleNotFoundError: No module named 'pandas'
