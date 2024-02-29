@@ -225,15 +225,15 @@ for label in labels:
                 significance = math.sqrt(abs(
                     2 * (n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2)) - (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
                 )))
-            print(f"significance {significance} for bin {bin_idx}, number of signal events {s}, bkg{b}")
-            sig_list.append((significance, bin_idx))
+            print(f"significance {significance} for bin {bin_idx} with BDT threshold {y_pred_np[bin_idx - 1]}, number of signal events {s}, bkg{b}")
+            sig_list.append(significance, (y_pred_np[bin_idx - 1]))
 
         return sig_list
 
     # Plot cumulative significance on the second subplot
     sig_list = make_cumulative_significance_matplotlib(hS, hB, significance_direction, uncertainty_count_factor=0.1)
     sig_list.sort(key=lambda x: x[1])
-    significance_values, bin_indices = zip(*sig_list)
+    significance_values, bdt_output = zip(*sig_list)
 
     results_dict[label] = {
         "weighted_background_events": B_weighted,
@@ -283,13 +283,14 @@ for label in labels:
                     bdt_output_branch = np.zeros_like(B, dtype=np.float32)
                     new_tree.Branch(f"bdt_output_{label}", bdt_output_branch, 'bdt_output/F')
 
-                print(f"the shape of S is {S.shape}")
-                print(f"the shape of B is {B.shape}")
+                print(f"the shape of S is {S.shape}, and it contains the elements {S}")
+                print(f"the shape of B is {B.shape}, and it contains the elements {B}")
                 print(f"tree has entries: {tree.GetEntries()}")
                 for idx in range(tree.GetEntries()):
                     tree.GetEntry(idx)
                     if label.startswith("signal"):
                         bdt_output_branch[idx] = S[idx]
+                        print(f"bdt branch: {bdt_output_branch[idx]}, with value {S[idx]}")
                     elif label.startswith("background"):
                         bdt_output_branch[idx] = B[idx]
                     new_tree.Fill()
