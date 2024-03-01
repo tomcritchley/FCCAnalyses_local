@@ -168,8 +168,10 @@ for label in labels:
         max_bin = peak_value + range_width + bin_width
     
     #have to ensure there at least something in the background
-    bkg_hist, _ = np.histogram(B, bins=full_range_bins, weights=weightsBKG)
-    while np.sum(bkg_hist[min_bin:max_bin]) == 0:
+    bins = np.arange(min_bin, max_bin, bin_width)
+    bkg_hist, _ = np.histogram(B, bins=bins, weights=weightsBKG)
+    
+    while np.argmax(bkg_hist) == 0:
         min_bin = max(0, min_bin - 1)
 
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
