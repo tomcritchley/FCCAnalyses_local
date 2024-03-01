@@ -135,6 +135,7 @@ for label in labels:
     plt.legend(loc='lower right')
     plt.gca().set_aspect('equal', adjustable='box')
     plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/ROC_xgboost_{label}_5.pdf")
+    
     ##################################################################################################################
     ###################################### BDT OUTPUT PLOTS ##########################################################
     ##################################################################################################################
@@ -148,6 +149,7 @@ for label in labels:
     bin_width = 0.0001 #in the region of interest, binning resolution
     
     full_range_bins = np.linspace(np.min(y_pred_np), np.max(y_pred_np), 1000) #scan over full range with 1000 bins
+    
     print(f"scanning over all bins for mass point {label}")
 
     # Calculate histogram for signal events over the full range
@@ -165,6 +167,11 @@ for label in labels:
         min_bin = peak_value - range_width
         max_bin = peak_value + range_width + bin_width
     
+    #have to ensure there at least something in the background
+    bkg_hist, _ = np.histogram(B, bins=full_range_bins, weights=weightsBKG)
+    while np.sum(bkg_hist[min_bin:max_bin]) == 0:
+        min_bin = max(0, min_bin - 1)
+
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
 
     for axis in ax:
@@ -226,14 +233,14 @@ for label in labels:
                     2 * (n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2)) - (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
                 )))
             print(f"significance {significance} for bin {bin_idx} with BDT threshold {y_pred_np[bin_idx - 1]}, number of signal events {s}, bkg{b}")
-            sig_list.append(significance, (y_pred_np[bin_idx - 1]))
+            sig_list.append(significance, idx, y_pred_np[bin_idx - 1])
 
         return sig_list
 
     # Plot cumulative significance on the second subplot
     sig_list = make_cumulative_significance_matplotlib(hS, hB, significance_direction, uncertainty_count_factor=0.1)
     sig_list.sort(key=lambda x: x[1])
-    significance_values, bdt_output = zip(*sig_list)
+    significance_values, bin_index, bdt_output = zip(*sig_list)
 
     results_dict[label] = {
         "weighted_background_events": B_weighted,
@@ -247,13 +254,13 @@ for label in labels:
     ax[1].grid(True)
 
     max_significance_index = np.argmax(significance_values)
-    max_significance_bin = bin_indices[max_significance_index]
+    max_significance_bin = bin_index[max_significance_index]
     max_significance_value = significance_values[max_significance_index]
     ax[1].axvline(x=bins_a[int(max_significance_bin)], linestyle='--', color='red', label=f'Max Significance: {max_significance_value:.2f}')
     ax[1].legend()
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/BDT_output_{label}_5_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/BDT_output_{label}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
@@ -304,7 +311,7 @@ for label in labels:
     except Exception as e:
         print(f"An error occurred: {e}")
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_5_10fb.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_10fb.json"
 
 with open(json_file_path, "w") as json_file:
     json.dump(results_dict, json_file, indent=2)
