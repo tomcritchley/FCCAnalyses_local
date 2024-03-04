@@ -182,6 +182,7 @@ for label in labels:
         # Check if the background histogram is empty
         if np.sum(bkg_hist) == 0:
             print(f"No background events found for mass point {label}. Exiting loop.")
+            min_bin = 0
             break
 
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
@@ -230,6 +231,8 @@ for label in labels:
         else:
             raise ValueError("Invalid significance_direction. Use 'LR' for left to right or 'RL' for right to left.")
 
+        bin_edges = np.linspace(min_bin, max_bin, n_bins + 1)
+
         for bin_idx in bin_range:
             s = signal_hist[bin_idx - 1]
             s_cumulative += s
@@ -243,8 +246,10 @@ for label in labels:
                 significance = math.sqrt(abs(
                     2 * (n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2)) - (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
                 )))
-            print(f"significance {significance} for bin {bin_idx} with BDT threshold {y_pred_np[bin_idx - 1]}, number of signal events {s}, bkg{b}")
-            sig_list.append((significance, bin_idx, y_pred_np[bin_idx - 1]))
+            left_edge = bin_edges[bin_idx - 1]
+            print(f"significance {significance} for bin {bin_idx} with BDT threshold {left_edge}, number of signal events {s}, bkg{b}")
+
+            sig_list.append((significance, bin_idx, left_edge))
 
         return sig_list
 
