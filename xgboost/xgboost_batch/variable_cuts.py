@@ -25,6 +25,7 @@ with open('test_xgboost_results7_10fb.json', 'r') as file:
 bdt_cuts_dict = {}
 for key, value in data.items():
     signal_point = key.split('_')[1]  # Extract signal point (e.g., "10GeV_1e-2")
+    print(f"signal point: {signal_point}")
     significance_list = value['significance_list']
     max_significance_entry = max(significance_list, key=lambda x: x[0])
     bdt_cuts_dict[signal_point] = max_significance_entry[2]  # Third entry of the significance_list
