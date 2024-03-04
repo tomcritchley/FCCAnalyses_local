@@ -308,7 +308,7 @@ for label in labels:
                     tree.GetEntry(idx)
                     if label.startswith("signal"):
                         bdt_output_branch[idx] = S[idx]
-                        print(f"bdt branch: {bdt_output_branch[idx]}, with value {S[idx]}")
+                        print(f"bdt branch: {idx}, with value {S[idx]}")
                     elif label.startswith("background"):
                         bdt_output_branch[idx] = B[idx]
                     new_tree.Fill()
