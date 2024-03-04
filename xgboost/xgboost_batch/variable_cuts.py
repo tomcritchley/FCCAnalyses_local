@@ -22,8 +22,7 @@ with open('test_xgboost_results7_10fb.json', 'r') as file:
 
 # Dictionary to store BDT cuts for each signal point
 bdt_cuts_dict = {}
-for key, value in data.items():
-    signal_point = key.split('_')[1]  # Extract signal point (e.g., "10GeV_1e-2")
+for signal_point, value in data.items():
     significance_list = value['significance_list']
     max_significance_entry = max(significance_list, key=lambda x: x[0])
     bdt_cuts_dict[signal_point] = max_significance_entry[2]  # Third entry of the significance_list
@@ -33,8 +32,7 @@ variable_min_values = {}
 
 # Process signal files
 for signal_point, bdt_cut in bdt_cuts_dict.items():
-    mass, angle = signal_point.split('_')
-    signal_file = os.path.join(base_path, f"test_signal_{mass}_{angle}.root")
+    signal_file = os.path.join(base_path, f"test_{signal_point}.root")
     if not os.path.exists(signal_file):
         print(f"File {signal_file} does not exist")
         continue
