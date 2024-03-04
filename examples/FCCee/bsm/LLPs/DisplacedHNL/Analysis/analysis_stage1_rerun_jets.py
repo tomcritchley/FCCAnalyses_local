@@ -2,7 +2,7 @@
 processList = {
 
         #centrally-produced backgrounds
-        'p8_ee_Zcc_ecm91':{'chunks':200},
+        'p8_ee_Zcc_ecm91':{'chunks':100, 'fraction':0.001},
         #'p8_ee_Zbb_ecm91':{'fraction':0.0000000001},
         
         #private signals
@@ -27,14 +27,14 @@ nCPUS       = 4
 #inputDir = "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
 #ouput --> change for each
 #outputDir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/"
-outputDir = "/eos/user/t/tcritchl/xgBOOST/teststats/withvertex/"
+outputDir = "/eos/user/t/tcritchl/xgBOOST/teststats/setup_test_1_Mar_2024/"
 #Optional running on HTCondor, default is False
 #runBatch    = True
 runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 #batchQueue = "longlunch"
-batchQueue = "nextweek"
+batchQueue = "longlunch"
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 #compGroup = "group_u_FCC.local_gen"
 #compGroup = "group_u_BE.ABP.SLAP"
@@ -634,11 +634,12 @@ class RDFanalysis():
                         "RecoMissingEnergy_theta",
                         "RecoMissingEnergy_e",
                         "RecoDiJetElectron_invMass",
-                        "cross_section",
-			"Vertex_chi2",
-			"PrimaryTracks",
-			"n_primt",
-			"Vertex_ntrk",
-			"ntracks",]
+                        #"cross_section",
+			#"Vertex_chi2",
+			#"PrimaryTracks",
+			#"n_primt",
+			#"Vertex_ntrk",
+			#"ntracks",]
 
+]
                 return branchList

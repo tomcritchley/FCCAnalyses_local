@@ -172,7 +172,7 @@ for label in labels:
     bkg_hist, _ = np.histogram(B, bins=bins, weights=weightsBKG)
     
     while np.argmax(bkg_hist) == 0:
-        min_bin = max(0, min_bin - 1)
+        min_bin = max(0, min_bin - 0.001)
 
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
 
@@ -235,7 +235,7 @@ for label in labels:
                     2 * (n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2)) - (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
                 )))
             print(f"significance {significance} for bin {bin_idx} with BDT threshold {y_pred_np[bin_idx - 1]}, number of signal events {s}, bkg{b}")
-            sig_list.append(significance, idx, y_pred_np[bin_idx - 1])
+            sig_list.append((significance, bin_idx, y_pred_np[bin_idx - 1]))
 
         return sig_list
 
