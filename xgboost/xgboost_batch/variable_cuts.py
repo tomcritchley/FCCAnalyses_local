@@ -2,7 +2,7 @@ import json
 import uproot
 import os
 
-
+# Define the base path
 base_path = "/eos/user/t/tcritchl/xgBOOST/testing7/"
 
 # Define variables
@@ -33,7 +33,8 @@ variable_min_values = {}
 
 # Process signal files
 for signal_point, bdt_cut in bdt_cuts_dict.items():
-    signal_file = os.path.join(base_path, f"test_{signal_point}.root")
+    mass, angle = signal_point.split('_')
+    signal_file = os.path.join(base_path, f"test_signal_{mass}_{angle}.root")
     if not os.path.exists(signal_file):
         print(f"File {signal_file} does not exist")
         continue
