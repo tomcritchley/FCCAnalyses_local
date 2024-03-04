@@ -172,17 +172,12 @@ for label in labels:
     bkg_hist, _ = np.histogram(B, bins=bins, weights=weightsBKG)
     
     while np.argmax(bkg_hist) == 0:
-<<<<<<< HEAD
-        min_bin = max(0, min_bin - 0.001)
-
-=======
         print(f"mass point {label} has 0 background events for a minimum bin of {min_bin}")
         min_bin = min_bin - 0.005
         print(f"new minimum bin {min_bin}")
         bins = np.arange(min_bin, max_bin, bin_width)
         bkg_hist, _ = np.histogram(B, bins=bins, weights=weightsBKG)
-    
->>>>>>> 0d35506c1dfa0f22f5f14abff96955c5dd1f6548
+
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
 
     for axis in ax:
