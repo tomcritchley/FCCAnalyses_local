@@ -7,7 +7,6 @@ import os
 
 #name of the tree --> (case sensitive!)
 tree_name = "events"
-
 #base_path where the signals are located
 base_HNL = "/eos/user/t/tcritchl/HNLs_Feb24/"
 
