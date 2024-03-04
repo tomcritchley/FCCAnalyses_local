@@ -53,8 +53,10 @@ for signal_point, bdt_cut in bdt_cuts_dict.items():
             for variable, value in event_variables.items():
                 variable_min_values[signal_point][variable] = min(variable_min_values[signal_point][variable], value)
 
-variable_min_values = {signal_point: {variable: float(value) for variable, value in values.items()} for signal_point, values in variable_min_values.items()}
-
+# Convert array values to float
+variable_min_values = {signal_point: {variable: min(map(float, value)) for variable, value in values.items()} for signal_point, values in variable_min_values.items()}
+print(f"all done, printing values")
+print(variable_min_values)
 # Store minimum values of variables for each signal point in a JSON file
 print("Storing minimum values of variables in a JSON file...")
 try:
