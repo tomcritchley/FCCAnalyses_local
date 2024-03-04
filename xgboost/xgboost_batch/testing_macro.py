@@ -172,8 +172,12 @@ for label in labels:
     bkg_hist, _ = np.histogram(B, bins=bins, weights=weightsBKG)
     
     while np.argmax(bkg_hist) == 0:
-        min_bin = max(0, min_bin - 1)
-
+        print(f"mass point {label} has 0 background events for a minimum bin of {min_bin}")
+        min_bin = min_bin - 0.005
+        print(f"new minimum bin {min_bin}")
+        bins = np.arange(min_bin, max_bin, bin_width)
+        bkg_hist, _ = np.histogram(B, bins=bins, weights=weightsBKG)
+    
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
 
     for axis in ax:
@@ -184,7 +188,6 @@ for label in labels:
     #bins_a = np.arange(0.8000, 1.0001, bin_width) ##change to 0.8000 -> 1.0001 for most recent plot
 
     bins_a = np.arange(min_bin, max_bin, bin_width)
-
 
     hB, bins = np.histogram(B, bins=bins_a, weights=weightsBKG)
     hS, bins = np.histogram(S, bins=bins_a, weights=weightsSIG)
@@ -235,7 +238,7 @@ for label in labels:
                     2 * (n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2)) - (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
                 )))
             print(f"significance {significance} for bin {bin_idx} with BDT threshold {y_pred_np[bin_idx - 1]}, number of signal events {s}, bkg{b}")
-            sig_list.append(significance, idx, y_pred_np[bin_idx - 1])
+            sig_list.append((significance, bin_idx, y_pred_np[bin_idx - 1]))
 
         return sig_list
 
