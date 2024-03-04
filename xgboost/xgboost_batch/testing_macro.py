@@ -173,10 +173,16 @@ for label in labels:
     
     while np.argmax(bkg_hist) == 0:
         print(f"mass point {label} has 0 background events for a minimum bin of {min_bin}")
-        min_bin = min_bin - 0.005
+        # Decrement min_bin
+        min_bin = max(0, min_bin - 0.005)
         print(f"new minimum bin {min_bin}")
+        # Update bins and compute background histogram
         bins = np.arange(min_bin, max_bin, bin_width)
         bkg_hist, _ = np.histogram(B, bins=bins, weights=weightsBKG)
+        # Check if the background histogram is empty
+        if np.sum(bkg_hist) == 0:
+            print(f"No background events found for mass point {label}. Exiting loop.")
+            break
 
     fig, ax = plt.subplots(2, sharex=True, gridspec_kw={'height_ratios': [5, 2], 'hspace': 0.05})
 
