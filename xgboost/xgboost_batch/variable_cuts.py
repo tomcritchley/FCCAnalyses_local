@@ -41,7 +41,8 @@ variable_min_values = {mass: {angle: {variable: float('inf') for variable in var
 # Process signal files
 for mass, angles_dict in bdt_cuts_dict.items():
     for angle, bdt_cut in angles_dict.items():
-        signal_file = os.path.join(base_path, f"test_signal_{mass}GeV_{angle}.root")
+        angle_str = angle.replace('.', 'p')  # Replace '.' with 'p' for file naming
+        signal_file = os.path.join(base_path, f"HNL_Dirac_ejj_{mass}GeV_{angle_str}.root")
         if not os.path.exists(signal_file):
             print(f"File {signal_file} does not exist")
             continue
