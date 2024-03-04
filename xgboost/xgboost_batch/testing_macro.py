@@ -314,10 +314,10 @@ for label in labels:
                 for idx in range(tree.GetEntries()):
                     tree.GetEntry(idx)
                     if label.startswith("signal"):
-                        bdt_output_branch[idx] = S[idx]
+                        bdt_output_branch[0]  = S[idx] # changes for not filling all the 
                         print(f"bdt branch: {idx}, with value {S[idx]}")
                     elif label.startswith("background"):
-                        bdt_output_branch[idx] = B[idx]
+                        bdt_output_branch[0]  = B[idx]
                     new_tree.Fill()
                 print(f"writing file")
                 file.Write()
