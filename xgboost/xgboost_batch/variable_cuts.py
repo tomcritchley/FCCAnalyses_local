@@ -46,12 +46,32 @@ for signal_point, bdt_cut in bdt_cuts_dict.items():
     
     for i, bdt_output_value in enumerate(bdt_output_values):
         if bdt_output_value >= bdt_cut:
+            print("Event passed BDT cut:")
+            print(f"  - Signal Point: {signal_point}")
+            print(f"  - Mass: {mass} GeV")
+            print(f"  - Angle: {angle}")
+            print(f"  - BDT Output Value: {bdt_output_value}")
+            
+            # Extract variable values for the event
             event_variables = {variable: tree[variable].array()[i] for variable in variables}
             
-            if signal_point not in variable_min_values:
-                variable_min_values[signal_point] = {variable: float('inf') for variable in variables}
+            print("  - Variable Values:")
             for variable, value in event_variables.items():
-                variable_min_values[signal_point][variable] = min(variable_min_values[signal_point][variable], value)
+                print(f"    - {variable}: {value}")
+                
+            # Append variable values to the list for the current signal point
+            if signal_point not in variable_min_values:
+                variable_min_values[signal_point] = {variable: [] for variable in variables}
+            for variable, value in event_variables.items():
+                variable_min_values[signal_point][variable].append(value)
+                
+# Calculate the smallest value for each variable for each signal point
+for signal_point, values_dict in variable_min_values.items():
+    print(f"\nCalculating smallest variable values for signal point: {signal_point}")
+    min_values = {variable: min(values) for variable, values in values_dict.items()}
+    print("Smallest variable values:")
+    for variable, min_value in min_values.items():
+        print(f"  - {variable}: {min_value}")
 
 # Convert array values to float
 variable_min_values = {signal_point: {variable: min(map(float, value)) for variable, value in values.items()} for signal_point, values in variable_min_values.items()}
