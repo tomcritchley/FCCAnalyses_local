@@ -1,0 +1,339 @@
+using mass: 10GeV, coupling 1e-2
+using mass: 10GeV, coupling 1e-2p5
+using mass: 10GeV, coupling 1e-3
+using mass: 10GeV, coupling 1e-3p5
+using mass: 10GeV, coupling 1e-4
+using mass: 10GeV, coupling 1e-4p5
+using mass: 10GeV, coupling 1e-5
+using mass: 20GeV, coupling 1e-2
+using mass: 20GeV, coupling 1e-2p5
+using mass: 20GeV, coupling 1e-3
+using mass: 20GeV, coupling 1e-3p5
+using mass: 20GeV, coupling 1e-4
+using mass: 20GeV, coupling 1e-4p5
+using mass: 20GeV, coupling 1e-5
+using mass: 30GeV, coupling 1e-2
+using mass: 30GeV, coupling 1e-2p5
+using mass: 30GeV, coupling 1e-3
+using mass: 30GeV, coupling 1e-3p5
+using mass: 30GeV, coupling 1e-4
+using mass: 30GeV, coupling 1e-4p5
+using mass: 30GeV, coupling 1e-5
+file /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-5Ve.root does not exist, moving to next file
+using mass: 40GeV, coupling 1e-2
+using mass: 40GeV, coupling 1e-2p5
+using mass: 40GeV, coupling 1e-3
+using mass: 40GeV, coupling 1e-3p5
+using mass: 40GeV, coupling 1e-4
+using mass: 40GeV, coupling 1e-4p5
+using mass: 40GeV, coupling 1e-5
+using mass: 50GeV, coupling 1e-2
+using mass: 50GeV, coupling 1e-2p5
+using mass: 50GeV, coupling 1e-3
+using mass: 50GeV, coupling 1e-3p5
+using mass: 50GeV, coupling 1e-4
+using mass: 50GeV, coupling 1e-4p5
+using mass: 50GeV, coupling 1e-5
+using mass: 60GeV, coupling 1e-2
+using mass: 60GeV, coupling 1e-2p5
+using mass: 60GeV, coupling 1e-3
+using mass: 60GeV, coupling 1e-3p5
+using mass: 60GeV, coupling 1e-4
+using mass: 60GeV, coupling 1e-4p5
+using mass: 60GeV, coupling 1e-5
+using mass: 70GeV, coupling 1e-2
+using mass: 70GeV, coupling 1e-2p5
+using mass: 70GeV, coupling 1e-3
+using mass: 70GeV, coupling 1e-3p5
+using mass: 70GeV, coupling 1e-4
+using mass: 70GeV, coupling 1e-4p5
+using mass: 70GeV, coupling 1e-5
+using mass: 80GeV, coupling 1e-2
+using mass: 80GeV, coupling 1e-2p5
+using mass: 80GeV, coupling 1e-3
+using mass: 80GeV, coupling 1e-3p5
+using mass: 80GeV, coupling 1e-4
+using mass: 80GeV, coupling 1e-4p5
+using mass: 80GeV, coupling 1e-5
+[['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-2Ve.root', 'signal_10GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-2p5Ve.root', 'signal_10GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-3p5Ve.root', 'signal_10GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-4Ve.root', 'signal_10GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-4p5Ve.root', 'signal_10GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-5Ve.root', 'signal_10GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-2Ve.root', 'signal_20GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-2p5Ve.root', 'signal_20GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-3Ve.root', 'signal_20GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-3p5Ve.root', 'signal_20GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-4Ve.root', 'signal_20GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-4p5Ve.root', 'signal_20GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-5Ve.root', 'signal_20GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-2Ve.root', 'signal_30GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-2p5Ve.root', 'signal_30GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-3Ve.root', 'signal_30GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-3p5Ve.root', 'signal_30GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-4Ve.root', 'signal_30GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-4p5Ve.root', 'signal_30GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-2Ve.root', 'signal_40GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-2p5Ve.root', 'signal_40GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-3Ve.root', 'signal_40GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-3p5Ve.root', 'signal_40GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-4Ve.root', 'signal_40GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-4p5Ve.root', 'signal_40GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-5Ve.root', 'signal_40GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-2Ve.root', 'signal_50GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-2p5Ve.root', 'signal_50GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-3Ve.root', 'signal_50GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-3p5Ve.root', 'signal_50GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-4Ve.root', 'signal_50GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-4p5Ve.root', 'signal_50GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-5Ve.root', 'signal_50GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-2Ve.root', 'signal_60GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-2p5Ve.root', 'signal_60GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-3Ve.root', 'signal_60GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-3p5Ve.root', 'signal_60GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-4Ve.root', 'signal_60GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-4p5Ve.root', 'signal_60GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-5Ve.root', 'signal_60GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-2Ve.root', 'signal_70GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-2p5Ve.root', 'signal_70GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-3Ve.root', 'signal_70GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-3p5Ve.root', 'signal_70GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-4Ve.root', 'signal_70GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-4p5Ve.root', 'signal_70GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-5Ve.root', 'signal_70GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-2Ve.root', 'signal_80GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-2p5Ve.root', 'signal_80GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-3Ve.root', 'signal_80GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-3p5Ve.root', 'signal_80GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-4Ve.root', 'signal_80GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-4p5Ve.root', 'signal_80GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-5Ve.root', 'signal_80GeV_1e-5']]
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=14186      all=938625132  -- eff=0.00 % cumulative eff=0.00 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=6884       all=100000     -- eff=6.88 % cumulative eff=6.88 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=6879       all=100000     -- eff=6.88 % cumulative eff=6.88 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=6900       all=100000     -- eff=6.90 % cumulative eff=6.90 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=2592       all=38667      -- eff=6.70 % cumulative eff=6.70 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=3143       all=100000     -- eff=3.14 % cumulative eff=3.14 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=420        all=100000     -- eff=0.42 % cumulative eff=0.42 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=50         all=100000     -- eff=0.05 % cumulative eff=0.05 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7647       all=100000     -- eff=7.65 % cumulative eff=7.65 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7750       all=100000     -- eff=7.75 % cumulative eff=7.75 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7720       all=100000     -- eff=7.72 % cumulative eff=7.72 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7635       all=100000     -- eff=7.64 % cumulative eff=7.64 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=5793       all=76400      -- eff=7.58 % cumulative eff=7.58 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=744        all=9707       -- eff=7.66 % cumulative eff=7.66 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=1289       all=45948      -- eff=2.81 % cumulative eff=2.81 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7861       all=100000     -- eff=7.86 % cumulative eff=7.86 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7958       all=100000     -- eff=7.96 % cumulative eff=7.96 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7800       all=100000     -- eff=7.80 % cumulative eff=7.80 %
+data is: [['placeholder', 'background_total'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-2Ve.root', 'signal_10GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-2p5Ve.root', 'signal_10GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-3p5Ve.root', 'signal_10GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-4Ve.root', 'signal_10GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-4p5Ve.root', 'signal_10GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-5Ve.root', 'signal_10GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-2Ve.root', 'signal_20GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-2p5Ve.root', 'signal_20GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-3Ve.root', 'signal_20GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-3p5Ve.root', 'signal_20GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-4Ve.root', 'signal_20GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-4p5Ve.root', 'signal_20GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-5Ve.root', 'signal_20GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-2Ve.root', 'signal_30GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-2p5Ve.root', 'signal_30GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-3Ve.root', 'signal_30GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-3p5Ve.root', 'signal_30GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-4Ve.root', 'signal_30GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-4p5Ve.root', 'signal_30GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-2Ve.root', 'signal_40GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-2p5Ve.root', 'signal_40GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-3Ve.root', 'signal_40GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-3p5Ve.root', 'signal_40GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-4Ve.root', 'signal_40GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-4p5Ve.root', 'signal_40GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-5Ve.root', 'signal_40GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-2Ve.root', 'signal_50GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-2p5Ve.root', 'signal_50GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-3Ve.root', 'signal_50GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-3p5Ve.root', 'signal_50GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-4Ve.root', 'signal_50GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-4p5Ve.root', 'signal_50GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-5Ve.root', 'signal_50GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-2Ve.root', 'signal_60GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-2p5Ve.root', 'signal_60GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-3Ve.root', 'signal_60GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-3p5Ve.root', 'signal_60GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-4Ve.root', 'signal_60GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-4p5Ve.root', 'signal_60GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-5Ve.root', 'signal_60GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-2Ve.root', 'signal_70GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-2p5Ve.root', 'signal_70GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-3Ve.root', 'signal_70GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-3p5Ve.root', 'signal_70GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-4Ve.root', 'signal_70GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-4p5Ve.root', 'signal_70GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-5Ve.root', 'signal_70GeV_1e-5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-2Ve.root', 'signal_80GeV_1e-2'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-2p5Ve.root', 'signal_80GeV_1e-2p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-3Ve.root', 'signal_80GeV_1e-3'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-3p5Ve.root', 'signal_80GeV_1e-3p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-4Ve.root', 'signal_80GeV_1e-4'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-4p5Ve.root', 'signal_80GeV_1e-4p5'], ['/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-5Ve.root', 'signal_80GeV_1e-5']]
+>>> Extract the training and testing events for background_total from the placeholder dataset.
+generated events 938625132
+>>> Extract the training and testing events for signal_10GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_10GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_10GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-3Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_10GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-3p5Ve.root dataset.
+generated events 38667
+>>> Extract the training and testing events for signal_10GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-4Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_10GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-4p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_10GeV_1e-5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_10GeV_1e-5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_20GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_20GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_20GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-3Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_20GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-3p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_20GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-4Ve.root dataset.
+generated events 76400
+>>> Extract the training and testing events for signal_20GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-4p5Ve.root dataset.
+generated events 9707
+>>> Extract the training and testing events for signal_20GeV_1e-5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-5Ve.root dataset.
+generated events 45948
+>>> Extract the training and testing events for signal_30GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_30GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_30GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-3Ve.root dataset.
+generated events 100000
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7960       all=100000     -- eff=7.96 % cumulative eff=7.96 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7872       all=100000     -- eff=7.87 % cumulative eff=7.87 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7873       all=100000     -- eff=7.87 % cumulative eff=7.87 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7985       all=100000     -- eff=7.99 % cumulative eff=7.99 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7984       all=100000     -- eff=7.98 % cumulative eff=7.98 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7983       all=100000     -- eff=7.98 % cumulative eff=7.98 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7958       all=100000     -- eff=7.96 % cumulative eff=7.96 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7979       all=100000     -- eff=7.98 % cumulative eff=7.98 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7984       all=100000     -- eff=7.98 % cumulative eff=7.98 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=588        all=7196       -- eff=8.17 % cumulative eff=8.17 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7836       all=100000     -- eff=7.84 % cumulative eff=7.84 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7914       all=100000     -- eff=7.91 % cumulative eff=7.91 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7857       all=100000     -- eff=7.86 % cumulative eff=7.86 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7825       all=100000     -- eff=7.82 % cumulative eff=7.82 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7889       all=100000     -- eff=7.89 % cumulative eff=7.89 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7847       all=100000     -- eff=7.85 % cumulative eff=7.85 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7845       all=100000     -- eff=7.85 % cumulative eff=7.84 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8233       all=100000     -- eff=8.23 % cumulative eff=8.23 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8233       all=100000     -- eff=8.23 % cumulative eff=8.23 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8232       all=100000     -- eff=8.23 % cumulative eff=8.23 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8238       all=100000     -- eff=8.24 % cumulative eff=8.24 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8217       all=100000     -- eff=8.22 % cumulative eff=8.22 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8233       all=100000     -- eff=8.23 % cumulative eff=8.23 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8220       all=100000     -- eff=8.22 % cumulative eff=8.22 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8116       all=100000     -- eff=8.12 % cumulative eff=8.12 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8116       all=100000     -- eff=8.12 % cumulative eff=8.12 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8116       all=100000     -- eff=8.12 % cumulative eff=8.12 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8115       all=100000     -- eff=8.12 % cumulative eff=8.11 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8118       all=100000     -- eff=8.12 % cumulative eff=8.12 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8118       all=100000     -- eff=8.12 % cumulative eff=8.12 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=8114       all=100000     -- eff=8.11 % cumulative eff=8.11 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7174       all=100000     -- eff=7.17 % cumulative eff=7.17 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7172       all=100000     -- eff=7.17 % cumulative eff=7.17 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7174       all=100000     -- eff=7.17 % cumulative eff=7.17 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7170       all=100000     -- eff=7.17 % cumulative eff=7.17 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7172       all=100000     -- eff=7.17 % cumulative eff=7.17 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7199       all=100000     -- eff=7.20 % cumulative eff=7.20 %
+Exactly one electron final state with lead electron energy E > 35 GeV: pass=7192       all=100000     -- eff=7.19 % cumulative eff=7.19 %
+>>> Extract the training and testing events for signal_30GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-3p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_30GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-4Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_30GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_30GeV_1e-4p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_40GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_40GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_40GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-3Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_40GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-3p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_40GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-4Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_40GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-4p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_40GeV_1e-5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_40GeV_1e-5Ve.root dataset.
+generated events 7196
+>>> Extract the training and testing events for signal_50GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_50GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_50GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-3Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_50GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-3p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_50GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-4Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_50GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-4p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_50GeV_1e-5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_50GeV_1e-5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_60GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_60GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_60GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-3Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_60GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-3p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_60GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-4Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_60GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-4p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_60GeV_1e-5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_60GeV_1e-5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_70GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_70GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_70GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-3Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_70GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-3p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_70GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-4Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_70GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-4p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_70GeV_1e-5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_70GeV_1e-5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_80GeV_1e-2 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-2Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_80GeV_1e-2p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-2p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_80GeV_1e-3 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-3Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_80GeV_1e-3p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-3p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_80GeV_1e-4 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-4Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_80GeV_1e-4p5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-4p5Ve.root dataset.
+generated events 100000
+>>> Extract the training and testing events for signal_80GeV_1e-5 from the /eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_80GeV_1e-5Ve.root dataset.
+generated events 100000
+RecoDiJetElectron_invMass: Float_t
+RecoDiJet_angle: Double_t
+RecoDiJet_delta_R: Float_t
+RecoDiJet_phi: Float_t
+RecoElectronTrack_absD0: ROOT::VecOps::RVec<float>
+RecoElectronTrack_absD0sig: ROOT::VecOps::RVec<float>
+RecoElectron_DiJet_delta_R: Float_t
+RecoElectron_LeadJet_delta_R: Float_t
+RecoElectron_SecondJet_delta_R: Float_t
+RecoElectron_lead_e: Float_t
+RecoLeadElectron_Pmiss_delta_theta: ROOT::VecOps::RVec<float>
+RecoMissingEnergy_e: ROOT::VecOps::RVec<float>
+RecoMissingEnergy_theta: ROOT::VecOps::RVec<float>
+event_index: ULong64_t
+n_RecoElectrons: Int_t
+printing the df_pd contents        RecoDiJetElectron_invMass  RecoDiJet_angle  RecoDiJet_delta_R  \
+count                7192.000000      7192.000000        7192.000000   
+mean                   79.390892         1.160783           1.544720   
+std                     2.496655         0.541462           0.791633   
+min                    40.680424         0.004404           0.008209   
+25%                    79.379057         0.759143           0.947808   
+50%                    79.914089         1.152975           1.455322   
+75%                    80.186493         1.517773           2.059174   
+max                    84.465683         3.120156           4.368196   
+
+       RecoDiJet_phi  RecoElectron_DiJet_delta_R  \
+count    7192.000000                 7192.000000   
+mean       -0.016040                    3.291322   
+std         1.823563                    0.351456   
+min        -3.140961                    0.364189   
+25%        -1.603855                    3.048507   
+50%        -0.038770                    3.181116   
+75%         1.577864                    3.479458   
+max         3.141243                    4.426508   
+
+       RecoElectron_LeadJet_delta_R  RecoElectron_SecondJet_delta_R  \
+count                   7192.000000                     7192.000000   
+mean                       3.122141                        2.783315   
+std                        0.364521                        0.663662   
+min                        1.241273                        0.002447   
+25%                        2.893042                        2.452706   
+50%                        3.082506                        2.858768   
+75%                        3.299514                        3.170217   
+max                        4.430893                        4.427579   
+
+       RecoElectron_lead_e   event_index  n_RecoElectrons  
+count          7192.000000   7192.000000           7192.0  
+mean             38.504967  49610.752920              1.0  
+std               2.484442  28742.083809              0.0  
+min              35.000340     41.000000              1.0  
+25%              36.379874  24496.000000              1.0  
+50%              38.111847  49769.500000              1.0  
+75%              40.255643  74634.500000              1.0  
+max              45.603848  99998.000000              1.0  
+RecoDiJet_delta_R             float32
+RecoElectron_DiJet_delta_R    float32
+RecoElectronTrack_absD0        object
+RecoDiJet_phi                 float32
+RecoMissingEnergy_theta        object
+RecoMissingEnergy_e            object
+RecoElectron_lead_e           float32
+dtype: object
+RecoDiJet_delta_R             0
+RecoElectron_DiJet_delta_R    0
+RecoElectronTrack_absD0       0
+RecoDiJet_phi                 0
+RecoMissingEnergy_theta       0
+RecoMissingEnergy_e           0
+RecoElectron_lead_e           0
+dtype: int64
+Columns with NaN values: Index([], dtype='object')
+NaN values after removal:
+RecoDiJet_delta_R             0
+RecoElectron_DiJet_delta_R    0
+RecoElectronTrack_absD0       0
+RecoDiJet_phi                 0
+RecoMissingEnergy_theta       0
+RecoMissingEnergy_e           0
+RecoElectron_lead_e           0
+dtype: int64
+converting column RecoElectronTrack_absD0 from object to float32
+converting column RecoMissingEnergy_theta from object to float32
+converting column RecoMissingEnergy_e from object to float32
+       RecoDiJet_delta_R  RecoElectron_DiJet_delta_R  RecoElectronTrack_absD0  \
+count        6874.000000                 6874.000000              6874.000000   
+mean            1.532298                    3.293999                 0.197697   
+std             0.776344                    0.333563                 0.223841   
+min             0.008209                    2.263547                 0.000023   
+25%             0.947076                    3.052790                 0.036966   
+50%             1.449316                    3.181586                 0.114570   
+75%             2.042597                    3.474144                 0.272302   
+max             3.918378                    4.342698                 1.129357   
+
+       RecoDiJet_phi  RecoMissingEnergy_theta  RecoMissingEnergy_e  \
+count    6874.000000              6874.000000          6874.000000   
+mean       -0.024934                 1.572139            10.617195   
+std         1.829040                 0.719178             0.669873   
+min        -3.140961                 0.010513             6.716021   
+25%        -1.624741                 0.993860            10.391360   
+50%        -0.043900                 1.590843            10.522930   
+75%         1.568563                 2.145833            10.708784   
+max         3.141076                 3.115041            14.952933   
+
+       RecoElectron_lead_e  
+count          6874.000000  
+mean             38.507713  
+std               2.487098  
+min              35.000340  
+25%              36.377094  
+50%              38.116230  
+75%              40.274963  
+max              45.603848  
