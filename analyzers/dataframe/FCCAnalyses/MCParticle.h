@@ -238,6 +238,10 @@ namespace MCParticle{
                                              const ROOT::VecOps::RVec<edm4hep::MCParticleData> &in,
                                              const ROOT::VecOps::RVec<int> &ind);
 
+  // remove elements of vector y from vector x
+  ROOT::VecOps::RVec<edm4hep::MCParticleData> remove(
+                ROOT::VecOps::RVec<edm4hep::MCParticleData> x,
+                ROOT::VecOps::RVec<edm4hep::MCParticleData> y);
 
 }//end NS MCParticle
 
