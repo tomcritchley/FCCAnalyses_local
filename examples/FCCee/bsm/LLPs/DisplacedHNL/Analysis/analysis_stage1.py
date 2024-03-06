@@ -2,11 +2,11 @@
 processList = {
 
         #centrally-produced backgrounds
-        'p8_ee_Zee_ecm91':{'chunks':100},
-        'p8_ee_Zbb_ecm91':{'chunks':100},
-        'p8_ee_Ztautau_ecm91':{'chunks':100},
-        'p8_ee_Zuds_ecm91':{'chunks':100},
-        'p8_ee_Zcc_ecm91':{'chunks':100},
+        #'p8_ee_Zee_ecm91':{'chunks':100},
+        #'p8_ee_Zbb_ecm91':{'chunks':100},
+        #'p8_ee_Ztautau_ecm91':{'chunks':100},
+        #'p8_ee_Zuds_ecm91':{'chunks':100},
+        #'p8_ee_Zcc_ecm91':{'chunks':100},
 
         #privately-produced signals
         #'eenu_30GeV_1p41e-6Ve':{},
@@ -31,7 +31,7 @@ prodTag     = "FCCee/spring2021/IDEA/"
 
 
 #Optional: output directory, default is local dir
-outputDir = "outputs/HNL_Majorana_ejj_50GeV_1e-3Ve/output_stage1/"
+#outputDir = "outputs/HNL_Majorana_ejj_50GeV_1e-3Ve/output_stage1/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
 
@@ -43,7 +43,7 @@ nCPUS       = 4
 
 #Optional running on HTCondor, default is False
 #runBatch    = False
-runBatch    = True
+#runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"

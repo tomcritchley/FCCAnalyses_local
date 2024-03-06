@@ -643,5 +643,5 @@ class RDFanalysis():
 			"Vertex_ntrk",
 			"ntracks",]
 
-]
+
                 return branchList
