@@ -163,37 +163,37 @@ class RDFanalysis():
                 .Define("MCParticles", "FCCAnalyses::MCParticle::sel_genStatus(1)(Particle)") #select final state particles
                 .Define("n_MCParticles", "FCCAnalyses::MCParticle::get_n(MCParticles)")
 
-                .Define("Jet_GenParticles0", "MCParticle::remove(MCParticles, FSGenElectron)") #remove electron
-                .Define("Jet_GenParticles", "MCParticle::remove(Jet_GenParticles0, FSGenNeutrino)") #remove neutrino
+                #.Define("Jet_GenParticles0", "MCParticle::remove(MCParticles, FSGenElectron)") #remove electron
+                #.Define("Jet_GenParticles", "MCParticle::remove(Jet_GenParticles0, FSGenNeutrino)") #remove neutrino
 
-                .Define("GP_px",          "FCCAnalyses::MCParticle::get_px(Jet_GenParticles)")
-                .Define("GP_py",          "FCCAnalyses::MCParticle::get_py(Jet_GenParticles)")
-                .Define("GP_pz",          "FCCAnalyses::MCParticle::get_pz(Jet_GenParticles)")
-                .Define("GP_e",           "FCCAnalyses::MCParticle::get_e(Jet_GenParticles)")
+                #.Define("GP_px",          "FCCAnalyses::MCParticle::get_px(Jet_GenParticles)")
+                #.Define("GP_py",          "FCCAnalyses::MCParticle::get_py(Jet_GenParticles)")
+                #.Define("GP_pz",          "FCCAnalyses::MCParticle::get_pz(Jet_GenParticles)")
+                #.Define("GP_e",           "FCCAnalyses::MCParticle::get_e(Jet_GenParticles)")
 
-                .Define("GenPseudo_jets",    "JetClusteringUtils::set_pseudoJets(GP_px, GP_py, GP_pz, GP_e)")
+                #.Define("GenPseudo_jets",    "JetClusteringUtils::set_pseudoJets(GP_px, GP_py, GP_pz, GP_e)")
 
-                .Define("FCCAnalysesGenJets_eekt", "JetClustering::clustering_ee_kt(2, 2, 0, 0)(GenPseudo_jets)")
-                .Define("GenJets_ee_kt",           "JetClusteringUtils::get_pseudoJets(FCCAnalysesGenJets_eekt)")
+                #.Define("FCCAnalysesGenJets_eekt", "JetClustering::clustering_ee_kt(2, 2, 0, 0)(GenPseudo_jets)")
+                #.Define("GenJets_ee_kt",           "JetClusteringUtils::get_pseudoJets(FCCAnalysesGenJets_eekt)")
 
-                .Define("GenJets_ee_kt_n", "JetClusteringUtils::get_n(GenJets_ee_kt)")
-                .Define("GenJets_ee_kt_e", "JetClusteringUtils::get_e(GenJets_ee_kt)")
-                .Define("GenJets_ee_kt_pt",        "JetClusteringUtils::get_pt(GenJets_ee_kt)")
-                .Define("GenJets_ee_kt_eta",        "JetClusteringUtils::get_eta(GenJets_ee_kt)")
-                .Define("GenJets_ee_kt_phi",        "JetClusteringUtils::get_phi(GenJets_ee_kt)")
-                .Define("GenJets_ee_kt_theta",        "JetClusteringUtils::get_theta(GenJets_ee_kt)")
+                #.Define("GenJets_ee_kt_n", "JetClusteringUtils::get_n(GenJets_ee_kt)")
+                #.Define("GenJets_ee_kt_e", "JetClusteringUtils::get_e(GenJets_ee_kt)")
+                #.Define("GenJets_ee_kt_pt",        "JetClusteringUtils::get_pt(GenJets_ee_kt)")
+                #.Define("GenJets_ee_kt_eta",        "JetClusteringUtils::get_eta(GenJets_ee_kt)")
+                #.Define("GenJets_ee_kt_phi",        "JetClusteringUtils::get_phi(GenJets_ee_kt)")
+                #.Define("GenJets_ee_kt_theta",        "JetClusteringUtils::get_theta(GenJets_ee_kt)")
 
-                .Define("GenLeadJet_e", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_e.at(0); else return float(-1.)")
-                .Define("GenLeadJet_pt", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_pt.at(0); else return float(-1.)")
-                .Define("GenLeadJet_eta", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_eta.at(0); else return float(-100.)")
-                .Define("GenLeadJet_phi", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_phi.at(0); else return float(-100.)")
-                .Define("GenLeadJet_theta", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_theta.at(0); else return float(-100.)")
+                #.Define("GenLeadJet_e", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_e.at(0); else return float(-1.)")
+                #.Define("GenLeadJet_pt", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_pt.at(0); else return float(-1.)")
+                #.Define("GenLeadJet_eta", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_eta.at(0); else return float(-100.)")
+                #.Define("GenLeadJet_phi", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_phi.at(0); else return float(-100.)")
+                #.Define("GenLeadJet_theta", "if (GenJets_ee_kt_n > 0) return GenJets_ee_kt_theta.at(0); else return float(-100.)")
 
-                .Define("GenSecondJet_e", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_e.at(1); else return float(-1.)")
-                .Define("GenSecondJet_pt", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_pt.at(1); else return float(-1.)")
-                .Define("GenSecondJet_eta", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_eta.at(1); else return float(-100.)")
-                .Define("GenSecondJet_phi", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_phi.at(1); else return float(-100.)")
-                .Define("GenSecondJet_theta", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_theta.at(1); else return float(-100.)")
+                #.Define("GenSecondJet_e", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_e.at(1); else return float(-1.)")
+                #.Define("GenSecondJet_pt", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_pt.at(1); else return float(-1.)")
+                #.Define("GenSecondJet_eta", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_eta.at(1); else return float(-100.)")
+                #.Define("GenSecondJet_phi", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_phi.at(1); else return float(-100.)")
+                #.Define("GenSecondJet_theta", "if (GenJets_ee_kt_n > 1) return GenJets_ee_kt_theta.at(1); else return float(-100.)")
 
                 #Remove electrons from jets :
                 .Define("Jet_ReconstructedParticles", "ReconstructedParticle::remove(ReconstructedParticles, RecoElectrons)")                  
@@ -634,12 +634,12 @@ class RDFanalysis():
                         "RecoMissingEnergy_theta",
                         "RecoMissingEnergy_e",
                         "RecoDiJetElectron_invMass",
-                        #"cross_section",
-			#"Vertex_chi2",
-			#"PrimaryTracks",
-			#"n_primt",
-			#"Vertex_ntrk",
-			#"ntracks",]
+                        "cross_section",
+			"Vertex_chi2",
+			"PrimaryTracks",
+			"n_primt",
+			"Vertex_ntrk",
+			"ntracks",]
 
 ]
                 return branchList
