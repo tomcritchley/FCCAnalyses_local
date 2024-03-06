@@ -132,6 +132,9 @@ namespace ReconstructedParticle{
   /// Return the sum of two 4-vectors
   TLorentzVector get_tlv_sum(TLorentzVector v1, TLorentzVector v2);
 
+  /// Return the sum of three 4-vectors
+  TLorentzVector get_tlv_sum3(TLorentzVector v1, TLorentzVector v2, TLorentzVector v3);
+  
   /// Return energy of TLorentzVector
   ROOT::VecOps::RVec<float> get_tlv_e(TLorentzVector in);
 
@@ -144,6 +147,20 @@ namespace ReconstructedParticle{
   /// Return eta of TLorentzVector
   ROOT::VecOps::RVec<float> get_tlv_eta(TLorentzVector in);
 
+  /// Return theta of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_theta(TLorentzVector in);
+ 
+  /// Return px of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_px(TLorentzVector in);
+
+  /// Return py of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_py(TLorentzVector in);
+
+  /// Return pz of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_pz(TLorentzVector in);
+
+  /// Return mass of TLorentzVector
+  ROOT::VecOps::RVec<float> get_tlv_mass(TLorentzVector in);
 
   /// concatenate both input vectors and return the resulting vector
   ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> merge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> x, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> y);
@@ -160,12 +177,8 @@ namespace ReconstructedParticle{
   /// get number of b-jets
   int getJet_ntags(ROOT::VecOps::RVec<bool> in);
 
-///////////////////////////////////////////
-
-/// get minimum dR between two reco particles
-ROOT::VecOps::RVec<float> minDR(ROOT::VecOps::RVec<float> jpt, ROOT::VecOps::RVec<float> jeta, ROOT::VecOps::RVec<float> jphi, ROOT::VecOps::RVec<float> jpt_ref, ROOT::VecOps::RVec<float> jeta_ref, ROOT::VecOps::RVec<float> jphi_ref, float ptThr, float maxDr);
-
-//////////////////////////////////////////
+  /// get minimum dR between two reco particles
+  ROOT::VecOps::RVec<float> minDR(ROOT::VecOps::RVec<float> jpt, ROOT::VecOps::RVec<float> jeta, ROOT::VecOps::RVec<float> jphi, ROOT::VecOps::RVec<float> jpt_ref, ROOT::VecOps::RVec<float> jeta_ref, ROOT::VecOps::RVec<float> jphi_ref, float ptThr, float maxDr);
 
 }//end NS ReconstructedParticle
 

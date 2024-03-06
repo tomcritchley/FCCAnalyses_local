@@ -369,9 +369,20 @@ TLorentzVector get_tlv_PtEtaPhiE(float pt, float eta, float phi, float e) {
 
 TLorentzVector get_tlv_sum(TLorentzVector v1, TLorentzVector v2) {
   TLorentzVector result;
+  if (v1.Energy() > -1)
   result = v1 + v2;
+  else result.SetPtEtaPhiE(0, 0, 0, -1);
   return result;
 }
+
+TLorentzVector get_tlv_sum3(TLorentzVector v1, TLorentzVector v2, TLorentzVector v3) {
+  TLorentzVector result;
+  if (v1.Energy() > -1)
+  result = v1 + v2 + v3;
+  else result.SetPtEtaPhiE(0, 0, 0, -1);
+  return result;
+}
+
 
 ROOT::VecOps::RVec<float> get_tlv_phi(TLorentzVector in) {
   ROOT::VecOps::RVec<float> result;
@@ -391,9 +402,40 @@ ROOT::VecOps::RVec<float> get_tlv_eta(TLorentzVector in) {
   return result;
 }
 
+ROOT::VecOps::RVec<float> get_tlv_theta(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Theta());
+  return result;
+}
+
+
 ROOT::VecOps::RVec<float> get_tlv_pt(TLorentzVector in) {
   ROOT::VecOps::RVec<float> result;
   result.push_back(in.Pt());
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_px(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Px());
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_py(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Py());
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_pz(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.Pz());
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_tlv_mass(TLorentzVector in) {
+  ROOT::VecOps::RVec<float> result;
+  result.push_back(in.M());
   return result;
 }
 
@@ -445,46 +487,44 @@ ROOT::VecOps::RVec<float> minDR(
                         ROOT::VecOps::RVec<float> jphi_ref,
                         float ptThr,
                         float maxDr = 0.3 
-                                   ){
-         ROOT::VecOps::RVec<int> idx, match_idx, ref_matched_idx;
-         ROOT::VecOps::RVec<float> minDRVec; 
-         for(int i=0; i < jpt.size(); i++) idx.push_back(i);
+                                ){
+                                                                                                                                                                     ROOT::VecOps::RVec<int> idx, match_idx, ref_matched_idx;
+        ROOT::VecOps::RVec<float> minDRVec; 
+        for(int i=0; i < jpt.size(); i++) idx.push_back(i);
+                                                                                                                                                                     for(int i=0; i < jpt_ref.size() && idx.size()>0; i++){
+                                                                                                                                                                        ROOT::VecOps::RVec<float> pt = ROOT::VecOps::Take(jpt, idx);
+           ROOT::VecOps::RVec<float> eta = ROOT::VecOps::Take(jeta, idx);
+           ROOT::VecOps::RVec<float> phi = ROOT::VecOps::Take(jphi, idx);
+                                                                                                                                                                        float minDr = 999;
+           std::vector<float> dr;
+           const float ptRef = jpt_ref.at(i);
+           const float etaRef = jeta_ref.at(i);
+           const float phiRef = jphi_ref.at(i);  
 
-         for(int i=0; i < jpt_ref.size() && idx.size()>0; i++){
-            ROOT::VecOps::RVec<float> pt = ROOT::VecOps::Take(jpt, idx);
-            ROOT::VecOps::RVec<float> eta = ROOT::VecOps::Take(jeta, idx);
-            ROOT::VecOps::RVec<float> phi = ROOT::VecOps::Take(jphi, idx);
-
-            float minDr = 999;
-            std::vector<float> dr;
-            const float ptRef = jpt_ref.at(i);
-            const float etaRef = jeta_ref.at(i);
-            const float phiRef = jphi_ref.at(i);  
-
-            for (int j=0; j < idx.size(); j++){
-                //if(std::abs(pt.at(j)-ptRef)/ptRef <= ptThr){
-                   float deta = std::abs(etaRef - eta.at(j)); 
-                   float dphi = std::abs(acos(cos(phiRef - phi.at(j)))); 
-                   float dR = std::sqrt(std::pow(deta,2)+std::pow(dphi, 2));
-                   dr.push_back(dR);                         
-               // }  else dr.push_back(99.);
-            }
-            
-            if(dr.size()>0){
-                int min_id = std::distance(std::begin(dr), std::min_element(std::begin(dr), std::end(dr)));
-                if (dr.at(min_id) <= minDr){
-                    minDr = dr.at(min_id);  
-                    minDRVec.push_back(minDr);
-                }
-                if (dr.at(min_id) <= maxDr){
-                    match_idx.push_back(idx[min_id]);
-                    ref_matched_idx.push_back(i);
-                }  
+           for (int j=0; j < idx.size(); j++){
+             //if(std::abs(pt.at(j)-ptRef)/ptRef <= ptThr){
+                                                                                                                                                                          float deta = std::abs(etaRef - eta.at(j)); 
+             float dphi = std::abs(acos(cos(phiRef - phi.at(j)))); 
+             float dR = std::sqrt(std::pow(deta,2)+std::pow(dphi, 2));
+             dr.push_back(dR);                         
+     // }  else dr.push_back(99.);
+                                             }
+                                                                                                                                                                        if(dr.size()>0){
+               int min_id = std::distance(std::begin(dr), std::min_element(std::begin(dr), std::end(dr)));
+               if (dr.at(min_id) <= minDr){
+                   minDr = dr.at(min_id);  
+                   minDRVec.push_back(minDr);
+                                                                                                                                                                                }
+               if (dr.at(min_id) <= maxDr){
+                   match_idx.push_back(idx[min_id]);
+                   ref_matched_idx.push_back(i);
+                   }  
             }
          }
-         return minDRVec;
-      }
+        return minDRVec;
+     }
 /////////////////////////////////////
+
 
 }//end NS ReconstructedParticle
 
