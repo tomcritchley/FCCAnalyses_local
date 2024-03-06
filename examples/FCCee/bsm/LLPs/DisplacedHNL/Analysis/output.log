@@ -1,0 +1,46 @@
+TUnixSystem::SetDisplay:0: RuntimeWarning: DISPLAY not set, setting it to 129.194.89.84:0.0
+input_line_181:2:86: error: no member named 'get_n' in namespace 'FCCAnalyses::JetClusteringUtils'
+auto func49(ROOT::VecOps::RVec<fastjet::PseudoJet>& var0){return JetClusteringUtils::get_n(var0)
+                                                                 ~~~~~~~~~~~~~~~~~~~~^
+input_line_185:2:86: error: no member named 'get_n' in namespace 'FCCAnalyses::JetClusteringUtils'
+auto func49(ROOT::VecOps::RVec<fastjet::PseudoJet>& var0){return JetClusteringUtils::get_n(var0)
+                                                                 ~~~~~~~~~~~~~~~~~~~~^
+----> Load cxx analyzers from libFCCAnalyses... 
+--------------loading analysis file   /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/analysis_stage1_rerun_jets.py
+The variable <outputDirEos> is optional in your analysis.py file, return default empty string
+The variable <runBatch> is optional in your analysis.py file, return default value False
+----> yaml file /cvmfs/fcc.cern.ch/FCCDicts/yaml/FCCee/winter2023/IDEA/p8_ee_Zcc_ecm91/merge.yaml succesfully opened
+----> Running process p8_ee_Zcc_ecm91 with fraction=1e-07, output=p8_ee_Zcc_ecm91, chunks=1
+----> Running Locally
+----> Create dataframe object from files: 
+    /eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/p8_ee_Zcc_ecm91/events_146767561.root
+----> nevents original=0  local=100000
+The variable <geometryFile> is optional in your analysys.py file, return default value empty string
+The variable <readoutName> is optional in your analysys.py file, return default value empty string
+----> Init done, about to run 100000 events on 4 CPUs
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/bin/fccanalysis", line 33, in <module>
+    run(parser)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/config/FCCAnalysisRun.py", line 1075, in run
+    if args.command == "run":      runStages(args, rdfModule, args.preprocess, analysisFile)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/config/FCCAnalysisRun.py", line 693, in runStages
+    runLocal(rdfModule, chunkList[ch], args)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/config/FCCAnalysisRun.py", line 539, in runLocal
+    runRDF(rdfModule, fileListRoot, outFile, nevents_local, args)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/config/FCCAnalysisRun.py", line 385, in runRDF
+    df2 = getElement(rdfModule.RDFanalysis, "analysers")(df)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/analysis_stage1_rerun_jets.py", line 214, in analysers
+    .Define("RecoJets_ee_kt_n", "JetClusteringUtils::get_n(RecoJets_ee_kt)")
+  File "/cvmfs/sw.hsf.org/key4hep/releases/2023-11-23/x86_64-centos7-gcc12.2.0-opt/root/6.28.06-dgx5r6/lib/root/ROOT/_pythonization/_rdf_pyz.py", line 372, in _PyDefine
+    return rdf._OriginalDefine(col_name, callable_or_str)
+cppyy.gbl.std.runtime_error: Template method resolution failed:
+  ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void> ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void>::Define(basic_string_view<char,char_traits<char> > name, basic_string_view<char,char_traits<char> > expression) =>
+    runtime_error: 
+RDataFrame: An error occurred during just-in-time compilation. The lines above might indicate the cause of the crash
+ All RDF objects that have not run an event loop yet should be considered in an invalid state.
+
+  ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void> ROOT::RDF::RInterface<ROOT::Detail::RDF::RLoopManager,void>::Define(basic_string_view<char,char_traits<char> > name, basic_string_view<char,char_traits<char> > expression) =>
+    runtime_error: 
+RDataFrame: An error occurred during just-in-time compilation. The lines above might indicate the cause of the crash
+ All RDF objects that have not run an event loop yet should be considered in an invalid state.
+
