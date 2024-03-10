@@ -151,36 +151,39 @@ if __name__ == "__main__":
 
     label = args.label
     
-    print(f"Loading data: train_{label}.root")
-    sample = "_20gev"
-    x, y, w, w_training = load_data(f"/eos/user/t/tcritchl/xgBOOST/training{run}/train_{label}.root", f"/eos/user/t/tcritchl/xgBOOST/training{run}/train_background_total.root")
-    print("x type:", type(x), "x shape:", x.shape)
-    print("y type:", type(y), "y shape:", y.shape)
-    print("w type:", type(w), "w shape:", w.shape)
-    print("Sample elements in x:", x[:5])
-    print("Sample elements in y:", y[:5])
-    print("Sample elements in w:", w[:5])
-    print("Done Loading")
+    if not os.path.exists(f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root"):
+        print(f"Loading data: train_{label}.root")
+        sample = "_20gev"
+        x, y, w, w_training = load_data(f"/eos/user/t/tcritchl/xgBOOST/training{run}/train_{label}.root", f"/eos/user/t/tcritchl/xgBOOST/training{run}/train_background_total.root")
+        print("x type:", type(x), "x shape:", x.shape)
+        print("y type:", type(y), "y shape:", y.shape)
+        print("w type:", type(w), "w shape:", w.shape)
+        print("Sample elements in x:", x[:5])
+        print("Sample elements in y:", y[:5])
+        print("Sample elements in w:", w[:5])
+        print("Done Loading")
 
-    param_grid = {
-    'max_depth': [3, 5, 7],
-    'n_estimators': [100, 200, 500],
-}
+        param_grid = {
+        'max_depth': [3, 5, 7],
+        'n_estimators': [100, 200, 500],
+    }
 
-    grid_search = GridSearchCV(estimator=XGBClassifier(), param_grid=param_grid, scoring='accuracy', cv=3)
-    grid_search.fit(x, y, sample_weight=w_training)
-    bdt = XGBClassifier(max_depth=3, n_estimators=500)
+        grid_search = GridSearchCV(estimator=XGBClassifier(), param_grid=param_grid, scoring='accuracy', cv=3)
+        grid_search.fit(x, y, sample_weight=w_training)
+        bdt = XGBClassifier(max_depth=3, n_estimators=500)
 
-    best_params = grid_search.best_params_
-    bdt = XGBClassifier(**best_params)
-    bdt.fit(x, y, sample_weight=w_training)
-    sorted_idx = np.argsort(bdt.feature_importances_)[::-1]
-    plot_importance(bdt, max_num_features = 15)
-    pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/feature_importance_plot_{label}.pdf")
-    pyplot.show()
-    # Save model in TMVA format
-    print("Training done on ",x.shape[0],f"events. Saving model in tmva_{label}.root")
-    ROOT.TMVA.Experimental.SaveXGBoost(bdt, "myBDT", f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root", num_inputs=x.shape[1])
-    
-    plot_tree(bdt, num_trees=5, rankdir='LR')  # Adjust num_trees as needed
-    pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/decision_tree_plot_{label}.pdf")
+        best_params = grid_search.best_params_
+        bdt = XGBClassifier(**best_params)
+        bdt.fit(x, y, sample_weight=w_training)
+        sorted_idx = np.argsort(bdt.feature_importances_)[::-1]
+        plot_importance(bdt, max_num_features = 15)
+        pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/feature_importance_plot_{label}.pdf")
+        pyplot.show()
+        # Save model in TMVA format
+        print("Training done on ",x.shape[0],f"events. Saving model in tmva_{label}.root")
+        ROOT.TMVA.Experimental.SaveXGBoost(bdt, "myBDT", f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root", num_inputs=x.shape[1])
+        
+        plot_tree(bdt, num_trees=5, rankdir='LR')  # Adjust num_trees as needed
+        pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/decision_tree_plot_{label}.pdf")
+    else:
+        print(f"The trained model for {label} already exists! No need to re-run :)")
