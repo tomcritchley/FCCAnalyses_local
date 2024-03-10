@@ -36,15 +36,21 @@ for signal_point in $signal_points; do
     # Loop over each label for the current signal point
     for label in "${labels[@]}"; do
         
+        # Create a unique shell script for the current signal point
+        script_file="RunAnSt1_HTC_${signal_point}_${label}.sh"
+        echo "#!/bin/bash" > "$script_file"
+        echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_script/training_macro.py --label \"$label\" --json_file \"$json_file\"" >> "$script_file"
+        chmod +x "$script_file"
+
         # Create a unique Condor submission script for the current signal point
-        cat <<EOF > "RunAnSt1_HTC_${signal_point}.condor"
+        cat <<EOF > "RunAnSt1_HTC_${signal_point}_${label}.condor"
 #!/bin/bash
-executable     = python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_script/training_macro.py --label "$label" --json_file "$json_file"
+executable     = ./$script_file
 universe       = vanilla
 arguments      = \$(ClusterId) \$(ProcId)
-output         = bdt_training_${signal_point}.\$(ClusterId).\$(ProcId).out
-error          = bdt_training_${signal_point}.\$(ClusterId).\$(ProcId).error
-log            = bdt_training_${signal_point}.\$(ClusterId).\$(ProcId).log
+output         = bdt_training_${signal_point}_${label}.\$(ClusterId).\$(ProcId).out
+error          = bdt_training_${signal_point}_${label}.\$(ClusterId).\$(ProcId).error
+log            = bdt_training_${signal_point}_${label}.\$(ClusterId).\$(ProcId).log
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
@@ -52,9 +58,9 @@ requirements   = (OpSysAndVer =?= "CentOS7")
 +JobFlavour    = workday
 queue
 EOF
-        
-        # Submit a Condor job for the current signal point
-        condor_submit "RunAnSt1_HTC_${signal_point}.condor"
+
+        # Submit a Condor job for the current signal point and label
+        condor_submit "RunAnSt1_HTC_${signal_point}_${label}.condor"
     done
 
 done
