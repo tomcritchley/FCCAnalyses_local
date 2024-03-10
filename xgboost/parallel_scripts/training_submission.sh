@@ -47,7 +47,7 @@ for signal_point in $signal_points; do
         echo "should_transfer_files   = Yes" >> "RunAnSt1_HTC_${signal_point}.condor"
         echo "when_to_transfer_output = ON_EXIT" >> "RunAnSt1_HTC_${signal_point}.condor"
         echo "environment    = \"TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'\"" >> "RunAnSt1_HTC_${signal_point}.condor"
-        echo "requirements   = (OpSysAndVer =?= \"CentOS7\")" >> "RunAnSt1_HTC_${signal_point}.condor"
+        echo "requirements   = \(OpSysAndVer =?= \"CentOS7\"\)" >> "RunAnSt1_HTC_${signal_point}.condor"
         echo "+JobFlavour    = workday" >> "RunAnSt1_HTC_${signal_point}.condor"
         echo "queue" >> "RunAnSt1_HTC_${signal_point}.condor"
         
