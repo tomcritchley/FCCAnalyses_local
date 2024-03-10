@@ -14,43 +14,40 @@ echo "Masses: $masses"
 couplings=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-# Loop over each signal point
-for signal_point in $signal_points; do
-    
-    base_path="/eos/user/t/tcritchl/xgBOOST/training8"
-    # Generate labels for the current signal point
-    labels=()
-    for mass in $masses; do
-        for coupling in $couplings; do
-            base_file="train_signal_${mass}_${coupling//Ve/}.root"
-            signal_file="${base_path}/${base_file}"
-            if [ -f "$signal_file" ]; then
-                labels+=("signal_${mass}_${coupling}")
-                echo "File $signal_file added to label as signal_${mass}_${coupling}"
-            else
-                echo "File $signal_file does not exist, moving to next file"
-            fi
-        done
+base_path="/eos/user/t/tcritchl/xgBOOST/training8"
+# Generate labels for the current signal point
+labels=()
+for mass in $masses; do
+    for coupling in $couplings; do
+        base_file="train_signal_${mass}_${coupling//Ve/}.root"
+        signal_file="${base_path}/${base_file}"
+        if [ -f "$signal_file" ]; then
+            labels+=("signal_${mass}_${coupling}")
+            echo "File $signal_file added to label as signal_${mass}_${coupling}"
+        else
+            echo "File $signal_file does not exist, moving to next file"
+        fi
     done
+done
 
-    # Loop over each label for the current signal point
-    for label in "${labels[@]}"; do
-        
-        # Create a unique shell script for the current signal point
-        script_file="RunAnSt1_HTC_${signal_point}_${label}.sh"
-        echo "#!/bin/bash" > "$script_file"
-        echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_script/training_macro.py --label \"$label\" --json_file \"$json_file\"" >> "$script_file"
-        chmod +x "$script_file"
+# Loop over each label for the current signal point
+for label in "${labels[@]}"; do
+    
+    # Create a unique shell script for the current signal point
+    script_file="RunAnSt1_HTC_${label}.sh"
+    echo "#!/bin/bash" > "$script_file"
+    echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/training_macro.py --label \"$label\" --json_file \"$json_file\"" >> "$script_file"
+    chmod +x "$script_file"
 
-        # Create a unique Condor submission script for the current signal point
-        cat <<EOF > "RunAnSt1_HTC_${signal_point}_${label}.condor"
+    # Create a unique Condor submission script for the current signal point
+    cat <<EOF > "RunAnSt1_HTC_${label}.condor"
 #!/bin/bash
 executable     = ./$script_file
 universe       = vanilla
 arguments      = \$(ClusterId) \$(ProcId)
-output         = bdt_training_${signal_point}_${label}.\$(ClusterId).\$(ProcId).out
-error          = bdt_training_${signal_point}_${label}.\$(ClusterId).\$(ProcId).error
-log            = bdt_training_${signal_point}_${label}.\$(ClusterId).\$(ProcId).log
+output         = bdt_training_${label}.\$(ClusterId).\$(ProcId).out
+error          = bdt_training_${label}.\$(ClusterId).\$(ProcId).error
+log            = bdt_training_${label}.\$(ClusterId).\$(ProcId).log
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
@@ -59,8 +56,6 @@ requirements   = (OpSysAndVer =?= "CentOS7")
 queue
 EOF
 
-        # Submit a Condor job for the current signal point and label
-        condor_submit "RunAnSt1_HTC_${signal_point}_${label}.condor"
-    done
-
+    # Submit a Condor job for the current signal point and label
+    condor_submit "RunAnSt1_HTC_${label}.condor"
 done
