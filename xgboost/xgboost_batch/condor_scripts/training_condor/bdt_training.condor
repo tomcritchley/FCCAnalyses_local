@@ -32,11 +32,11 @@ universe       = vanilla
 # ## if necessary, copy further input file(s) and directories to the worker node as a comma separated list. Can also be http URLs
 # transfer_input_files = data2.file, data3.file
 # ## name of the output file(s) to be copied back after the job has finished
-output         = bdt_training.$(ClusterId).$(ProcId).out
+output         = bdt_trainingrun8.$(ClusterId).$(ProcId).out
 # ## name of the stderr file
-error          = bdt_training.$(ClusterId).$(ProcId).error
+error          = bdt_trainingrun8.$(ClusterId).$(ProcId).error
 # ## name of the stdout file
-log            = bdt_training.$(ClusterId).$(ProcId).log
+log            = bdt_trainingrun8.$(ClusterId).$(ProcId).log
 # ## copy executable and input file (if any) to the worker node?
 should_transfer_files   = Yes
 # ## when to transfer output? 
@@ -63,6 +63,6 @@ environment 	= "TESTVAR1=1 TESTVAR2=""2"" TESTVAR3='spacey ''quoted'' value'"
 # ## encrypt all job files transparently if you are paranoid about the possibility to leave files readable after a crash. Costs you CPU and any option for recovery
 requirements = (OpSysAndVer =?= "CentOS7")
 # encrypt_execute_directory = True
-+JobFlavour = "workday"
++JobFlavour = "testmatch"
 # how many instances of the job should be run - if no value is set run just one instance
 queue

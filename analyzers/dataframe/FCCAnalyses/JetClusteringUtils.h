@@ -84,6 +84,10 @@ namespace FCCAnalyses {
     /** Get jet theta. Details. */
     ROOT::VecOps::RVec<float> get_theta(const ROOT::VecOps::RVec<fastjet::PseudoJet>& in);
 
+    /** Get jet n. Details. */
+    int get_n(ROOT::VecOps::RVec<fastjet::PseudoJet> x);
+
+
     ///Internal methods
     JetClustering::FCCAnalysesJet initialise_FCCAnalysesJet();
 

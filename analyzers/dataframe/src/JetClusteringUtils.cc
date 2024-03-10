@@ -130,6 +130,13 @@ namespace FCCAnalyses {
       return result;
     }
 
+    int get_n(ROOT::VecOps::RVec<fastjet::PseudoJet> x) {
+      int result =  x.size();
+      return result;
+}
+
+
+
     JetClustering::FCCAnalysesJet initialise_FCCAnalysesJet() {
       JetClustering::FCCAnalysesJet result;
       std::vector<fastjet::PseudoJet> jets;
