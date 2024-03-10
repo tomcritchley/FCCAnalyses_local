@@ -14,7 +14,8 @@ couplings=$(python -c "import json; data = json.load(open('$json_file')); print(
 
 # Loop over each signal point
 for signal_point in $signal_points; do
- 
+    
+    base_path="/eos/user/t/tcritchl/xgBOOST/training${run}"
     # Generate labels for the current signal point
     labels=()
     for mass in $masses; do
