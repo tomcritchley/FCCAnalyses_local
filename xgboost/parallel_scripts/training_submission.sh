@@ -26,6 +26,7 @@ for signal_point in $signal_points; do
             signal_file="${base_path}/${base_file}"
             if [ -f "$signal_file" ]; then
                 labels+=("signal_${mass}_${coupling}")
+                echo "File $signal_file added to label as signal_${mass}_${coupling}"
             else
                 echo "File $signal_file does not exist, moving to next file"
             fi
@@ -34,12 +35,10 @@ for signal_point in $signal_points; do
 
     # Loop over each label for the current signal point
     for label in "${labels[@]}"; do
-        # Run the training script for the current signal point
-        python3 /afs/cern.ch/t/tcritchl/FCCAnalyses_local/xgboost/parallel_script/training_macro.py --label "$label" --json_file "$json_file"
         
         # Create a unique Condor submission script for the current signal point
         echo "#!/bin/bash" > "RunAnSt1_HTC_${signal_point}.condor"
-        echo "executable     = bdt_training.sh" >> "RunAnSt1_HTC_${signal_point}.condor"
+        echo "executable     = python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_script/training_macro.py --label "$label" --json_file "$json_file" >> "RunAnSt1_HTC_${signal_point}.condor"
         echo "universe       = vanilla" >> "RunAnSt1_HTC_${signal_point}.condor"
         echo "arguments    = $(ClusterId) $(ProcId)" >> "RunAnSt1_HTC_${signal_point}.condor"
         echo "output         = bdt_training_${signal_point}.$(ClusterId).$(ProcId).out" >> "RunAnSt1_HTC_${signal_point}.condor"
