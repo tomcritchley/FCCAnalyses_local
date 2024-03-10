@@ -15,14 +15,14 @@ couplings=$(python -c "import json; data = json.load(open('$json_file')); print(
 echo "Couplings: $couplings"
 
 # Loop over each signal point
-for signal_point in $signal_points; do
+for signal_point in $signal_points; doa
     
     base_path="/eos/user/t/tcritchl/xgBOOST/training8"
     # Generate labels for the current signal point
     labels=()
     for mass in $masses; do
         for coupling in $couplings; do
-            base_file="train_signal_${mass}_${coupling}.root"
+            base_file="train_signal_${mass}_${coupling//Ve/}.root"
             signal_file="${base_path}/${base_file}"
             if [ -f "$signal_file" ]; then
                 labels+=("signal_${mass}_${coupling}")
