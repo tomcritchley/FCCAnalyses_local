@@ -50,7 +50,7 @@ for mass in masses:
         if os.path.exists(signal_file):
             labels.append(f"signal_{mass}_{coupling}") #label will be of the form "signal_10GeV_1e-2"
         else:
-            print(f"file {base_file} does not exist, moving to next file")
+            print(f"file {signal_file} does not exist, moving to next file")
 
 print(labels) #list of labels for the data prepared thing..
 
