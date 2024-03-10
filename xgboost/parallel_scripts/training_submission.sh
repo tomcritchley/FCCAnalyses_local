@@ -5,11 +5,9 @@ source /cvmfs/sft.cern.ch/lcg/views/dev3/latest/x86_64-centos7-gcc11-opt/setup.s
 # Define the JSON file path
 json_file="/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb24.json"
 
-# Extract signal points, masses, and couplings from the JSON file
-# Convert signal points, masses, and couplings to sets to ensure uniqueness
 signal_points=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([f'{key.split('_')[-2]}_{key.split('_')[-1]}' for key in data])))")
-masses=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-2] for key in data])))")
-couplings=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
+masses=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([f'{key.split('_')[-2]}' for key in data])))")
+couplings=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([f'{key.split('_')[-1]}' for key in data])))")
 
 # Loop over each signal point
 for signal_point in $signal_points; do
