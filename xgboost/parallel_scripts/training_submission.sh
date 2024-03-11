@@ -35,11 +35,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /cvmfs/sft.cern.ch/lcg/views/dev3/latest/x86_64-centos7-gcc11-opt/setup.sh" >> "$script_file"
-<<<<<<< HEAD
-    echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/training_macro.py --label \"$label\" --json_file \"$json_file\"" >> "$script_file"
-=======
     echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/training_macro.py --label \"$label\"" >> "$script_file"
->>>>>>> 7423363c0a6bda4ee60524b76383cdae0cb90c1e
     chmod +x "$script_file"
 
     # Create a unique Condor submission script for the current signal point
