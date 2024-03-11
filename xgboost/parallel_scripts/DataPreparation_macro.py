@@ -86,39 +86,75 @@ variables = [
     "RecoDiJet_phi",
     "RecoMissingEnergy_theta",
     "RecoMissingEnergy_e",
-    "RecoElectron_lead_e"
+    "RecoElectron_lead_e",
+    "Vertex_chi2", #new variable
+    "n_primt", #new variable -> we want (ntracks - n_primt)
+    "ntracks",
 ]
 
-#logic for one combined soup of background --> this needs to change
-
-raw_background = [(f"{input_bkg}p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91.root", "6654.46"),(f"{input_bkg}p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91.root", "5215.46"), (f"{input_bkg}ejjnu/ejjnu.root", "0.014")]
-
-bkg = ["placeholder", "background_total"]
+raw_background = [
+    
+    (f"{input_bkg}p8_ee_Zbb_ecm91/", "6654.46"), #dir for the bb chunks
+    (f"{input_bkg}p8_ee_Zcc_ecm91/", "5215.46"), #dir for the cc chunks
+    (f"{input_bkg}ejjnu/", "0.014") #dir for ejjnu
+]
 
 data = []
 
-data.append(bkg)
+background = []
+for bg_dir, bg_xs in raw_background:
+    # Loop over each chunk file in the directory
+    for chunk_file in os.listdir(bg_dir):
+        if chunk_file.endswith('.root'):
+            filepath = os.path.join(bg_dir, chunk_file)
+            if bg_xs == "6654.46":
+                label = f"background_{os.path.splitext(chunk_file)[0]}_bb"
+            elif bg_xs == "5215.46":
+                label = f"background_{os.path.splitext(chunk_file)[0]}_cc"
+            elif bg_xs == "0.014":
+                label = f"background_{os.path.splitext(chunk_file)[0]}"
+            background.append((filepath, label))
 
+bkg_placeholder = ("bkg_placeholder_name","background_combined")
+data.append(bkg_placeholder)
+
+print(f"background list: {background}") #check what this first loop is doing
+ 
 for list in signal_files:
-    data.append(list)
+    data.append(list) #add the signal files
 
 print(f"data is: {data}")
 
 if __name__ == "__main__":
     
     #dealing with background first, then iterate over the signals:
-
-    for filepath, label in data:
+    
+    for list in data:
+        
+        label = list[1]
+        filepath = list[0]
+        
         print(">>> Extract the training and testing events for {} from the {} dataset.".format(
             label, filepath))
         
         if label.startswith("signal"):
 
-            df = ROOT.RDataFrame("events", filepath)
+            df = ROOT.RDataFrame("events", filepath) #three seperate df for the signals
         
         elif label.startswith("background"):
-           
-            df = ROOT.RDataFrame("events", {raw_background[0][0],raw_background[1][0],raw_background[2][0]})
+            
+            print(f"background loop for label {label}")
+            
+            background_files = ()
+            
+            for list in background:
+                background_files.append(list[0])
+                ##this wont work because every time it enters a background it will try to create a new dataframe, we only want the dataframe with all the processed backrgounds
+                ##placeholder might work
+            print(f"we're in the background files loop, here are the background files -- {background_files}")
+            print(f"generating a combined dataframe object ...")
+            df = ROOT.RDataFrame("events", background_files)
+            print(f"finished generating dataframe!")
         
         generated_events = df.Count().GetValue()
 
@@ -127,17 +163,15 @@ if __name__ == "__main__":
         
         df = df.Define("event_index", "rdfentry_")
 
-        # Book cutflow report
         report = df.Report()
 
         columns = ROOT.std.vector["string"](variables)
         
         if label.startswith("background"):
             columns.push_back("cross_section")
-        if label.startswith("background"):
-        #filter 10/90 split
-            df.Filter(f"event_index % {bkg_split}  == 0", "Select events with even event number for training").Snapshot("events", f"/eos/user/t/tcritchl/xgBOOST/training{run}/train_{label}.root", columns)
-            df.Filter(f"event_index % {bkg_split} != 0", "Select events with odd event number for testing").Snapshot("events", f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_{label}.root", columns)
+
+            df.Filter(f"event_index % {bkg_split}  == 0", "Select events with even event number for training").Snapshot("events", f"/eos/user/t/tcritchl/xgBOOST/training{run}/train_total_bkg.root", columns)
+            df.Filter(f"event_index % {bkg_split} != 0", "Select events with odd event number for testing").Snapshot("events", f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_total_bkg.root", columns)
         
         elif label.startswith("signal"):
             

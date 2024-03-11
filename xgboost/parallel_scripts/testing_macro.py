@@ -5,6 +5,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import os
+import argparse
 from sklearn.metrics import roc_curve, auc
 import json
 
@@ -47,9 +48,15 @@ bdt_thr = 0.9
 ###################################### BDT PREDICTIONS ###########################################################
 ##################################################################################################################
 
-results_dict = {}
+if __name__ == "__main__":
+    
+    results_dict = {}
 
-for label in labels:
+    parser = argparse.ArgumentParser(description='BDT Training Script')
+    parser.add_argument('--label', help='Label for the data', metavar='label')
+    args = parser.parse_args()
+
+    label = args.label
 
     significance_direction = significance_directions[1]
 
@@ -113,7 +120,7 @@ for label in labels:
     print(f"weighted number of background events in total: {B_weighted}")
 
     # weight the signals with the normalisation factors x 2 since we have half of the data set
-   
+
     weightsSIG = np.ones_like(S) * w_signal * 2 #sgl_norm #used half of the background
     weightsBKG = np.ones_like(B) * w_background * 3/2 #bkg_norm # using 2/3 for the test here so since w = x_sec x lumi / N_gen, then you multiply by [N_samp / fraction used = N_gen]...  
 
@@ -329,9 +336,9 @@ for label in labels:
     except Exception as e:
         print(f"An error occurred: {e}")
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_10fb.json"
+    json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_10fb.json"
 
-with open(json_file_path, "w") as json_file:
-    json.dump(results_dict, json_file, indent=2)
+    with open(json_file_path, "w") as json_file:
+        json.dump(results_dict, json_file, indent=2)
 
-print(f"Results saved to {json_file_path}")
+    print(f"Results saved to {json_file_path}")
