@@ -27,10 +27,10 @@ for mass in $masses; do
         fi
     done
 done
-
+echo "labels: ${labels[@]}"
 # Loop over each label for the current signal point
 for label in "${labels[@]}"; do
-    echo "labels: $labels"   
+    echo "label: $label" 
     # Create a unique shell script for the current signal point
     script_file="RunAnSt1_HTC_${label}.sh"
     echo "#!/bin/bash" > "$script_file"

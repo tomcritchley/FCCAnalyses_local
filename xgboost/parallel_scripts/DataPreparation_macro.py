@@ -1,3 +1,5 @@
+## changes to process 5000 chunks ... ##
+
 import ROOT
 import pandas as pd
 import seaborn as sns
@@ -87,7 +89,7 @@ variables = [
     "RecoElectron_lead_e"
 ]
 
-#logic for one combined soup of background
+#logic for one combined soup of background --> this needs to change
 
 raw_background = [(f"{input_bkg}p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91.root", "6654.46"),(f"{input_bkg}p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91.root", "5215.46"), (f"{input_bkg}ejjnu/ejjnu.root", "0.014")]
 
