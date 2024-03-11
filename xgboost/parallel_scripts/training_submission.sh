@@ -20,8 +20,8 @@ for mass in $masses; do
         base_file="train_signal_${mass}_${coupling//Ve/}.root"
         signal_file="${base_path}/${base_file}"
         if [ -f "$signal_file" ]; then
-            labels+=("signal_${mass}_${coupling}")
-            echo "File $signal_file added to label as signal_${mass}_${coupling}"
+            labels+=("signal_${mass}_${coupling//Ve/}")
+            echo "File $signal_file added to label as signal_${mass}_${coupling//Ve/}"
         else
             echo "File $signal_file does not exist, moving to next file"
         fi
