@@ -222,7 +222,7 @@ if __name__ == "__main__":
     ax[0].legend(loc='upper right', fontsize='small', frameon=False)
 
     fig.text(0.175, 0.85, "FCCee Simulation (DELPHES)", ha='left', va='center', fontsize=8, weight='bold')
-    fig.text(0.175, 0.81, "Exactly one recontructed electron, E > 30 GeV", ha='left', va='center', fontsize=8)
+    fig.text(0.175, 0.81, "Exactly one recontructed electron, E > 20 GeV", ha='left', va='center', fontsize=8)
     fig.text(0.175, 0.77, r"$\sqrt{s} = 91$ GeV, $\int L \, dt = 10 \, \text{fb}^{-1}$", ha='left', va='center', fontsize=8)
 
     def make_cumulative_significance_matplotlib(signal_hist, background_hist, significance_direction, uncertainty_count_factor=0.1):
