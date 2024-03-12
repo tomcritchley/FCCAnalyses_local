@@ -21,7 +21,6 @@ run = config["run_number"]
 #bkg_norm = config["bkg_normalisation_factor"]
 #sgl_norm = config["signal_normalisation_factor"]
 
-
 labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/testing{run}/"
 

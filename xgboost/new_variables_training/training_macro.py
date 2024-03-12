@@ -21,7 +21,6 @@ labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/training{run}/"
 json_file = "/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb24.json"
 
-
 with open(json_file, 'r') as f:
     json_data = json.load(f)
 
@@ -107,7 +106,7 @@ def load_data(signal_filename, background_filename):
         elif cross_section == 5215.46:
             num_cc += 1
             #weights.append(5215.46*10000/499786495)
-            weights.append(6654.46*10000/438738637)
+            weights.append(5215.46*10000/499786495)
         elif cross_section == 0.014:
             num_4body += 1
             #weights.append(0.014*10000/100000)
