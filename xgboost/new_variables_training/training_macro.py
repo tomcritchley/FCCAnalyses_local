@@ -37,10 +37,6 @@ for key, value in json_data.items():
 
 print(cross_section_dict)
 
-#have to edit if it is training or testing e.g. test_signal vs train_signal
-cross_section_dict = {f"{train_or_test}_signal_{mass}_{coupling.replace('Ve', '')}.root": cross_section for coupling, mass, cross_section, _ in json_data}
-#print(cross_section_dict)
-
 for mass in masses:
     for coupling in couplings:
         print(f"getting label for mass: {mass}, coupling {coupling}")
