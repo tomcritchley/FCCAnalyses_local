@@ -108,13 +108,22 @@ for bg_dir, bg_xs in raw_background:
     for chunk_file in os.listdir(bg_dir):
         if chunk_file.endswith('.root'):
             filepath = os.path.join(bg_dir, chunk_file)
+            
             if bg_xs == "6654.46":
                 label = f"background_{os.path.splitext(chunk_file)[0]}_bb"
+                
+                if chunk_file == "chunk_1985.root":
+                    print(f"skipping problematic chunk")
+                    continue
+                else:
+                    background.append((filepath, label))   
+            
             elif bg_xs == "5215.46":
                 label = f"background_{os.path.splitext(chunk_file)[0]}_cc"
+                background.append((filepath, label))
             elif bg_xs == "0.014":
                 label = f"background_{os.path.splitext(chunk_file)[0]}"
-            background.append((filepath, label))
+                background.append((filepath, label))
 
 bkg_placeholder = ("bkg_placeholder_name","background_total")
 data.append(bkg_placeholder)
