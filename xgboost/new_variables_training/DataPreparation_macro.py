@@ -113,7 +113,10 @@ for bg_dir, bg_xs in raw_background:
                 label = f"background_{os.path.splitext(chunk_file)[0]}_bb"
                 
                 if chunk_file == "chunk_1985.root":
-                    print(f"skipping problematic chunk")
+                    print(f"skipping problematic chunk 1985")
+                    continue
+                elif chunk_file == "chunk_3322.root":
+                    print(f"skipping problematic chunk 3322")
                     continue
                 else:
                     background.append((filepath, label))   
