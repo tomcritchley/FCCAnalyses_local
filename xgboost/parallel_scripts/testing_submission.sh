@@ -57,4 +57,6 @@ EOF
 
     # Submit a Condor job for the current signal point and label
     condor_submit "RunAnSt1_HTC_${label}_testing.condor"
+    
+    sleep 10
 done
