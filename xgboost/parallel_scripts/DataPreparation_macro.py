@@ -87,9 +87,9 @@ variables = [
     "RecoMissingEnergy_theta",
     "RecoMissingEnergy_e",
     "RecoElectron_lead_e",
-    "Vertex_chi2", #new variable
-    "n_primt", #new variable -> we want (ntracks - n_primt)
-    "ntracks",
+    #"Vertex_chi2", #new variable
+    #"n_primt", #new variable -> we want (ntracks - n_primt)
+    #"ntracks",
 ]
 
 raw_background = [
