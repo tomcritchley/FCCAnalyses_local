@@ -156,15 +156,16 @@ if __name__ == "__main__":
             print(f"generating a combined dataframe object ...")
             df = ROOT.RDataFrame("events", background_files)
             print(f"finished generating dataframe!")
+        
         #print(f"counting events in df...")
         #generated_events = df.Count().GetValue()
 
         #print(f"generated events {generated_events}")
         print(f"filtering events..")
-	df = filter_events(df) #call the filter
+        df = filter_events(df) #call the filter
         print(f"defining index....")
         df = df.Define("event_index", "rdfentry_")
-	print(f"compiling report...")
+        print(f"compiling report...")
         report = df.Report()
 	
         columns = ROOT.std.vector["string"](variables)
