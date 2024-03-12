@@ -119,12 +119,12 @@ for bg_dir, bg_xs in raw_background:
 bkg_placeholder = ("bkg_placeholder_name","background_total")
 data.append(bkg_placeholder)
 
-print(f"background list: {background}") #check what this first loop is doing
+#print(f"background list: {background}") #check what this first loop is doing
  
 for list in signal_files:
     data.append(list) #add the signal files
 
-print(f"data is: {data}")
+#print(f"data is: {data}")
 
 if __name__ == "__main__":
     
@@ -145,27 +145,28 @@ if __name__ == "__main__":
         elif label.startswith("background"):
             
             print(f"background loop for label {label}")
+           
+            background_files = []
             
-            background_files = ()
-            
-            for list in background:
-                background_files.append(filepath)
+            for bkg_file, bkg_label in background:
+                background_files.append(bkg_file)
                 ##this wont work because every time it enters a background it will try to create a new dataframe, we only want the dataframe with all the processed backrgounds
                 ##placeholder might work
-            print(f"we're in the background files loop, here are the background files -- {background_files}")
+            #print(f"we're in the background files loop, here are the background files -- {background_files}")
             print(f"generating a combined dataframe object ...")
             df = ROOT.RDataFrame("events", background_files)
             print(f"finished generating dataframe!")
-        
-        generated_events = df.Count().GetValue()
+        #print(f"counting events in df...")
+        #generated_events = df.Count().GetValue()
 
-        print(f"generated events {generated_events}")
-        df = filter_events(df) #call the filter
-        
+        #print(f"generated events {generated_events}")
+        print(f"filtering events..")
+	df = filter_events(df) #call the filter
+        print(f"defining index....")
         df = df.Define("event_index", "rdfentry_")
-
+	print(f"compiling report...")
         report = df.Report()
-
+	
         columns = ROOT.std.vector["string"](variables)
         
         if label.startswith("background"):
