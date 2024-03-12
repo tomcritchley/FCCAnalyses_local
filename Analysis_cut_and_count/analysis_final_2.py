@@ -1,8 +1,8 @@
 #Input directory where the files produced at the stage1 level are
 
-inputDir = "/eos/user/t/tcritchl/HNLs_Feb24"
+inputDir = "/eos/user/t/tcritchl/new_variables_HNL_test_March24"
 
-outputDir = "/eos/user/t/tcritchl/HNls_Feb24/final/"
+outputDir = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/"
 
 processList = {
     #'p8_ee_Zcc_ecm91':{},
