@@ -1,0 +1,12 @@
+{
+    "preparation_input_path_HNLs": "/eos/user/t/tcritchl/HNLs_Feb24/",
+    "preparation_input_path_bkg": "/eos/user/t/tcritchl/xgBOOST/fullstats/",
+    "run_number": "8",
+    "background_split": "3",
+    "bkg_normalisation_factor": "3/2",
+    "signal_split": "2",
+    "signal_normalisation_factor": "2",
+    "train_or_test": "train",
+    "lumi_10fb": "10000",
+    "lumi_150ab": "150000000"
+}
