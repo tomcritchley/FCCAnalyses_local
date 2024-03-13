@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/testing_macro.py", line 64, in <module>
+    x, y_true, w, w_training = load_data(f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_{label}.root", f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_background_total.root")
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/training_macro.py", line 63, in load_data
+    x_sig = np.vstack([data_sig[var] for var in variables]).T
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/training_macro.py", line 63, in <listcomp>
+    x_sig = np.vstack([data_sig[var] for var in variables]).T
+KeyError: 'Vertex_chi2'
