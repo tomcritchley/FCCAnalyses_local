@@ -11,7 +11,7 @@ from DataPreparation_macro import masses, couplings, variables
 import ROOT
 import argparse
 
-with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/configuration.json') as config_file:
+with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/configuration.json') as config_file:
     config = json.load(config_file)
 
 run = config["run_number"]
