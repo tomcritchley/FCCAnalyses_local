@@ -21,7 +21,10 @@ variables = [
     "RecoDiJet_phi",
     "RecoMissingEnergy_theta",
     "RecoMissingEnergy_e",
-    "RecoElectron_lead_e"
+    "RecoElectron_lead_e",
+    "Vertex_chi2", #new variable
+    "n_primt", #new variable -> we want (ntracks - n_primt)
+    "ntracks",
 ]
 
 masses = [
@@ -63,7 +66,7 @@ print(signal_files)
 
 for file, label in signal_files:
     if os.path.exists(file):
-        df = ROOT.RDataFrame("events", signal_file) #generate the rdf object
+        df = ROOT.RDataFrame("events", file) #generate the rdf object
         
         generated_events = df.Count().GetValue() #count num of events
         print(f"generated events {generated_events}")
@@ -72,10 +75,18 @@ for file, label in signal_files:
     else:
         print(f"signal file {file} does not exist, moving on")
         continue
+    column_names = df.GetColumnNames()
+    print(f"the column names are: {column_names}")
+    filtered_columns = [column for column in column_names if column in variables]
+    print(f"the filtered column names are: {filtered_columns}")
 
-    for column_name in df.GetColumnNames():
-        column_type = df.GetColumnType(column_name)
-        print(f"{column_name}: {column_type}")
+    for column_name in filtered_columns:
+        try:
+            column_type = df.GetColumnType(column_name)
+            print(f"{column_name}: {column_type}")
+        except Exception as e:
+            print(f"something is wrong with the column: {column_name}, error was {e}")
+            continue
 
     x = df.AsNumpy()
 
@@ -95,14 +106,11 @@ for file, label in signal_files:
 
     nan_check = df_selected.isna().any()
 
-    # Print columns with NaN values
     columns_with_nan = nan_check[nan_check].index
     print(f"Columns with NaN values: {columns_with_nan}")
 
-    # Remove rows with NaN values
     df_selected = df_selected.dropna()
 
-    # Verify that NaN values are removed
     print("NaN values after removal:")
     print(df_selected.isna().sum())
 
@@ -112,17 +120,18 @@ for file, label in signal_files:
             df_selected[column] = pd.to_numeric(df_selected[column], errors='raise').astype('float32')
 
     df_selected = df_selected[(np.abs(zscore(df_selected)) < 3).all(axis=1)]
-    mean_values = df_selected.mean()
+    mean_values = df_selected.mean().round(3)
     print(f"description of the means of the df for label {label}")
     print(f":{mean_values}")
     print(f"description of the pandas df for label {label}:")
     print(f"{df_selected.describe()}")
     print(f"saving to json for the label...")
-    # Store mean values in the signal_means dictionary
     signal_means[label] = mean_values.to_dict()
 
 json_file_path = "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/plotting_variables/signal_means.json"
-with open(json_file_path, "w") as json_file:
-    json.dump(signal_means, json_file, indent=4)
-
-print("Mean values saved to JSON file:", json_file_path)
+try:
+    with open(json_file_path, "w") as json_file:
+        json.dump(signal_means, json_file, indent=4)
+    print("Mean values saved to JSON file:", json_file_path)
+except Exception as e:
+    print("Error saving mean values to JSON file:", e)
