@@ -88,7 +88,7 @@ for file, label in signal_files:
             print(f"something is wrong with the column: {column_name}, error was {e}")
             continue
 
-    x = {col: df.AsNumpy(col) for col in filtered_columns} # <-- Modified line
+    x = df.AsNumpy(columns=filtered_columns)# <-- Modified line
 
     for key, array in x.items(): # <-- Modified loop
         for i, obj in enumerate(array):
