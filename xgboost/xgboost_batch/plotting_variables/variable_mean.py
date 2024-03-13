@@ -80,17 +80,17 @@ for file, label in signal_files:
     filtered_columns = [column for column in column_names if column in variables]
     print(f"the filtered column names are: {filtered_columns}")
 
-    for column_name in filtered_columns:
+    for column_name in filtered_columns: # <-- Highlighted change
         try:
-            column_type = df.GetColumnType(column_name)
-            print(f"{column_name}: {column_type}")
+            column_type = df.GetColumnType(column_name) # <-- Highlighted change
+            print(f"{column_name}: {column_type}") # <-- Highlighted change
         except Exception as e:
             print(f"something is wrong with the column: {column_name}, error was {e}")
             continue
 
-    x = df.AsNumpy()
+    x = {col: df.AsNumpy(column) for col in filtered_columns} # <-- Modified line
 
-    for key, array in x.items():
+    for key, array in x.items(): # <-- Modified loop
         for i, obj in enumerate(array):
             if isinstance(obj, ROOT.VecOps.RVec('float')):
                 array[i] = float(obj[0])
