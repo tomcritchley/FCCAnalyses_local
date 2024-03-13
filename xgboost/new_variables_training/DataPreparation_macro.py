@@ -119,11 +119,34 @@ for bg_dir, bg_xs in raw_background:
                     print(f"skipping problematic chunk 3322")
                     continue
                 else:
-                    background.append((filepath, label))   
-            
+                    try:
+                    # Try to open the file and read its contents
+                        with ROOT.TFile(filepath, "READ") as file:
+                            # Check if the file is readable
+                            if file.IsZombie() or file.TestBit(ROOT.TFile.kRecovered):
+                                print(f"Skipping problematic file {filepath}")
+                                continue
+                            else:
+                                background.append((filepath, label))
+                    except Exception as e:
+                        print(f"Error processing file {filepath}: {e}")
+                        print(f"Skipping problematic file {filepath}")
+                        continue        
             elif bg_xs == "5215.46":
                 label = f"background_{os.path.splitext(chunk_file)[0]}_cc"
-                background.append((filepath, label))
+                try:
+                # Try to open the file and read its contents
+                    with ROOT.TFile(filepath, "READ") as file:
+                        # Check if the file is readable
+                        if file.IsZombie() or file.TestBit(ROOT.TFile.kRecovered):
+                            print(f"Skipping problematic file {filepath}")
+                            continue
+                        else:
+                            background.append((filepath, label))
+                except Exception as e:
+                    print(f"Error processing file {filepath}: {e}")
+                    print(f"Skipping problematic file {filepath}")
+                    continue
             elif bg_xs == "0.014":
                 label = f"background_{os.path.splitext(chunk_file)[0]}"
                 background.append((filepath, label))
