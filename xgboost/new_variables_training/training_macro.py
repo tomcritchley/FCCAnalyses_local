@@ -11,7 +11,7 @@ from DataPreparation_macro import masses, couplings, variables
 import ROOT
 import argparse
 
-with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/configuration.json') as config_file:
+with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/configuration.json') as config_file:
     config = json.load(config_file)
 
 run = config["run_number"]
@@ -98,7 +98,7 @@ def load_data(signal_filename, background_filename):
         if cross_section == 6654.46:
             num_bb += 1
             #weights.append(6654.46*10000/438738637)
-            weights.append(6654.46*10000/438738637)
+            weights.append(6654.46*10000/438538637) # 7 changed to a 5 since we have less background events in bb from deleted chunks
         elif cross_section == 5215.46:
             num_cc += 1
             #weights.append(5215.46*10000/499786495)

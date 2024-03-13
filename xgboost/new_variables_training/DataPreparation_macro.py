@@ -233,7 +233,7 @@ if __name__ == "__main__":
             if isinstance(obj, ROOT.VecOps.RVec('float')):
                 array[i] = float(obj[0])
 
-    df_pd = pd.DataFrame(x)
+    df_pd = pd.DataFrame(x) ##cant take the cov matrix ones so need to exclude it somehow
 
     print(f"printing the df_pd contents {df_pd.describe()}")
 
