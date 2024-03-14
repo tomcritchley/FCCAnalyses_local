@@ -50,11 +50,11 @@ couplings = [
 
 base_path = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
-signal_files = []
+#signal_files = []
 #testing with one file
-#signal_files = [('/eos/user/t/tcritchl/new_variables_HNL_test_March24/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3')]
+signal_files = [('/eos/user/t/tcritchl/new_variables_HNL_test_March24/HNL_Dirac_ejj_50GeV_1e-3Ve.root', 'signal_50GeV_1e-3')]
 
-for mass in masses:
+"""for mass in masses:
     for coupling in couplings:
         print(f"using mass: {mass}, coupling {coupling}")
         base_file = f"HNL_Dirac_ejj_{mass}_{coupling}Ve.root"
@@ -62,7 +62,7 @@ for mass in masses:
         if os.path.exists(signal_file):
             signal_files.append([signal_file, f"signal_{mass}_{coupling}"]) #label will be of the form "signal_10GeV_1e-2"
         else:
-            print(f"file {signal_file} does not exist, moving to next file")
+            print(f"file {signal_file} does not exist, moving to next file")"""
 
 print(signal_files)
 
