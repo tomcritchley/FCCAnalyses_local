@@ -70,7 +70,8 @@ files_list_signal = [
 
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.014] #pb
-total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
+total_events_bg = [188152408203233.94,13370.26501316006,0.014]
+#total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
 selection_scale_bg = [2/(499786495),1/(438538637),2620/100000]
 files_list_bg = [
     [file_Zcc, chosen_variable[0], "Z #rightarrow cc", cross_sections_bg[0], total_events_bg[0], selection_scale_bg[0]],
@@ -152,7 +153,7 @@ print(h_list_signal[0].Integral(), "Number of 20 GeV events")
 print(h_list_signal[1].Integral(), "Number of 50 GeV events")
 print(h_list_signal[2].Integral(), "Number of 70 GeV events")
 n_background_bb = h_list_bg[1].Integral()
-#n_background_4body = h_list_bg[2].Integral()
+print(f"4 body events are: n_background_4body = h_list_bg[2].Integral()")
 
 def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_list_significance):
 
