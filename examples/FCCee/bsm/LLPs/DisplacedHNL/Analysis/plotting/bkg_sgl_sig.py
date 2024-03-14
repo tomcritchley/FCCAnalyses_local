@@ -20,10 +20,10 @@ variable_list = [
     ["RecoDiJet_phi", "Reco DiJet #phi [Rad.]"],
     ["RecoMissingEnergy_theta", "Reco Missing Energy #theta [Rad.]"],
     ["RecoMissingEnergy_e", "Reco missing energy [GeV]"],
-    ["RecoDiJetElectron_invMass", "Mass [GeV]"] #for invmass of the HNL
-    ["ntracks", "Number of tracks"] #14
-    ["n_primt", "Number of primary tracks"] #15
-    ["Vertex_chi2", "Chi^{2} of the primary vertex"] #16
+    ["RecoDiJetElectron_invMass", "Mass [GeV]"], #for invmass of the HNL
+    ["ntracks", "Number of tracks"], #14
+    ["n_primt", "Number of primary tracks"], #15
+    ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 chosen_variable = variable_list[14] 
 
