@@ -25,12 +25,12 @@ variable_list = [
     ["n_primt", "Number of primary tracks"], #15
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
-chosen_variable = variable_list[2] 
+chosen_variable = variable_list[16] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
 
-normalisation = False 
+normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 #luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
 
@@ -70,10 +70,11 @@ files_list_signal = [
 
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.014] #pb
-#total_events_bg = [188152408203233.94,13370.26501316006,0.014]
-total_events_bg = [1,1,1]
+total_events_bg = [5215.46,6654.46,0.014]
+#total_events_bg = [1,1,1]
 #total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
 selection_scale_bg = [2/(499786495),1/(438538637),2620/100000]
+#selection_scale_bg = [] #put the non normalised events here! we need to know how many we are looking at it in a given range and adjust --> e.g. we go from 6000 to 90 events for cc
 files_list_bg = [
     [file_Zcc, chosen_variable[0], "Z #rightarrow cc", cross_sections_bg[0], total_events_bg[0], selection_scale_bg[0]],
     [file_Zbb, chosen_variable[0], "Z #rightarrow bb", cross_sections_bg[1], total_events_bg[1], selection_scale_bg[1]],
