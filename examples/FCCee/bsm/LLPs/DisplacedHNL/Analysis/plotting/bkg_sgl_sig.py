@@ -30,7 +30,7 @@ chosen_variable = variable_list[16]
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
 
-normalisation = True 
+normalisation = False 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 #luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
 
@@ -147,7 +147,7 @@ n_signal_70 = h_list_signal[2].Integral()
 
 print(h_list_bg[0].Integral(), 'Number of Z->cc events')
 print(h_list_bg[1].Integral(), "Number of Z->bb events")
-#print(h_list_bg[2].Integral(), "Number of Z->4body events")
+print(h_list_bg[2].Integral(), "Number of Z->4body events")
 print(h_list_signal[0].Integral(), "Number of 20 GeV events")
 print(h_list_signal[1].Integral(), "Number of 50 GeV events")
 print(h_list_signal[2].Integral(), "Number of 70 GeV events")
