@@ -73,7 +73,10 @@ n_primt: Int_t
 ntracks: Int_t
 Traceback (most recent call last):
   File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/plotting_variables/variable_mean.py", line 91, in <module>
-    x = {col: df.AsNumpy(column) for col in filtered_columns} # <-- Modified line
+    x = {col: df.AsNumpy(col) for col in filtered_columns} # <-- Modified line
   File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/plotting_variables/variable_mean.py", line 91, in <dictcomp>
-    x = {col: df.AsNumpy(column) for col in filtered_columns} # <-- Modified line
-NameError: name 'column' is not defined
+    x = {col: df.AsNumpy(col) for col in filtered_columns} # <-- Modified line
+  File "/cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Tue/x86_64-centos7-gcc11-opt/lib/ROOT/_pythonization/_rdataframe.py", line 231, in RDataFrameAsNumpy
+    column_type = df.GetColumnType(column)
+cppyy.gbl.std.runtime_error: string ROOT::RDF::RInterfaceBase::GetColumnType(basic_string_view<char,char_traits<char> > column) =>
+    runtime_error: Column "R" is not in a dataset and is not a custom column been defined.
