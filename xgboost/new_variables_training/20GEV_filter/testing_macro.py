@@ -14,7 +14,7 @@ import fcntl
 ###################################### INPUTS ####################################################################
 ##################################################################################################################
 
-with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/configuration.json') as config_file:
+with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/20GEV_filter/configuration.json') as config_file:
     config = json.load(config_file)
 
 run = config["run_number"]

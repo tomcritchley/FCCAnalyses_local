@@ -12,7 +12,7 @@ echo "Masses: $masses"
 couplings=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/xgBOOST/testing9"
+base_path="/eos/user/t/tcritchl/xgBOOST/testing10"
 # Generate labels for the current signal point
 labels=()
 for mass in $masses; do
@@ -35,7 +35,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}_testing.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /cvmfs/sft.cern.ch/lcg/views/dev3/latest/x86_64-centos7-gcc11-opt/setup.sh" >> "$script_file"
-    echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/parallel_scripts/testing_macro.py --label \"$label\"" >> "$script_file"
+    echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/testing_macro.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     # Create a unique Condor submission script for the current signal point
