@@ -52,7 +52,7 @@ base_path = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
 #signal_files = []
 #testing with one file
-signal_files = ['/eos/user/t/tcritchl/new_variables_HNL_test_March24/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3']
+signal_files = [('/eos/user/t/tcritchl/new_variables_HNL_test_March24/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3')]
 """
 for mass in masses:
     for coupling in couplings:
