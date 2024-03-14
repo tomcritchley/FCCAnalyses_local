@@ -50,8 +50,10 @@ couplings = [
 
 base_path = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
-signal_files = []
-
+#signal_files = []
+#testing with one file
+signal_files = ['/eos/user/t/tcritchl/new_variables_HNL_test_March24/HNL_Dirac_ejj_10GeV_1e-3Ve.root', 'signal_10GeV_1e-3']
+"""
 for mass in masses:
     for coupling in couplings:
         print(f"using mass: {mass}, coupling {coupling}")
@@ -63,7 +65,7 @@ for mass in masses:
             print(f"file {signal_file} does not exist, moving to next file")
 
 print(signal_files)
-
+"""
 for file, label in signal_files:
     if os.path.exists(file):
         df = ROOT.RDataFrame("events", file) #generate the rdf object
@@ -71,31 +73,31 @@ for file, label in signal_files:
         generated_events = df.Count().GetValue() #count num of events
         print(f"generated events {generated_events}")
 
-        columns = ROOT.std.vector["string"](variables) #define the variables as the df columns
+        columns = ROOT.std.vectorggg["string"](variables) #define the variables as the df columns
     else:
         print(f"signal file {file} does not exist, moving on")
         continue
     column_names = df.GetColumnNames()
     print(f"the column names are: {column_names}")
-    filtered_columns = [column for column in column_names if column in variables]
+    filtered_columns = [str(column) for column in column_names if column in variables]
     print(f"the filtered column names are: {filtered_columns}")
 
-    for column_name in filtered_columns: # <-- Highlighted change
+    for column_name in filtered_columns:
         try:
-            column_type = df.GetColumnType(column_name) # <-- Highlighted change
-            print(f"{column_name}: {column_type}") # <-- Highlighted change
+            column_type = df.GetColumnType(column_name) 
+            print(f"{column_name}: {column_type}") 
         except Exception as e:
             print(f"something is wrong with the column: {column_name}, error was {e}")
             continue
 
     x = df.AsNumpy(columns=filtered_columns)# <-- Modified line
-
+    print(f"the numpy df is: {x}")
     for key, array in x.items(): # <-- Modified loop
         for i, obj in enumerate(array):
             if isinstance(obj, ROOT.VecOps.RVec('float')):
                 array[i] = float(obj[0])
 
-    df_pd = pd.DataFrame(x)
+    df_pd = pd.DataFrame(x, columns=filtered_columns)
 
     print(f"printing the df_pd contents {df_pd.describe()}")
 
