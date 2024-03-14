@@ -1,0 +1,33 @@
+000 (9426633.000.000) 03/14 10:15:34 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_5144_ef43>
+...
+040 (9426633.000.000) 03/14 10:19:01 Started transferring input files
+	Transferring to host: <128.142.58.68:9618?addrs=128.142.58.68-9618&alias=b7s03p3124.cern.ch&noUDP&sock=slot1_10_6913_9572_71535>
+...
+040 (9426633.000.000) 03/14 10:19:01 Finished transferring input files
+...
+001 (9426633.000.000) 03/14 10:19:02 Job executing on host: <128.142.58.68:9618?addrs=128.142.58.68-9618&alias=b7s03p3124.cern.ch&noUDP&sock=startd_6849_6c3c>
+...
+006 (9426633.000.000) 03/14 10:19:11 Image size of job updated: 1181184
+	210  -  MemoryUsage of job (MB)
+	214240  -  ResidentSetSize of job (KB)
+...
+040 (9426633.000.000) 03/14 10:19:13 Started transferring output files
+...
+040 (9426633.000.000) 03/14 10:19:13 Finished transferring output files
+...
+004 (9426633.000.000) 03/14 10:19:13 Job was evicted.
+	(0) CPU times
+		Usr 0 00:00:03, Sys 0 00:00:01  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	24205  -  Run Bytes Sent By Job
+	222  -  Run Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :       37        1   1323281 
+	   Memory (MB)          :      210     2000      2000 
+...
+009 (9426633.000.000) 03/14 10:19:13 Job was aborted.
+	via condor_rm (by user tcritchl)
+
+	Job terminated by itself at 2024-03-14T09:19:12Z (using method 0: OF_ITS_OWN_ACCORD).
+...
