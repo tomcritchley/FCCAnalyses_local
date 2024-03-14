@@ -21,8 +21,11 @@ variable_list = [
     ["RecoMissingEnergy_theta", "Reco Missing Energy #theta [Rad.]"],
     ["RecoMissingEnergy_e", "Reco missing energy [GeV]"],
     ["RecoDiJetElectron_invMass", "Mass [GeV]"] #for invmass of the HNL
+    ["ntracks", "Number of tracks"] #14
+    ["n_primt", "Number of primary tracks"] #15
+    ["Vertex_chi2", "Chi^{2} of the primary vertex"] #16
 ]
-chosen_variable = variable_list[13] 
+chosen_variable = variable_list[14] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
@@ -34,12 +37,12 @@ luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 log_scale = True
 
 #pick your selection
-selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
+#selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
+selection = "selNone"
+input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
+input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
 
-input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/" #bb cc and 4body samples
-input_dir_sgl = "/eos/user/t/tcritchl/HNLs/final/" #signals 
-
-output_dir =  "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/signal_HNLS/SignalvsBackground/testfinalcuts/"
+output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/"
 
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
@@ -68,7 +71,7 @@ files_list_signal = [
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.014] #pb
 total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
-selection_scale_bg = [2/(499786495),1/(438738637),2620/100000]
+selection_scale_bg = [2/(499786495),1/(438538637),2620/100000]
 files_list_bg = [
     [file_Zcc, chosen_variable[0], "Z #rightarrow cc", cross_sections_bg[0], total_events_bg[0], selection_scale_bg[0]],
     [file_Zbb, chosen_variable[0], "Z #rightarrow bb", cross_sections_bg[1], total_events_bg[1], selection_scale_bg[1]],
