@@ -99,7 +99,7 @@ def make_hist(files_list):
         hist = my_file.Get(f[1])  # Select the chosen variable from the histo root file
 
         if normalisation:
-            
+            print("normalising....")
             # Apply normalization based on cross section, total events, and luminosity
             cross_section = f[3]  # Cross section in pb
             events_generated = f[4]  # Total events generated
@@ -153,7 +153,6 @@ print(h_list_signal[0].Integral(), "Number of 20 GeV events")
 print(h_list_signal[1].Integral(), "Number of 50 GeV events")
 print(h_list_signal[2].Integral(), "Number of 70 GeV events")
 n_background_bb = h_list_bg[1].Integral()
-print(f"4 body events are: n_background_4body = h_list_bg[2].Integral()")
 
 def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_list_significance):
 
