@@ -11,7 +11,7 @@ new_cross_section = 5215.46
 def update_cross_section(root_file):
     try:
         # Open the root file
-        with uproot.open(root_file, "r+") as file:
+        with uproot.open(root_file) as file:
             # Get the events tree
             tree = file["events"]
             # Update the cross section value
