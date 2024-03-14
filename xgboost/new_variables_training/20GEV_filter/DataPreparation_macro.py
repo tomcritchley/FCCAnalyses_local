@@ -222,18 +222,21 @@ if __name__ == "__main__":
 ###################################### PLOTTING FOR VARIABLE RELATIONSHIPS #######################################
 ##################################################################################################################
     
-    for column_name in df.GetColumnNames():
+    filtered_columns = [str(column) for column in df.GetColumnNames() if column in variables]
+    print(f"filtered columns are: {filtered_columns}")
+    for column_name in filtered_columns:
         column_type = df.GetColumnType(column_name)
         print(f"{column_name}: {column_type}")
 
-    x = df.AsNumpy()
+    x = df.AsNumpy(columns=filtered_columns)
+    print(f"the numpy df is: {x}")
 
     for key, array in x.items():
         for i, obj in enumerate(array):
             if isinstance(obj, ROOT.VecOps.RVec('float')):
                 array[i] = float(obj[0])
 
-    df_pd = pd.DataFrame(x) ##cant take the cov matrix ones so need to exclude it somehow
+    df_pd = pd.DataFrame(x, columns=filtered_columns) ##cant take the cov matrix ones so need to exclude it somehow
 
     print(f"printing the df_pd contents {df_pd.describe()}")
 
