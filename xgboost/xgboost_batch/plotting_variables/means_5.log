@@ -1,0 +1,459 @@
+<<< cling interactive line includer >>>: fatal error: module file '/build/jenkins/workspace/lcg_nightly_pipeline/build/projects/ROOT-HEAD/src/ROOT-HEAD-build/lib/Vc.pcm' not found: module file not found
+<<< cling interactive line includer >>>: note: imported by module 'MathCore' in '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/MathCore.pcm'
+input_line_4:2:2: error: use of undeclared identifier 'include'
+#include "TError.h"
+ ^
+input_line_4:4:2: error: unknown type name 'define'
+#define _ClassDefInterp_(name,id,virtual_keyword, overrd) \
+ ^
+input_line_4:21:7: error: expected ';' after top level declarator
+#undef ClassDef
+      ^
+      ;
+input_line_5:1:2: error: use of undeclared identifier 'include'
+#include <cling/Interpreter/DynamicLookupRuntimeUniverse.h>
+ ^
+input_line_7:2:2: error: use of undeclared identifier 'line'
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib64/edm4hepDictDict.rootmap"
+ ^
+Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libRooUnfold.rootmap:17:2: error: unknown type name 'line'
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libsetDict.rootmap"
+ ^
+Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libsetDict.rootmap:3:6: error: expected ';' after top level declarator
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libforward_listDict.rootmap"
+     ^
+     ;
+Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libcomplexDict.rootmap:6:2: error: unknown type name 'line'
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libdequeDict.rootmap"
+ ^
+Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libdequeDict.rootmap:3:6: error: expected ';' after top level declarator
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libunordered_multimapDict.rootmap"
+     ^
+     ;
+Warning in <TInterpreter::LoadLibraryMap>: Problems in (null) declaring '
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib64/edm4hepDictDict.rootmap"
+namespace edm4hep {  }
+
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib64/libHepMC3rootIO.rootmap"
+namespace std {  }
+namespace HepMC3 {  }
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib64/podioSioIODictDict.rootmap"
+namespace podio {  }
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib64/podioRootIODictDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib64/podioDictDict.rootmap"
+namespace podio { template <typename BasicType, typename > class UserDataCollection; }
+namespace podio { namespace version {  } }
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libRooUnfold.rootmap"
+namespace RooUnfolding {  }
+class TH1;
+class TH2;
+template <typename Hist, typename Hist2D> class RooUnfoldResponseT;
+namespace RooUnfolding { class RooFitHist; }
+template <typename Hist, typename Hist2D> class RooUnfoldT;
+template <typename Hist, typename Hist2D> class RooUnfoldBayesT;
+template <typename Hist, typename Hist2D> class RooUnfoldBinByBinT;
+template <typename Hist, typename Hist2D> class RooUnfoldGPT;
+template <typename Hist, typename Hist2D> class RooUnfoldIdsT;
+template <typename Hist, typename Hist2D> class RooUnfoldInvertT;
+template <typename Hist, typename Hist2D> class RooUnfoldPoissonT;
+template <typename Hist, typename Hist2D> class RooUnfoldSvdT;
+template <typename Hist, typename Hist2D> class RooUnfoldTUnfoldT;
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libsetDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libforward_listDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/liblistDict.rootmap"
+namespace std { inline namespace __cxx11 {  } }
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libvalarrayDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libSmatrix32.rootmap"
+namespace ROOT { namespace Math {  } }
+namespace ROOT { namespace Math { template <typename T, unsigned int, unsigned int> class MatRepStd; } }
+namespace ROOT { namespace Math { template <typename T, unsigned int> class MatRepSym; } }
+namespace ROOT { namespace Math { template <typename T, unsigned int> class SVector; } }
+namespace ROOT { namespace Math { template <typename T, unsigned int, unsigned int, typename R> class SMatrix; } }
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libvectorDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libGenVector32.rootmap"
+namespace ROOT { namespace Math { template <typename T> class Cartesian2D; } }
+namespace ROOT { namespace Math { template <typename T> class Polar2D; } }
+namespace ROOT { namespace Math { class DefaultCoordinateSystemTag; } }
+namespace ROOT { namespace Math { template <typename CoordSystem, typename Tag> class DisplacementVector2D; } }
+namespace ROOT { namespace Math { template <typename T> class Cartesian3D; } }
+namespace ROOT { namespace Math { template <typename CoordSystem, typename Tag> class PositionVector3D; } }
+namespace ROOT { namespace Math { template <typename T> class CylindricalEta3D; } }
+namespace ROOT { namespace Math { template <typename T> class Polar3D; } }
+namespace ROOT { namespace Math { template <typename T> class Cylindrical3D; } }
+namespace ROOT { namespace Math { class LocalCoordinateSystemTag; } }
+namespace ROOT { namespace Math { class GlobalCoordinateSystemTag; } }
+namespace ROOT { namespace Math { template <typename CoordSystem, typename Tag> class DisplacementVector3D; } }
+namespace ROOT { namespace Math { template <typename T> class PxPyPzE4D; } }
+namespace ROOT { namespace Math { template <typename CoordSystem> class LorentzVector; } }
+namespace ROOT { namespace Math { template <typename T> class PxPyPzM4D; } }
+namespace ROOT { namespace Math { template <typename T> class PtEtaPhiE4D; } }
+namespace ROOT { namespace Math { template <typename T> class PtEtaPhiM4D; } }
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libmap2Dict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libunordered_multisetDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libunordered_setDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libmapDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libmultisetDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libunordered_mapDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libmultimap2Dict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libmultimapDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libcomplexDict.rootmap"
+template <> class complex<float>;
+template <> class complex<double>;
+template <typename T> class _root_std_complex;
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libdequeDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/libunordered_multimapDict.rootmap"
+
+#line 2 "Forward declarations from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/GaudiDict.rootmap"
+namespace MSG {  }
+namespace Gaudi { namespace StateMachine {  } }
+namespace Gaudi { namespace CounterSummary {  } }
+class IService;
+template <typename TYPE> class SmartIF;
+class ISvcLocator;
+class IMessageSvc;
+class IProperty;
+class IDataProviderSvc;
+class IToolSvc;
+class IMonitorSvc;
+class IAuditorSvc;
+class IAlgContextSvc;
+class IAlgorithm;
+class IConversionSvc;
+template <typename T> class SmartIF;
+class IRndmGen;
+class IChronoStatSvc;
+class IHistogramSvc;
+class INTupleSvc;
+class IRndmGenSvc;
+class IExceptionSvc;
+class ITimelineSvc;
+class IHiveWhiteBoard;
+class IAlgExecStateSvc;
+class ISvcManager;
+class IIncidentSvc;
+class IEvtSelector;
+class ISelectStatement;
+namespace Gaudi { namespace Details {  } }
+template <typename KEY> class KeyedObject;
+namespace Containers {  }
+namespace Containers { class map; }
+namespace Containers { template <typename SETUP> class KeyedObjectManager; }
+namespace Containers { class hashmap; }
+namespace Containers { class vector; }
+namespace Containers { class array; }
+class DataObject;
+template <typename TYPE> class SmartRef;
+class ContainedObject;
+class ObjectContainerBase;
+class SmartDataObjectPtr;
+template <typename TYPE, typename LOADER> class SmartDataStorePtr;
+template <typename TYPE> class SmartDataPtr;
+namespace NTuple {  }
+namespace NTuple { template <typename TYP> class Item; }
+namespace NTuple { template <typename TYP> class Array; }
+namespace NTuple { template <typename TYP> class Matrix; }
+template <> class NTuple::Item<bool>;
+class IOpaqueAddress;
+template <> class NTuple::Array<IOpaqueAddress*>;
+template <> class NTuple::Matrix<IOpaqueAddress*>;
+namespace Rndm {  }
+namespace SmartRefVectorImpl {  }
+template <typename TYPE> class SmartRefVector;
+namespace Gaudi {  }
+namespace GaudiMP {  }
+namespace __gnu_cxx {  }
+namespace Gaudi { class ParticleProperty; }
+namespace __gnu_cxx { template <typename _Iterator, typename _Container> class __normal_iterator; }
+namespace Gaudi { namespace Decays {  } }
+namespace Gaudi { namespace Decays { namespace Nodes {  } } }
+namespace Gaudi { namespace Interfaces {  } }
+namespace Gaudi { namespace Interfaces { class IParticlePropertySvc; } }
+namespace Gaudi { namespace Decays { namespace Dict {  } } }
+namespace Gaudi { namespace Utils { namespace Histos { namespace Formats {  } } } }
+namespace Gaudi { namespace Utils {  } }
+namespace AIDA {  }
+namespace GaudiPython {  }
+namespace GaudiPython { template <typename TYPE> class Printer; }
+template <> class GaudiPython::Printer<ContainedObject>;
+template <> class GaudiPython::Printer<DataObject>;
+namespace Gaudi { namespace Utils { namespace Histos {  } } }
+namespace pool {  }
+namespace Gaudi { namespace Examples { class MyTrack; } }
+template <typename TYPE> class ObjectVector;
+namespace Gaudi { namespace Examples { class MyVertex; } }
+namespace Gaudi { namespace Examples { class Collision; } }
+namespace Gaudi { namespace Examples { class Event; } }
+namespace Gaudi { namespace Examples {  } }
+template <typename DATATYPE, typename MAPPING> class KeyedContainer;
+' were encountered.
+input_line_8:1:2: error: use of undeclared identifier 'pragma'
+#pragma cling optimize 2
+ ^
+input_line_9:1:2: error: use of undeclared identifier 'include'
+#include <iostream>
+ ^
+input_line_9:2:2: error: use of undeclared identifier 'include'
+#include <string>
+ ^
+input_line_9:3:2: error: use of undeclared identifier 'include'
+#include <DllImport.h>
+ ^
+input_line_9:4:2: error: use of undeclared identifier 'include'
+#include <vector>
+ ^
+input_line_9:5:2: error: use of undeclared identifier 'include'
+#include <utility>
+ ^
+input_line_16:1:2: error: unknown type name 'pragma'
+#pragma clang diagnostic push
+ ^
+input_line_16:3:74: error: expected ';' after top level declarator
+__attribute__((used)) __attribute__((annotate("__cling__ptrcheck(off)")))
+                                                                         ^
+                                                                         ;
+input_line_16:9:8: error: expected ';' after expression
+#pragma clang diagnostic pop
+       ^
+       ;
+input_line_19:1:2: error: unknown type name 'pragma'
+#pragma clang diagnostic push
+ ^
+input_line_19:3:74: error: expected ';' after top level declarator
+__attribute__((used)) __attribute__((annotate("__cling__ptrcheck(off)")))
+                                                                         ^
+                                                                         ;
+input_line_19:9:8: error: expected ';' after expression
+#pragma clang diagnostic pop
+       ^
+       ;
+Info in <TInterpreter::TCling::RegisterModule>: Module MathCore in modulemap failed to load.
+Error in <TCling::LoadPCM>: ROOT PCM /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libMathCore_rdict.pcm file does not exist
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libNet_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libNetxNG_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRDAVIX_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRHTTP_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRMySQL_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTGpadv7_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTGraphicsPrimitives_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTNTuple_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTTPython_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTVecOps_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRSQLite_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRooFitJSONInterface_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRootAuth_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libSQLIO_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libXMLIO_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libXMLParser_rdict.pcm
+
+input_line_20:2:2: error: unknown type name 'define'
+#define __ROOTCLING__ 1
+ ^
+input_line_20:3:7: error: expected ';' after top level declarator
+#undef ClassDef
+      ^
+      ;
+Warning in <TInterpreter::TCling::RegisterModule>: Problems declaring payload for module libMathCore.
+input_line_21:1:2: error: use of undeclared identifier 'ifdef'
+#ifdef __ROOTCLING__
+ ^
+Info in <TInterpreter::TCling::RegisterModule>: Module Tree in modulemap failed to load.
+Error in <TCling::LoadPCM>: ROOT PCM /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libTree_rdict.pcm file does not exist
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libNet_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libNetxNG_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRDAVIX_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRHTTP_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRMySQL_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTGpadv7_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTGraphicsPrimitives_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTNTuple_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTTPython_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libROOTVecOps_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRSQLite_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRooFitJSONInterface_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libRootAuth_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libSQLIO_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libXMLIO_rdict.pcm
+
+Info in <TCling::LoadPCM>: In-memory ROOT PCM candidate /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/dev3/Thu/ROOT/HEAD/x86_64-el9-gcc11-opt/lib/libXMLParser_rdict.pcm
+
+input_line_22:2:2: error: unknown type name 'define'
+#define __ROOTCLING__ 1
+ ^
+input_line_22:3:7: error: expected ';' after top level declarator
+#undef ClassDef
+      ^
+      ;
+Warning in <TInterpreter::TCling::RegisterModule>: Problems declaring payload for module libTree.
+input_line_23:1:2: error: use of undeclared identifier 'ifdef'
+#ifdef __ROOTCLING__
+ ^
+input_line_30:1:2: error: unknown type name 'pragma'
+#pragma clang diagnostic push
+ ^
+input_line_30:3:74: error: expected ';' after top level declarator
+__attribute__((used)) __attribute__((annotate("__cling__ptrcheck(off)")))
+                                                                         ^
+                                                                         ;
+input_line_30:15:8: error: expected ';' after expression
+#pragma clang diagnostic pop
+       ^
+       ;
+input_line_31:1:2: error: unknown type name 'pragma'
+#pragma clang diagnostic push
+ ^
+input_line_31:3:74: error: expected ';' after top level declarator
+__attribute__((used)) __attribute__((annotate("__cling__ptrcheck(off)")))
+                                                                         ^
+                                                                         ;
+input_line_31:15:8: error: expected ';' after expression
+#pragma clang diagnostic pop
+       ^
+       ;
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/plotting_variables/variable_mean.py", line 1, in <module>
+    import ROOT
+  File "/cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/ROOT/__init__.py", line 68, in <module>
+    from ._facade import ROOTFacade
+  File "/cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/ROOT/_facade.py", line 12, in <module>
+    import cppyy.ll
+  File "/cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Thu/x86_64-el9-gcc11-opt/lib/cppyy/ll.py", line 82, in <module>
+    cast             = cppyy.gbl.__cppyy_internal.cppyy_cast
+AttributeError: <namespace cppyy.gbl.__cppyy_internal at 0x599b980> has no attribute 'cppyy_cast'. Full details:
+  type object '__cppyy_internal' has no attribute 'cppyy_cast'
+  '__cppyy_internal::cppyy_cast' is not a known C++ class
+  'cppyy_cast' is not a known C++ template
+  'cppyy_cast' is not a known C++ enum
+Failed to load module MathCore
+Failed to load module Hist
+Failed to load module ROOTBrowsable
+Failed to load module Unfold
+Failed to load module RHTTPSniff
+Failed to load module HistPainter
+Failed to load module PyMVA
+Failed to load module FitPanel
+Failed to load module Unuran
+Failed to load module Quadp
+Failed to load module GeomPainter
+Failed to load module Genetic
+Failed to load module Eve
+Failed to load module TreeViewer
+Failed to load module Physics
+Failed to load module ROOTTMVASofieParser
+Failed to load module EG
+Failed to load module Tree
+Failed to load module HistFactory
+Failed to load module Spectrum
+Failed to load module Matrix
+Failed to load module Html
+Failed to load module Hist
+Failed to load module GuiHtml
+Failed to load module Gpad
+Failed to load module TMVAGui
+Failed to load module Postscript
+Failed to load module ROOTEve
+Failed to load module RGL
+Failed to load module Fumili
+Failed to load module Geom
+Failed to load module RooFitMore
+Failed to load module X3d
+Failed to load module SPlot
+Failed to load module Hbook
+Failed to load module RooFit
+Failed to load module RCsg
+Failed to load module RooStats
+Failed to load module RooFitRDataFrameHelpers
+Failed to load module GeomBuilder
+Failed to load module FITSIO
+Failed to load module Ged
+Failed to load module Recorder
+Failed to load module FFTW
+Failed to load module ROOTWebDisplay
+Failed to load module GuiBld
+Failed to load module RooFitCore
+Failed to load module Gui
+Failed to load module ROOTHistDraw
+Failed to load module GX11TTF
+Failed to load module ROOTTMVASofie
+Failed to load module TMVAUtils
+Failed to load module ASImage
+Failed to load module MathMore
+Failed to load module RooFitXRooFit
+Failed to load module RooFitHS3
+Failed to load module Foam
+Failed to load module SpectrumPainter
+Failed to load module Minuit2
+Failed to load module MLP
+Failed to load module ROOTDataFrame
+Failed to load module GenVector
+Failed to load module ROOTBrowserv7
+Failed to load module Minuit
+Failed to load module Graf3d
+Failed to load module TMVA
+Failed to load module ROOTNTupleUtil
+Failed to load module ASImageGui
+Failed to load module Graf
+Failed to load module GX11
+Failed to load module Gdml
+Failed to load module ROOTTreeViewer
+Failed to load module MathCore
+Failed to load module Gviz3d
+Failed to load module WebGui6
+Failed to load module ROOTHist
+Failed to load module TreePlayer
+Failed to load module ROOTGeomViewer
+Failed to load module ROOTFitPanelv7
+Failed to load module Smatrix
+Failed to load module MathCore
+Failed to load module Tree
