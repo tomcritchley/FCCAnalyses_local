@@ -73,7 +73,7 @@ for file, label in signal_files:
         generated_events = df.Count().GetValue() #count num of events
         print(f"generated events {generated_events}")
 
-        columns = ROOT.std.vectorggg["string"](variables) #define the variables as the df columns
+        columns = ROOT.std.vector["string"](variables) #define the variables as the df columns
     else:
         print(f"signal file {file} does not exist, moving on")
         continue
