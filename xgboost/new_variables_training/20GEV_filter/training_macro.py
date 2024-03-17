@@ -176,12 +176,12 @@ if __name__ == "__main__":
         pyplot.show()
         # Save model in TMVA format
         print("Training done on ",x.shape[0],f"events. Saving model in tmva_{label}.root")
-	try: 
-		ROOT.TMVA.Experimental.SaveXGBoost(bdt, "myBDT", f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root", num_inputs=x.shape[1])
-        	print(f"training saved successfully")
-	except Exception as e:
-		print(f"error trying to save file {e}")
-        plot_tree(bdt, num_trees=5, rankdir='LR')  # Adjust num_trees as needed
-        pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/decision_tree_plot_{label}.pdf")
+        try: 
+            ROOT.TMVA.Experimental.SaveXGBoost(bdt, "myBDT", f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root", num_inputs=x.shape[1])
+            print(f"training saved successfully")
+        except Exception as e:
+            print(f"error trying to save file {e}")
+            plot_tree(bdt, num_trees=5, rankdir='LR')  # Adjust num_trees as needed
+            pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/decision_tree_plot_{label}.pdf")
     else:
         print(f"The trained model for {label} already exists! No need to re-run :)")
