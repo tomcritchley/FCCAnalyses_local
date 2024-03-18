@@ -1,0 +1,33 @@
+Error in <TFile::ReadKeys>: reading illegal key, exiting after 0 keys
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 58665410
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 144757520
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 298048929
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 451372103
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 451375756
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 604779995
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 604783620
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 758387077
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 758390718
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 758725432
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 912030508
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 912365221
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 1065724741
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 1219356880
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 1219360533
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 1219695339
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 1372894918
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 1373229688
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events at address 1526878054
+Info in <TFile::Recover>: /eos/user/t/tcritchl/xgBOOST/testing10/test_background_total.root, recovered key TTree:events_modified_background_total at address 1527212994
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/20GEV_filter/testing_macro.py", line 342, in <module>
+    existing_results = json.load(json_file)
+  File "/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/lib/python3.9/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+  File "/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/lib/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/lib/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/lib/python3.9/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 30953 column 10 (char 524287)
