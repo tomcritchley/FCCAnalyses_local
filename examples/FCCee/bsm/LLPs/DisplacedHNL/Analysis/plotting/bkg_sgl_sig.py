@@ -30,7 +30,7 @@ chosen_variable = variable_list[14]
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
 
-normalisation = False 
+normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 #luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
 
