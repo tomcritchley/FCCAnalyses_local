@@ -25,7 +25,7 @@ variable_list = [
     ["n_primt", "Number of primary tracks"], #15
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
-chosen_variable = variable_list[2] 
+chosen_variable = variable_list[14] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
@@ -70,7 +70,7 @@ files_list_signal = [
 
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.014] #pb
-total_events_bg = [5215.46,6654.46,0.014]
+total_events_bg = [5215.46,6654.46,1]
 #total_events_bg = [1,1,1]
 #total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
 selection_scale_bg = [2/(499786495),1/(438538637),2620/100000]
