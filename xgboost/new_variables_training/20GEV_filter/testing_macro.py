@@ -1,6 +1,5 @@
 import ROOT
 from training_macro import load_data
-from DataPreparation_macro import masses, couplings
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -23,6 +22,28 @@ run = config["run_number"]
 
 labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/testing{run}/"
+
+
+masses = [
+    "10GeV",
+    "20GeV",
+    "30GeV",
+    "40GeV",
+    "50GeV",
+    "60GeV",
+    "70GeV",
+    "80GeV",   
+]
+
+couplings = [
+    "1e-2", 
+    "1e-2p5", 
+    "1e-3", 
+    "1e-3p5", 
+    "1e-4", 
+    "1e-4p5", 
+    "1e-5"
+]
 
 for mass in masses:
     for coupling in couplings:

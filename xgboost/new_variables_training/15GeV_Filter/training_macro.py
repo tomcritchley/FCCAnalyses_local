@@ -7,7 +7,6 @@ import json
 from xgboost import XGBClassifier, plot_tree, plot_importance
 from sklearn.model_selection import GridSearchCV
 from  matplotlib import  pyplot
-from DataPreparation_macro import masses, couplings, variables
 import ROOT
 import argparse
 
@@ -20,6 +19,42 @@ print(f"are we training or testing: {train_or_test}")
 labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/training{run}/"
 json_file = "/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb24.json"
+
+masses = [
+    "10GeV",
+    "20GeV",
+    "30GeV",
+    "40GeV",
+    "50GeV",
+    "60GeV",
+    "70GeV",
+    "80GeV",   
+]
+
+couplings = [
+    "1e-2", 
+    "1e-2p5", 
+    "1e-3", 
+    "1e-3p5", 
+    "1e-4", 
+    "1e-4p5", 
+    "1e-5"
+]
+
+variables = [
+    "RecoDiJet_delta_R",
+    "RecoDiJet_angle", 
+    "RecoElectron_DiJet_delta_R",
+    "RecoElectronTrack_absD0sig", 
+    "RecoElectronTrack_absD0",
+    "RecoDiJet_phi",
+    "RecoMissingEnergy_theta",
+    "RecoMissingEnergy_e",
+    "RecoElectron_lead_e",
+    "Vertex_chi2",
+    "n_primt",
+    "ntracks",
+]
 
 with open(json_file, 'r') as f:
     json_data = json.load(f)
