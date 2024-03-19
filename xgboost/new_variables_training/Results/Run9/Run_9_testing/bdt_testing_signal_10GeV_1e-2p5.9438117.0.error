@@ -1,0 +1,180 @@
+Error in <TBasket::Streamer>: The value of fKeylen is incorrect (-20395) ; trying to recover by setting it to zero
+Error in <TBasket::Streamer>: The value of fNbytes is incorrect (-957165195) ; trying to recover by setting it to zero
+Error in <TBasket::Streamer>: The value of fIOBits (00000000000000000000000000111111) contains unknown flags (supported flags are 00000000000000000000000000000001), indicating this was written with a newer version of ROOT utilizing critical IO features this version of ROOT does not support.  Refusing to deserialize.
+Fatal in <TBuffer::TBuffer>: Request to create a buffer with a negative size, likely due to an integer overflow: 0xd8d3bb9d for a max of 0x7ffffffe.
+aborting
+
+Thread 16 (Thread 0x2ae9cd65b700 (LWP 530) "python3"):
+#0  0x00002ae9913d7b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002ae9913d7bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002ae9913d7c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002ae9cb7b6f06 in XrdSysSemaphore::Wait (this=0xa297bf0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.hh:509
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xa2a5e28) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xa2a5e10) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002ae9cb7b6fa9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 15 (Thread 0x2ae9cd85c700 (LWP 529) "python3"):
+#0  0x00002ae9913d7b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002ae9913d7bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002ae9913d7c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002ae9cb7b6f06 in XrdSysSemaphore::Wait (this=0xa297bf0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.hh:509
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xa2a5e28) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xa2a5e10) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002ae9cb7b6fa9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 14 (Thread 0x2ae9cda5d700 (LWP 528) "python3"):
+#0  0x00002ae9913d7b3b in do_futex_wait.constprop () from /lib64/libpthread.so.0
+#1  0x00002ae9913d7bcf in __new_sem_wait_slow.constprop.0 () from /lib64/libpthread.so.0
+#2  0x00002ae9913d7c6b in sem_wait
+
+GLIBC_2.2.5 () from /lib64/libpthread.so.0
+#3  0x00002ae9cb7b6f06 in XrdSysSemaphore::Wait (this=0xa297bf0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.hh:509
+#4  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0xa2a5e28) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClSyncQueue.hh:66
+#5  XrdCl::JobManager::RunJobs (this=0xa2a5e10) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClJobManager.cc:151
+#6  0x00002ae9cb7b6fa9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClJobManager.cc:34
+#7  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#8  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 13 (Thread 0x2ae9cd259700 (LWP 527) "python3"):
+#0  0x00002ae9913d8e9d in nanosleep () from /lib64/libpthread.so.0
+#1  0x00002ae9cb548ba8 in XrdSysTimer::Wait (mills=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysTimer.cc:239
+#2  0x00002ae9cb735a40 in XrdCl::TaskManager::RunTasks (this=0xa2a5250) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClTaskManager.cc:246
+#3  0x00002ae9cb735b29 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdCl/XrdClTaskManager.cc:38
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 12 (Thread 0x2ae9cd058700 (LWP 526) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa212d80, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xf091e50) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 11 (Thread 0x2ae9cce57700 (LWP 525) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa212bf0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa2621a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 10 (Thread 0x2ae9ccc56700 (LWP 524) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa2a7b20, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa25f1c0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 9 (Thread 0x2ae9cca55700 (LWP 523) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa29f0f0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa264e30) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 8 (Thread 0x2ae9cc854700 (LWP 522) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa2baef0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa291ed0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 7 (Thread 0x2ae9cc653700 (LWP 521) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa2a3ac0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa2ba7f0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 6 (Thread 0x2ae9cc452700 (LWP 520) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa2a8d70, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa289910) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 5 (Thread 0x2ae9cc251700 (LWP 519) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0x8404f60, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa289960) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 4 (Thread 0x2ae9cc050700 (LWP 518) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa2aa590, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa1f7fa0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x2ae9cd45a700 (LWP 517) "python3"):
+#0  0x00002ae991dee0e3 in epoll_wait () from /lib64/libc.so.6
+#1  0x00002ae9cb543282 in XrdSys::IOEvents::PollE::Begin (this=0xa2a4e20, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEventsPollE.icc:212
+#2  0x00002ae9cb53fccd in XrdSys::IOEvents::BootStrap::Start (parg=0x7ffd94e980a0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00002ae9cb5482a8 in XrdSysThread_Xeq (myargs=0xa1fc9c0) at /build/jenkins/workspace/lcg_nightly_pipeline/build/externals/xrootd-5.6.9/src/xrootd/5.6.9/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#5  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x2ae9bd400700 (LWP 495) "jemalloc_bg_thd"):
+#0  0x00002ae9913d5a35 in pthread_cond_wait
+
+GLIBC_2.3.2 () from /lib64/libpthread.so.0
+#1  0x00002ae9bc24de7b in background_thread_sleep (tsdn=<optimized out>, interval=<optimized out>, info=<optimized out>) at src/background_thread.c:137
+#2  background_work_sleep_once (ind=0, info=<optimized out>, tsdn=<optimized out>) at src/background_thread.c:229
+#3  background_thread0_work (tsd=<optimized out>) at src/background_thread.c:374
+#4  background_work (ind=<optimized out>, tsd=<optimized out>) at src/background_thread.c:412
+#5  background_thread_entry (ind_arg=<optimized out>) at src/background_thread.c:444
+#6  0x00002ae9913d1ea5 in start_thread () from /lib64/libpthread.so.0
+#7  0x00002ae991dedb0d in clone () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x2ae990c089c0 (LWP 486) "python3"):
+#0  0x00002ae991db4659 in waitpid () from /lib64/libc.so.6
+#1  0x00002ae991d31f62 in do_system () from /lib64/libc.so.6
+#2  0x00002ae991d32311 in system () from /lib64/libc.so.6
+#3  0x00002ae998c7447c in TUnixSystem::StackTrace() () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libCore.so
+#4  0x00002ae998b40e62 in DefaultErrorHandler(int, bool, char const*, char const*) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libCore.so
+#5  0x00002ae998bfde31 in ErrorHandler () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libCore.so
+#6  0x00002ae998b5341c in TObject::Fatal(char const*, char const*, ...) const () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libCore.so
+#7  0x00002ae998b2cff8 in TBuffer::TBuffer(TBuffer::EMode, int) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libCore.so
+#8  0x00002ae99a0c7b69 in TBufferIO::TBufferIO(TBuffer::EMode, int) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libRIO.so
+#9  0x00002ae99a0c1899 in TBufferFile::TBufferFile(TBuffer::EMode, int) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libRIO.so
+#10 0x00002ae9b4b57b2d in TBasket::Streamer(TBuffer&) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libTree.so
+#11 0x00002ae9b4b56712 in TBasket::ReadBasketBuffers(long long, int, TFile*) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libTree.so
+#12 0x00002ae9b4b6151c in TBranch::GetBasketImpl(int, TBuffer*) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libTree.so
+#13 0x00002ae9b4b62bfd in TBranch::GetBasketAndFirst(TBasket*&, long long&, TBuffer*) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libTree.so
+#14 0x00002ae9b4b62df7 in TBranch::GetEntry(long long, int) () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libTree.so
+#15 0x00002ae9c9f65701 in ROOT::Internal::TTreeReaderValueBase::EReadStatus ROOT::Internal::TTreeReaderValueBase::ProxyReadTemplate<&ROOT::Detail::TBranchProxy::ReadNoParentNoBranchCountNoCollection>() () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libTreePlayer.so
+#16 0x00002ae9c9f61913 in ROOT::Internal::TTreeReaderValueBase::GetAddress() () from /cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/lib/libTreePlayer.so
+#17 0x00002ae9cff8417b in ?? ()
+#18 0x00007ffd94e9aad0 in ?? ()
+#19 0x000000000ef05ee0 in ?? ()
+#20 0x000000000ef05f30 in ?? ()
+#21 0x00002ae9cff847f0 in ?? ()
+#22 0x00007ffd94e9aaf0 in ?? ()
+#23 0x00002ae9cff84140 in ?? ()
+#24 0x00007ffd94e9ab00 in ?? ()
+#25 0x00002ae9cff84123 in ?? ()
+#26 0x00007ffd94e9ab10 in ?? ()
+#27 0x00002ae9cff830da in ?? ()
+#28 0x00007ffd94e9ab40 in ?? ()
+#29 0x00002ae9cff81277 in ?? ()
+#30 0x000000000f08f780 in ?? ()
+#31 0x000000000eed5188 in ?? ()
+#32 0x0000000000000000 in ?? ()
+condor_exec.exe: line 3:   486 Aborted                 (core dumped) python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/testing_macro.py --label "signal_10GeV_1e-2p5"
