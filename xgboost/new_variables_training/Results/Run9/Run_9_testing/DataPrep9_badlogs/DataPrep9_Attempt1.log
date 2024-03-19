@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/DataPreparation_macro.py", line 22, in <module>
+    input_bkg_cc = config["preparation_input_path_bkg_cc"]
+KeyError: 'preparation_input_path_bkg_cc'
