@@ -162,7 +162,7 @@ if __name__ == "__main__":
     plt.ylabel('True Positive Rate')
     plt.legend(loc='lower right')
     plt.gca().set_aspect('equal', adjustable='box')
-    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/ROC_xgboost_{label}_5.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/ROC_xgboost_{label}.pdf")
     
     ##################################################################################################################
     ###################################### BDT OUTPUT PLOTS ##########################################################
