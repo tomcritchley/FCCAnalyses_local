@@ -57,8 +57,8 @@ for filename in signal_filenames:
 
 #background w score of 0
 for filename in background_filenames:
-    with uproot.open(filename) as tree:
-        tree = filename[tree_name]
+    with uproot.open(filename) as file:
+        tree = file[tree_name]
         df_background = tree.arrays(library="pd")
         df_background['label'] = 0
         dfs.append(df_background)
