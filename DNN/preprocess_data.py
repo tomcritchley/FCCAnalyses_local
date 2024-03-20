@@ -102,6 +102,11 @@ print(df.head())  # Print the first few rows
 print(f"filtering events....")
 df = df[df['RecoElectron_lead_e'] > 35] #attempt to filter
 print(df.head())
+print("Shape of the DataFrame:", df.shape)
+print(f"removing nan lists columns from the df...")
+df[df['RecoElectronTrack_absD0sig'].map(lambda d: len(d)) > 0]
+print(f"new shape of df {df.shape}")
+print(df.head())
 
 # Optionally, preprocess your dataframe (e.g., normalization, feature engineering)
 # For example, split your data into features and labels
@@ -121,7 +126,7 @@ for col in X_train_flat.columns:
         X_train_flat[col] = X_train_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
         X_test_flat[col] = X_test_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
         print(f"Flattened column: {col}")
-        
+
 # Scale the flattened data
 print("Scaling the flattened data...")
 scaler = StandardScaler()
