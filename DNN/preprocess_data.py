@@ -123,9 +123,12 @@ for col in X_train_flat.columns:
     # Check if the column contains lists or arrays
     if isinstance(X_train_flat[col].iloc[0], (list, np.ndarray)):
         # Flatten the nested arrays, handling empty lists or arrays
+        print(f"Before flattening - Column {col}, Shape: {X_train_flat[col].shape}")
         X_train_flat[col] = X_train_flat[col].apply(lambda x: x[0] if isinstance(x, (list, np.ndarray)) and len(x) > 0 else np.nan)
         X_test_flat[col] = X_test_flat[col].apply(lambda x: x[0] if isinstance(x, (list, np.ndarray)) and len(x) > 0 else np.nan)
+        print(f"After flattening - Column {col}, Shape: {X_train_flat[col].shape}")
         print(f"Flattened column: {col}")
+        
 # Scale the flattened data
 print("Scaling the flattened data...")
 scaler = StandardScaler()
