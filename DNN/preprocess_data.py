@@ -88,6 +88,9 @@ for filename in background_filenames:
         dfs.append(df_background)
 
 
+print("Number of events in the background dataframe:", len(df_background))
+print("Number of events in the signal dataframe:", len(df_signal))
+
 print(f"concatenating df")
 df = pd.concat(dfs, ignore_index=True)
 
@@ -106,13 +109,41 @@ y = df.iloc[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-#normalising/scaling to what?
-#scaler = StandardScaler()
-#X_train_scaled = scaler.fit_transform(X_train)
-#X_test_scaled = scaler.transform(X_test)
+# Flatten nested arrays
+print("Flattening nested arrays...")
+X_train_flat = X_train.copy()
+X_test_flat = X_test.copy()
 
-np.save('X_train.npy', X_train)
-np.save('X_test.npy', X_test)
+for col in X_train_flat.columns:
+    # Check if the column contains lists or arrays
+    if isinstance(X_train_flat[col].iloc[0], (list, np.ndarray)):
+        print(f"Flattening column '{col}'...")
+        # Flatten the nested arrays
+        X_train_flat[col] = X_train_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
+        X_test_flat[col] = X_test_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
+        
+print("Flattening completed.")
+
+print("Shape of X_train before flattening:", X_train.shape)
+print("Shape of X_test before flattening:", X_test.shape)
+print("Shape of X_train after flattening:", X_train_flat.shape)
+print("Shape of X_test after flattening:", X_test_flat.shape)
+
+# Scale the flattened data
+print("Scaling the flattened data...")
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train_flat)
+X_test_scaled = scaler.transform(X_test_flat)
+print("Scaling completed.")
+
+print("Shape of X_train_scaled:", X_train_scaled.shape)
+print("Shape of X_test_scaled:", X_test_scaled.shape)
+
+# Save the preprocessed data
+print("Saving the preprocessed data...")
+np.save('X_train.npy', X_train_scaled)
+np.save('X_test.npy', X_test_scaled)
 np.save('y_train.npy', y_train)
 np.save('y_test.npy', y_test)
+print("Preprocessed data saved successfully.")
 
