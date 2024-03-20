@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, auc
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
@@ -59,8 +61,17 @@ callbacks = [
 
 # Train the model with tqdm progress bar
 history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0)
-
 print("Training completed.")
+print(f"plotting curves")
+# Plot loss over time
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Training and Validation Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.savefig(f"loss_function.pdf")
+
 
 # Load the best model saved by the ModelCheckpoint
 print("Loading the best model...")
@@ -74,5 +85,21 @@ print(f'\nTest accuracy: {test_acc*100:.2f}%')
 
 # Save the final model
 print("Saving the final model...")
-model.save('DNN_HNLs.h5')
+model.save('DNN_HNLs.keras')
 print("Final model saved successfully.")
+
+# Plot ROC curve
+y_pred = model.predict(X_test).ravel()
+fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+roc_auc = auc(fpr, tpr)
+
+plt.figure()
+plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.legend(loc="lower right")
+plt.savefig(f"ROC.pdf")
