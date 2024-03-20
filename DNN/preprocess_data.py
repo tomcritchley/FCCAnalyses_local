@@ -72,6 +72,7 @@ for filename in signal_filenames:
         print(f"successfully labelled signal, adding to dfs.")
         print("First few rows of df_signal:")
         print(df_signal.head())  # Print the first few rows
+        print("Number of events in the signal dataframe:", len(df_signal))
         dfs.append(df_signal)
 
 # background w score of 0
@@ -85,16 +86,14 @@ for filename in background_filenames:
         print(f"successfully labelled background, adding to dfs.")
         print("First few rows of df_background:")
         print(df_background.head())  # Print the first few rows
+        print("Number of events in the background dataframe:", len(df_background))
         dfs.append(df_background)
-
-
-print("Number of events in the background dataframe:", len(df_background))
-print("Number of events in the signal dataframe:", len(df_signal))
 
 print(f"concatenating df")
 df = pd.concat(dfs, ignore_index=True)
 
-
+print("Number of events in the combined dataframe:", len(df))
+      
 print(f"unprocessed df concenated... printing header!")
 
 print(df.head())  # Print the first few rows
