@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import numpy as np
+import awkward as ak
 import os
 
 #name of the tree --> (case sensitive!)
@@ -118,21 +119,13 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Iterate over column names and their data types
 for column_name, column_type in df.dtypes.items():
     print(f"{column_name}: {column_type}")
-
-# Flatten nested arrays
-X_train_flat = X_train.copy()
-X_test_flat = X_test.copy()
-
-for col in X_train_flat.columns:
-    # Check if the column contains string representations of lists or arrays
-    if isinstance(X_train_flat[col].iloc[0], str) and X_train_flat[col].iloc[0].startswith("[") and X_train_flat[col].iloc[0].endswith("]"):
-        # Convert string representations to actual lists or arrays
-        X_train_flat[col] = X_train_flat[col].apply(lambda x: eval(x) if isinstance(x, str) else x)
-        X_test_flat[col] = X_test_flat[col].apply(lambda x: eval(x) if isinstance(x, str) else x)
-        print(f"Converted string representations to lists/arrays - Column {col}")
+print(f"converting missing energy theta to a numpy array...")
+df['RecoMissingEnergy_theta'] = df['RecoMissingEnergy_theta'].map(lambda x: ak.to_numpy(x))
+print(f"converting missing energy to a numpy array...")
+df['RecoMissingEnergy_e'] = df['RecoMissingEnergy_e'].map(lambda x: ak.to_numpy(x))
 
 # Scale the flattened data
-print("Scaling the flattened data...")
+print("Scaling the data...")
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train_flat)
 X_test_scaled = scaler.transform(X_test_flat)
