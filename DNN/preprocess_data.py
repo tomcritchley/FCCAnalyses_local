@@ -107,51 +107,39 @@ X = df.iloc[:, :-1]  # assuming the last column is the label
 y = df.iloc[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
 # Flatten nested arrays
-print("Flattening nested arrays...")
 X_train_flat = X_train.copy()
 X_test_flat = X_test.copy()
 
 for col in X_train_flat.columns:
     # Check if the column contains lists or arrays
     if isinstance(X_train_flat[col].iloc[0], (list, np.ndarray)):
-        print(f"Flattening column '{col}'...")
         # Flatten the nested arrays
         X_train_flat[col] = X_train_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
         X_test_flat[col] = X_test_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
-        
-print("Flattening completed.")
 
-print("Shape of X_train before flattening:", X_train.shape)
-print("Shape of X_test before flattening:", X_test.shape)
-print("Shape of X_train after flattening:", X_train_flat.shape)
-print("Shape of X_test after flattening:", X_test_flat.shape)
+# Check if there are still irregular subarray lengths
+print("Checking for irregular subarray lengths...")
+irregular_columns_train = [col for col in X_train_flat.columns if isinstance(X_train_flat[col].iloc[0], (list, np.ndarray))]
+irregular_columns_test = [col for col in X_test_flat.columns if isinstance(X_test_flat[col].iloc[0], (list, np.ndarray))]
 
-# Drop rows with missing values
-print("Dropping rows with missing values...")
-X_train_flat.dropna(inplace=True)
-X_test_flat.dropna(inplace=True)
-print("Rows with missing values dropped.")
+if irregular_columns_train or irregular_columns_test:
+    print("Irregular subarray lengths found. Please handle irregular subarray lengths before scaling.")
+else:
+    # Scale the flattened data
+    print("Scaling the flattened data...")
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train_flat)
+    X_test_scaled = scaler.transform(X_test_flat)
+    print("Scaling completed.")
 
-print("Shape of X_train_flat after dropping missing values:", X_train_flat.shape)
-print("Shape of X_test_flat after dropping missing values:", X_test_flat.shape)
+    print("Shape of X_train_scaled:", X_train_scaled.shape)
+    print("Shape of X_test_scaled:", X_test_scaled.shape)
 
-# Scale the flattened data
-print("Scaling the flattened data...")
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train_flat)
-X_test_scaled = scaler.transform(X_test_flat)
-print("Scaling completed.")
-
-print("Shape of X_train_scaled:", X_train_scaled.shape)
-print("Shape of X_test_scaled:", X_test_scaled.shape)
-
-# Save the preprocessed data
-print("Saving the preprocessed data...")
-np.save('X_train.npy', X_train_scaled)
-np.save('X_test.npy', X_test_scaled)
-np.save('y_train.npy', y_train)
-np.save('y_test.npy', y_test)
-print("Preprocessed data saved successfully.")
-
+    # Save the preprocessed data
+    print("Saving the preprocessed data...")
+    np.save('X_train.npy', X_train_scaled)
+    np.save('X_test.npy', X_test_scaled)
+    np.save('y_train.npy', y_train)
+    np.save('y_test.npy', y_test)
+    print("Preprocessed data saved successfully.")
