@@ -48,21 +48,33 @@ background_filenames = ["/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee
 
 dfs = []
 
-#signal w score of 1
+# signal w score of 1
 for filename in signal_filenames:
+    print(f"attempting to open {filename} for the tree {tree_name}....")
     with uproot.open(f"{filename}:{tree_name}") as tree:
+        print(f"file is open...")
         df_signal = tree.arrays(library="pd")
+        print(f"labelling signal file with 1...")
         df_signal['label'] = 1
+        print(f"successfully labelled signal, adding to dfs.")
+        print("First few rows of df_signal:")
+        print(df_signal.head())  # Print the first few rows
         dfs.append(df_signal)
 
-#background w score of 0
+# background w score of 0
 for filename in background_filenames:
-    with uproot.open(filename) as file:
-        tree = file[tree_name]
+    print(f"attempting to open {filename} for the tree {tree_name}....")
+    with uproot.open(f"{filename}:{tree_name}") as tree:
+        print(f"file is open...")
         df_background = tree.arrays(library="pd")
+        print(f"labelling signal file with 0...")
         df_background['label'] = 0
+        print(f"successfully labelled background, adding to dfs.")
+        print("First few rows of df_background:")
+        print(df_background.head())  # Print the first few rows
         dfs.append(df_background)
 
+print(f"concatenating df")
 df = pd.concat(dfs, ignore_index=True)
 
 variables = [
