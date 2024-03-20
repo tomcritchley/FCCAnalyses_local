@@ -5,11 +5,10 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tqdm import tqdm
 
-# Load preprocessed data
-X_train = np.load('X_train.npy')
-y_train = np.load('y_train.npy')
-X_test = np.load('X_test.npy')
-y_test = np.load('y_test.npy')
+X_train = np.load('X_train.npy', allow_pickle=True)
+y_train = np.load('y_train.npy', allow_pickle=True)
+X_test = np.load('X_test.npy', allow_pickle=True)
+y_test = np.load('y_test.npy', allow_pickle=True)
 
 # Define the DNN model
 model = Sequential([
