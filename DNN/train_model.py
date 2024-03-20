@@ -6,10 +6,24 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tqdm import tqdm
 
 # Load preprocessed data
-X_train = np.load('X_train.npy', allow_pickle=True).astype(np.float32)
-y_train = np.load('y_train.npy', allow_pickle=True).astype(np.float32)
-X_test = np.load('X_test.npy', allow_pickle=True).astype(np.float32)
-y_test = np.load('y_test.npy', allow_pickle=True).astype(np.float32)
+X_train = np.load('X_train.npy', allow_pickle=True)
+y_train = np.load('y_train.npy', allow_pickle=True)
+X_test = np.load('X_test.npy', allow_pickle=True)
+y_test = np.load('y_test.npy', allow_pickle=True)
+
+# Print out data types and shapes
+print("Data types and shapes:")
+print("X_train:", X_train.dtype, X_train.shape)
+print("y_train:", y_train.dtype, y_train.shape)
+print("X_test:", X_test.dtype, X_test.shape)
+print("y_test:", y_test.dtype, y_test.shape)
+
+# Print out a sample of the data
+print("\nSample of the data:")
+print("X_train sample:", X_train[:5])
+print("y_train sample:", y_train[:5])
+print("X_test sample:", X_test[:5])
+print("y_test sample:", y_test[:5])
 
 # Define the DNN model
 model = Sequential([
