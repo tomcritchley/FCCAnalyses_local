@@ -67,8 +67,8 @@ for filename in signal_filenames:
         print(f"file is open...")
         # Select only the variables of interest
         print(f"labelling signal file with 1...")
+        df_signal = tree.arrays(variables, library="pd")
         df_signal['label'] = 1
-        df_signal = tree.arrays(variables + ['label'], library="pd")
         print(f"successfully labelled signal, adding to dfs.")
         print("First few rows of df_signal:")
         print(df_signal.head())  # Print the first few rows
@@ -80,8 +80,8 @@ for filename in background_filenames:
     with uproot.open(f"{filename}:{tree_name}") as tree:
         print(f"file is open...")
         # Select only the variables of interest
+        df_background = tree.arrays(variables, library="pd")
         df_background['label'] = 0
-        df_background = tree.arrays(variables + ['label'], library="pd")
         print(f"successfully labelled background, adding to dfs.")
         print("First few rows of df_background:")
         print(df_background.head())  # Print the first few rows
