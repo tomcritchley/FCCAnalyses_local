@@ -42,9 +42,9 @@ couplings = [
     #"1e-4p5", 
     #"1e-5"
 ]
-
+"""
 signal_filenames = []
-
+signal_filenames = 
 for mass in masses:
     for coupling in couplings:
         base_file = f"HNL_Dirac_ejj_{mass}_{coupling}Ve.root"
@@ -55,7 +55,9 @@ for mass in masses:
             print(f"file {signal_file} does not exist, moving to next file")
 
 print(signal_filenames)
+"""
 
+signal_filenames = ["/eos/user/t/tcritchl/HNLs_Feb24/HNL_Dirac_ejj_20GeV_1e-3Ve.root"]
 background_filenames = ["/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_256.root", "/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_256.root", "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/ejjnu.root"]
 
 dfs = []
@@ -107,6 +109,7 @@ X = df.iloc[:, :-1]  # assuming the last column is the label
 y = df.iloc[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
 # Flatten nested arrays
 X_train_flat = X_train.copy()
 X_test_flat = X_test.copy()
@@ -117,29 +120,18 @@ for col in X_train_flat.columns:
         # Flatten the nested arrays
         X_train_flat[col] = X_train_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
         X_test_flat[col] = X_test_flat[col].apply(lambda x: x[0] if len(x) > 0 else np.nan)
+        print(f"Flattened column: {col}")
+        
+# Scale the flattened data
+print("Scaling the flattened data...")
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train_flat)
+X_test_scaled = scaler.transform(X_test_flat)
+print("Scaling completed.")
 
-# Check if there are still irregular subarray lengths
-print("Checking for irregular subarray lengths...")
-irregular_columns_train = [col for col in X_train_flat.columns if isinstance(X_train_flat[col].iloc[0], (list, np.ndarray))]
-irregular_columns_test = [col for col in X_test_flat.columns if isinstance(X_test_flat[col].iloc[0], (list, np.ndarray))]
-
-if irregular_columns_train or irregular_columns_test:
-    print("Irregular subarray lengths found. Please handle irregular subarray lengths before scaling.")
-else:
-    # Scale the flattened data
-    print("Scaling the flattened data...")
-    scaler = StandardScaler()
-    X_train_scaled = scaler.fit_transform(X_train_flat)
-    X_test_scaled = scaler.transform(X_test_flat)
-    print("Scaling completed.")
-
-    print("Shape of X_train_scaled:", X_train_scaled.shape)
-    print("Shape of X_test_scaled:", X_test_scaled.shape)
-
-    # Save the preprocessed data
-    print("Saving the preprocessed data...")
-    np.save('X_train.npy', X_train_scaled)
-    np.save('X_test.npy', X_test_scaled)
-    np.save('y_train.npy', y_train)
-    np.save('y_test.npy', y_test)
-    print("Preprocessed data saved successfully.")
+print("Saving the preprocessed data...")
+np.save('X_train.npy', X_train_scaled)
+np.save('X_test.npy', X_test_scaled)
+np.save('y_train.npy', y_train)
+np.save('y_test.npy', y_test)
+print("Preprocessed data saved successfully.")
