@@ -128,6 +128,15 @@ print("Shape of X_test before flattening:", X_test.shape)
 print("Shape of X_train after flattening:", X_train_flat.shape)
 print("Shape of X_test after flattening:", X_test_flat.shape)
 
+# Drop rows with missing values
+print("Dropping rows with missing values...")
+X_train_flat.dropna(inplace=True)
+X_test_flat.dropna(inplace=True)
+print("Rows with missing values dropped.")
+
+print("Shape of X_train_flat after dropping missing values:", X_train_flat.shape)
+print("Shape of X_test_flat after dropping missing values:", X_test_flat.shape)
+
 # Scale the flattened data
 print("Scaling the flattened data...")
 scaler = StandardScaler()
