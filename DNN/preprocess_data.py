@@ -11,24 +11,24 @@ tree_name = "events"
 base_HNL = "/eos/user/t/tcritchl/HNLs_Feb24/"
 
 masses = [
-    "10GeV",
+    #"10GeV",
     "20GeV",
-    "30GeV",
-    "40GeV",
+    #"30GeV",
+    #"40GeV",
     "50GeV",
-    "60GeV",
+    #"60GeV",
     "70GeV",
-    "80GeV",   
+    #"80GeV",   
 ]
 
 couplings = [
-    "1e-2", 
-    "1e-2p5", 
+    #"1e-2", 
+    #"1e-2p5", 
     "1e-3", 
-    "1e-3p5", 
-    "1e-4", 
-    "1e-4p5", 
-    "1e-5"
+    #"1e-3p5", 
+    #"1e-4", 
+    #"1e-4p5", 
+    #"1e-5"
 ]
 
 signal_filenames = []
@@ -44,7 +44,7 @@ for mass in masses:
 
 print(signal_filenames)
 
-background_filenames = ["/eos/user/t/tcritchl/xgBOOST/fullstats/p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91.root", "/eos/user/t/tcritchl/xgBOOST/fullstats/p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91.root", "eos/user/t/tcritchl/xgBOOST/fullstats/ejjnu/ejjnu.root"]
+background_filenames = ["/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk256.root", "/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk256.root", "eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/ejjnu.root"]
 
 dfs = []
 
