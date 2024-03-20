@@ -14,7 +14,7 @@ variables = [
     "RecoDiJet_delta_R",
     "RecoDiJet_angle", 
     "RecoElectron_DiJet_delta_R",
-    "RecoElectronTrack_absD0sig", 
+    #"RecoElectronTrack_absD0sig", 
     "RecoElectronTrack_absD0",
     "RecoDiJet_phi",
     "RecoMissingEnergy_theta",
@@ -103,10 +103,10 @@ print(f"filtering events....")
 df = df[df['RecoElectron_lead_e'] > 35] #attempt to filter
 print(df.head())
 print("Shape of the DataFrame:", df.shape)
-print(f"removing nan lists columns from the df...")
-df[df['RecoElectronTrack_absD0sig'].map(lambda d: len(d)) > 0]
-print(f"new shape of df {df.shape}")
-print(df.head())
+#print(f"removing nan lists columns from the df...")
+#df[df['RecoElectronTrack_absD0sig'].map(lambda d: len(d)) > 0]
+#print(f"new shape of df {df.shape}")
+#print(df.head())
 
 # Optionally, preprocess your dataframe (e.g., normalization, feature engineering)
 # For example, split your data into features and labels
