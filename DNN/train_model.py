@@ -103,3 +103,18 @@ plt.ylabel('True Positive Rate')
 plt.title('Receiver Operating Characteristic (ROC) Curve')
 plt.legend(loc="lower right")
 plt.savefig(f"ROC.pdf")
+
+# Get predicted scores for signal and background events
+y_pred_signal = model.predict(X_test[y_test == 1]).ravel()
+y_pred_background = model.predict(X_test[y_test == 0]).ravel()
+
+# Plot histogram of predicted scores for signal and background events
+plt.figure()
+plt.hist(y_pred_signal, bins=50, alpha=0.5, color='b', label='Signal')
+plt.hist(y_pred_background, bins=50, alpha=0.5, color='r', label='Background')
+plt.xlabel('Predicted Score')
+plt.ylabel('Frequency')
+plt.title('Predicted Scores for Signal and Background Events')
+plt.legend(loc='upper center')
+plt.grid(True)
+plt.savefig(f"dnn_classification.pdf")
