@@ -3,6 +3,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from tqdm import tqdm
 
 # Load preprocessed data
 X_train = np.load('X_train.npy')
@@ -32,8 +33,8 @@ callbacks = [
     ModelCheckpoint('best_model.h5', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
 ]
 
-# Train the model
-history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=1)
+# Train the model with tqdm progress bar
+history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0)
 
 # Load the best model saved by the ModelCheckpoint
 model = tf.keras.models.load_model('best_model.h5')
@@ -44,4 +45,3 @@ print(f'\nTest accuracy: {test_acc*100:.2f}%')
 
 # Save the final model
 model.save('DNN_HNLs.h5')
-
