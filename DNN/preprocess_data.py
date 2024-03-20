@@ -44,7 +44,7 @@ for mass in masses:
 
 print(signal_filenames)
 
-background_filenames = ["/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk256.root", "/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk256.root", "eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/ejjnu.root"]
+background_filenames = ["/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_256.root", "/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_256.root", "eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/ejjnu.root"]
 
 dfs = []
 
