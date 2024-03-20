@@ -10,6 +10,18 @@ tree_name = "events"
 #base_path where the signals are located
 base_HNL = "/eos/user/t/tcritchl/HNLs_Feb24/"
 
+variables = [
+    "RecoDiJet_delta_R",
+    "RecoDiJet_angle", 
+    "RecoElectron_DiJet_delta_R",
+    "RecoElectronTrack_absD0sig", 
+    "RecoElectronTrack_absD0",
+    "RecoDiJet_phi",
+    "RecoMissingEnergy_theta",
+    "RecoMissingEnergy_e",
+    "RecoElectron_lead_e"
+]
+
 masses = [
     #"10GeV",
     "20GeV",
@@ -53,7 +65,8 @@ for filename in signal_filenames:
     print(f"attempting to open {filename} for the tree {tree_name}....")
     with uproot.open(f"{filename}:{tree_name}") as tree:
         print(f"file is open...")
-        df_signal = tree.arrays(library="pd")
+        # Select only the variables of interest
+        df_signal = tree.arrays(variables + ['label'], library="pd")
         print(f"labelling signal file with 1...")
         df_signal['label'] = 1
         print(f"successfully labelled signal, adding to dfs.")
@@ -66,7 +79,8 @@ for filename in background_filenames:
     print(f"attempting to open {filename} for the tree {tree_name}....")
     with uproot.open(f"{filename}:{tree_name}") as tree:
         print(f"file is open...")
-        df_background = tree.arrays(library="pd")
+        # Select only the variables of interest
+        df_background = tree.arrays(variables + ['label'], library="pd")
         print(f"labelling signal file with 0...")
         df_background['label'] = 0
         print(f"successfully labelled background, adding to dfs.")
@@ -76,20 +90,6 @@ for filename in background_filenames:
 
 print(f"concatenating df")
 df = pd.concat(dfs, ignore_index=True)
-
-variables = [
-    "RecoDiJet_delta_R",
-    "RecoDiJet_angle", 
-    "RecoElectron_DiJet_delta_R",
-    "RecoElectronTrack_absD0sig", 
-    "RecoElectronTrack_absD0",
-    "RecoDiJet_phi",
-    "RecoMissingEnergy_theta",
-    "RecoMissingEnergy_e",
-    "RecoElectron_lead_e"
-]
-
-df = df[variables + ['label']]
 
 df = df[df['RecoElectron_lead_e'] > 35] #attempt to filter
 
