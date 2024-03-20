@@ -6,10 +6,10 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tqdm import tqdm
 
 # Load preprocessed data
-X_train = np.load('X_train.npy', allow_pickle=True)
-y_train = np.load('y_train.npy', allow_pickle=True)
-X_test = np.load('X_test.npy', allow_pickle=True)
-y_test = np.load('y_test.npy', allow_pickle=True)
+X_train = np.load('X_train.npy', allow_pickle=True).astype(np.float32)
+y_train = np.load('y_train.npy', allow_pickle=True).astype(np.float32)
+X_test = np.load('X_test.npy', allow_pickle=True).astype(np.float32)
+y_test = np.load('y_test.npy', allow_pickle=True).astype(np.float32)
 
 # Define the DNN model
 model = Sequential([
