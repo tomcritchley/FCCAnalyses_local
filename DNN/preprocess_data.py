@@ -87,10 +87,19 @@ for filename in background_filenames:
         print(df_background.head())  # Print the first few rows
         dfs.append(df_background)
 
+
+
+
 print(f"concatenating df")
 df = pd.concat(dfs, ignore_index=True)
 
+
+print(f"unprocessed df concenated... printing header!")
+
+print(df.head())  # Print the first few rows
+print(f"filtering events....")
 df = df[df['RecoElectron_lead_e'] > 35] #attempt to filter
+print(df.head())
 
 # Optionally, preprocess your dataframe (e.g., normalization, feature engineering)
 # For example, split your data into features and labels
@@ -100,9 +109,9 @@ y = df.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 #normalising/scaling to what?
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+#scaler = StandardScaler()
+#X_train_scaled = scaler.fit_transform(X_train)
+#X_test_scaled = scaler.transform(X_test)
 
 np.save('X_train.npy', X_train_scaled)
 np.save('X_test.npy', X_test_scaled)
