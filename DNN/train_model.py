@@ -34,10 +34,8 @@ callbacks = [
 ]
 
 # Train the model with tqdm progress bar
-history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0, 
-                    shuffle=True, 
-                    use_multiprocessing=True, 
-                    workers=16)
+history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0)
+
 print("Training completed.")
 
 # Load the best model saved by the ModelCheckpoint
