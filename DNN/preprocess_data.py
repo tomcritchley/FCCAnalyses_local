@@ -115,8 +115,8 @@ y = df.iloc[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-for column_name in df.GetColumnNames():
-    column_type = df.GetColumnType(column_name)
+# Iterate over column names and their data types
+for column_name, column_type in df.dtypes.items():
     print(f"{column_name}: {column_type}")
 
 # Flatten nested arrays
