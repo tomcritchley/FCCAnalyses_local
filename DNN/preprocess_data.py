@@ -116,13 +116,14 @@ y = df.iloc[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Iterate over column names and their data types
-for column_name, column_type in df.dtypes.items():
-    print(f"{column_name}: {column_type}")
 print(f"converting missing energy theta to a numpy array...")
-df['RecoMissingEnergy_theta'] = df['RecoMissingEnergy_theta'].map(lambda x: ak.to_numpy(x))
+miss_e_theta = ak.to_numpy(df['RecoMissingEnergy_theta'])
+df['RecoMissingEnergy_theta'] = miss_e_theta
+
 print(f"converting missing energy to a numpy array...")
-df['RecoMissingEnergy_e'] = df['RecoMissingEnergy_e'].map(lambda x: ak.to_numpy(x))
+miss_e = ak.to_numpy(df['RecoMissingEnergy_e'])
+df['RecoMissingEnergy_e'] = miss_e
+
 
 # Scale the flattened data
 print("Scaling the data...")
