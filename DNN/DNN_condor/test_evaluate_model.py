@@ -126,15 +126,9 @@ if __name__ == "__main__":
 
     target_luminosity = 10000  # Just an example value, adjust according to your analysis
 
-    # Calculate weights for each event
-    df['weight'] = (df['cross_section'] * target_luminosity) / total_events
-
     # Extract weights for signal and background to use in histograms and significance calculations
     weightsSIG = df[df['label'] == 1]['weight'].values
     weightsBKG = df[df['label'] == 0]['weight'].values
-
-    weightsSIG = 
-    weightsBKG = 
 
     signal_hist, _ = np.histogram(S, bins=full_range_bins, weights=weightsSIG)
     peak_bin = np.argmax(signal_hist)
