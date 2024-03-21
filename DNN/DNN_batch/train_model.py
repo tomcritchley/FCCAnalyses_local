@@ -93,7 +93,7 @@ for filename in signal_filenames:
 # Callbacks
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
-        ModelCheckpoint(f'best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models1/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
     ]
 
     # Train the model with tqdm progress bar
@@ -111,7 +111,7 @@ for filename in signal_filenames:
 
     # Load the best model saved by the ModelCheckpoint
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models1/best_model_{file}.keras')
     print("Model loaded successfully.")
     model.save(f'/eos/user/t/tcritchl/DNN/trained_models1/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
