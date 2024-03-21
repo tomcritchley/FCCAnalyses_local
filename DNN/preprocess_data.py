@@ -109,13 +109,6 @@ print("Shape of the DataFrame:", df.shape)
 #print(f"new shape of df {df.shape}")
 #print(df.head())
 
-# Optionally, preprocess your dataframe (e.g., normalization, feature engineering)
-# For example, split your data into features and labels
-X = df.iloc[:, :-1]  # assuming the last column is the label
-y = df.iloc[:, -1]
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
 print(f"converting missing energy theta to a numpy array...")
 miss_e_theta = ak.to_numpy(df['RecoMissingEnergy_theta'])
 df['RecoMissingEnergy_theta'] = miss_e_theta
@@ -124,12 +117,18 @@ print(f"converting missing energy to a numpy array...")
 miss_e = ak.to_numpy(df['RecoMissingEnergy_e'])
 df['RecoMissingEnergy_e'] = miss_e
 
+# Optionally, preprocess your dataframe (e.g., normalization, feature engineering)
+# For example, split your data into features and labels
+X = df.iloc[:, :-1]  # assuming the last column is the label
+y = df.iloc[:, -1]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Scale the flattened data
 print("Scaling the data...")
 scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train_flat)
-X_test_scaled = scaler.transform(X_test_flat)
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 print("Scaling completed.")
 
 print("Saving the preprocessed data...")
