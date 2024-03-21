@@ -46,10 +46,11 @@ print(signal_filenames)
 
 for filename in signal_filenames:
     
-    file = filename.split('/')
-    final_part = file[-1]
+    file_parts = filename.split('/')
+    final_part = file_parts[-1]
     info_parts = final_part.split('_')
-    file = '_'.join(info_parts[4:])
+
+    file = '_'.join(info_parts[3:5]).replace('Ve.root', '')
 
     X_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/X_train_{file}.npy', allow_pickle=True)
     y_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/y_train_{file}.npy', allow_pickle=True)

@@ -150,10 +150,11 @@ print(f"the problem files were: {problem_files}")
 
 
 for signal_df, filename in dfs_signal:
-    file = filename.split('/')
-    final_part = file[-1]
+    file_parts = filename.split('/')
+    final_part = file_parts[-1]
     info_parts = final_part.split('_')
-    file = '_'.join(info_parts[4:])
+
+    file = '_'.join(info_parts[3:5]).replace('Ve.root', '')
     print(f"concatenating df for signal {file}")
     dfs = []
     dfs.append(signal_df)
