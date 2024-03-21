@@ -7,6 +7,7 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tqdm import tqdm
 import os
+import argparse
 
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
@@ -44,12 +45,13 @@ for mass in masses:
 
 print(signal_filenames)
 
-for filename in signal_filenames:
-    
-    file = filename.split('/')
-    final_part = file[-1]
-    info_parts = final_part.split('_')
-    file = '_'.join(info_parts[4:])
+if __name__ == "__main__":
+        
+    parser = argparse.ArgumentParser(description='BDT Training Script')
+    parser.add_argument('--label', help='Label for the data', metavar='label')
+    args = parser.parse_args()
+
+    file = args.label
 
     X_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/X_train_{file}.npy', allow_pickle=True)
     y_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/y_train_{file}.npy', allow_pickle=True)
