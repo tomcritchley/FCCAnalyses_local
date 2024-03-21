@@ -27,13 +27,6 @@ print("y_train sample:", y_train[:5])
 print("X_test sample:", X_test[:5])
 print("y_test sample:", y_test[:5])
 
-# Convert lists to numerical values
-"""
-X_train[:, 3] = [item[0] for item in X_train[:, 3]]
-X_train[:, 4] = [item[0] for item in X_train[:, 4]]
-X_test[:, 3] = [item[0] for item in X_test[:, 3]]
-X_test[:, 4] = [item[0] for item in X_test[:, 4]]
-"""
 # Convert X_train and X_test to float32
 X_train = X_train.astype(np.float32)
 X_test = X_test.astype(np.float32)
