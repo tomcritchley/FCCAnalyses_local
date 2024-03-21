@@ -1,0 +1,14 @@
+{
+    "preparation_input_path_HNLs": "/eos/user/t/tcritchl/new_variables_HNL_test_March24/",
+    "preparation_input_path_bkg_bb": "/eos/user/p/pakontax/FCC_8March2024/",
+    "preparation_input_path_bkg_cc": "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/",
+    "preparation_input_path_bkg_4body": "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/",
+    "run_number": "12",
+    "background_split": "3",
+    "bkg_normalisation_factor": "3/2",
+    "signal_split": "2",
+    "signal_normalisation_factor": "2",
+    "train_or_test": "train",
+    "lumi_10fb": "10000",
+    "lumi_150ab": "150000000"
+}
