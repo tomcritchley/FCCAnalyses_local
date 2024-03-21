@@ -122,23 +122,31 @@ for filename in signal_filenames:
         print(df_signal.head())  # Print the first few rows
         print("Number of events in the signal dataframe:", len(df_signal))
         dfs_signal.append((df_signal,filename))
-
+problem_files = []
 # background w score of 0
 for filename, x_sec in background_filenames:
     print(f"attempting to open {filename} for the tree {tree_name}....")
-    with uproot.open(f"{filename}:{tree_name}") as tree:
-        print(f"file is open...")
-        # Select only the variables of interest
-        df_background = tree.arrays(variables, library="pd")
-        print(f"cross section is {x_sec}, adding to the df")
-        df_background['cross-section'] = x_sec
-        print(f"cross section added to the dataframe")
-        df_background['label'] = 0
-        print(f"successfully labelled background, adding to dfs.")
-        print("First few rows of df_background:")
-        print(df_background.head())  # Print the first few rows
-        print("Number of events in the background dataframe:", len(df_background))
-        dfs_background.append(df_background)
+    try:
+        with uproot.open(f"{filename}:{tree_name}") as tree:
+            print(f"file is open...")
+            # Select only the variables of interest
+            df_background = tree.arrays(variables, library="pd")
+            print(f"cross section is {x_sec}, adding to the df")
+            df_background['cross-section'] = x_sec
+            print(f"cross section added to the dataframe")
+            df_background['label'] = 0
+            print(f"successfully labelled background, adding to dfs.")
+            print("First few rows of df_background:")
+            print(df_background.head())  # Print the first few rows
+            print("Number of events in the background dataframe:", len(df_background))
+            dfs_background.append(df_background)
+    except Exception as e:
+            print(f"For some reason, {filename} failed with message {e}")
+            problem_files.append(filename)
+            continue
+
+print(f"the number of problem files is {problem_files.count()}")
+print(f"the problem files were: {problem_files}")
 
 
 for signal_df, filename in dfs_signal:
