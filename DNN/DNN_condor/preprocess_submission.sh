@@ -15,19 +15,10 @@ echo "Couplings: $couplings"
 base_path="/eos/user/t/tcritchl/DNN/testing1"
 
 labels=()
+
 for mass in $masses; do
     for coupling in $couplings; do
-        x_test_file="X_test_${mass}_${coupling//Ve/}.npy"
-        y_test_file="y_test_${mass}_${coupling//Ve/}.npy"
-        x_test_path="${base_path}/${x_test_file}"
-        y_test_path="${base_path}/${y_test_file}"
-
-        if [ -f "$x_test_path" ] && [ -f "$y_test_path" ]; then
-            labels+=("${mass}_${coupling//Ve/}")
-            echo "Testing files for $mass and ${coupling//Ve/} exist, added to labels"
-        else
-            echo "One or both testing files for $mass and ${coupling//Ve/} do not exist, moving to next file"
-        fi
+        labels+=("${mass}_${coupling//Ve/}")
     done
 done
 

@@ -64,6 +64,7 @@ if __name__ == "__main__":
     y_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/y_train_{file}.npy', allow_pickle=True)
     X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/X_test_{file}.npy', allow_pickle=True)
     y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/y_test_{file}.npy', allow_pickle=True)
+    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
     model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models1/DNN_HNLs_{file}.keras')
@@ -124,11 +125,10 @@ if __name__ == "__main__":
     S = y_pred_signal
     B = y_pred_background
 
-    target_luminosity = 10000  # Just an example value, adjust according to your analysis
+    weightsSIG = weights_test[y_test == 1]
+    weightsBKG = weights_test[y_test == 0]
 
-    # Extract weights for signal and background to use in histograms and significance calculations
-    weightsSIG = df[df['label'] == 1]['weight'].values
-    weightsBKG = df[df['label'] == 0]['weight'].values
+    target_luminosity = 10000  # Just an example value, adjust according to your analysis
 
     signal_hist, _ = np.histogram(S, bins=full_range_bins, weights=weightsSIG)
     peak_bin = np.argmax(signal_hist)

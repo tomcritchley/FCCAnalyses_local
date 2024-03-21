@@ -231,10 +231,13 @@ if __name__ == "__main__":
 
         # Optionally, preprocess your dataframe (e.g., normalization, feature engineering)
         # For example, split your data into features and labels
-        X = df.iloc[:, :-1]
-        y = df.iloc[:, -1]
+        X = df[variables]
+        y = df['label']
+        weights = df['weight']
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        # Splitting the data into training and testing sets, including weights for later use
+        X_train, X_test, y_train, y_test, weights_train, weights_test = train_test_split(X, y, weights, test_size=0.2, random_state=42)
+
 
         # Scale the flattened data
         print("Scaling the data...")
@@ -248,4 +251,5 @@ if __name__ == "__main__":
         np.save(f'/eos/user/t/tcritchl/DNN/testing1/X_test_{file}.npy', X_test_scaled)
         np.save(f'/eos/user/t/tcritchl/DNN/training1/y_train_{file}.npy', y_train)
         np.save(f'/eos/user/t/tcritchl/DNN/testing1/y_test_{file}.npy', y_test)
+        np.save(f'/eos/user/t/tcritchl/DNN/testing1/weights_test_{file}.npy', weights_test)
         print(f"Preprocessed data saved successfully for {file}.")
