@@ -51,7 +51,7 @@ should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
 requirements   = (OpSysAndVer =?= "CentOS7")
-+JobFlavour    = "workday"
++JobFlavour    = "testmatch"
 queue
 EOF
 
