@@ -125,8 +125,8 @@ if __name__ == "__main__":
     S = y_pred_signal
     B = y_pred_background
 
-    weightsSIG = weights_test[y_test == 1]
-    weightsBKG = weights_test[y_test == 0]
+    weightsSIG = weights_test[y_test == 1] * 5
+    weightsBKG = weights_test[y_test == 0] * 5
 
     target_luminosity = 10000  # Just an example value, adjust according to your analysis
 
