@@ -228,8 +228,8 @@ if __name__ == "__main__":
         df['RecoElectronTrack_absD0'] = D0
 
         print(f"converting missing D0 sig to a numpy array...")
-        D0 = ak.to_numpy(df['RecoElectronTrack_absD0sig'])
-        df['RecoElectronTrack_absD0sig'] = D0
+        D0sig = ak.to_numpy(df['RecoElectronTrack_absD0sig'])
+        df['RecoElectronTrack_absD0sig'] = D0sig
 
         print(f"converting missing energy theta to a numpy array...")
         miss_e_theta = ak.to_numpy(df['RecoMissingEnergy_theta'])
