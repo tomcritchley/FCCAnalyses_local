@@ -209,7 +209,16 @@ if __name__ == "__main__":
 
         print(df.head())  # Print the first few rows
         print(f"filtering events....")
-        df = df[df['RecoElectron_lead_e'] > 35] #attempt to filter
+        # Assuming df is your concatenated DataFrame
+        
+        df = df[
+            (df["n_RecoElectrons"] == 1) &
+            (df["RecoElectron_lead_e"] > 35) &
+            (df["RecoDiJet_angle"] < np.pi) &
+            (df["RecoElectron_DiJet_delta_R"] < 5) &
+            (df["RecoDiJet_phi"] < np.pi) &
+            (df["RecoDiJet_delta_R"] < 5)
+        ]
         print(df.head())
         print("Shape of the DataFrame:", df.shape)
 
