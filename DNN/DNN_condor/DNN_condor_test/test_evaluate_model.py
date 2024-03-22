@@ -300,7 +300,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"An error occurred: {e}")"""
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/DNN_Results1_10fb.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_Results1_10fb.json"
 if os.path.exists(json_file_path):
     with open(json_file_path, "r") as json_file:
         existing_results = json.load(json_file)
