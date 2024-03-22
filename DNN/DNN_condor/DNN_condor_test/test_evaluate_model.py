@@ -234,8 +234,6 @@ if __name__ == "__main__":
     significance_values, bin_index, bdt_output = zip(*sig_list)
 
     results_dict[file] = {
-        "weighted_background_events": B_weighted,
-        "weighted_signal_events": S_weighted,
         "significance_list": sig_list
     }
 
