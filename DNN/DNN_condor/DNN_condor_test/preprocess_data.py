@@ -127,8 +127,8 @@ if __name__ == "__main__":
 
     file = args.label
 
-    signal_filenames = (f"{base_HNL}/HNL_Dirac_ejj_{file}Ve.root",)
     x_sec = cross_section_dict.get(file, 1.0)
+    signal_filenames = (f"{base_HNL}/HNL_Dirac_ejj_{file}Ve.root",x_sec)
     # signal w score of 1
     for filename, x_sec in signal_filenames:
         print(f"attempting to open {filename} for the tree {tree_name}....")
