@@ -18,7 +18,7 @@ json_file = "/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb2
 target_luminosity = 10000  # Just an example value, adjust according to your analysis
 
 variables = [
-    "n_RecoElectrons"
+    "n_RecoElectrons",
     "RecoDiJet_delta_R",
     "RecoDiJet_angle", 
     "RecoElectron_DiJet_delta_R",
