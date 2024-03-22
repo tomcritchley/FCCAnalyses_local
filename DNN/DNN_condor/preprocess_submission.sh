@@ -46,12 +46,11 @@ should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
 requirements   = (OpSysAndVer =?= "CentOS7")
-+JobFlavour    = "testmatch"
++JobFlavour    = "workday"
 queue
 EOF
 
     # Submit a Condor job for the current signal point and label
     condor_submit "RunAnSt1_HTC_${label}_preprocess.condor"
     
-    sleep 5
 done
