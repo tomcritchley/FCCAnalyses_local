@@ -137,7 +137,7 @@ if __name__ == "__main__":
             # Select only the variables of interest
             df_signal = tree.arrays(variables, library="pd")
             print(f"cross section is {x_sec}, adding to the df")
-            df_signal['cross_section'] = x_sec
+            df_signal['cross_section'] = float(x_sec)
             print(f"cross section added to the dataframe")
 
             print(f"adding weights to the df...")
@@ -171,7 +171,7 @@ if __name__ == "__main__":
                 # Select only the variables of interest
                 df_background = tree.arrays(variables, library="pd")
                 print(f"cross section is {x_sec}, adding to the df")
-                df_background['cross_section'] = x_sec
+                df_background['cross_section'] = float(x_sec)
                 print(f"cross section added to the dataframe")
                 if x_sec == "5215.46":
                     df_background['weight'] = (df_background['cross_section'] * target_luminosity) / 499786495 # needs to change for missing chunks!!
