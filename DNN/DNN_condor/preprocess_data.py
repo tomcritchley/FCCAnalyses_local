@@ -69,9 +69,14 @@ for key, value in json_data.items():
 
 print(cross_section_dict)
 
-cc_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/"
-bb_basedir = "/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/"
-ejjnu_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/"
+#cc_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/"
+#bb_basedir = "/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/"
+#ejjnu_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/"
+
+cc_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91/"
+bb_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91/"
+ejjnu_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/ejjnu/"
+
 
 background_dirs = [(cc_basedir,"5215.46"),(bb_basedir,"6654.46"),(ejjnu_basedir,"0.014")]
 
@@ -140,6 +145,15 @@ if __name__ == "__main__":
             print(f"cross section is {x_sec}, adding to the df")
             df_signal['cross_section'] = float(x_sec)
             print(f"cross section added to the dataframe")
+            print(f"filtering the signal df...")
+            df_signal = df_signal[
+                (df_signal["n_RecoElectrons"] == 1) &
+                (df_signal["RecoElectron_lead_e"] > 35) &
+                (df_signal["RecoDiJet_angle"] < np.pi) &
+                (df_signal["RecoElectron_DiJet_delta_R"] < 5) &
+                (df_signal["RecoDiJet_phi"] < np.pi) &
+                (df_signal["RecoDiJet_delta_R"] < 5)
+            ]
 
             print(f"adding weights to the df...")
             if filename.endswith("40Gev_1e-5.root"):
@@ -174,6 +188,15 @@ if __name__ == "__main__":
                 print(f"cross section is {x_sec}, adding to the df")
                 df_background['cross_section'] = float(x_sec)
                 print(f"cross section added to the dataframe")
+                print(f"filtering the background df...")
+                df_background = df_background[
+                    (df_background["n_RecoElectrons"] == 1) &
+                    (df_background["RecoElectron_lead_e"] > 35) &
+                    (df_background["RecoDiJet_angle"] < np.pi) &
+                    (df_background["RecoElectron_DiJet_delta_R"] < 5) &
+                    (df_background["RecoDiJet_phi"] < np.pi) &
+                    (df_background["RecoDiJet_delta_R"] < 5)
+                ]
                 if x_sec == "5215.46":
                     df_background['weight'] = (df_background['cross_section'] * target_luminosity) / 499786495 # needs to change for missing chunks!!
                 elif x_sec == "6654.46":
