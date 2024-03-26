@@ -1,0 +1,53 @@
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/preprocess_data.py:2: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/_dispatch.py", line 62, in dispatch
+    next(gen_or_result)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/operations/ak_concatenate.py", line 66, in concatenate
+    return _impl(arrays, axis, mergebool, highlevel, behavior, attrs)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/operations/ak_concatenate.py", line 162, in _impl
+    contents = [ak._do.mergemany(b) for b in batches]
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/operations/ak_concatenate.py", line 162, in <listcomp>
+    contents = [ak._do.mergemany(b) for b in batches]
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/_do.py", line 255, in mergemany
+    return contents[0]._mergemany(contents[1:])
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/contents/listoffsetarray.py", line 814, in _mergemany
+    out = listarray._mergemany(others)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/contents/listarray.py", line 1141, in _mergemany
+    nextstarts = ak.index.Index64.empty(total_length, self._backend.index_nplike)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/index.py", line 116, in empty
+    return Index(nplike.empty(length, dtype=dtype), nplike=nplike)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/_nplikes/array_module.py", line 111, in empty
+    return self._module.empty(shape, dtype=dtype)
+numpy.core._exceptions._ArrayMemoryError: Unable to allocate 6.97 GiB for an array with shape (935630572,) and data type int64
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/preprocess_data.py", line 205, in <module>
+    df = pd.concat(dfs, ignore_index=True)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 393, in concat
+    return op.get_result()
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 682, in get_result
+    new_data = concatenate_managers(
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/pandas/core/internals/concat.py", line 180, in concatenate_managers
+    values = concat_compat(vals, axis=0, ea_compat_axis=True)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/pandas/core/dtypes/concat.py", line 83, in concat_compat
+    return obj._concat_same_type(to_concat_eas)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward_pandas/array.py", line 130, in _concat_same_type
+    return cls(ak.concatenate(to_concat))
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/_dispatch.py", line 38, in dispatch
+    with OperationErrorContext(name, args, kwargs):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/_errors.py", line 85, in __exit__
+    self.handle_exception(exception_type, exception_value)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/_errors.py", line 95, in handle_exception
+    raise self.decorate_exception(cls, exception)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/awkward/_errors.py", line 119, in decorate_exception
+    new_exception = cls(self.format_exception(exception))
+TypeError: _ArrayMemoryError.__init__() missing 1 required positional argument: 'dtype'

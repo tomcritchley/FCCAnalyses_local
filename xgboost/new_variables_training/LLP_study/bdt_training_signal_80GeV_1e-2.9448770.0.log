@@ -1,0 +1,12 @@
+040 (9448770.000.000) 03/25 12:59:08 Started transferring input files
+	Transferring to host: <128.142.59.147:9618?addrs=128.142.59.147-9618&alias=b7s04p2767.cern.ch&noUDP&sock=slot1_25_7045_96f8_82463>
+...
+007 (9448770.000.000) 03/25 12:59:08 Shadow exception!
+	Error from slot1_25@b7s04p2767.cern.ch: SHADOW at 137.138.156.150 failed to send file(s) to <128.142.59.147:42893>: error reading from /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/./RunAnSt1_HTC_signal_80GeV_1e-2.sh: (errno 2) No such file or directory; STARTER failed to receive file(s) from <137.138.156.150:9618>
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (9448770.000.000) 03/25 12:59:08 Job was held.
+	Error from slot1_25@b7s04p2767.cern.ch: SHADOW at 137.138.156.150 failed to send file(s) to <128.142.59.147:42893>: error reading from /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/./RunAnSt1_HTC_signal_80GeV_1e-2.sh: (errno 2) No such file or directory; STARTER failed to receive file(s) from <137.138.156.150:9618>
+	Code 13 Subcode 2
+...
