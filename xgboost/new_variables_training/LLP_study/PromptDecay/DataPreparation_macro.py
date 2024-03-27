@@ -13,7 +13,7 @@ from scipy.stats import zscore
 # Set display options to show all columns
 pd.set_option('display.max_columns', None)
 
-with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/configuration.json') as config_file:
+with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/PromptDecay/configuration.json') as config_file:
     config = json.load(config_file)
 
 run = config["run_number"]
