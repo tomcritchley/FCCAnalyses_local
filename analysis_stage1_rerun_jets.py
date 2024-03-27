@@ -2,9 +2,9 @@
 processList = {
 
         #centrally-produced backgrounds
-        #'p8_ee_Zcc_ecm91':{'fraction':0.01,'chunks':100},
+        'p8_ee_Zcc_ecm91':{'fraction':0.01,'chunks':100},
         #'p8_ee_Zcc_ecm91':{'fraction':0.00000001},
-        #'p8_ee_Zbb_ecm91':{'chunks':100, 'fraction':0.01},
+        'p8_ee_Zbb_ecm91':{'chunks':100, 'fraction':0.01},
         
         #private signals
         #'ejjnu':{},
@@ -14,62 +14,63 @@ processList = {
 	    #'HNL_Dirac_ejj_70GeV_1e-3Ve':{},
 
         # Private signals
-        'HNL_Dirac_ejj_10GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_10GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_20GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_30GeV_1e-4p5Ve': {},
+        
+        #'HNL_Dirac_ejj_10GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_10GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_20GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_30GeV_1e-4p5Ve': {},
         #'HNL_Dirac_ejj_30GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_40GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_40GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_40GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_40GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_40GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_40GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_40GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_50GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_50GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_50GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_50GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_50GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_50GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_50GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_60GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_60GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_60GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_60GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_60GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_60GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_60GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_70GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_70GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_70GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_70GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_70GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_70GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_70GeV_1e-5Ve': {},
-        'HNL_Dirac_ejj_80GeV_1e-2Ve': {},
-        'HNL_Dirac_ejj_80GeV_1e-2p5Ve': {},
-        'HNL_Dirac_ejj_80GeV_1e-3Ve': {},
-        'HNL_Dirac_ejj_80GeV_1e-3p5Ve': {},
-        'HNL_Dirac_ejj_80GeV_1e-4Ve': {},
-        'HNL_Dirac_ejj_80GeV_1e-4p5Ve': {},
-        'HNL_Dirac_ejj_80GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_40GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_40GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_40GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_40GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_40GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_40GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_40GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_50GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_50GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_50GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_50GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_50GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_50GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_50GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_60GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_60GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_60GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_60GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_60GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_60GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_60GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_70GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_70GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_70GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_70GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_70GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_70GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_70GeV_1e-5Ve': {},
+        #'HNL_Dirac_ejj_80GeV_1e-2Ve': {},
+        #'HNL_Dirac_ejj_80GeV_1e-2p5Ve': {},
+        #'HNL_Dirac_ejj_80GeV_1e-3Ve': {},
+        #'HNL_Dirac_ejj_80GeV_1e-3p5Ve': {},
+        #'HNL_Dirac_ejj_80GeV_1e-4Ve': {},
+        #'HNL_Dirac_ejj_80GeV_1e-4p5Ve': {},
+        #'HNL_Dirac_ejj_80GeV_1e-5Ve': {},
 
 }
 
@@ -78,14 +79,14 @@ processList = {
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag= "FCCee/winter2023/IDEA/"
+prodTag= "FCCee/winter2023/IDEA/"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
 #inputDir = "/eos/user/t/tcritchl/HNLs/stage1/"
 #inputDir = "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
 #inputDir = "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
-inputDir = "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
+#inputDir = "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/HNL_sample_creation/"
 #ouput --> change for each
 outputDir = "/eos/user/t/tcritchl/MCfilter/"
 #outputDir = "/eos/user/t/tcritchl/xgBOOST/teststats/setup_test_1_Mar_2024/"
