@@ -670,10 +670,6 @@ class RDFanalysis():
                         "GenJets_ee_kt_n",
                         "GenJets_ee_kt_e",
 
-                        #"n_GenJets",
-
-                        #"Gen_selectedJet_n",
-
                         "GenLeadJet_e",
                         "GenLeadJet_pt",
                         "GenLeadJet_eta",
@@ -683,11 +679,6 @@ class RDFanalysis():
                         "GenSecondJet_pt",
                         "GenSecondJet_eta",
                         "GenSecondJet_phi",
-
-                        #"GenJetDelta_e",
-                        #"GenJetDelta_pt",
-                        #"GenJetDelta_eta",
-                        #"GenJetDelta_phi",
  
                         "GenDiJet_e",
                         "GenDiJet_pt",
@@ -695,56 +686,6 @@ class RDFanalysis():
                         "GenDiJet_phi",                      
                         "GenDiJet_theta",
                         "GenDiJet_invMass",
-
-                        #"GenHNL_theta", 
- 
-                        #"GenHNLElectron_e",
-                        #"GenHNLElectron_pt",
-                        #"GenHNLElectron_eta",
-                        #"GenHNLElectron_phi",
-                        #"GenElectron4Vect_invMass",
-
-                        #"GenHNL_positron_e",
-                        #"GenHNL_positron_pt",
-                        #"GenHNL_positron_theta",
-
-                        #"GenHNL_electron_e",
-                        #"GenHNL_electron_pt",
-                        #"GenHNL_electron_theta",
-                
-                        #"GenHNL_Electron_cos_theta",        
-                         
-                        #"GenDiJetElectron_theta",
-                        #"GenDiJet_electron_theta",
-                        #"GenDiJet_positron_theta",
-                        #"GenDiJetElectron_invMass",
-                        #"GenDiJetElectron_invMass_comp",
-                        #"GenDiJet_electron_invMass",
-
-                        #"GenDiJet_positron_invMass",
-
-                        #"GenLeadJet_phi_e",
-                        #"GenLeadJet_phi_pt",
-
-                        #"GenSecondJet_phi_e",
-                        #"GenSecondJet_phi_pt",
-
-                        #"GenDiJetElectron_e",
-                        #"GenDiJetElectron_pt",
-                        #"GenDiJetElectron_eta",
-                        #"GenDiJetElectron_phi",
-                        
-
-                        #"GenHNL_DiJet_Delta_theta",
-                        #"GenHNL_Electron_Delta_theta",
-                        #"GenHNLelectron_Delta_theta",
-                        #"GenHNLpositron_Delta_theta",
-                        #"GenHNLElectron_DiJet_Delta_theta",
-                        #"GenHNL_electron_DiJet_Delta_theta",
-                        #"GenHNL_positron_DiJet_Delta_theta",
-                        #"GenDiJetElectron_Electron_Delta_theta",
-                        #"GenDiJet_electron_electron_Delta_theta",
-                        #"GenDiJet_positron_positron_Delta_theta",
                         
                         ######## Reconstructed particles #######
                         "n_RecoTracks",
@@ -788,12 +729,6 @@ class RDFanalysis():
                         "RecoElectron_DiJet_delta_R",
                         "RecoDiJet_delta_R",
 
-                        #"LeadJet_HNLELectron_Delta_e",
-                        #"LeadJet_HNLELectron_Delta_pt",
-                        #"LeadJet_HNLELectron_Delta_eta",
-                        #"LeadJet_HNLELectron_Delta_phi",
-                        #"LeadJet_HNLELectron_Delta_R",
-
                         "RecoDiJet",
                         "RecoDiJet_e",
                         "RecoDiJet_pt",
@@ -804,15 +739,6 @@ class RDFanalysis():
                         "RecoDiJetElectron_invMass",
                         "RecoDiJet_electron_invMass",
                         "RecoDiJet_positron_invMass",
-
-                        #"DiJet_HNLElectron_Delta_e",                         
-                        #"DiJet_HNLElectron_Delta_pt",
-                        #"DiJet_HNLElectron_Delta_phi",
-                        #"DiJet_HNLElectron_Delta_eta",
-                        #"DiJet_HNLElectron_Delta_R",
-
-                        #"GenHNL_Lxy",
-                        #"GenHNL_Lxyz",
 
                         "RecoPhoton_e",
                         "RecoPhoton_p",
