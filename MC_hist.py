@@ -1,30 +1,34 @@
 import ROOT
 
-def create_histogram(file_path, tree_name, variable_name, hist_params, label, color):
+def create_histogram(file_path, tree_name, variable_names, hist_params, label, color):
     """
-    Create a histogram for a given variable from a ROOT file.
+    Create histograms for given variables from a ROOT file.
 
     Parameters:
     - file_path: string, path to the ROOT file
     - tree_name: string, name of the TTree
-    - variable_name: string, name of the variable to plot
+    - variable_names: tuple of strings, names of the variables to plot
     - hist_params: tuple, parameters for the histogram (name, title, bins, x_min, x_max)
-    - label: string, label for the histogram
-    - color: ROOT color constant, color of the histogram
+    - label: string, label for the histograms
+    - color: ROOT color constant, color of the histograms
 
     Returns:
-    - hist: ROOT.TH1F object, the filled histogram
+    - hists: tuple of ROOT.TH1F objects, the filled histograms for each variable
     """
-    hist = ROOT.TH1F(hist_params[0] + "_" + label, hist_params[1], hist_params[2], hist_params[3], hist_params[4])
+    hist1 = ROOT.TH1F(hist_params[0] + "_" + label + "_1", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
+    hist2 = ROOT.TH1F(hist_params[0] + "_" + label + "_2", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
     f = ROOT.TFile.Open(file_path)
     tree = f.Get(tree_name)
     for event in tree:
-        value = getattr(event, variable_name)
-        hist.Fill(value)
+        value1 = getattr(event, variable_names[0])
+        value2 = getattr(event, variable_names[1])
+        hist1.Fill(value1)
+        hist2.Fill(value2)
     f.Close()
-    hist.SetLineColor(color)
-    hist.SetTitle(label)
-    return hist
+    for hist in (hist1, hist2):
+        hist.SetLineColor(color)
+    hist2.SetLineStyle(7)  # Set dashed line for the second variable
+    return hist1, hist2
 
 # Define your files and parameters here
 background_files = [
@@ -38,14 +42,14 @@ signal_files = [
     ("/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_70GeV_1e-3Ve/chunk_0.root", "HNL_70GeV", ROOT.kOrange)
 ]
 tree_name = "events"
-variable_name = "RecoElectron_lead_eta"
-hist_params = ("hist", "Histogram of RecoElectron_lead_eta;eta;Events", 50, -2.5, 2.5)
+variable_names = ("RecoElectron_lead_eta", "FSGenElectron_eta")
+hist_params = ("hist", "Histogram of RecoElectron_lead_eta and FSGenElectron_eta;eta;Events", 50, -2.5, 2.5)
 
-# Create histograms for each file
+# Create histograms for each file and variable
 histograms = []
 for file_path, label, color in background_files + signal_files:
-    hist = create_histogram(file_path, tree_name, variable_name, hist_params, label, color)
-    histograms.append(hist)
+    hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
+    histograms.extend([hist1, hist2])
 
 # Find the maximum y value among all histograms to adjust the y-axis range
 max_y = max([hist.GetMaximum() for hist in histograms]) * 1.2  # Increase by 20% for some headroom
@@ -63,4 +67,4 @@ for hist in histograms:
     first_hist = False
 
 legend.Draw()
-c.SaveAs("comparison_plot.pdf")
+c.SaveAs("comparison_plot_variables.pdf")
