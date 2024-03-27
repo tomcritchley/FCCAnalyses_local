@@ -1,36 +1,43 @@
 import ROOT
 
-def create_histogram(file_info, tree_name, variable_names, hist_params):
-    histograms = []
+def create_histogram(file_path, tree_name, variable_names, hist_params, label, color):
+    """
+    Create histograms for given variables from a ROOT file.
 
-    for file_path, label, color in file_info:
-        hist1 = ROOT.TH1F(hist_params[0] + "_" + label + "_1", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
-        hist2 = ROOT.TH1F(hist_params[0] + "_" + label + "_2", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
+    Parameters:
+    - file_path: string, path to the ROOT file
+    - tree_name: string, name of the TTree
+    - variable_names: tuple of strings, names of the variables to plot
+    - hist_params: tuple, parameters for the histogram (name, title, bins, x_min, x_max)
+    - label: string, label for the histograms
+    - color: ROOT color constant, color of the histograms
 
-        hist1.SetLineColor(color)
-        hist1.SetLineStyle(1)
-        hist2.SetLineColor(color)
-        hist2.SetLineStyle(2)
+    Returns:
+    - hists: tuple of ROOT.TH1F objects, the filled histograms for each variable
+    """
+    hist1 = ROOT.TH1F(hist_params[0] + "_" + label + "_1", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
+    hist2 = ROOT.TH1F(hist_params[0] + "_" + label + "_2", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
+    f = ROOT.TFile.Open(file_path)
+    tree = f.Get(tree_name)
+    for event in tree:
+        # Handle Reco variable (float)
+        value1 = getattr(event, variable_names[0])
+        hist1.Fill(value1)
 
-        f = ROOT.TFile.Open(file_path)
-        tree = f.Get(tree_name)
-        for event in tree:
-            value1_attr = getattr(event, variable_names[0])
-            value2_attr = getattr(event, variable_names[1])
+        # Handle truth variable (RVec<float>)
+        value2_attr = getattr(event, variable_names[1])
+        # Ensure it's not empty and take the first element
+        value2 = value2_attr[0] if value2_attr.size() > 0 else 0
+        hist2.Fill(value2)
 
-            # Using a general approach to check for iterable attributes
-            value1 = value1_attr[0] if hasattr(value1_attr, '__iter__') and len(value1_attr) > 0 else value1_attr
-            value2 = value2_attr[0] if hasattr(value2_attr, '__iter__') and len(value2_attr) > 0 else value2_attr
+    f.Close()
 
-            hist1.Fill(value1)
-            hist2.Fill(value2)
-        f.Close()
+    for hist in (hist1, hist2):
+        hist.SetLineColor(color)
+    hist2.SetLineStyle(7)  # Set dashed line for the second variable
+    return hist1, hist2
 
-        histograms.append((hist1, hist2))
-
-    return histograms
-
-# Your file paths, labels, and colors
+# Define your files and parameters here
 background_files = [
     ("/eos/user/t/tcritchl/MCfilter/p8_ee_Zbb_ecm91/chunk_0.root", "Zbb", ROOT.kBlue),
     ("/eos/user/t/tcritchl/MCfilter/p8_ee_Zcc_ecm91/chunk_1.root", "Zcc", ROOT.kGreen),
@@ -45,13 +52,26 @@ tree_name = "events"
 variable_names = ("RecoElectron_lead_eta", "FSGenElectron_eta")
 hist_params = ("hist", "Histogram of RecoElectron_lead_eta and FSGenElectron_eta;eta;Events", 50, -2.5, 2.5)
 
-# Create and plot histograms
-histograms_background = create_histogram(background_files, tree_name, variable_names, hist_params)
-histograms_signal = create_histogram(signal_files, tree_name, variable_names, hist_params)
+# Create histograms for each file and variable
+histograms = []
+for file_path, label, color in background_files + signal_files:
+    hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
+    histograms.extend([hist1, hist2])
 
-c = ROOT.TCanvas("c", "Canvas", 800, 600)
-legend = ROOT.TLegend(0.1, 0.7, 0.3, 0.9)
+# Find the maximum y value among all histograms to adjust the y-axis range
+max_y = max([hist.GetMaximum() for hist in histograms]) * 1.2  # Increase by 20% for some headroom
 
-# Adjusted plotting code for histograms
+# Plotting
+c = ROOT.TCanvas("c", "canvas", 800, 600)
+legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
 
-c.SaveAs("comparison_plot_with_multiple_variables.pdf")
+first_hist = True
+for hist in histograms:
+    hist.SetMaximum(max_y)  # Set the same y-axis range for all histograms
+    draw_option = "HIST SAME" if not first_hist else "HIST"
+    hist.Draw(draw_option)
+    legend.AddEntry(hist, hist.GetTitle(), "l")
+    first_hist = False
+
+legend.Draw()
+c.SaveAs("comparison_plot_variables.pdf")
