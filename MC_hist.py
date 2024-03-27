@@ -20,15 +20,16 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
     f = ROOT.TFile.Open(file_path)
     tree = f.Get(tree_name)
     for event in tree:
-        # Handle Reco variable (float)
-        value1 = getattr(event, variable_names[0])
-        hist1.Fill(value1)
-
-        # Handle truth variable (RVec<float>)
+        # Assuming both variables are RVec<float>
+        value1_attr = getattr(event, variable_names[0])
+        value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')  # Use NaN for empty RVec
+        
         value2_attr = getattr(event, variable_names[1])
-        # Ensure it's not empty and take the first element
-        value2 = value2_attr[0] if value2_attr.size() > 0 else 0
-        hist2.Fill(value2)
+        value2 = value2_attr[0] if value2_attr.size() > 0 else float('nan')  # Use NaN for empty RVec
+        
+        # Fill the histograms
+        if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
+        if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
 
     f.Close()
 
