@@ -10,3 +10,6 @@
 	Error from slot1_26@b7s02p3502.cern.ch: SHADOW at 137.138.156.150 failed to send file(s) to <128.142.57.149:36803>: error reading from /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/./RunAnSt1_HTC_signal_40GeV_1e-2.sh: (errno 2) No such file or directory; STARTER failed to receive file(s) from <137.138.156.150:9618>
 	Code 13 Subcode 2
 ...
+009 (9448769.000.000) 03/26 10:28:02 Job was aborted.
+	via condor_rm (by user tcritchl)
+...
