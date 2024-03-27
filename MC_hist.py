@@ -26,8 +26,8 @@ def create_histogram(file_paths, tree_name, variable_name, hist_params, label):
     return hist
 
 # Define your files and parameters here
-background_files = ["/eos/user/t/tcritchl/MCfilter/p8_ee_Zbb_ecm91/chunk_0.root", "/eos/user/t/tcritchl/MCfilter/p8_ee_Zcc_ecm91/chunk_1.root", "/eos/user/t/tcritchl/MCfilter/ejjnu/ejjnu.root"]
-signal_files = ["/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_20GeV_1e-3Ve/HNL_Dirac_ejj_20GeV_1e-3Ve.root", "/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_50GeV_1e-3Ve/HNL_Dirac_ejj_50GeV_1e-3Ve.root", "/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_70GeV_1e-3Ve/HNL_Dirac_ejj_70GeV_1e-3Ve.root"]
+background_files = ["/eos/user/t/tcritchl/MCfilter/p8_ee_Zbb_ecm91/chunk_0.root", "/eos/user/t/tcritchl/MCfilter/p8_ee_Zcc_ecm91/chunk_1.root", "/eos/user/t/tcritchl/MCfilter/ejjnu/chunk_0.root"]
+signal_files = ["/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_20GeV_1e-3Ve/chunk_0.root", "/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_50GeV_1e-3Ve/chunk_0.root", "/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_70GeV_1e-3Ve/chunk_0.root"]
 tree_name = "events"
 variable_name = "RecoElectron_lead_eta"
 hist_params = ("hist", "Histogram of RecoElectron_lead_eta;eta;Events", 50, -2.5, 2.5)
