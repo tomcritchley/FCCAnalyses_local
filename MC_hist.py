@@ -18,9 +18,9 @@ def create_histogram(file_info, tree_name, variable_names, hist_params):
             value1_attr = getattr(event, variable_names[0])
             value2_attr = getattr(event, variable_names[1])
 
-            # Check if the attribute is a float or an RVec<float> and handle accordingly
-            value1 = value1_attr[0] if isinstance(value1_attr, ROOT.ROOT.RVec) else value1_attr
-            value2 = value2_attr[0] if isinstance(value2_attr, ROOT.ROOT.RVec) else value2_attr
+            # Using a general approach to check for iterable attributes
+            value1 = value1_attr[0] if hasattr(value1_attr, '__iter__') and len(value1_attr) > 0 else value1_attr
+            value2 = value2_attr[0] if hasattr(value2_attr, '__iter__') and len(value2_attr) > 0 else value2_attr
 
             hist1.Fill(value1)
             hist2.Fill(value2)
