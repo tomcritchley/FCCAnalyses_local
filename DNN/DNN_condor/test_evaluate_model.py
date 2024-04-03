@@ -8,6 +8,47 @@ import argparse
 import json
 import math
 import fcntl
+import time
+
+# Locking mechanism functions
+def acquire_lock(lock_file_path, max_wait_time=60, wait_interval=1):
+    wait_time = 0
+    while wait_time < max_wait_time:
+        if not os.path.exists(lock_file_path):
+            with open(lock_file_path, 'w') as lock_file:
+                lock_file.write("locked")
+            return True
+        time.sleep(wait_interval)
+        wait_time += wait_interval
+    return False
+
+def release_lock(lock_file_path):
+    if os.path.exists(lock_file_path):
+        os.remove(lock_file_path)
+
+def safe_json_read_write(json_file_path, update_data):
+    lock_file_path = json_file_path + ".lock"
+    
+    if acquire_lock(lock_file_path):
+        try:
+            if os.path.exists(json_file_path):
+                with open(json_file_path, 'r') as json_file:
+                    existing_results = json.load(json_file)
+            else:
+                existing_results = {}
+
+            existing_results.update(update_data)
+            
+            with open(json_file_path, 'w') as json_file:
+                json.dump(existing_results, json_file, indent=2)
+                
+            print(f"Results safely saved to {json_file_path}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        finally:
+            release_lock(lock_file_path)
+    else:
+        print("Failed to acquire lock. Exiting.")
 
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
@@ -254,68 +295,12 @@ if __name__ == "__main__":
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
-"""
-    print(f"starting file saving loop")
-        
-    signal = [f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_{label}.root", "signal"] #second entry was preivously just {label} but the name was acting in a strange way when looking at the bdt output
-    background = [f"/eos/user/t/tcritchl/xgBOOST/testing{run}/test_background_total.root", "background_total"]
-    try:
-        for filepath, label in [signal, background]:
-            print(">>> Extract the training and testing events for {} from the {} dataset.".format(label, filepath))
-
-            if os.path.exists(filepath):
-                print("Opened " + filepath)
-
-                file = ROOT.TFile(filepath, "UPDATE")
-                tree = file.Get("events")
-
-                new_tree = tree.CloneTree(0)
-                new_tree.SetName(f"events_modified_{label}")
-                
-                if label.startswith("signal"):
-                    bdt_output_branch = np.zeros_like(S, dtype=np.float32)
-                    new_tree.Branch(f"bdt_output_{label}", bdt_output_branch, 'bdt_output/F')
-                elif label.startswith("background"):
-                    bdt_output_branch = np.zeros_like(B, dtype=np.float32)
-                    new_tree.Branch(f"bdt_output_{label}", bdt_output_branch, 'bdt_output/F')
-
-                print(f"the shape of S is {S.shape}, and it contains the elements {S}")
-                print(f"the shape of B is {B.shape}, and it contains the elements {B}")
-                print(f"tree has entries: {tree.GetEntries()}")
-                for idx in range(tree.GetEntries()):
-                    tree.GetEntry(idx)
-                    if label.startswith("signal"):
-                        bdt_output_branch[0]  = S[idx] # changes for not filling all the 
-                        print(f"bdt branch: {idx}, with value {S[idx]}")
-                    elif label.startswith("background"):
-                        bdt_output_branch[0]  = B[idx]
-                    new_tree.Fill()
-                print(f"writing file")
-                file.Write()
-                file.Close()
-                print(f"Successfully done")
-
-            else:
-                print(f"File {filepath} does not exist, skipping.")
-    except Exception as e:
-        print(f"An error occurred: {e}")"""
 
 json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_Results1_10fb.json"
-if os.path.exists(json_file_path):
-    with open(json_file_path, "r") as json_file:
-        existing_results = json.load(json_file)
-else:
-    existing_results = {}
 
-lockfile = open(json_file_path, 'a')
-fcntl.flock(lockfile, fcntl.LOCK_EX)
-
-existing_results.update(results_dict)
-
-fcntl.flock(lockfile, fcntl.LOCK_UN)
-lockfile.close()
-
-with open(json_file_path, "w") as json_file:
-    json.dump(existing_results, json_file, indent=2)
-
-print(f"Results saved to {json_file_path}")
+print(f"attempting to save results to the json results file....!")
+try:
+    safe_json_read_write(json_file_path,results_dict)
+    print(f"Results saved to {json_file_path} successfully!")
+except Exception as e:
+    print(f'something went wrong saving the file, please check the logs :( )')
