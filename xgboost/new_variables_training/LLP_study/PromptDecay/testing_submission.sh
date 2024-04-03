@@ -34,7 +34,7 @@ for label in "${labels[@]}"; do
     # Create a unique shell script for the current signal point
     script_file="RunAnSt1_HTC_${label}_testing.sh"
     echo "#!/bin/bash" > "$script_file"
-    echo "source /cvmfs/sft.cern.ch/lcg/views/dev3/latest/x86_64-centos7-gcc11-opt/setup.sh" >> "$script_file"
+    echo "source /cvmfs/sft.cern.ch/lcg/views/dev3/Mon/x86_64-centos7-gcc11-opt/setup.sh" >> "$script_file"
     echo "python3 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/PromptDecay/testing_macro.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
