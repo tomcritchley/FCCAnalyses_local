@@ -7,48 +7,6 @@ import os
 import argparse
 import json
 import math
-import fcntl
-import time
-
-# Locking mechanism functions
-def acquire_lock(lock_file_path, max_wait_time=60, wait_interval=1):
-    wait_time = 0
-    while wait_time < max_wait_time:
-        if not os.path.exists(lock_file_path):
-            with open(lock_file_path, 'w') as lock_file:
-                lock_file.write("locked")
-            return True
-        time.sleep(wait_interval)
-        wait_time += wait_interval
-    return False
-
-def release_lock(lock_file_path):
-    if os.path.exists(lock_file_path):
-        os.remove(lock_file_path)
-
-def safe_json_read_write(json_file_path, update_data):
-    lock_file_path = json_file_path + ".lock"
-    
-    if acquire_lock(lock_file_path):
-        try:
-            if os.path.exists(json_file_path):
-                with open(json_file_path, 'r') as json_file:
-                    existing_results = json.load(json_file)
-            else:
-                existing_results = {}
-
-            existing_results.update(update_data)
-            
-            with open(json_file_path, 'w') as json_file:
-                json.dump(existing_results, json_file, indent=2)
-                
-            print(f"Results safely saved to {json_file_path}")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-        finally:
-            release_lock(lock_file_path)
-    else:
-        print("Failed to acquire lock. Exiting.")
 
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
@@ -296,11 +254,13 @@ if __name__ == "__main__":
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_Results1_10fb.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_Condor/DNN_Run1_{file}.json"
 
-print(f"attempting to save results to the json results file....!")
+print(f"attempting to save results to {json_file_path}....!")
 try:
-    safe_json_read_write(json_file_path,results_dict)
+    # Saving results to the unique file
+    with open(json_file_path, 'w') as json_file:
+        json.dump(results_dict, json_file, indent=2)
     print(f"Results saved to {json_file_path} successfully!")
 except Exception as e:
-    print(f'something went wrong saving the file, please check the logs :( )')
+    print(f'something went wrong saving the file: {e}')
