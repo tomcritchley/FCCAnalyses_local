@@ -254,7 +254,7 @@ if __name__ == "__main__":
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_Condor/DNN_Run1_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run1_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:
