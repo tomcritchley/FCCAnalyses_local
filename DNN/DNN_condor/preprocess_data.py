@@ -233,7 +233,6 @@ if __name__ == "__main__":
 
         print(df.head())  # Print the first few rows
         print(f"filtering events....")
-        # Assuming df is your concatenated DataFrame
         
         df = df[
             (df["n_RecoElectrons"] == 1) &
@@ -268,7 +267,6 @@ if __name__ == "__main__":
         y = df['label']
         weights = df['weight']
 
-        # Splitting the data into training and testing sets, including weights for later use
         X_train, X_test, y_train, y_test, weights_train, weights_test = train_test_split(X, y, weights, test_size=0.2, random_state=42)
 
 

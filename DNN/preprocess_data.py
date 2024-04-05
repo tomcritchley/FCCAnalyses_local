@@ -68,7 +68,7 @@ for filename in signal_filenames:
     print(f"attempting to open {filename} for the tree {tree_name}....")
     with uproot.open(f"{filename}:{tree_name}") as tree:
         print(f"file is open...")
-        # Select only the variables of interest
+
         print(f"labelling signal file with 1...")
         df_signal = tree.arrays(variables, library="pd")
         df_signal['label'] = 1
@@ -83,7 +83,7 @@ for filename in background_filenames:
     print(f"attempting to open {filename} for the tree {tree_name}....")
     with uproot.open(f"{filename}:{tree_name}") as tree:
         print(f"file is open...")
-        # Select only the variables of interest
+
         df_background = tree.arrays(variables, library="pd")
         df_background['label'] = 0
         print(f"successfully labelled background, adding to dfs.")
@@ -117,14 +117,11 @@ print(f"converting missing energy to a numpy array...")
 miss_e = ak.to_numpy(df['RecoMissingEnergy_e'])
 df['RecoMissingEnergy_e'] = miss_e
 
-# Optionally, preprocess your dataframe (e.g., normalization, feature engineering)
-# For example, split your data into features and labels
-X = df.iloc[:, :-1]  # assuming the last column is the label
+X = df.iloc[:, :-1]  #last column is label
 y = df.iloc[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Scale the flattened data
 print("Scaling the data...")
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
