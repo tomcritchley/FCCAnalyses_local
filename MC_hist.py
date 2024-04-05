@@ -1,20 +1,7 @@
 import ROOT
 
 def create_histogram(file_path, tree_name, variable_names, hist_params, label, color):
-    """
-    Create histograms for given variables from a ROOT file.
 
-    Parameters:
-    - file_path: string, path to the ROOT file
-    - tree_name: string, name of the TTree
-    - variable_names: tuple of strings, names of the variables to plot
-    - hist_params: tuple, parameters for the histogram (name, title, bins, x_min, x_max)
-    - label: string, label for the histograms
-    - color: ROOT color constant, color of the histograms
-
-    Returns:
-    - hists: tuple of ROOT.TH1F objects, the filled histograms for each variable
-    """
     hist1 = ROOT.TH1F(hist_params[0] + "_" + label + "_1", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
     hist2 = ROOT.TH1F(hist_params[0] + "_" + label + "_2", hist_params[1], hist_params[2], hist_params[3], hist_params[4])
     f = ROOT.TFile.Open(file_path)

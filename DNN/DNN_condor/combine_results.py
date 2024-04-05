@@ -11,18 +11,15 @@ combined_results = {}
 # Loop through each JSON file in the directory
 for json_file in glob(json_files_path):
     with open(json_file, 'r') as file:
-        # Extract the label from the file name (optional, depending on your needs)
-        # This assumes your filename is of the form "DNN_Run1_{label}.json" and extracts {label}
-        label = os.path.basename(json_file).split('.')[0].split('_')[-1]
-        
         # Load the content of the current JSON file
         current_results = json.load(file)
         
-        # Add the content to the combined_results dictionary
-        combined_results[label] = current_results
+        # Merge the current results into the combined_results dictionary
+        # This assumes each JSON file's top-level keys are unique across all files
+        combined_results.update(current_results)
 
 # Define the path for the combined JSON file
-combined_json_path = '/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_run1_results.json'
+combined_json_path = '/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_results_run1.json'
 
 # Save the combined results to a new JSON file
 with open(combined_json_path, 'w') as combined_file:
