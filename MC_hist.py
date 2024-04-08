@@ -19,9 +19,10 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
     f.Close()
 
     hist1.SetLineColor(color)
+    hist1.SetStats(0)
     hist2.SetLineColor(color)
     hist2.SetLineStyle(7)  # Dashed line for reconstructed data
-
+    hist2.SetStats(0)
     return hist1, hist2
 
 background_files = [
@@ -49,7 +50,7 @@ for file_path, label, color in background_files + signal_files:
 max_y = max([hist[0].GetMaximum() for hist in histograms]) * 1.2
 
 c = ROOT.TCanvas("c", "canvas", 1200, 800)  # Adjusted canvas size for better visibility
-
+c.SetLogy(1)
 # Adjusted legend size and position for better readability
 legend = ROOT.TLegend(0.1, 0.5, 0.4, 0.9)  # Enlarged and repositioned legend
 legend.SetTextSize(0.02)  # Reduced text size for more entries
