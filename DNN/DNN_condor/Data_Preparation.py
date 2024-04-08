@@ -41,8 +41,8 @@ def load_and_preprocess_data(filepaths, x_sec, filter_func, label):
             with uproot.open(f"{filepath}:{tree_name}") as tree:
                 df = tree.arrays(variables, library="pd")
                 df['cross_section'] = float(x_sec)
-                df = filter_func(df)
                 df['weight'] = (df['cross_section'] * target_luminosity) / len(df)
+                df = filter_func(df)
                 df['label'] = label
                 dfs.append(df)
         except Exception as e:
