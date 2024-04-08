@@ -1,0 +1,22 @@
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:2: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py", line 136, in <module>
+    main(args.label)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py", line 87, in main
+    signal_df = load_and_preprocess_data([signal_file], cross_section_dict.get(label, 1.0), signal_filter, 1)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py", line 51, in load_and_preprocess_data
+    return pd.concat(dfs, ignore_index=True)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 380, in concat
+    op = _Concatenator(
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 443, in __init__
+    objs, keys = self._clean_keys_and_objs(objs, keys)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 505, in _clean_keys_and_objs
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate
