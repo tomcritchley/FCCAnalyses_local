@@ -17,7 +17,8 @@ variables = [
     "n_RecoElectrons", "RecoDiJet_delta_R", "RecoDiJet_angle",
     "RecoElectron_DiJet_delta_R", "RecoElectronTrack_absD0sig",
     "RecoElectronTrack_absD0", "RecoDiJet_phi", "RecoMissingEnergy_theta",
-    "RecoMissingEnergy_e", "RecoElectron_lead_e"
+    "RecoMissingEnergy_e", "RecoElectron_lead_e", "Vertex_chi2",
+    "n_primt", "ntracks",
 ]
 
 masses = ["10GeV", "20GeV", "30GeV", "40GeV", "50GeV", "60GeV", "70GeV", "80GeV"]
