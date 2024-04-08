@@ -23,6 +23,7 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
     for hist in (hist1, hist2):
         hist.SetLineColor(color)
     hist2.SetLineStyle(7)  # Set dashed line for the second variable
+
     return hist1, hist2
 
 # Define your files and parameters here
@@ -38,28 +39,29 @@ signal_files = [
 ]
 tree_name = "events"
 variable_names = ("FSGenElectron_theta", "RecoElectron_theta")
-hist_params = ("theta", "Theta distribution;Theta (rad);Events", 50, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
+hist_params = ("hist", "Histogram of RecoElectron_theta and FSGenElectron_theta;Theta (Rad.);Events", 50, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
+
 # Create histograms for each file and variable
 histograms = []
 for file_path, label, color in background_files + signal_files:
-    hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color, linestyle=2 if "Reco" in label else 1)
+    hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
     histograms.extend([hist1, hist2])
 
-# Plotting setup
-c = ROOT.TCanvas("c", "canvas", 1000, 800)  # Bigger canvas for better readability
-legend = ROOT.TLegend(0.1, 0.7, 0.3, 0.9)  # Adjusted position for visibility
-legend.SetTextSize(0.03)  # Bigger text size
+# Find the maximum y value among all histograms to adjust the y-axis range
+max_y = max([hist.GetMaximum() for hist in histograms]) * 1.2  # Increase by 20% for some headroom
 
-max_y = max([hist.GetMaximum() for hist in histograms]) * 1.2
+# Plotting
+c = ROOT.TCanvas("c", "canvas", 800, 600)
+legend = ROOT.TLegend(0.1, 0.7, 0.3, 0.9)
+legend.SetTextSize(0.03)
 
+first_hist = True
 for hist in histograms:
-    draw_option = "HIST SAME" if hist != histograms[0] else "HIST"
-    hist.SetMaximum(max_y)
+    hist.SetMaximum(max_y)  # Set the same y-axis range for all histograms
+    draw_option = "HIST SAME" if not first_hist else "HIST"
     hist.Draw(draw_option)
-    legend_entry_label = hist.GetTitle() + (" (dashed)" if "Reco" in hist.GetTitle() else " (solid)")
-    legend.AddEntry(hist, legend_entry_label, "l")
+    legend.AddEntry(hist, hist.GetTitle(), "l")
+    first_hist = False
 
 legend.Draw()
-c.Modified()
-c.Update()
-c.SaveAs("comparison_plot_theta_distribution.pdf")
+c.SaveAs("comparison_plot_variables.pdf")
