@@ -38,7 +38,7 @@ signal_files = [
 
 tree_name = "events"
 variable_names = ("FSGenElectron_theta", "RecoElectron_theta")
-hist_params = ("theta", "Theta distribution;Theta (rad);Events", 50, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
+hist_params = ("theta", "Theta distribution;Theta (rad);Events", 50, 0, ROOT.TMath.Pi())
 
 histograms = []
 for file_path, label, color in background_files + signal_files:
@@ -48,9 +48,12 @@ for file_path, label, color in background_files + signal_files:
 
 max_y = max([hist[0].GetMaximum() for hist in histograms]) * 1.2
 
-c = ROOT.TCanvas("c", "canvas", 1000, 800)
-legend = ROOT.TLegend(0.1, 0.7, 0.3, 0.9)
-legend.SetTextSize(0.03)
+c = ROOT.TCanvas("c", "canvas", 1200, 800)  # Adjusted canvas size for better visibility
+
+# Adjusted legend size and position for better readability
+legend = ROOT.TLegend(0.1, 0.5, 0.4, 0.9)  # Enlarged and repositioned legend
+legend.SetTextSize(0.02)  # Reduced text size for more entries
+
 
 for hist, name in histograms:
     hist.SetMaximum(max_y)
@@ -59,4 +62,20 @@ for hist, name in histograms:
     legend.AddEntry(hist, name, "l")
 
 legend.Draw()
-c.SaveAs("comparison_plot_variables.pdf")
+
+text_title = ROOT.TLatex()
+text_title.SetTextSize(0.04)
+text_title.SetTextFont(42)
+text_title.DrawLatexNDC(0.70, 0.82, "#font[72]{FCCee} Simulation (DELPHES)")
+
+text_selection = ROOT.TLatex()
+text_selection.SetTextSize(0.03)
+text_selection.SetTextFont(42)
+text_selection.DrawLatexNDC(0.70, 0.77, "#font[52]{No Selection}")
+
+text_lumi = ROOT.TLatex()
+text_lumi.SetTextSize(0.03)
+text_lumi.SetTextFont(42)
+text_lumi.DrawLatexNDC(0.70, 0.72, "#font[52]{#sqrt{s} = 91 GeV , #int L dt = 10 fb^{-1}}")
+
+c.SaveAs("comparison_plot_variables_theta.pdf")
