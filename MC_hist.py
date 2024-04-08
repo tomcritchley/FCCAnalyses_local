@@ -38,28 +38,28 @@ signal_files = [
 ]
 tree_name = "events"
 variable_names = ("FSGenElectron_theta", "RecoElectron_theta")
-hist_params = ("hist", "Histogram of RecoElectron_theta and FSGenElectron_theta;theta;Events", 50, -2.5, 2.5)
-
+hist_params = ("theta", "Theta distribution;Theta (rad);Events", 50, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
 # Create histograms for each file and variable
 histograms = []
 for file_path, label, color in background_files + signal_files:
-    hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
+    hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color, linestyle=2 if "Reco" in label else 1)
     histograms.extend([hist1, hist2])
 
-# Find the maximum y value among all histograms to adjust the y-axis range
-max_y = max([hist.GetMaximum() for hist in histograms]) * 1.2  # Increase by 20% for some headroom
+# Plotting setup
+c = ROOT.TCanvas("c", "canvas", 1000, 800)  # Bigger canvas for better readability
+legend = ROOT.TLegend(0.1, 0.7, 0.3, 0.9)  # Adjusted position for visibility
+legend.SetTextSize(0.03)  # Bigger text size
 
-# Plotting
-c = ROOT.TCanvas("c", "canvas", 800, 600)
-legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
+max_y = max([hist.GetMaximum() for hist in histograms]) * 1.2
 
-first_hist = True
 for hist in histograms:
-    hist.SetMaximum(max_y)  # Set the same y-axis range for all histograms
-    draw_option = "HIST SAME" if not first_hist else "HIST"
+    draw_option = "HIST SAME" if hist != histograms[0] else "HIST"
+    hist.SetMaximum(max_y)
     hist.Draw(draw_option)
-    legend.AddEntry(hist, hist.GetTitle(), "l")
-    first_hist = False
+    legend_entry_label = hist.GetTitle() + (" (dashed)" if "Reco" in hist.GetTitle() else " (solid)")
+    legend.AddEntry(hist, legend_entry_label, "l")
 
 legend.Draw()
-c.SaveAs("comparison_plot_variables.pdf")
+c.Modified()
+c.Update()
+c.SaveAs("comparison_plot_theta_distribution.pdf")
