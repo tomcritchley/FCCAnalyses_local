@@ -73,7 +73,7 @@ print(cross_section_dict)
 #bb_basedir = "/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/"
 #ejjnu_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/"
 
-cc_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/p8_ee_Zcc_ecm91/p8_ee_Zcc_ecm91/"
+cc_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/"
 bb_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/p8_ee_Zbb_ecm91/p8_ee_Zbb_ecm91/"
 ejjnu_basedir = "/eos/user/t/tcritchl/xgBOOST/fullstats/ejjnu/"
 
