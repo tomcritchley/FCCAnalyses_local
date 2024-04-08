@@ -37,8 +37,8 @@ signal_files = [
     ("/eos/user/t/tcritchl/MCfilter/HNL_Dirac_ejj_70GeV_1e-3Ve/chunk_0.root", "HNL_70GeV", ROOT.kOrange)
 ]
 tree_name = "events"
-variable_names = ("RecoElectron_phi", "FSGenElectron_phi")
-hist_params = ("hist", "Histogram of RecoElectron_phi and FSGenElectron_phi;eta;Events", 50, -2.5, 2.5)
+variable_names = ("FSGenElectron_theta", "RecoElectron_theta")
+hist_params = ("hist", "Histogram of RecoElectron_theta and FSGenElectron_theta;theta;Events", 50, -2.5, 2.5)
 
 # Create histograms for each file and variable
 histograms = []
