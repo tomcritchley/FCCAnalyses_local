@@ -31,8 +31,8 @@ label = "4body"
 color = ROOT.kBlue
 
 tree_name = "events"
-variable_names = ("FSGenElectron_eta", "RecoElectron_eta")
-hist_params = ("eta", "Eta distribution;Eta;Events", 50, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
+variable_names = ("FSGenElectron_px", "RecoElectron_px")
+hist_params = ("p_x", "p_x distribution;P_x;Events", 50, -50, 50)
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
@@ -44,14 +44,14 @@ hist2.Draw("HISTSAME")
 
 # Adding a legend
 legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
-legend.AddEntry(hist1, "Truth: Zbb", "l")
-legend.AddEntry(hist2, "Reco: Zbb", "l")
+legend.AddEntry(hist1, "Truth: 4body", "l")
+legend.AddEntry(hist2, "Reco: 4body", "l")
 legend.Draw()
 
 # Adding text labels
 text_title = ROOT.TLatex()
 text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
-text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Zbb Analysis")
+text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs("4body_eta_comparison.pdf")
+c.SaveAs("4body_px_comparison.pdf")
