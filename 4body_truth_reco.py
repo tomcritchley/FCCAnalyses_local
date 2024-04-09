@@ -31,8 +31,8 @@ label = "4body"
 color = ROOT.kBlue
 
 tree_name = "events"
-variable_names = ("FSGenElectron_pz", "RecoElectron_pz")
-hist_params = ("p_z", "p_z distribution;P_z;Events", 50, -50, 50)
+variable_names = ("FSGenElectron_pt", "RecoElectron_pt")
+hist_params = ("p_t", "p_t distribution;P_t;Events", 50, -50, 50)
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
@@ -54,4 +54,4 @@ text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs("4body_pz_comparison.pdf")
+c.SaveAs("4body_pt_comparison.pdf")
