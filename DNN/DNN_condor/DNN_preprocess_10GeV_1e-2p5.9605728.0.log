@@ -4,3 +4,31 @@
     Local schedd and job shadow died, schedd now running again
     Trying to reconnect to slot1_26@b7s04p2767.cern.ch <128.142.59.147:9618?addrs=128.142.59.147-9618&alias=b7s04p2767.cern.ch&noUDP&sock=startd_6978_e7f4>
 ...
+023 (9605728.000.000) 04/09 09:03:52 Job reconnected to slot1_26@b7s04p2767.cern.ch
+    startd address: <128.142.59.147:9618?addrs=128.142.59.147-9618&alias=b7s04p2767.cern.ch&noUDP&sock=startd_6978_e7f4>
+    starter address: <128.142.59.147:9618?addrs=128.142.59.147-9618&alias=b7s04p2767.cern.ch&noUDP&sock=slot1_26_7045_96f8_96903>
+...
+006 (9605728.000.000) 04/09 09:33:49 Image size of job updated: 15288380
+	9766  -  MemoryUsage of job (MB)
+	10000000  -  ResidentSetSize of job (KB)
+...
+006 (9605728.000.000) 04/09 09:57:50 Image size of job updated: 15625436
+	9766  -  MemoryUsage of job (MB)
+	10000000  -  ResidentSetSize of job (KB)
+...
+006 (9605728.000.000) 04/09 10:12:15 Image size of job updated: 15689124
+	10330  -  MemoryUsage of job (MB)
+	10577872  -  ResidentSetSize of job (KB)
+...
+006 (9605728.000.000) 04/09 10:20:54 Image size of job updated: 15889140
+	10713  -  MemoryUsage of job (MB)
+	10969632  -  ResidentSetSize of job (KB)
+...
+006 (9605728.000.000) 04/09 10:26:06 Image size of job updated: 15893236
+	11962  -  MemoryUsage of job (MB)
+	12248328  -  ResidentSetSize of job (KB)
+...
+006 (9605728.000.000) 04/09 10:31:06 Image size of job updated: 15894260
+	12362  -  MemoryUsage of job (MB)
+	12657784  -  ResidentSetSize of job (KB)
+...
