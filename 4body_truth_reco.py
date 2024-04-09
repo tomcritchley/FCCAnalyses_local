@@ -31,8 +31,8 @@ label = "4body"
 color = ROOT.kBlue
 
 tree_name = "events"
-variable_names = ("FSGenElectron_phi", "RecoElectron_phi")
-hist_params = ("phi", "phi distribution;Phi;Events", 50, -2*ROOT.TMath.Pi(), 2*ROOT.TMath.Pi())
+variable_names = ("FSGenElectron_theta", "RecoElectron_theta")
+hist_params = ("theta", "theta distribution;Phi;Events", 50, -2*ROOT.TMath.Pi(), 2*ROOT.TMath.Pi())
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
@@ -54,4 +54,4 @@ text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs("4body_phi_comparison.pdf")
+c.SaveAs("4body_theta_comparison.pdf")
