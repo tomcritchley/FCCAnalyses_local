@@ -32,7 +32,7 @@ color = ROOT.kBlue
 
 tree_name = "events"
 variable_names = ("FSGenElectron_phi", "RecoElectron_phi")
-hist_params = ("phi", "phi distribution;Phi;Events", 50, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
+hist_params = ("phi", "phi distribution;Phi;Events", 50, -2*ROOT.TMath.Pi(), 2*ROOT.TMath.Pi())
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
