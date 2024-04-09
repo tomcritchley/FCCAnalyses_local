@@ -1,2 +1,6 @@
 000 (9605719.000.000) 04/08 14:42:34 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_5144_ef43>
 ...
+022 (9605719.000.000) 04/09 08:59:06 Job disconnected, attempting to reconnect
+    Local schedd and job shadow died, schedd now running again
+    Trying to reconnect to slot1_7@b7s02p3198.cern.ch <128.142.57.48:9618?addrs=128.142.57.48-9618+[2001-1458-301-7--100-2f]-9618&alias=b7s02p3198.cern.ch&noUDP&sock=startd_64839_bd49>
+...
