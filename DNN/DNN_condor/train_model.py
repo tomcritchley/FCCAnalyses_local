@@ -53,10 +53,10 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/y_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/y_test_{file}.npy', allow_pickle=True)
 
     # Print out data types and shapes
     print("Data types and shapes:")
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 # Callbacks
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models1/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models2/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
     ]
 
     # Train the model with tqdm progress bar
@@ -109,11 +109,11 @@ if __name__ == "__main__":
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots1/loss_function_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/loss_function_{file}.pdf")
 
     # Load the best model saved by the ModelCheckpoint
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models1/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models2/best_model_{file}.keras')
     print("Model loaded successfully.")
     model.save(f'/eos/user/t/tcritchl/DNN/trained_models1/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")

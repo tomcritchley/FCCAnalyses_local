@@ -59,14 +59,14 @@ if __name__ == "__main__":
     results_dict = {}
 
     print(f"loading data...")
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training1/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/y_test_{file}.npy', allow_pickle=True)
-    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing1/weights_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/y_test_{file}.npy', allow_pickle=True)
+    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models1/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models2/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots1/ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/ROC_{file}.pdf")
 
 
     ##################################################################################################################
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     plt.title('Predicted Scores for Signal and Background Events')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots1/dnn_classification_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/dnn_classification_{file}.pdf")
 
     bin_width = 0.0001 #in the region of interest, binning resolution
     
@@ -186,7 +186,7 @@ if __name__ == "__main__":
     ax[0].legend(loc='upper right', fontsize='small', frameon=False)
 
     fig.text(0.175, 0.85, "FCCee Simulation (DELPHES)", ha='left', va='center', fontsize=8, weight='bold')
-    fig.text(0.175, 0.81, "Exactly one recontructed electron, E > 20 GeV", ha='left', va='center', fontsize=8)
+    fig.text(0.175, 0.81, "Exactly one recontructed electron, E > 15 GeV", ha='left', va='center', fontsize=8)
     fig.text(0.175, 0.77, r"$\sqrt{s} = 91$ GeV, $\int L \, dt = 10 \, \text{fb}^{-1}$", ha='left', va='center', fontsize=8)
 
     def make_cumulative_significance_matplotlib(signal_hist, background_hist, significance_direction, uncertainty_count_factor=0.1):
@@ -237,7 +237,7 @@ if __name__ == "__main__":
     }
 
     ax[1].step(bins_a[:-1], significance_values, where='post', color='green', linewidth=1.5)
-    ax[1].set_xlabel('BDT response')
+    ax[1].set_xlabel('DNN response')
     ax[1].set_ylabel(f'Z Significance ({significance_direction})')
     ax[1].grid(True)
 
@@ -248,13 +248,13 @@ if __name__ == "__main__":
     ax[1].legend()
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots1/DNN_output_{file}_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/DNN_output_{file}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run1_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run2_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:
