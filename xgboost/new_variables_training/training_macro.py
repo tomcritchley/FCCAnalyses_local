@@ -180,5 +180,19 @@ if __name__ == "__main__":
         
         plot_tree(bdt, num_trees=5, rankdir='LR')  # Adjust num_trees as needed
         pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/decision_tree_plot_{label}.pdf")
+
+        feature_importances = bdt.feature_importances_
+        features = variables  # Assuming 'variables' list is the same order as training data
+
+        feature_importance_dict = {feature: importance for feature, importance in zip(features, feature_importances)}
+        results_dict = {}
+
+        results_dict[args.label] = feature_importance_dict
+
+        results_path = f"/eos/user/t/tcritchl/xgboost_plots{run}/feature_importance_{args.label}.json"
+        with open(results_path, 'w') as f:
+            json.dump(results_dict, f, indent=4)
+
+
     else:
         print(f"The trained model for {label} already exists! No need to re-run :)")

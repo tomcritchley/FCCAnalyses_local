@@ -30,6 +30,7 @@ sgl_split = config["background_split"]
 ##################################################################################################################
 
 #base_path where the signals are located
+cut_flow_summary = [] #trying to book the cutflow to a table
 base_path = input_HNLs
 
 masses = [
@@ -59,22 +60,61 @@ signal_files = []
 
 for mass in masses:
     for coupling in couplings:
-        print(f"using mass: {mass}, coupling {coupling}")
         base_file = f"HNL_Dirac_ejj_{mass}_{coupling}Ve.root"
         signal_file = os.path.join(base_path, base_file)
         if os.path.exists(signal_file):
             signal_files.append([signal_file, f"signal_{mass}_{coupling}"]) #label will be of the form "signal_10GeV_1e-2"
         else:
             print(f"file {signal_file} does not exist, moving to next file")
+            continue
 
 print(signal_files)
 
-def filter_events(df):
+def filter_events(df, label):
+    # Define initial counts for background processes
+    if label == "background_total":
+        initial_counts = {
+            "bb": df.Filter("cross_section==6654.46").Count().GetValue(),
+            "cc": df.Filter("cross_section==5215.46").Count().GetValue(),
+            "4body": df.Filter("cross_section==0.014").Count().GetValue()
+        }
+    
+    # Apply the universal filter criteria to df
+    df_filtered = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 10 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5", "Exactly one electron final state with lead electron energy E > 10 GeV")
 
-    #df = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 35 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5 && ROOT::VecOps::All(RecoElectronTrack_absD0sig < 5)", "Exactly one electron final state with lead electron energy E > 35 GeV and D0_sig < 5 (prompt decay)") FOR LLPS
-    df = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 35 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5", "Exactly one electron final state with lead electron energy E > 35 GeV")  
-    return df
+    if label == "background_total":
+        # Calculate final counts after filtering for each background process
+        final_counts = {
+            "bb": df_filtered.Filter("cross_section==6654.46").Count().GetValue(),
+            "cc": df_filtered.Filter("cross_section==5215.46").Count().GetValue(),
+            "4body": df_filtered.Filter("cross_section==0.014").Count().GetValue()
+        }
 
+        # Calculate and record efficiencies
+        for process in ["bb", "cc", "4body"]:
+            efficiency = (final_counts[process] / initial_counts[process]) * 100 if initial_counts[process] > 0 else 0
+            cut_flow_summary.append({
+                "Label": f"Z-->{process}",
+                "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 10 GeV",
+                "Initial Events": initial_counts[process],
+                "Final Events": final_counts[process],
+                "Efficiency (%)": efficiency
+            })
+    else:
+        # For signal processing, calculate and record efficiency
+        initial_count = df.Count().GetValue()
+        final_count = df_filtered.Count().GetValue()
+        efficiency = (final_count / initial_count) * 100 if initial_count > 0 else 0
+
+        cut_flow_summary.append({
+            "Label": label,
+            "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 10 GeV",
+            "Initial Events": initial_count,
+            "Final Events": final_count,
+            "Efficiency (%)": efficiency
+        })
+
+    return df_filtered
 
 #bdt features
 
@@ -88,8 +128,8 @@ variables = [
     "RecoMissingEnergy_theta",
     "RecoMissingEnergy_e",
     "RecoElectron_lead_e",
-    "Vertex_chi2", #new variable
-    "n_primt", #new variable -> we want (ntracks - n_primt)
+    "Vertex_chi2",
+    "n_primt",
     "ntracks",
 ]
 
@@ -197,7 +237,7 @@ if __name__ == "__main__":
 
         #print(f"generated events {generated_events}")
         print(f"filtering events..")
-        df = filter_events(df) #call the filter
+        df = filter_events(df, label) #call the filter
         print(f"defining index....")
         df = df.Define("event_index", "rdfentry_")
         print(f"compiling report...")
@@ -222,7 +262,11 @@ if __name__ == "__main__":
 ###################################### PLOTTING FOR VARIABLE RELATIONSHIPS #######################################
 ##################################################################################################################
     
-    for column_name in df.GetColumnNames():
+    summary_df = pd.DataFrame(cut_flow_summary)
+    summary_df.to_csv(f"/eos/user/t/tcritchl/xgboost_plots{run}/cutflow{run}.csv", index=False) #trying to save cutflow information
+
+
+"""    for column_name in df.GetColumnNames():
         column_type = df.GetColumnType(column_name)
         print(f"{column_name}: {column_type}")
 
@@ -278,3 +322,4 @@ if __name__ == "__main__":
     plt.xticks(rotation=90)
     plt.tight_layout()
     plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/pair_plot.pdf")
+"""
