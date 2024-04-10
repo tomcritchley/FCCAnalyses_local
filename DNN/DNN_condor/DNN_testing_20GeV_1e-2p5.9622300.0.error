@@ -1,0 +1,8 @@
+2024-04-10 21:25:44.426414: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-04-10 21:25:47.623796: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-04-10 21:26:03.300165: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-04-10 21:26:14.129556: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-04-10 21:26:52.719384: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 176841548 exceeds 10% of free system memory.
+2024-04-10 21:28:07.950241: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 176841548 exceeds 10% of free system memory.
+2024-04-10 21:30:08.485380: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 176296172 exceeds 10% of free system memory.
