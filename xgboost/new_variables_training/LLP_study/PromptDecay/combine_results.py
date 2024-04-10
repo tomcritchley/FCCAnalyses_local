@@ -10,6 +10,8 @@ combined_results = {}
 
 # Loop through each JSON file in the directory
 for json_file in glob(json_files_path):
+    if 'configuration.json' in json_file:
+        continue  # Skip this file and continue with the next iteration
     with open(json_file, 'r') as file:
         # Load the content of the current JSON file
         current_results = json.load(file)
