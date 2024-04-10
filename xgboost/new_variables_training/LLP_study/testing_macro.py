@@ -7,7 +7,6 @@ import os
 import argparse
 from sklearn.metrics import roc_curve, auc
 import json
-import fcntl
 
 ##################################################################################################################
 ###################################### INPUTS ####################################################################
@@ -356,22 +355,12 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"An error occurred: {e}")
 
-    json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/test_xgboost_results{run}_10fb.json"
-    if os.path.exists(json_file_path):
-        with open(json_file_path, "r") as json_file:
-            existing_results = json.load(json_file)
-    else:
-        existing_results = {}
+    json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/xgboost_run{run}_{args.label}.json"
 
-    lockfile = open(json_file_path, 'a')
-    fcntl.flock(lockfile, fcntl.LOCK_EX)
-
-    existing_results.update(results_dict)
-
-    fcntl.flock(lockfile, fcntl.LOCK_UN)
-    lockfile.close()
-
-    with open(json_file_path, "w") as json_file:
-        json.dump(existing_results, json_file, indent=2)
-
-    print(f"Results saved to {json_file_path}")
+    try:
+        with open(json_file_path, 'w') as json_file:
+            json.dump(results_dict, json_file, indent=2)
+        print(f"Results saved to {json_file_path} successfully!")
+    except Exception as e:
+        print(f"An error occurred while saving results: {e}")
+                                                                 
