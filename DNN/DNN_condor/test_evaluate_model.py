@@ -66,7 +66,7 @@ if __name__ == "__main__":
     weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models2/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models1/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
@@ -221,7 +221,7 @@ if __name__ == "__main__":
                     2 * (n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2)) - (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
                 )))
             left_edge = bin_edges[bin_idx - 1]
-            print(f"significance {significance} for bin {bin_idx} with BDT threshold {left_edge}, number of signal events {s}, bkg{b}")
+            print(f"significance {significance} for bin {bin_idx} with DNN threshold {left_edge}, number of signal events {s}, bkg{b}")
 
             sig_list.append((significance, bin_idx, left_edge))
 

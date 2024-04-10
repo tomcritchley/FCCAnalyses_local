@@ -12,7 +12,7 @@ echo "Masses: $masses"
 couplings=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/testing1"
+base_path="/eos/user/t/tcritchl/DNN/testing2"
 
 labels=()
 for mass in $masses; do
