@@ -102,7 +102,7 @@ def load_data(signal_filename, background_filename):
         elif cross_section == 5215.46:
             num_cc += 1
             #weights.append(5215.46*10000/499786495)
-            weights.append(5215.46*10000/499786495)
+            weights.append(5215.46*10000/498091935)
         elif cross_section == 0.014:
             num_4body += 1
             #weights.append(0.014*10000/100000)
@@ -126,7 +126,7 @@ def load_data(signal_filename, background_filename):
                    np.ones(num_bkg)*weights])
     elif signal == "test_signal_10GeV_1e-3p5.root":
         print(f"using the signal with less events {signal} :(")
-        w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/9707), #scale factor = target lumi * x-sec / number of generated events
+        w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/38667), #scale factor = target lumi * x-sec / number of generated events
                    np.ones(num_bkg)*weights])
     else:
         w = np.hstack([np.ones(num_sig)*(cross_section_signal*10000/100000), #scale factor = target lumi * x-sec / number of generated events
