@@ -25,7 +25,7 @@ variable_list = [
     ["n_primt", "Number of primary tracks"], #15
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
-chosen_variable = variable_list[9] 
+chosen_variable = variable_list[15] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
@@ -149,8 +149,7 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
 
 h_list_signal = make_hist(files_list_signal)
 h_list_bg = make_hist(files_list_bg)
-#n_bins = h_list_bg[0].GetNbinsX()
-n_bins = 100
+n_bins = h_list_bg[0].GetNbinsX()
 x_min = h_list_bg[0].GetXaxis().GetXmin()
 x_max = h_list_bg[0].GetXaxis().GetXmax()
 h_list_significance = make_significance(h_list_signal, n_bins, x_min, x_max, h_list_bg) #change
