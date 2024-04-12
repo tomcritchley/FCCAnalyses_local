@@ -118,7 +118,7 @@ def make_hist(files_list):
             # Apply normalization based on cross section, total events, and luminosity
             cross_section = f[3]  # Cross section in pb
             events_generated = f[4]  # Total events generated
-            scaling_factor = (cross_section * luminosity) / events_generated * (events_generated/selected_events)
+            scaling_factor = (cross_section * luminosity) / events_generated * (selected_events/events_generated)
             hist.Scale(scaling_factor)
 
         hist.SetDirectory(0)  # Make the chosen histogram independent of the directory
