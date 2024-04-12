@@ -28,7 +28,7 @@ variable_list = [
 chosen_variable = variable_list[0] 
 
 significance_directions = ["LR", "RL"]
-significance_direction = significance_directions[0]
+significance_direction = significance_directions[]
 
 normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
@@ -109,6 +109,7 @@ def make_hist(files_list):
             print("Object is not a histogram:", f[1])
             my_file.Close()
             continue
+        hist.GetXaxis().SetRangeUser(0, 100)
         selected_events = hist.Integral()
         print(f"Selected events for {f[2]} = {selected_events}")
         if normalisation:
@@ -148,7 +149,8 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
 
 h_list_signal = make_hist(files_list_signal)
 h_list_bg = make_hist(files_list_bg)
-n_bins = h_list_bg[0].GetNbinsX()
+#n_bins = h_list_bg[0].GetNbinsX()
+n_bins = 100
 x_min = h_list_bg[0].GetXaxis().GetXmin()
 x_max = h_list_bg[0].GetXaxis().GetXmax()
 h_list_significance = make_significance(h_list_signal, n_bins, x_min, x_max, h_list_bg) #change
