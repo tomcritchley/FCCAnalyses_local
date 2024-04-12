@@ -92,17 +92,27 @@ colors_bg = [856, 410, 801, 629, 879, 602, 921, 622]
 
 
 def make_hist(files_list):
-    
     h_list = []
     for f in files_list:
         print("Looking at file", f[2])
-        my_file = ROOT.TFile.Open(f[0])  # Open the root file
+        my_file = ROOT.TFile.Open(f[0], "READ")  # Open the root file in read mode
+        if not my_file:
+            print("Failed to open file:", f[0])
+            continue
         print("Getting histogram for variable", f[1])
         hist = my_file.Get(f[1])  # Select the chosen variable from the histo root file
+        if not hist:
+            print("Histogram not found for variable", f[1], "in file", f[0])
+            my_file.Close()
+            continue
+        if not isinstance(hist, ROOT.TH1):
+            print("Object is not a histogram:", f[1])
+            my_file.Close()
+            continue
         selected_events = hist.Integral()
-        print(f"selected events for {f} = {selected_events}")
+        print(f"Selected events for {f[2]} = {selected_events}")
         if normalisation:
-            print("normalising....")
+            print("Normalising....")
             # Apply normalization based on cross section, total events, and luminosity
             cross_section = f[3]  # Cross section in pb
             events_generated = f[4]  # Total events generated
@@ -116,6 +126,7 @@ def make_hist(files_list):
         my_file.Close()
         print("-----------------------")
     return h_list
+
     
 def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
     sig_list = []
