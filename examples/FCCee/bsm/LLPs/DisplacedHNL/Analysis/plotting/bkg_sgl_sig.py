@@ -25,12 +25,12 @@ variable_list = [
     ["n_primt", "Number of primary tracks"], #15
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
-chosen_variable = variable_list[7] 
+chosen_variable = variable_list[0] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
 
-normalisation = False 
+normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 #luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
 
