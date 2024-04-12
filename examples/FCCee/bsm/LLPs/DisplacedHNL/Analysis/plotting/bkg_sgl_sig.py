@@ -300,6 +300,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.GetXaxis().SetTitleOffset(1.2)
         h.GetXaxis().SetLabelSize(0.1)
         h.GetXaxis().SetLabelOffset(0.02)
+        h.GetXaxis().SetRangeUser(0, 100)
         if i==0:
             h.Draw()
         else:
