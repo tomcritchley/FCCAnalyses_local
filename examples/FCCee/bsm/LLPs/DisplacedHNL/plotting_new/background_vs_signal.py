@@ -34,7 +34,8 @@ luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
 log_scale = True
 
 #pick your selection
-selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
+#selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
+selection = "selNone"
 
 input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/" #bb cc and 4body samples
 input_dir_sgl = "/eos/user/t/tcritchl/HNLs/final/" #signals 

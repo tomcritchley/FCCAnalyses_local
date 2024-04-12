@@ -8,24 +8,24 @@ uncertainty_count_factor = 0.1 #10% background uncertainty for the significance
 #variable = "RecoDiJet_delta_R"
 variable_list = [
     ["RecoElectron_lead_e", "Reco lead electron energy [GeV]"], #variable name in histo[0], axis title[1]
-    ["RecoDiJet_delta_R", "Reco di-jet #Delta R [Rad.]"],
-    ["RecoDiJet_angle", "Reco di-jet #Psi [Rad.]"],
-    ["RecoElectron_LeadJet_delta_R", "Reco lead jet #DeltaR [Rad.]"],
-    ["RecoElectron_SecondJet_delta_R", "Reco second jet #Delta R [Rad.]"],
-    ["RecoElectron_DiJet_delta_R","Reco electron di-jet #Delta R [Rad.]"],
-    ["RecoLeadElectron_Pmiss_delta_theta", "Reconstructed electron missing momentum angle #theta [Rad.]"],
-    ["RecoElectronTrack_absD0sig", "Reco electron |d_{0}| [mm] sig"],
-    ["RecoElectronTrack_absD0cov", "Reco electron |d_{0}| [mm] cov"],
-    ["RecoElectronTrack_absD0", "Reco electron |d_{0}| [mm]"],
-    ["RecoDiJet_phi", "Reco DiJet #phi [Rad.]"],
-    ["RecoMissingEnergy_theta", "Reco Missing Energy #theta [Rad.]"],
-    ["RecoMissingEnergy_e", "Reco missing energy [GeV]"],
-    ["RecoDiJetElectron_invMass", "Mass [GeV]"], #for invmass of the HNL
+    ["RecoDiJet_delta_R", "Reco di-jet #Delta R [Rad.]"], #1
+    ["RecoDiJet_angle", "Reco di-jet #Psi [Rad.]"], #2
+    ["RecoElectron_LeadJet_delta_R", "Reco lead jet #DeltaR [Rad.]"], #3
+    ["RecoElectron_SecondJet_delta_R", "Reco second jet #Delta R [Rad.]"], #4
+    ["RecoElectron_DiJet_delta_R","Reco electron di-jet #Delta R [Rad.]"], #5
+    ["RecoLeadElectron_Pmiss_delta_theta", "Reconstructed electron missing momentum angle #theta [Rad.]"], #6
+    ["RecoElectronTrack_absD0sig", "Reco electron |d_{0}| [mm] sig"], #7
+    ["RecoElectronTrack_absD0cov", "Reco electron |d_{0}| [mm] cov"], #8
+    ["RecoElectronTrack_absD0", "Reco electron |d_{0}| [mm]"], #9
+    ["RecoDiJet_phi", "Reco DiJet #phi [Rad.]"], #10
+    ["RecoMissingEnergy_theta", "Reco Missing Energy #theta [Rad.]"], #11
+    ["RecoMissingEnergy_e", "Reco missing energy [GeV]"], #12
+    ["RecoDiJetElectron_invMass", "Mass [GeV]"], #for invmass of the HNL #13
     ["ntracks", "Number of tracks"], #14
     ["n_primt", "Number of primary tracks"], #15
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
-chosen_variable = variable_list[15] 
+chosen_variable = variable_list[9] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
@@ -42,7 +42,7 @@ selection = "selNone"
 input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
 input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
 
-output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/examples/FCCee/bsm/LLPs/DisplacedHNL/Analysis/"
+output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/plots/"
 
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
