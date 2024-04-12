@@ -102,13 +102,15 @@ def make_hist(files_list, bin_width=1):
 
         print("Getting histogram for variable", f[1])
         hist = my_file.Get(f[1])
+
         if not hist:
             print("Histogram not found for variable", f[1], "in file", f[0])
             my_file.Close()
             continue
         
         # Determine new number of bins based on the desired bin width and range
-        num_bins = int(50 / bin_width)  # Adjust 100 according to your max range
+        print(f"num of bins in original hist = {hist.GetNbinsX()}")
+        num_bins = hist.GetNbinsX()
         new_hist = ROOT.TH1F(f"{hist.GetName()}_rebinned", hist.GetTitle(), num_bins, 0, 50)
         
         # Fill new histogram with old data
