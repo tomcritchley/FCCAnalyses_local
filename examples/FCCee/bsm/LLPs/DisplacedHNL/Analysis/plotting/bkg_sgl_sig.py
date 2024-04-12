@@ -99,13 +99,14 @@ def make_hist(files_list):
         my_file = ROOT.TFile.Open(f[0])  # Open the root file
         print("Getting histogram for variable", f[1])
         hist = my_file.Get(f[1])  # Select the chosen variable from the histo root file
-
+        selected_events = hist.Integral()
+        print(f"selected events for {f} = {selected_events}")
         if normalisation:
             print("normalising....")
             # Apply normalization based on cross section, total events, and luminosity
             cross_section = f[3]  # Cross section in pb
             events_generated = f[4]  # Total events generated
-            scaling_factor = (cross_section * luminosity) / events_generated
+            scaling_factor = (cross_section * luminosity) / events_generated * (events_generated/selected_events)
             hist.Scale(scaling_factor)
 
         hist.SetDirectory(0)  # Make the chosen histogram independent of the directory
