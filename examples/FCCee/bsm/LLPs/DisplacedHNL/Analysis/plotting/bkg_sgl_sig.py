@@ -91,46 +91,39 @@ colors_signal = [ROOT.kMagenta - 7, ROOT.kMagenta - 2, ROOT.kMagenta + 3]
 colors_bg = [856, 410, 801, 629, 879, 602, 921, 622]
 
 
-def make_hist(files_list, bin_width=1):
+def make_hist(files_list):
     h_list = []
     for f in files_list:
         print("Looking at file", f[2])
-        my_file = ROOT.TFile.Open(f[0], "READ")
+        my_file = ROOT.TFile.Open(f[0], "READ")  # Open the root file in read mode
         if not my_file:
             print("Failed to open file:", f[0])
             continue
-
         print("Getting histogram for variable", f[1])
-        hist = my_file.Get(f[1])
-
+        hist = my_file.Get(f[1])  # Select the chosen variable from the histo root file
         if not hist:
             print("Histogram not found for variable", f[1], "in file", f[0])
             my_file.Close()
             continue
-        
-        # Determine new number of bins based on the desired bin width and range
-        print(f"num of bins in original hist = {hist.GetNbinsX()}")
-        num_bins = hist.GetNbinsX()
-        new_hist = ROOT.TH1F(f"{hist.GetName()}_rebinned", hist.GetTitle(), num_bins, 0, 50)
-        
-        # Fill new histogram with old data
-        for i in range(1, hist.GetNbinsX() + 1):
-            bin_center = hist.GetBinCenter(i)
-            if 0 <= bin_center <= 50:  # Adjust according to your new range
-                new_hist.Fill(bin_center, hist.GetBinContent(i))
-
-        selected_events = new_hist.Integral()
+        if not isinstance(hist, ROOT.TH1):
+            print("Object is not a histogram:", f[1])
+            my_file.Close()
+            continue
+        print(f"number of bins is {hist.GetNbinsX()}")
+        hist.GetXaxis().SetRangeUser(0, 50)
+        selected_events = hist.Integral()
         print(f"Selected events for {f[2]} = {selected_events}")
-
         if normalisation:
             print("Normalising....")
-            cross_section = f[3]
-            events_generated = f[4]
-            scaling_factor = (cross_section * luminosity) / events_generated * (events_generated / selected_events)
-            new_hist.Scale(scaling_factor)
+            # Apply normalization based on cross section, total events, and luminosity
+            cross_section = f[3]  # Cross section in pb
+            events_generated = f[4]  # Total events generated
+            scaling_factor = (cross_section * luminosity) / events_generated * (events_generated/selected_events)
+            hist.Scale(scaling_factor)
 
-        new_hist.SetDirectory(0)
-        h_list.append(new_hist)
+        hist.SetDirectory(0)  # Make the chosen histogram independent of the directory
+
+        h_list.append(hist)
         print("Histogram added to h_list")
         my_file.Close()
         print("-----------------------")
