@@ -40,9 +40,11 @@ def load_and_preprocess_data(filepaths, x_sec, filter_func, label):
         try:
             with uproot.open(f"{filepath}:{tree_name}") as tree:
                 df = tree.arrays(variables, library="pd")
+                print(f"number of events in {filepath}: {len(df)}")
                 df['cross_section'] = float(x_sec)
                 df['weight'] = (df['cross_section'] * target_luminosity) / len(df)
                 df = filter_func(df)
+                print(f"number of events surviving the filter from {filepath}: {len(df)}")
                 df['label'] = label
                 dfs.append(df)
         except Exception as e:
@@ -59,7 +61,7 @@ def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
                 df['cross_section'] = float(x_sec)
                 df = filter_func(df)
                 if x_sec == "5215.46":
-                    df['weight'] = (df['cross_section'] * target_luminosity) / 499786495
+                    df['weight'] = (df['cross_section'] * target_luminosity) / 498091935
                 elif x_sec == "6654.46":
                     df['weight'] = (df['cross_section'] * target_luminosity) / 438538637
                 elif x_sec == "0.014":
@@ -71,7 +73,6 @@ def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
             continue
     return pd.concat(dfs, ignore_index=True)
 
-
 def signal_filter(df):
     return df[
         (df["n_RecoElectrons"] == 1) & 
@@ -82,12 +83,17 @@ def signal_filter(df):
         (df["RecoDiJet_delta_R"] < 5)
     ]
 
+def calculate_efficiency(initial_count, final_count):
+    """Calculate the filter efficiency."""
+    return (final_count / initial_count) * 100 if initial_count > 0 else 0
+
 def main(label):
+
     signal_file = f"{base_HNL}/HNL_Dirac_ejj_{label}Ve.root"
     signal_df = load_and_preprocess_data([signal_file], cross_section_dict.get(label, 1.0), signal_filter, 1)
     
     background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('.root')]
-    background_df = load_and_preprocess_bkg(background_files, signal_filter, 0)  # Use 1.0 as a placeholder for x_sec
+    background_df = load_and_preprocess_bkg(background_files, signal_filter, 0)
     
     df = pd.concat([signal_df, background_df], ignore_index=True)
     
