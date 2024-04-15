@@ -26,14 +26,14 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
     return hist1, hist2
 
 # File and parameters for Zbb
-file_path = "/eos/user/t/tcritchl/MCfilter/ejjnu/chunk_0.root"
-label = "4body"
+file_path = "/eos/user/t/tcritchl/MCfilter/p8_ee_Zbb_ecm91/chunk_0.root"
+label = "z->bb"
 color = ROOT.kBlue
 color2 = ROOT.kRed
 
 tree_name = "events"
 variable_names = ("FSGenElectron_pt", "RecoElectron_pt")
-hist_params = ("pt", "pt distribution;pt;Events", 50, 10, 50)
+hist_params = ("pt", "pt distribution;pt;Events", 50, 0, 50)
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
@@ -45,8 +45,8 @@ hist2.Draw("HISTSAME")
 
 # Adding a legend
 legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
-legend.AddEntry(hist1, "Truth: 4body", "l")
-legend.AddEntry(hist2, "Reco: 4body", "l")
+legend.AddEntry(hist1, "Truth: Z->bb", "l")
+legend.AddEntry(hist2, "Reco: Z->bb", "l")
 legend.Draw()
 
 # Adding text labels
@@ -55,4 +55,4 @@ text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs("4body_electron_e_comparison.pdf")
+c.SaveAs("bb_electron_pt_comparison.pdf")
