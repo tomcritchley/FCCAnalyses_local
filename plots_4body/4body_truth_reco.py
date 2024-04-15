@@ -31,8 +31,8 @@ label = "4body"
 color = ROOT.kBlue
 
 tree_name = "events"
-variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("energy", "energy distribution;px;Events", 50, 0, 50)
+variable_names = ("FSGenElectron_pt", "RecoElectron_pt")
+hist_params = ("pt", "pt distribution;pt;Events", 50, 10, 50)
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
