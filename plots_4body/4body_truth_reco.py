@@ -33,14 +33,14 @@ color2 = ROOT.kRed
 
 tree_name = "events"
 variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("pt", "pt distribution;pt;Events", 200, 0, 50)
+hist_params = ("pt", "pt distribution;pt;Events", 100, 0, 50)
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)
 
 # Create canvas and draw histograms
 c = ROOT.TCanvas("c", "canvas", 1200, 800)
-hist1.Draw("HIST")
+hist1.Draw("HIST","FSGenElectron_e!=4")
 hist2.Draw("HISTSAME")
 
 # Adding a legend
