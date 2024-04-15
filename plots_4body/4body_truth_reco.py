@@ -32,7 +32,7 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
 
 # File and parameters for Zbb
 file_path = "/eos/user/t/tcritchl/MCfilter/p8_ee_Zbb_ecm91/chunk_0.root"
-label = "z->cc"
+label = "z->bb"
 color = ROOT.kBlue
 color2 = ROOT.kRed
 
@@ -50,8 +50,8 @@ hist2.Draw("HISTSAME")
 
 # Adding a legend
 legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
-legend.AddEntry(hist1, "Truth: Z->cc", "l")
-legend.AddEntry(hist2, "Reco: Z->cc", "l")
+legend.AddEntry(hist1, "Truth: Z->bb", "l")
+legend.AddEntry(hist2, "Reco: Z->bb", "l")
 legend.Draw()
 
 # Adding text labels
