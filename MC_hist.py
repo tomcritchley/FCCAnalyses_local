@@ -77,6 +77,6 @@ text_selection.DrawLatexNDC(0.70, 0.77, "#font[52]{No Selection}")
 text_lumi = ROOT.TLatex()
 text_lumi.SetTextSize(0.03)
 text_lumi.SetTextFont(42)
-text_lumi.DrawLatexNDC(0.70, 0.72, "#font[52]{#sqrt{s} = 91 GeV") #, #int L dt = 10 fb^{-1}}
+text_lumi.DrawLatexNDC(0.70, 0.72, "#font[52]{#sqrt{s} = 91 GeV}") #, #int L dt = 10 fb^{-1}}
 
 c.SaveAs("comparison_plot_variables_eta.pdf")
