@@ -33,7 +33,7 @@ color2 = ROOT.kRed
 
 tree_name = "events"
 variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("pt", "pt distribution;pt;Events", 50, 0, 50)
+hist_params = ("pt", "pt distribution;pt;Events", 200, 0, 50)
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color)

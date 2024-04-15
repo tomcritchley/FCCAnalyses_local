@@ -5,6 +5,8 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras.regularizers import l2
 from tqdm import tqdm
 import os
 import argparse
@@ -76,6 +78,18 @@ if __name__ == "__main__":
     X_train = X_train.astype(np.float32)
     X_test = X_test.astype(np.float32)
 
+    model = Sequential([
+        Dense(128, activation='relu', input_shape=(X_train.shape[1],), kernel_regularizer=l2(0.01)),
+        BatchNormalization(),
+        Dropout(0.5),
+        Dense(64, activation='relu', kernel_regularizer=l2(0.01)),
+        BatchNormalization(),
+        Dropout(0.5),
+        Dense(32, activation='relu', kernel_regularizer=l2(0.01)),
+        BatchNormalization(),
+        Dropout(0.5),
+        Dense(1, activation='sigmoid')
+    ])
     # Define the DNN model
     model = Sequential([
         Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
