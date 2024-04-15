@@ -16,6 +16,11 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
         if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
         if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
 
+        if not ROOT.TMath.IsNaN(value1) and value1 != 4:
+            hist1.Fill(value1)
+        if not ROOT.TMath.IsNaN(value2) and value2 != 4:
+            hist2.Fill(value2)
+
     f.Close()
 
     hist1.SetLineColor(color)
@@ -40,7 +45,7 @@ hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_param
 
 # Create canvas and draw histograms
 c = ROOT.TCanvas("c", "canvas", 1200, 800)
-hist1.Draw("HIST","FSGenElectron_e!=4")
+hist1.Draw("HIST")
 hist2.Draw("HISTSAME")
 
 # Adding a legend
