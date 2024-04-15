@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/training_macro.py", line 10, in <module>
+    from DataPreparation_macro import masses, couplings, variables
+  File "/cvmfs/sft-nightlies.cern.ch/lcg/views/dev3/Fri/x86_64-centos7-gcc11-opt/lib/ROOT/_facade.py", line 154, in _importhook
+    return _orig_ihook(name, *args, **kwds)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/DataPreparation_macro.py", line 148, in <module>
+    for chunk_file in os.listdir(bg_dir):
+FileNotFoundError: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/'
