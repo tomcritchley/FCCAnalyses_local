@@ -20,8 +20,8 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
 
     hist1.SetLineColor(color)
     hist1.SetStats(0)
-    hist2.SetLineColor(color)
-    hist2.SetLineStyle(7)  # Dashed line for reconstructed data
+    hist2.SetLineColor(color2)
+    hist2.SetLineStyle(0)  # Dashed line for reconstructed data
     hist2.SetStats(0)
     return hist1, hist2
 
@@ -29,6 +29,7 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
 file_path = "/eos/user/t/tcritchl/MCfilter/ejjnu/chunk_0.root"
 label = "4body"
 color = ROOT.kBlue
+color2 = ROOT.kRed
 
 tree_name = "events"
 variable_names = ("FSGenElectron_pt", "RecoElectron_pt")
