@@ -28,12 +28,12 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
 
 # File and parameters for Zbb
 file_path = "/eos/user/t/tcritchl/MCfilter/p8_ee_Zcc_ecm91/chunk_0.root" #p8_ee_Zbb_ecm91
-label = "z-->bb"
+label = "z-->cc"
 color = ROOT.kBlue  # Color for truth data
 color2 = ROOT.kRed  # Color for reco data
 
 tree_name = "events"
-variable_names = ("FSGenElectron_pt", "RecoElectron_pt")
+variable_names = ("FSGenElectron_e", "RecoElectron_e")
 hist_params = ("pt", "pt distribution;pt;Events", 100, 2, 50)
 
 # Create histograms for Zbb truth and reco
@@ -56,4 +56,4 @@ text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/cc_electron_pt.pdf")
+c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/cc_electron_e.pdf")
