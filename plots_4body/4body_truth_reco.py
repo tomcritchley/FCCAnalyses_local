@@ -12,8 +12,9 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
             for i in range(event.n_FSGenElectron):
                 eta = abs(event.FSGenElectron_eta[i])
                 energy = event.FSGenElectron_e[i]
+                pt = event.FSGenElectron_pt[i]
                 # Apply the DELPHES efficiency conditions
-                if energy >= 2.0 and ((eta <= 0.88) or (0.88 < eta <= 3.0)):
+                if energy >= 2.0 and pt >= 0.1 and eta <= 2.56:
                     value1_attr = getattr(event, variable_names[0], None)
                     value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
                     value2_attr = getattr(event, variable_names[1], None)
@@ -60,4 +61,4 @@ text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/eta_filter/4body_electron_pt_etacondition.pdf")
+c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/eta_filter/4body_electron_pt_track_condition.pdf")
