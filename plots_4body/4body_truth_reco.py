@@ -8,9 +8,10 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
     f = ROOT.TFile.Open(file_path)
     tree = f.Get(tree_name)
     for event in tree:
-        if event.n_FSGenElectron > 0:  # Ensuring at least one generated electron
+        if event.n_FSGenElectron > 0:  #avoid dummy values from stage1
             for i in range(event.n_FSGenElectron):
-                if abs(event.FSGenElectron_eta[i]) <= 3:
+                eta = abs(event.FSGenElectron_eta[i])
+                if 0.88 < eta <= 3.0:  #DELPHES condition for eta
                     value1_attr = getattr(event, variable_names[0], None)
                     value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
                     value2_attr = getattr(event, variable_names[1], None)
