@@ -11,7 +11,7 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
         if event.n_FSGenElectron > 0:  # Ensuring at least one generated electron
             for i in range(event.n_FSGenElectron):
                 eta = abs(event.FSGenElectron_eta[i])
-                energy = event.FSGenElectron_energy[i]
+                energy = event.FSGenElectron_e[i]
                 # Apply the DELPHES efficiency conditions
                 if energy >= 2.0 and ((eta <= 0.88) or (0.88 < eta <= 3.0)):
                     value1_attr = getattr(event, variable_names[0], None)
