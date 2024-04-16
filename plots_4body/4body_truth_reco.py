@@ -38,8 +38,8 @@ color = ROOT.kBlue  # Color for truth data
 color2 = ROOT.kRed  # Color for reco data
 
 tree_name = "events"
-variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("pt", "pt distribution;pt;Events", 100, 2, 50)
+variable_names = ("FSGenElectron_eta", "RecoElectron_eta")
+hist_params = ("pt", "pt distribution;pt;Events", 100, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
 
 # Create histograms for Zbb truth and reco
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color, color2)
@@ -61,4 +61,4 @@ text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/eta_filter/4body_electron_e_track_condition.pdf")
+c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/eta_filter/4body_electron_eta_track_condition.pdf")
