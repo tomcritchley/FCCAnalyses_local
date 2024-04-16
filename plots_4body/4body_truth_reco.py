@@ -9,14 +9,15 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
     tree = f.Get(tree_name)
     for event in tree:
         if event.n_FSGenElectron > 0:  # Ensuring at least one generated electron
-            value1_attr = getattr(event, variable_names[0], None)
-            value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
-            value2_attr = getattr(event, variable_names[1], None)
-            value2 = value2_attr[0] if value2_attr.size() > 0 else float('nan')
-            
-            if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
-            if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
-
+            for i in range(event.n_FSGenElectron):
+                if abs(event.FSGenElectron_eta[i]) <= 3:
+                    value1_attr = getattr(event, variable_names[0], None)
+                    value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
+                    value2_attr = getattr(event, variable_names[1], None)
+                    value2 = value2_attr[0] if value2_attr.size() > 0 else float('nan')
+                    
+                    if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
+                    if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
     f.Close()
 
     hist1.SetLineColor(color)
@@ -27,8 +28,8 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
     return hist1, hist2
 
 # File and parameters for Zbb
-file_path = "/eos/user/t/tcritchl/MCfilter/p8_ee_Zcc_ecm91/chunk_0.root" #p8_ee_Zbb_ecm91
-label = "z-->cc"
+file_path = "/eos/user/t/tcritchl/MCfilter/ejjnu/chunk_0.root" #p8_ee_Zbb_ecm91
+label = "z-->4body"
 color = ROOT.kBlue  # Color for truth data
 color2 = ROOT.kRed  # Color for reco data
 
@@ -46,8 +47,8 @@ hist2.Draw("HISTSAME")
 
 # Adding a legend
 legend = ROOT.TLegend(0.7, 0.7, 0.9, 0.9)
-legend.AddEntry(hist1, "Truth: Z->cc", "l")
-legend.AddEntry(hist2, "Reco: Z->cc", "l")
+legend.AddEntry(hist1, "Truth: Z->4body", "l")
+legend.AddEntry(hist2, "Reco: Z->4body", "l")
 legend.Draw()
 
 # Adding text labels
@@ -56,4 +57,4 @@ text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
-c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/cc_electron_e.pdf")
+c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/eta_filter/4body_electron_e.pdf")
