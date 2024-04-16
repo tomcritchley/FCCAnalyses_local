@@ -1,2 +1,15 @@
 000 (9634683.000.000) 04/14 15:04:58 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_2138_1192>
 ...
+005 (9634683.000.000) 04/15 19:16:53 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 1 03:11:05, Sys 0 00:19:43  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 1 03:11:05, Sys 0 00:19:43  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	15990  -  Run Bytes Sent By Job
+	226  -  Run Bytes Received By Job
+	15990  -  Total Bytes Sent By Job
+	226  -  Total Bytes Received By Job
+
+	Job terminated of its own accord at 2024-04-15T17:16:53Z.
+...

@@ -1143,3 +1143,16 @@
 	37153  -  MemoryUsage of job (MB)
 	38043836  -  ResidentSetSize of job (KB)
 ...
+005 (9634736.000.000) 04/15 23:56:18 Job terminated.
+	(1) Normal termination (return value 1)
+		Usr 1 06:23:33, Sys 0 00:34:10  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 1 06:23:33, Sys 0 00:34:10  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	21540  -  Run Bytes Sent By Job
+	226  -  Run Bytes Received By Job
+	21540  -  Total Bytes Sent By Job
+	226  -  Total Bytes Received By Job
+
+	Job terminated of its own accord at 2024-04-15T21:56:17Z.
+...
