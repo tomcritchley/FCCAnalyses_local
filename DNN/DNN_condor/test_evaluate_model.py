@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, precision_recall_curve
 import tensorflow as tf
 from tqdm import tqdm
 import os
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models1/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models3/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
@@ -77,6 +77,7 @@ if __name__ == "__main__":
     print(f'\nTest accuracy: {test_acc*100:.2f}%')
 
     ### ROC curve ###
+
     y_pred = model.predict(X_test).ravel()
     fpr, tpr, thresholds = roc_curve(y_test, y_pred)
     roc_auc = auc(fpr, tpr)
@@ -90,8 +91,35 @@ if __name__ == "__main__":
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/ROC_{file}.pdf")
 
+    ### Precision ROC ###
+
+    precision, recall, _ = precision_recall_curve(y_test, y_pred)
+    pr_auc = auc(recall, precision)
+
+    plt.figure(figsize=(10, 5))
+    plt.subplot(1, 2, 1)
+    plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    plt.xlim([0.0, 0.2])  # Adjust x-limits to zoom into the left part of the curve
+    plt.ylim([0.8, 1.05])  # Adjust y-limits to focus on the higher TPRs
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver Operating Characteristic (Zoomed)')
+    plt.legend(loc="lower right")
+
+    # Plot Precision-Recall
+    plt.subplot(1, 2, 2)
+    plt.plot(recall, precision, color='blue', lw=2, label='Precision-Recall curve (area = %0.2f)' % pr_auc)
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.title('Precision-Recall Curve')
+    plt.legend(loc="lower left")
+
+    plt.tight_layout()
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/Precise_ROC_{file}.pdf")
+    plt.close()
 
     ##################################################################################################################
     ###################################### DNN PREDICTIONS ###########################################################
@@ -107,11 +135,12 @@ if __name__ == "__main__":
     plt.hist(y_pred_signal, bins=50, alpha=0.5, color='b', label='Signal')
     plt.hist(y_pred_background, bins=50, alpha=0.5, color='r', label='Background')
     plt.xlabel('Predicted Score')
-    plt.ylabel('Frequency')
+    plt.ylabel('Log MC events')
     plt.title('Predicted Scores for Signal and Background Events')
+    plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/dnn_classification_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/raw_dnn_classification_{file}.pdf")
 
     bin_width = 0.0001 #in the region of interest, binning resolution
     
@@ -248,13 +277,13 @@ if __name__ == "__main__":
     ax[1].legend()
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/DNN_output_{file}_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/DNN_output_{file}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run2_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run3_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:

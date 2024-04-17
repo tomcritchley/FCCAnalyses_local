@@ -1,14 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, accuracy_score
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.regularizers import l2
+#from tensorflow.keras.layers import BatchNormalization
+#from tensorflow.keras.regularizers import l2
 from tqdm import tqdm
 import os
+from sklearn.utils import class_weight
 import argparse
 
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
@@ -77,19 +78,20 @@ if __name__ == "__main__":
     # Convert X_train and X_test to float32
     X_train = X_train.astype(np.float32)
     X_test = X_test.astype(np.float32)
-
-    model = Sequential([
-        Dense(128, activation='relu', input_shape=(X_train.shape[1],), kernel_regularizer=l2(0.01)),
-        BatchNormalization(),
-        Dropout(0.5),
-        Dense(64, activation='relu', kernel_regularizer=l2(0.01)),
-        BatchNormalization(),
-        Dropout(0.5),
-        Dense(32, activation='relu', kernel_regularizer=l2(0.01)),
-        BatchNormalization(),
-        Dropout(0.5),
-        Dense(1, activation='sigmoid')
-    ])
+    """
+        model = Sequential([
+            Dense(128, activation='relu', input_shape=(X_train.shape[1],), kernel_regularizer=l2(0.01)),
+            BatchNormalization(),
+            Dropout(0.5),
+            Dense(64, activation='relu', kernel_regularizer=l2(0.01)),
+            BatchNormalization(),
+            Dropout(0.5),
+            Dense(32, activation='relu', kernel_regularizer=l2(0.01)),
+            BatchNormalization(),
+            Dropout(0.5),
+            Dense(1, activation='sigmoid')
+        ])
+    """
     # Define the DNN model
     model = Sequential([
         Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
@@ -106,16 +108,46 @@ if __name__ == "__main__":
                 loss='binary_crossentropy',  # Use 'categorical_crossentropy' for multi-class classification
                 metrics=['accuracy'])
 
-# Callbacks
+    # Callbacks
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models2/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models3/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
     ]
-
-    # Train the model with tqdm progress bar
-    history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #20% of the training data will be used as validation
+    
+    #weight up the minority signal class
+    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    class_weight_dict = dict(enumerate(class_weights))
+    
+    history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0,class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
     print(f"plotting curves")
+    
+    def permutation_feature_importance(model, X, y, metric=accuracy_score):
+       
+        original_score = metric(y, model.predict(X).round())
+        feature_importance = np.zeros(X.shape[1])
+        
+        for i in range(X.shape[1]):
+            X_permuted = X.copy()
+            np.random.shuffle(X_permuted[:, i])
+            
+            permuted_score = metric(y, model.predict(X_permuted).round())
+            
+            feature_importance[i] = original_score - permuted_score
+
+        return feature_importance
+    importances = permutation_feature_importance(model, X_test, y_test)
+    print("Feature importances:", importances)
+
+    # Plotting feature importance 
+    plt.figure()
+    plt.bar(range(X_test.shape[1]), importances)
+    plt.xlabel('Features')
+    plt.ylabel('Importance')
+    plt.title('Feature Importance')
+    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots3/feature_importance_{file}.pdf')
+    plt.close()
+    
     # Plot loss over time
     plt.plot(history.history['loss'], label='Training Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
@@ -123,11 +155,11 @@ if __name__ == "__main__":
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots2/loss_function_{file}.pdf")
-
-    # Load the best model saved by the ModelCheckpoint
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/loss_function_{file}.pdf")
+    plt.close()
+    
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models2/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models3/best_model_{file}.keras')
     print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models1/DNN_HNLs_{file}.keras')
+    model.save(f'/eos/user/t/tcritchl/DNN/trained_models3/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
