@@ -80,7 +80,7 @@ def filter_events(df, label):
         }
     
     # Apply the universal filter criteria to df
-    df_filtered = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 10 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5", "Exactly one electron final state with lead electron energy E > 10 GeV")
+    df_filtered = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 15 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5", "Exactly one electron final state with lead electron energy E > 15 GeV")
 
     if label == "background_total":
         # Calculate final counts after filtering for each background process
@@ -95,7 +95,7 @@ def filter_events(df, label):
             efficiency = (final_counts[process] / initial_counts[process]) * 100 if initial_counts[process] > 0 else 0
             cut_flow_summary.append({
                 "Label": f"Z-->{process}",
-                "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 10 GeV",
+                "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 15 GeV",
                 "Initial Events": initial_counts[process],
                 "Final Events": final_counts[process],
                 "Efficiency (%)": efficiency
@@ -108,7 +108,7 @@ def filter_events(df, label):
 
         cut_flow_summary.append({
             "Label": label,
-            "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 10 GeV",
+            "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 15 GeV",
             "Initial Events": initial_count,
             "Final Events": final_count,
             "Efficiency (%)": efficiency
