@@ -630,6 +630,20 @@ void draw_limit_ee() {
 
     canvas.SetRightMargin(0.3);
 
+    TLatex * tex = new TLatex(0.20,0.89,"FCCee");
+    tex->SetNDC();
+    tex->SetTextFont(72);
+    tex->SetTextSize(0.04);
+    tex->SetLineWidth(2);
+    tex->Draw();
+
+    TLatex * tex2 = new TLatex(0.32,0.89,"Simulation (DELPHES)");
+    tex2->SetNDC();
+    tex2->SetTextFont(42);
+    tex2->SetTextSize(0.04);
+    tex2->SetLineWidth(2);
+    tex2->Draw();
+
     // Update the canvas
     canvas.Update();
 
