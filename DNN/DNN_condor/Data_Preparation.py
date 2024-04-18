@@ -137,9 +137,19 @@ def prepare_datasets():
     df_train = df_train.sample(frac=1, random_state=42).reset_index(drop=True)
     df_test = df_test.sample(frac=1, random_state=42).reset_index(drop=True)
 
+    #omitted D0 sig (0.98), n_electrons, and dijet angle (0.9)
+    training_variables = [
+    "RecoDiJet_delta_R", "RecoDiJet_angle",
+    "RecoElectron_DiJet_delta_R",
+    "RecoElectronTrack_absD0", "RecoDiJet_phi", "RecoMissingEnergy_theta",
+    "RecoMissingEnergy_e", "RecoElectron_lead_e", "Vertex_chi2",
+    "n_primt", "ntracks"
+    ]
+
+
     try:
         plt.figure(figsize=(10, 8))
-        correlation_matrix = df_train[variables].corr()
+        correlation_matrix = df_train[training_variables].corr()
         sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm',
                     cbar_kws={'label': 'Correlation coefficient'},
                     xticklabels=correlation_matrix.columns,
@@ -149,12 +159,12 @@ def prepare_datasets():
         plt.yticks(rotation=0)
         plt.title(f"Correlation Matrix")
         plt.tight_layout()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/correlation_matrix_{args.label}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots4/correlation_matrix_{args.label}.pdf')
     except Exception as e:
         print(f"something went wrong with the correlation matrix...: {e}")
 
-    X_train, y_train, weights_train = df_train[variables], df_train['label'], df_train['weight']
-    X_test, y_test, weights_test = df_test[variables], df_test['label'], df_test['weight']
+    X_train, y_train, weights_train = df_train[training_variables], df_train['label'], df_train['weight']
+    X_test, y_test, weights_test = df_test[training_variables], df_test['label'], df_test['weight']
 
     #make the variables less wild, centred around 1
     scaler = StandardScaler()
