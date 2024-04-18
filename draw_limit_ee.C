@@ -649,7 +649,7 @@ void draw_limit_ee() {
     Toms_data_gr.SetTitle("");
 
     // Create a legend
-    TLegend legend(0.71, 0.38, 0.95, 0.65); // for tchan
+    TLegend legend(0.71, 0.34, 0.95, 0.65); // for tchan
     legend.SetFillColor(0);
     legend.SetBorderSize(0);
     legend.SetTextSize(0.027);
@@ -658,7 +658,7 @@ void draw_limit_ee() {
     legend.SetTextFont(42);
     legend.SetNColumns(1);
 
-    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
+    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
     legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
     legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 10 fb^{-1}}", "l");
 
