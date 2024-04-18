@@ -644,10 +644,11 @@ void draw_limit_ee() {
     //tex2->SetLineWidth(2);
     //tex2->Draw();
     // Use a single TLatex object to combine both parts of the text
-    
-    TLatex * tex = new TLatex(0.7, 0.89, "#it{#bf{FCCee}} Simulation (DELPHES)");  // Use ROOT markup for style
+
+    // Adjusted position and alignment of the combined text
+    TLatex * tex = new TLatex(0.65, 0.85, "#it{#bf{FCCee}} Simulation (DELPHES)");  // Adjust x to move left, y to move down
     tex->SetNDC();
-    tex->SetTextAlign(31);  // Align right
+    tex->SetTextAlign(33);  // Right-align and vertically top-align
     tex->SetTextFont(42);
     tex->SetTextSize(0.04);
     tex->SetLineWidth(2);
