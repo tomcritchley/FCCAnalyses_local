@@ -646,7 +646,7 @@ void draw_limit_ee() {
     // Use a single TLatex object to combine both parts of the text
 
     // Adjusted position and alignment of the combined text
-    TLatex * tex = new TLatex(0.68, 0.83, "#it{#bf{FCCee}} Simulation (DELPHES)");  // Adjust x to move left, y to move down
+    TLatex * tex = new TLatex(0.85, 0.83, "#it{#bf{FCCee}} Simulation (DELPHES)");  // Adjust x to move left, y to move down
     tex->SetNDC();
     tex->SetTextAlign(33);  // Right-align and vertically top-align
     tex->SetTextFont(42);
@@ -656,7 +656,7 @@ void draw_limit_ee() {
 
     canvas.Update();
     
-    Toms_data_gr.GetXaxis()->SetLabelOffset(0.02); // Increase the offset value slightly if it's still too close
+    Toms_data_gr.GetXaxis()->SetLabelOffset(0.07); // Increase the offset value slightly if it's still too close
 
     // Update the canvas
     canvas.Update();
