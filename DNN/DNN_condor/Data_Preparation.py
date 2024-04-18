@@ -84,7 +84,7 @@ def prepare_datasets():
     args = parser.parse_args()
 
     signal_file = f"{base_HNL}/HNL_Dirac_ejj_{args.label}Ve.root"
-    signal_x_sec = cross_section_dict[f"HNL_Dirac_ejj_{args.label}Ve"]
+    signal_x_sec = cross_section_dict[f"HNL_Dirac_ejj_{args.label}Ve"]['cross_section_pb']
     signal_df = load_and_filter_data(signal_file, signal_x_sec, tree_name, variables, basic_filter)
     signal_df['label'] = 1
 
