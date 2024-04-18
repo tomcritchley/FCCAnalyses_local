@@ -453,6 +453,50 @@ void draw_limit_ee() {
         {7.60000000e+01, 1.03666213e-06}
     };
 
+
+    double FCC_data[40][2] = {
+        {5.144508670520231, 1.43174454e-09},
+        {5.751445086705203, 1.03256178e-09},
+        {6.560693641618499, 6.69838623e-10},
+        {7.976878612716764, 3.88371413e-10},
+        {9.190751445086704, 2.64829519e-10},
+        {10.202312138728324, 1.79369035e-10},
+        {11.820809248554912, 1.12176665e-10},
+        {14.248554913294797, 6.44752998e-11},
+        {18.69942196531792, 2.79313073e-11},
+        {20.520231213872837, 2.12716243e-11},
+        {25.98265895953757, 1.12828695e-11},
+        {28.00578034682081, 9.60441889e-12},
+        {31.242774566473987, 8.50582800e-12},
+        {34.07514450867052, 8.50582800e-12},
+        {37.10982658959537, 8.85787273e-12},
+        {40.14450867052024, 9.60441889e-12},
+        {44.39306358381502, 1.04112055e-11},
+        {48.03468208092487, 1.17445718e-11},
+        {52.48554913294798, 1.37794215e-11},
+        {55.722543352601164, 1.61504348e-11},
+        {58.15028901734105, 1.81807460e-11},
+        {60.17341040462429, 2.04547469e-11},
+        {62.19653179190753, 2.39143243e-11},
+        {64.42196531791909, 2.79313073e-11},
+        {66.64739884393065, 3.51916075e-11},
+        {68.46820809248555, 4.59522019e-11},
+        {70.28901734104048, 6.94694914e-11},
+        {70.89595375722544, 9.69008017e-11},
+        {70.89595375722544, 1.79369035e-10},
+        {69.27745664739885, 3.75189670e-10},
+        {66.84971098265898, 6.92733328e-10},
+        {61.9942196531792, 1.73762732e-09},
+        {59.161849710982665, 2.71064712e-09},
+        {54.91329479768787, 5.18554634e-09},
+        {51.878612716763016, 8.13456214e-09},
+        {49.04624277456648, 1.19142023e-08},
+        {43.786127167630056, 2.56747363e-08},
+        {42.369942196531795, 3.11629808e-08},
+        {41.15606936416185, 3.77432647e-08},
+        {38.323699421965316, 5.64981136e-08}
+    };
+
     // Additional data for solid grey line segments
     double CMS_schan_data[7][10][2] = {
     {
@@ -516,6 +560,7 @@ void draw_limit_ee() {
     TGraph ATLAS_schan_8tev_gr(rows4);
     TGraph ATLAS_ttbar_gr(rows5);
     TGraph Toms_data_gr(18);
+    TGraph FCC_data_gr(40);
     TGraph CMS_displaced_3l_gr(sizeof(CMS_displaced_3l_data) / sizeof(CMS_displaced_3l_data[0]));
     TGraph CMS_displaced_lowmass_gr(sizeof(CMS_displaced_lowmass_data) / sizeof(CMS_displaced_lowmass_data[0]));
     TGraph CMS_displaced_2l_gr(sizeof(CMS_displaced_2l_data) / sizeof(CMS_displaced_2l_data[0]));
@@ -536,6 +581,9 @@ void draw_limit_ee() {
     // Fill the TGraphs with data from the arrays
     for (int i = 0; i < 18; ++i) {
         Toms_data_gr.SetPoint(i, Toms_data[i][0], Toms_data[i][1]);
+    }
+    for (int i = 0; i < 40; ++i) {
+        FCC_data_gr.SetPoint(i, FCC_data[i][0], FCC_data[i][1]);
     }
     for (int i = 0; i < rows1; ++i) {
         ATLAS_tchan_gr.SetPoint(i, ATLAS_tchan_data[i][0], ATLAS_tchan_data[i][1]);
@@ -592,19 +640,23 @@ void draw_limit_ee() {
     CMS_displaced_2l2j_gr.SetLineWidth(1);
 
 
-    Toms_data_gr.SetLineColor(kRed);  // Now Toms_data will be in red
+    Toms_data_gr.SetLineColor(kRed);  
+    FCC_data_gr.SetLineColor(kMagenta); 
+    FCC_data_gr.SetLineWidth(2);
+    FCC_data_gr.SetLineStyle(1);
     CMS_schan_grs[0]->SetLineColor(kBlue);
     CMS_schan_grs[1]->SetLineColor(kBlue);  // First CMS graph in blue
     CMS_schan_grs[2]->SetLineColor(kBlue);
     // Draw the graphs
 
     Toms_data_gr.Draw("AL");
+    FCC_data_gr.Draw("L SAME"); 
     for (int i = 0; i < num_segments; ++i) {
         CMS_schan_grs[i]->Draw("L SAME");
     }
 
-    Toms_data_gr.GetXaxis()->SetLimits(10, 100);
-    Toms_data_gr.GetYaxis()->SetRangeUser(1E-9, 1);
+    Toms_data_gr.GetXaxis()->SetLimits(10, 90);
+    Toms_data_gr.GetYaxis()->SetRangeUser(1E-12, 1);
     Toms_data_gr.GetXaxis()->SetTitle("#it{m}_{N} [GeV]");
     Toms_data_gr.GetYaxis()->SetTitle("Observed 95\% CL Limits on | #it{V}_{#it{e}N}|^{2}");
     Toms_data_gr.GetYaxis()->SetTitleOffset(1.2);
@@ -623,9 +675,10 @@ void draw_limit_ee() {
     legend.SetTextFont(42);
     legend.SetNColumns(1);
 
-    
+    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
     legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
     legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 10 fb^{-1}}", "l");
+
     
     legend.Draw();
 
@@ -657,6 +710,6 @@ void draw_limit_ee() {
 
     canvas.Update();
 
-    canvas.SaveAs("LimitSummary_ee_cms_bdt.pdf");
+    canvas.SaveAs("LimitSummary_ee_cms_bdt_fcc.pdf");
 
 }
