@@ -2,6 +2,7 @@ hickle==5.0.2
 keras==3.1.0
 matplotlib==3.8.3
 numpy==1.26.4
+seaborn==0.13.2
 pandas==2.2
 scikit-learn==1.4.0
 setGPU==0.0.7
@@ -9,5 +10,4 @@ tensorflow==2.16.1
 awkward_pandas==2023.8.0
 awkward==2.6.2
 tqdm==4.66.2 
-kerastuner==1.4.7
 uproot==5.3.1
