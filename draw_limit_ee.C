@@ -593,8 +593,9 @@ void draw_limit_ee() {
 
 
     Toms_data_gr.SetLineColor(kRed);  // Now Toms_data will be in red
-    CMS_schan_grs[0]->SetLineColor(kBlue);  // First CMS graph in blue
-
+    CMS_schan_grs[0]->SetLineColor(kBlue);
+    CMS_schan_grs[1]->SetLineColor(kBlue);  // First CMS graph in blue
+    CMS_schan_grs[2]->SetLineColor(kBlue);
     // Draw the graphs
 
     Toms_data_gr.Draw("AL");
