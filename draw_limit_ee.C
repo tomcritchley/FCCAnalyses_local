@@ -608,7 +608,7 @@ void draw_limit_ee() {
     Toms_data_gr.GetXaxis()->SetTitle("#it{m}_{N} [GeV]");
     Toms_data_gr.GetYaxis()->SetTitle("Observed 95\% CL Limits on | #it{V}_{#it{e}N}|^{2}");
     Toms_data_gr.GetYaxis()->SetTitleOffset(1.2);
-    Toms_data_gr.GetXaxis()->SetLabelOffset(0.005);
+    Toms_data_gr.GetXaxis()->SetLabelOffset(0.02);
     Toms_data_gr.GetYaxis()->SetLabelOffset(0.005);
     Toms_data_gr.SetTitle("");
 
@@ -646,7 +646,7 @@ void draw_limit_ee() {
     // Use a single TLatex object to combine both parts of the text
 
     // Adjusted position and alignment of the combined text
-    TLatex * tex = new TLatex(0.50, 0.82, "#it{#bf{FCCee}} Simulation (DELPHES)");  // Adjust x to move left, y to move down
+    TLatex * tex = new TLatex(0.50, 0.85, "#it{#bf{FCCee}} Simulation (DELPHES)");  // Adjust x to move left, y to move down
     tex->SetNDC();
     tex->SetTextAlign(33);  // Right-align and vertically top-align
     tex->SetTextFont(42);
@@ -654,11 +654,6 @@ void draw_limit_ee() {
     tex->SetLineWidth(2);
     tex->Draw();
 
-    canvas.Update();
-    
-    Toms_data_gr.GetXaxis()->SetLabelOffset(0.03); // Increase the offset value slightly if it's still too close
-
-    // Update the canvas
     canvas.Update();
 
     canvas.SaveAs("LimitSummary_ee_cms_bdt.pdf");
