@@ -88,7 +88,8 @@ def prepare_datasets():
     signal_df = load_and_filter_data(signal_file, signal_x_sec, tree_name, variables, basic_filter)
     signal_df['label'] = 1
 
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
+    #background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('.root')]
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
     #Balancing the datasets
@@ -139,7 +140,7 @@ def prepare_datasets():
 
     #omitted D0 sig (0.98), n_electrons, and dijet angle (0.9)
     training_variables = [
-    "RecoDiJet_delta_R", "RecoDiJet_angle",
+    "RecoDiJet_delta_R",
     "RecoElectron_DiJet_delta_R",
     "RecoElectronTrack_absD0", "RecoDiJet_phi", "RecoMissingEnergy_theta",
     "RecoMissingEnergy_e", "RecoElectron_lead_e", "Vertex_chi2",
