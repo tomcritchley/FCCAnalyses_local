@@ -9,7 +9,7 @@ void draw_limit_ee() {
     TApplication app("app", nullptr, nullptr);
 
     // Create a canvas to draw on
-    SetAtlasStyle();
+    // SetAtlasStyle();
     TCanvas canvas("canvas", "2D Array Line Plot", 800, 600);
 
     // Define the 2D array
