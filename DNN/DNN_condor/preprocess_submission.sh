@@ -12,7 +12,7 @@ echo "Masses: $masses"
 couplings=$(python -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/testing1"
+base_path="/eos/user/t/tcritchl/DNN/testing4"
 
 labels=()
 
@@ -45,7 +45,7 @@ log            = DNN_preprocess_${label}.\$(ClusterId).\$(ProcId).log
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
-requirements   = (OpSysAndVer =?= "CentOS7")
+requirements = (OpSysAndVer =?= "AlmaLinux9")
 +JobFlavour    = "testmatch"
 queue
 EOF
