@@ -139,7 +139,7 @@ def prepare_datasets():
 
     try:
         plt.figure(figsize=(10, 8))
-        correlation_matrix = df_train.corr()
+        correlation_matrix = df_train[variables].corr()
         sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm',
                     cbar_kws={'label': 'Correlation coefficient'},
                     xticklabels=correlation_matrix.columns,
@@ -150,7 +150,6 @@ def prepare_datasets():
         plt.title(f"Correlation Matrix")
         plt.tight_layout()
         plt.savefig(f'/eos/user/t/tcritchl/DNN/correlation_matrix_{args.label}.pdf')
-        plt.show()
     except Exception as e:
         print(f"something went wrong with the correlation matrix...: {e}")
 
