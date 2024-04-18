@@ -641,12 +641,20 @@ void draw_limit_ee() {
 
 
     Toms_data_gr.SetLineColor(kRed);  
+    Toms_data_gr.SetLineWidth(2);
+    Toms_data_gr.SetLineStyle(1);
     FCC_data_gr.SetLineColor(kMagenta); 
     FCC_data_gr.SetLineWidth(2);
     FCC_data_gr.SetLineStyle(1);
     CMS_schan_grs[0]->SetLineColor(kBlue);
+    CMS_schan_grs[0].SetLineWidth(2);
+    CMS_schan_grs[0].SetLineStyle(1);
     CMS_schan_grs[1]->SetLineColor(kBlue);  // First CMS graph in blue
+    CMS_schan_grs[1].SetLineWidth(2);
+    CMS_schan_grs[1].SetLineStyle(1);
     CMS_schan_grs[2]->SetLineColor(kBlue);
+    CMS_schan_grs[2].SetLineWidth(2);
+    CMS_schan_grs[2].SetLineStyle(1);
     // Draw the graphs
 
     Toms_data_gr.Draw("AL");
@@ -655,7 +663,7 @@ void draw_limit_ee() {
         CMS_schan_grs[i]->Draw("L SAME");
     }
 
-    Toms_data_gr.GetXaxis()->SetLimits(10, 90);
+    Toms_data_gr.GetXaxis()->SetLimits(10, 100);
     Toms_data_gr.GetYaxis()->SetRangeUser(1E-12, 1);
     Toms_data_gr.GetXaxis()->SetTitle("#it{m}_{N} [GeV]");
     Toms_data_gr.GetYaxis()->SetTitle("Observed 95\% CL Limits on | #it{V}_{#it{e}N}|^{2}");
@@ -665,22 +673,23 @@ void draw_limit_ee() {
     Toms_data_gr.GetYaxis()->SetLabelOffset(0.005);
     Toms_data_gr.SetTitle("");
 
-    // Create a legend
-    TLegend legend(0.71, 0.45, 0.95, 0.65); // for tchan
+    // Create a legend with adjusted position and size to prevent overlap
+    TLegend legend(0.65, 0.65, 0.95, 0.90); // Adjusted position to top right corner with more vertical space
     legend.SetFillColor(0);
     legend.SetBorderSize(0);
-    legend.SetTextSize(0.027);
+    legend.SetTextSize(0.025); // Slightly smaller text might fit better
     legend.SetFillColor(0);
     legend.SetLineWidth(1);
     legend.SetTextFont(42);
-    legend.SetNColumns(1);
+    legend.SetNColumns(1); // Consider setting to 2 if entries are still overlapping
 
-    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
-    legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
-    legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 10 fb^{-1}}", "l");
+    // Add entries with line breaks and careful alignment
+    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[0.1]{arXiv:2203.05502}}{#lower[0.1]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
+    legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[0.1]{arXiv:2403.00100}}{#lower[0.1]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
+    legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#splitline{#lower[0.1]{#sqrt{s} = 91 GeV}}{10 fb^{-1}}}", "l");
 
-    
-    legend.Draw();
+    legend.Draw(); // Draw the legend on the canvas
+
 
     canvas.SetRightMargin(0.3);
 
