@@ -647,14 +647,14 @@ void draw_limit_ee() {
     FCC_data_gr.SetLineWidth(2);
     FCC_data_gr.SetLineStyle(1);
     CMS_schan_grs[0]->SetLineColor(kBlue);
-    CMS_schan_grs[0].SetLineWidth(2);
-    CMS_schan_grs[0].SetLineStyle(1);
+    CMS_schan_grs[0]->SetLineWidth(2);
+    CMS_schan_grs[0]->SetLineStyle(1);
     CMS_schan_grs[1]->SetLineColor(kBlue);  // First CMS graph in blue
-    CMS_schan_grs[1].SetLineWidth(2);
-    CMS_schan_grs[1].SetLineStyle(1);
+    CMS_schan_grs[1]->SetLineWidth(2);
+    CMS_schan_grs[1]->SetLineStyle(1);
     CMS_schan_grs[2]->SetLineColor(kBlue);
-    CMS_schan_grs[2].SetLineWidth(2);
-    CMS_schan_grs[2].SetLineStyle(1);
+    CMS_schan_grs[2]->SetLineWidth(2);
+    CMS_schan_grs[2]->SetLineStyle(1);
     // Draw the graphs
 
     Toms_data_gr.Draw("AL");
