@@ -102,6 +102,12 @@ def prepare_datasets():
     df_train_background = background_df.sample(n=min(n_signal, n_background // 2), random_state=42)
     df_test_background = background_df.drop(df_train_background.index)
 
+    #adjust the weights based on the fraction which is used during testing
+    background_weight_scale = len(background_df) / len(df_test_background)
+    signal_weight_scale = len(signal_df) / len(df_test_signal)
+    df_test_background['weight'] *= background_weight_scale
+    df_test_signal['weight'] *= signal_weight_scale
+
     n_background_train = len(df_train_background)
     fraction_background_used_in_training = n_background_train / n_background
     print(f"Fraction of background used in training: {fraction_background_used_in_training:.2f}") #needed for understanding the split to normalise correctly

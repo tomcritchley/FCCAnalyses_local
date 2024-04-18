@@ -56,10 +56,10 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/y_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training4/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training4/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing4/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing4/y_test_{file}.npy', allow_pickle=True)
 
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
@@ -105,7 +105,7 @@ if __name__ == "__main__":
 
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models3/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models4/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
     ]
     
     #weight up the minority signal class
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     plt.xlabel('Features')
     plt.ylabel('Importance')
     plt.title('Feature Importance')
-    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots3/feature_importance_{file}.pdf')
+    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots4/feature_importance_{file}.pdf')
     plt.close()
     
     ### plot loss function ###
@@ -149,11 +149,11 @@ if __name__ == "__main__":
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/loss_function_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots4/loss_function_{file}.pdf")
     plt.close()
     
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models3/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models4/best_model_{file}.keras')
     print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models3/DNN_HNLs_{file}.keras')
+    model.save(f'/eos/user/t/tcritchl/DNN/trained_models4/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")

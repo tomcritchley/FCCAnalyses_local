@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc, precision_recall_curve
+from sklearn.metrics import roc_curve, auc, precision_recall_curve, confusion_matrix
 import tensorflow as tf
+import seaborn as sns
 from tqdm import tqdm
 import os
 import argparse
@@ -54,19 +55,29 @@ if __name__ == "__main__":
 
     file = args.label
 
+    def plot_confusion_matrix(y_true, y_pred, threshold=0.5):
+
+        y_pred_labels = (y_pred > threshold).astype(int)
+        cm = confusion_matrix(y_true, y_pred_labels)
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Background', 'Signal'], yticklabels=['Background', 'Signal'])
+        plt.xlabel('Predicted Label')
+        plt.ylabel('True Label')
+        plt.title('Confusion Matrix')
+        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots4/CM_{file}.pdf")
+
     significance_direction = significance_directions[1]
 
     results_dict = {}
 
     print(f"loading data...")
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training2/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/y_test_{file}.npy', allow_pickle=True)
-    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/weights_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training4/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training4/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing4/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing4/y_test_{file}.npy', allow_pickle=True)
+    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing4/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models3/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models4/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
@@ -79,6 +90,10 @@ if __name__ == "__main__":
     ### ROC curve ###
 
     y_pred = model.predict(X_test).ravel()
+
+    #confusion matrix to see ROC in detail
+    plot_confusion_matrix(y_test, y_pred, threshold=0.5)
+    
     fpr, tpr, thresholds = roc_curve(y_test, y_pred)
     roc_auc = auc(fpr, tpr)
 
@@ -91,7 +106,7 @@ if __name__ == "__main__":
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots4/ROC_{file}.pdf")
 
     ### Precision ROC ###
 
@@ -118,7 +133,7 @@ if __name__ == "__main__":
     plt.legend(loc="lower left")
 
     plt.tight_layout()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/Precise_ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots4/Precise_ROC_{file}.pdf")
     plt.close()
 
     ##################################################################################################################
@@ -140,7 +155,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/raw_dnn_classification_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots4/raw_dnn_classification_{file}.pdf")
 
     bin_width = 0.0001 #in the region of interest, binning resolution
     
@@ -153,10 +168,10 @@ if __name__ == "__main__":
     S = y_pred_signal
     B = y_pred_background
 
-    weightsSIG = weights_test[y_test == 1] * 5
-    weightsBKG = weights_test[y_test == 0] * 5
+    weightsSIG = weights_test[y_test == 1] #previously was *5 -> now weights column should dynmaically account for fraction used 
+    weightsBKG = weights_test[y_test == 0] #previously was *5 -> now weights column should dynmaically account for fraction used 
 
-    target_luminosity = 10000  # Just an example value, adjust according to your analysis
+    target_luminosity = 10000
 
     signal_hist, _ = np.histogram(S, bins=full_range_bins, weights=weightsSIG)
     peak_bin = np.argmax(signal_hist)
@@ -277,13 +292,13 @@ if __name__ == "__main__":
     ax[1].legend()
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots3/DNN_output_{file}_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots4/DNN_output_{file}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run3_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run4_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:
