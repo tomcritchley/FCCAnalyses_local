@@ -269,7 +269,6 @@ if __name__ == "__main__":
 
         X_train, X_test, y_train, y_test, weights_train, weights_test = train_test_split(X, y, weights, test_size=0.2, random_state=42)
 
-
         # Scale the flattened data
         print("Scaling the data...")
         scaler = StandardScaler()

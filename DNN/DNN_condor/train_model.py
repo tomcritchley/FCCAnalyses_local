@@ -61,21 +61,18 @@ if __name__ == "__main__":
     X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/X_test_{file}.npy', allow_pickle=True)
     y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing2/y_test_{file}.npy', allow_pickle=True)
 
-    # Print out data types and shapes
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
     print("y_train:", y_train.dtype, y_train.shape)
     print("X_test:", X_test.dtype, X_test.shape)
     print("y_test:", y_test.dtype, y_test.shape)
 
-    # Print out a sample of the data
     print("\nSample of the data:")
     print("X_train sample:", X_train[:5])
     print("y_train sample:", y_train[:5])
     print("X_test sample:", X_test[:5])
     print("y_test sample:", y_test[:5])
 
-    # Convert X_train and X_test to float32
     X_train = X_train.astype(np.float32)
     X_test = X_test.astype(np.float32)
     """
@@ -92,7 +89,6 @@ if __name__ == "__main__":
             Dense(1, activation='sigmoid')
         ])
     """
-    # Define the DNN model
     model = Sequential([
         Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
         Dropout(0.5),
@@ -103,12 +99,10 @@ if __name__ == "__main__":
         Dense(1, activation='sigmoid')  # Use 'softmax' for multi-class classification
     ])
 
-    # Compile the model
     model.compile(optimizer='adam',
                 loss='binary_crossentropy',  # Use 'categorical_crossentropy' for multi-class classification
                 metrics=['accuracy'])
 
-    # Callbacks
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models3/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
@@ -139,7 +133,7 @@ if __name__ == "__main__":
     importances = permutation_feature_importance(model, X_test, y_test)
     print("Feature importances:", importances)
 
-    # Plotting feature importance 
+    ### plotting feature importance ###
     plt.figure()
     plt.bar(range(X_test.shape[1]), importances)
     plt.xlabel('Features')
@@ -148,7 +142,7 @@ if __name__ == "__main__":
     plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots3/feature_importance_{file}.pdf')
     plt.close()
     
-    # Plot loss over time
+    ### plot loss function ###
     plt.plot(history.history['loss'], label='Training Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
     plt.title('Training and Validation Loss')
