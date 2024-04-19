@@ -661,8 +661,8 @@ void draw_limit_ee() {
         CMS_schan_grs[i]->Draw("L SAME");
     }
 
-    Toms_data_gr.GetXaxis()->SetLimits(10, 80);
-    Toms_data_gr.GetYaxis()->SetRangeUser(1E-12, 1);
+    Toms_data_gr.GetXaxis()->SetLimits(0, 80);
+    Toms_data_gr.GetYaxis()->SetRangeUser(1E-13, 1);
     Toms_data_gr.GetXaxis()->SetTitle("#it{m}_{N} [GeV]");
     Toms_data_gr.GetYaxis()->SetTitle("Observed 95\% CL Limits on | #it{V}_{#it{e}N}|^{2}");
     Toms_data_gr.GetYaxis()->SetTitleOffset(1.2);
