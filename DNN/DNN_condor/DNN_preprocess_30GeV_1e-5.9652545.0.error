@@ -1,0 +1,40 @@
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:2: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py", line 184, in <module>
+    prepare_datasets()
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py", line 88, in prepare_datasets
+    signal_df = load_and_filter_data(signal_file, signal_x_sec, tree_name, variables, basic_filter)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py", line 37, in load_and_filter_data
+    with uproot.open(filepath) as file:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/uproot/reading.py", line 141, in open
+    file = ReadOnlyFile(
+           ^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/uproot/reading.py", line 559, in __init__
+    self._source = source_cls(file_path, **self._options)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/uproot/source/fsspec.py", line 41, in __init__
+    self._open()
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/uproot/source/fsspec.py", line 55, in _open
+    self._file = self._fs.open(self._file_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/fsspec/spec.py", line 1293, in open
+    f = self._open(
+        ^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/fsspec/implementations/local.py", line 197, in _open
+    return LocalFileOpener(path, mode, fs=self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/fsspec/implementations/local.py", line 322, in __init__
+    self._open()
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/fsspec/implementations/local.py", line 327, in _open
+    self.f = open(self.path, mode=self.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/new_variables_HNL_test_March24//HNL_Dirac_ejj_30GeV_1e-5Ve.root'

@@ -1,0 +1,94 @@
+000 (9652540.000.000) 04/18 23:56:47 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_2138_1192>
+...
+040 (9652540.000.000) 04/18 23:59:18 Started transferring input files
+	Transferring to host: <188.184.160.27:9618?addrs=188.184.160.27-9618+[2001-1458-301-48--100-15]-9618&alias=b9s09p4828.cern.ch&noUDP&sock=slot1_39_2887669_ca8b_7914>
+...
+040 (9652540.000.000) 04/18 23:59:18 Finished transferring input files
+...
+001 (9652540.000.000) 04/18 23:59:19 Job executing on host: <188.184.160.27:9618?addrs=188.184.160.27-9618+[2001-1458-301-48--100-15]-9618&alias=b9s09p4828.cern.ch&noUDP&sock=startd_502304_57b6>
+...
+006 (9652540.000.000) 04/18 23:59:27 Image size of job updated: 22436
+	22  -  MemoryUsage of job (MB)
+	22436  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:04:27 Image size of job updated: 2584952
+	2523  -  MemoryUsage of job (MB)
+	2583408  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:09:27 Image size of job updated: 6237572
+	6090  -  MemoryUsage of job (MB)
+	6236024  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:14:28 Image size of job updated: 9542500
+	9318  -  MemoryUsage of job (MB)
+	9541304  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:19:28 Image size of job updated: 13017496
+	12712  -  MemoryUsage of job (MB)
+	13016220  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:24:28 Image size of job updated: 16688428
+	16297  -  MemoryUsage of job (MB)
+	16688068  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:29:29 Image size of job updated: 20566356
+	20083  -  MemoryUsage of job (MB)
+	20564684  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:34:30 Image size of job updated: 24347576
+	23776  -  MemoryUsage of job (MB)
+	24346592  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:39:30 Image size of job updated: 26989272
+	26269  -  MemoryUsage of job (MB)
+	26899180  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:44:31 Image size of job updated: 28116500
+	27450  -  MemoryUsage of job (MB)
+	28107964  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 00:49:32 Image size of job updated: 28215904
+	27450  -  MemoryUsage of job (MB)
+	28107964  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 01:04:33 Image size of job updated: 28215904
+	27500  -  MemoryUsage of job (MB)
+	28159412  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 01:09:33 Image size of job updated: 29311616
+	27500  -  MemoryUsage of job (MB)
+	28159504  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 01:49:37 Image size of job updated: 29311616
+	27691  -  MemoryUsage of job (MB)
+	28355052  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 01:54:38 Image size of job updated: 31777912
+	31033  -  MemoryUsage of job (MB)
+	31777028  -  ResidentSetSize of job (KB)
+...
+006 (9652540.000.000) 04/19 01:59:38 Image size of job updated: 32796324
+	31033  -  MemoryUsage of job (MB)
+	31777028  -  ResidentSetSize of job (KB)
+...
+040 (9652540.000.000) 04/19 07:57:12 Started transferring output files
+...
+040 (9652540.000.000) 04/19 07:57:12 Finished transferring output files
+...
+005 (9652540.000.000) 04/19 07:57:12 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 06:09:34, Sys 0 00:37:36  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 06:09:34, Sys 0 00:37:36  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	9364  -  Run Bytes Sent By Job
+	202  -  Run Bytes Received By Job
+	9364  -  Total Bytes Sent By Job
+	202  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.90        1         1 
+	   Disk (KB)            :    30           1   2902410 
+	   Memory (MB)          : 31033        2000      2000 
+
+	Job terminated of its own accord at 2024-04-19T05:57:12Z.
+...
