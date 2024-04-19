@@ -472,6 +472,34 @@ void draw_limit_ee() {
         {72.81714642744059, 2.6133786460e-03}
     };
 
+    double seesaw_data[25][2] = {
+        {0.10368194245496577, 3.6517412725e-10},
+        {0.11631212760441847, 3.1622776602e-10},
+        {0.14637562080353678, 2.3713737057e-10},
+        {0.20664950769925142, 1.5399265261e-10},
+        {0.27153644321927173, 1.1547819847e-10},
+        {0.3516996005027065, 8.6596432336e-11},
+        {0.4756260413794319, 6.4938163158e-11},
+        {0.5986700058921923, 5.6234132519e-11},
+        {0.7427785864830047, 4.8696752517e-11},
+        {0.9901548634879342, 3.6517412725e-11},
+        {1.1765895856588526, 3.1622776602e-11},
+        {1.3390502502709944, 2.7384196343e-11},
+        {1.5460329655544525, 2.3713737057e-11},
+        {1.9180130709869254, 1.9109529750e-11},
+        {2.593852716817338, 1.4330125702e-11},
+        {4.108392001179743, 8.6596432336e-12},
+        {5.969493724815718, 5.6234132519e-12},
+        {7.195654665928143, 4.5315836376e-12},
+        {8.673674595895795, 3.6517412725e-12},
+        {11.074801159399469, 2.9427271762e-12},
+        {12.972026060817516, 2.5482967480e-12},
+        {15.414508710575152, 2.2067340691e-12},
+        {21.763782396716117, 1.5399265261e-12},
+        {25.12790317888913, 1.3335214322e-12},
+        {34.47466065731494, 1.0000000000e-12}
+    };
+
     // Additional data for solid grey line segments
     double CMS_schan_data[7][10][2] = {
     {
@@ -534,8 +562,11 @@ void draw_limit_ee() {
     TGraph ATLAS_displaced_gr(rows3);
     TGraph ATLAS_schan_8tev_gr(rows4);
     TGraph ATLAS_ttbar_gr(rows5);
+
     TGraph Toms_data_gr(18);
+    TGraph seesaw_data_gr(25);
     TGraph FCC_data_gr(16);
+
     TGraph CMS_displaced_3l_gr(sizeof(CMS_displaced_3l_data) / sizeof(CMS_displaced_3l_data[0]));
     TGraph CMS_displaced_lowmass_gr(sizeof(CMS_displaced_lowmass_data) / sizeof(CMS_displaced_lowmass_data[0]));
     TGraph CMS_displaced_2l_gr(sizeof(CMS_displaced_2l_data) / sizeof(CMS_displaced_2l_data[0]));
@@ -559,6 +590,8 @@ void draw_limit_ee() {
     }
     for (int i = 0; i < 16; ++i) {
         FCC_data_gr.SetPoint(i, FCC_data[i][0], FCC_data[i][1]);
+    for (int i = 0; i < 25; ++i) {
+        seesaw_data_gr.SetPoint(i, seesaw_data[i][0], seesaw_data[i][1]);
     }
     for (int i = 0; i < rows1; ++i) {
         ATLAS_tchan_gr.SetPoint(i, ATLAS_tchan_data[i][0], ATLAS_tchan_data[i][1]);
@@ -621,6 +654,9 @@ void draw_limit_ee() {
     FCC_data_gr.SetLineColor(kMagenta); 
     FCC_data_gr.SetLineWidth(2);
     FCC_data_gr.SetLineStyle(1);
+    seesaw_data_gr.SetLineWidth(2);
+    seesaw_data_gr.SetLineStyle(1);
+    seesaw_data_gr.SetLineColor(kBlack); 
     CMS_schan_grs[0]->SetLineColor(kBlue);
     CMS_schan_grs[0]->SetLineWidth(2);
     CMS_schan_grs[0]->SetLineStyle(1);
@@ -649,7 +685,7 @@ void draw_limit_ee() {
     Toms_data_gr.SetTitle("");
 
     // Create a legend
-    TLegend legend(0.71, 0.34, 0.95, 0.65); // for tchan
+    TLegend legend(0.71, 0.28, 0.95, 0.65); // for tchan
     legend.SetFillColor(0);
     legend.SetBorderSize(0);
     legend.SetTextSize(0.027);
@@ -657,10 +693,11 @@ void draw_limit_ee() {
     legend.SetLineWidth(1);
     legend.SetTextFont(42);
     legend.SetNColumns(1);
-
-    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
+    
     legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
+    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
     legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 10 fb^{-1}}", "l");
+    legend.AddEntry(&seesaw_data_gr, "#splitline{Type I seesaw limit}{arXiv:2307.01190}", "l");
 
     
     legend.Draw();
