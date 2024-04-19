@@ -655,7 +655,8 @@ void draw_limit_ee() {
     CMS_schan_grs[2]->SetLineStyle(1);
     // Draw the graphs
 
-    Toms_data_gr.Draw("AL");
+    Toms_data_gr.Draw("AL"); 
+    seesaw_data_gr.Draw("L SAME"); 
     FCC_data_gr.Draw("L SAME"); 
     for (int i = 0; i < num_segments; ++i) {
         CMS_schan_grs[i]->Draw("L SAME");
