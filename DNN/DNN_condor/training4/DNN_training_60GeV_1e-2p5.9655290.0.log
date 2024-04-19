@@ -1,0 +1,94 @@
+000 (9655290.000.000) 04/19 12:52:12 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_2138_1192>
+...
+040 (9655290.000.000) 04/19 12:53:01 Started transferring input files
+	Transferring to host: <188.185.207.194:9618?addrs=188.185.207.194-9618+[2001-1458-303-e--100-3f]-9618&alias=b9p08p0289.cern.ch&noUDP&sock=slot1_23_8167_23e5_44414>
+...
+040 (9655290.000.000) 04/19 12:53:01 Finished transferring input files
+...
+001 (9655290.000.000) 04/19 12:53:02 Job executing on host: <188.185.207.194:9618?addrs=188.185.207.194-9618+[2001-1458-303-e--100-3f]-9618&alias=b9p08p0289.cern.ch&noUDP&sock=startd_6834_2250>
+...
+006 (9655290.000.000) 04/19 12:53:10 Image size of job updated: 61768
+	61  -  MemoryUsage of job (MB)
+	61768  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 12:58:10 Image size of job updated: 645308
+	630  -  MemoryUsage of job (MB)
+	644764  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:03:11 Image size of job updated: 4773756
+	3969  -  MemoryUsage of job (MB)
+	4064248  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:08:11 Image size of job updated: 4777044
+	4666  -  MemoryUsage of job (MB)
+	4777044  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:13:11 Image size of job updated: 11042100
+	8588  -  MemoryUsage of job (MB)
+	8793388  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:18:12 Image size of job updated: 11042100
+	8832  -  MemoryUsage of job (MB)
+	9043860  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:23:13 Image size of job updated: 11042100
+	9367  -  MemoryUsage of job (MB)
+	9591224  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:28:13 Image size of job updated: 11042100
+	9914  -  MemoryUsage of job (MB)
+	10151744  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:33:14 Image size of job updated: 11042100
+	10082  -  MemoryUsage of job (MB)
+	10323780  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:38:15 Image size of job updated: 11503544
+	10479  -  MemoryUsage of job (MB)
+	10730260  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:43:15 Image size of job updated: 12062408
+	11005  -  MemoryUsage of job (MB)
+	11268432  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:48:15 Image size of job updated: 12596504
+	11527  -  MemoryUsage of job (MB)
+	11803640  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 13:58:16 Image size of job updated: 13138324
+	12056  -  MemoryUsage of job (MB)
+	12344580  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 14:03:16 Image size of job updated: 13684288
+	12589  -  MemoryUsage of job (MB)
+	12890496  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 14:13:18 Image size of job updated: 14220456
+	13114  -  MemoryUsage of job (MB)
+	13427764  -  ResidentSetSize of job (KB)
+...
+006 (9655290.000.000) 04/19 14:18:18 Image size of job updated: 14751292
+	13631  -  MemoryUsage of job (MB)
+	13957316  -  ResidentSetSize of job (KB)
+...
+040 (9655290.000.000) 04/19 14:25:17 Started transferring output files
+...
+040 (9655290.000.000) 04/19 14:25:18 Finished transferring output files
+...
+005 (9655290.000.000) 04/19 14:25:18 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 01:31:58, Sys 0 00:11:49  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 01:31:58, Sys 0 00:11:49  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	11464964  -  Run Bytes Sent By Job
+	199  -  Run Bytes Received By Job
+	11464964  -  Total Bytes Sent By Job
+	199  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.28        1         1 
+	   Disk (KB)            : 11218           1   2805120 
+	   Memory (MB)          : 13631        2000      2000 
+
+	Job terminated of its own accord at 2024-04-19T12:25:17Z.
+...
