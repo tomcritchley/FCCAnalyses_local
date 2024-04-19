@@ -590,6 +590,7 @@ void draw_limit_ee() {
     }
     for (int i = 0; i < 16; ++i) {
         FCC_data_gr.SetPoint(i, FCC_data[i][0], FCC_data[i][1]);
+    }
     for (int i = 0; i < 25; ++i) {
         seesaw_data_gr.SetPoint(i, seesaw_data[i][0], seesaw_data[i][1]);
     }
