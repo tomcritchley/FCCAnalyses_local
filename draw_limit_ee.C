@@ -453,7 +453,7 @@ void draw_limit_ee() {
         {7.60000000e+01, 1.03666213e-06}
     };
 
-    double FCC_data[16][2] = {
+    double FCC_data[11][2] = {
         {2.061048259467534, 4.6735624598e-06},
         {2.911086125854431, 1.3458936601e-06},
         {3.9379049719000885, 4.2322150072e-07},
@@ -465,11 +465,11 @@ void draw_limit_ee() {
         {40.43525936441846, 5.2310842141e-11},
         {60.39759969568265, 1.4321078586e-10},
         {79.17653697560755, 5.8486487399e-09},
-        {76.75649109263121, 2.7488542276e-07},
-        {74.45134086803542, 3.0643352283e-06},
-        {73.18936686936188, 5.9251780764e-05},
-        {72.89726882092522, 1.3416022140e-03},
-        {72.81714642744059, 2.6133786460e-03}
+        //{76.75649109263121, 2.7488542276e-07},
+        //{74.45134086803542, 3.0643352283e-06},
+        //{73.18936686936188, 5.9251780764e-05},
+        //{72.89726882092522, 1.3416022140e-03},
+        //{72.81714642744059, 2.6133786460e-03}
     };
 
     double seesaw_data[11][2] = {
@@ -551,7 +551,7 @@ void draw_limit_ee() {
 
     TGraph Toms_data_gr(18);
     TGraph seesaw_data_gr(11);
-    TGraph FCC_data_gr(16);
+    TGraph FCC_data_gr(11);
 
     TGraph CMS_displaced_3l_gr(sizeof(CMS_displaced_3l_data) / sizeof(CMS_displaced_3l_data[0]));
     TGraph CMS_displaced_lowmass_gr(sizeof(CMS_displaced_lowmass_data) / sizeof(CMS_displaced_lowmass_data[0]));
@@ -574,7 +574,7 @@ void draw_limit_ee() {
     for (int i = 0; i < 18; ++i) {
         Toms_data_gr.SetPoint(i, Toms_data[i][0], Toms_data[i][1]);
     }
-    for (int i = 0; i < 16; ++i) {
+    for (int i = 0; i < 11; ++i) {
         FCC_data_gr.SetPoint(i, FCC_data[i][0], FCC_data[i][1]);
     }
     for (int i = 0; i < 11; ++i) {
