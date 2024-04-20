@@ -131,7 +131,7 @@ if __name__ == "__main__":
     Dense(1, activation='sigmoid')  # For the output layer, it's fine to use direct activation
 ])
 
-    optimizer = Adam(learning_rate=0.001)
+    optimizer = Adam(learning_rate=0.0001)
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
 
     # Define a function for the learning rate decay
