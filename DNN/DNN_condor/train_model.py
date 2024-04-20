@@ -135,12 +135,13 @@ if __name__ == "__main__":
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
 
     # Callbacks
-    early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-    model_checkpoint = ModelCheckpoint('best_model.h5', save_best_only=True, monitor='val_loss', mode='min')
-
+    callbacks = [
+        EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min')
+    ]
     # Fit model
     history = model.fit(X_train, y_train, epochs=100, batch_size=32,
-                        validation_split=0.2, callbacks=[early_stopping, model_checkpoint])
+                        validation_split=0.2, callbacks=callbacks)
 
     #weight up the minority signal class
     class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
