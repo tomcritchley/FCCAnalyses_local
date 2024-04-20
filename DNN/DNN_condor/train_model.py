@@ -134,12 +134,11 @@ if __name__ == "__main__":
     optimizer = Adam(learning_rate=0.0001)
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
 
-    # Define a function for the learning rate decay
     def scheduler(epoch, lr):
         if epoch < 10:
-            return lr
+            return float(lr)  # Make sure to cast as float
         else:
-            return lr * tf.math.exp(-0.1)
+            return float(lr * tf.math.exp(-0.1))  # Apply decay and cast as float
 
     # Update callbacks
     callbacks = [
