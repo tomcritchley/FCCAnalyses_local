@@ -165,7 +165,7 @@ def prepare_datasets():
         plt.yticks(rotation=0)
         plt.title(f"Correlation Matrix")
         plt.tight_layout()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots4/correlation_matrix_{args.label}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots5/correlation_matrix_{args.label}.pdf')
     except Exception as e:
         print(f"something went wrong with the correlation matrix...: {e}")
 
@@ -177,11 +177,11 @@ def prepare_datasets():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    np.save(f'/eos/user/t/tcritchl/DNN/training4/X_train_{args.label}.npy', X_train_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing4/X_test_{args.label}.npy', X_test_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/training4/y_train_{args.label}.npy', y_train)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing4/y_test_{args.label}.npy', y_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing4/weights_test_{args.label}.npy', weights_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/training5/X_train_{args.label}.npy', X_train_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing5/X_test_{args.label}.npy', X_test_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/training5/y_train_{args.label}.npy', y_train)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing5/y_test_{args.label}.npy', y_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing5/weights_test_{args.label}.npy', weights_test)
 
     print(f"Data preparation complete for label: {args.label}")
 
