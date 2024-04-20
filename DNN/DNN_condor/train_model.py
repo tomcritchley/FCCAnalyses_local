@@ -150,10 +150,10 @@ if __name__ == "__main__":
     history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks)
 
     #weight up the minority signal class
-    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    class_weight_dict = dict(enumerate(class_weights))
+    #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    #class_weight_dict = dict(enumerate(class_weights))
     
-    history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0,class_weight=class_weight_dict) #20% of the training data will be used as validation
+    history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
     print(f"plotting curves")
     
