@@ -2,11 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, accuracy_score
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
+"""from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-#from tensorflow.keras.layers import BatchNormalization
-#from tensorflow.keras.regularizers import l2
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras.regularizers import l2"""
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tqdm import tqdm
 import os
 from sklearn.utils import class_weight
@@ -89,6 +94,7 @@ if __name__ == "__main__":
             Dense(1, activation='sigmoid')
         ])
     """
+    """
     model = Sequential([
         Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
         Dropout(0.5),
@@ -99,6 +105,7 @@ if __name__ == "__main__":
         Dense(1, activation='sigmoid')  # Use 'softmax' for multi-class classification
     ])
 
+
     model.compile(optimizer='adam',
                 loss='binary_crossentropy',  # Use 'categorical_crossentropy' for multi-class classification
                 metrics=['accuracy'])
@@ -107,7 +114,34 @@ if __name__ == "__main__":
         EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
     ]
-    
+    """
+    model = Sequential([
+    Dense(128, kernel_regularizer=l2(0.01)),
+    BatchNormalization(),
+    Activation('relu'),  # This uses the Activation layer explicitly
+    Dropout(0.3),
+    Dense(64, kernel_regularizer=l2(0.01)),
+    BatchNormalization(),
+    Activation('relu'),  # Correct usage after BatchNormalization
+    Dropout(0.3),
+    Dense(32, kernel_regularizer=l2(0.01)),
+    BatchNormalization(),
+    Activation('relu'),
+    Dropout(0.3),
+    Dense(1, activation='sigmoid')  # For the output layer, it's fine to use direct activation
+])
+
+    optimizer = Adam(learning_rate=0.001)
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+
+    # Callbacks
+    early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
+    model_checkpoint = ModelCheckpoint('best_model.h5', save_best_only=True, monitor='val_loss', mode='min')
+
+    # Fit model
+    history = model.fit(X_train, y_train, epochs=100, batch_size=32,
+                        validation_split=0.2, callbacks=[early_stopping, model_checkpoint])
+
     #weight up the minority signal class
     class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
     class_weight_dict = dict(enumerate(class_weights))
