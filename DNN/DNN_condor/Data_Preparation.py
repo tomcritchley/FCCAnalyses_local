@@ -65,7 +65,7 @@ def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
 def basic_filter(df):
     return df[
         (df["n_RecoElectrons"] == 1) & 
-        (df["RecoElectron_lead_e"] > 15) &
+        (df["RecoElectron_lead_e"] > 35) &
         (df["RecoDiJet_angle"] < np.pi) & 
         (df["RecoElectron_DiJet_delta_R"] < 5) &
         (df["RecoDiJet_phi"] < np.pi) & 
@@ -89,7 +89,7 @@ def prepare_datasets():
     signal_df['label'] = 1
 
     #background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('.root')]
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
     #Balancing the datasets
@@ -102,7 +102,12 @@ def prepare_datasets():
     #downsampling for the background to reduce class inequality 
     df_train_background = background_df.sample(n=min(n_signal, n_background // 2), random_state=42)
     df_test_background = background_df.drop(df_train_background.index)
-
+    
+    print(f"number of training background events surviving filter: {len(df_train_background)}")
+    print(f"number of testing background events surviving filter: {len(df_test_background)}")
+    print(f"number of training signal events surviving filter: {len(df_train_signal)}")
+    print(f"number of testing signal events surviving filter: {len(df_test_signal)}")
+    
     #adjust the weights based on the fraction which is used during testing
     background_weight_scale = len(background_df) / len(df_test_background)
     signal_weight_scale = len(signal_df) / len(df_test_signal)
@@ -111,7 +116,7 @@ def prepare_datasets():
 
     n_background_train = len(df_train_background)
     fraction_background_used_in_training = n_background_train / n_background
-    print(f"Fraction of background used in training: {fraction_background_used_in_training:.2f}") #needed for understanding the split to normalise correctly
+    print(f"Fraction of background used in training: {fraction_background_used_in_training:.5f}") #needed for understanding the split to normalise correctly
 
     testing_fraction_background = len(df_test_background) / len(background_df)
     testing_fraction_signal = len(df_test_signal) / len(signal_df)
