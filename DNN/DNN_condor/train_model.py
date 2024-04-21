@@ -11,6 +11,7 @@ from tqdm import tqdm
 import os
 from sklearn.utils import class_weight
 import argparse
+from tensorflow.keras.metrics import AUC
 
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
@@ -81,8 +82,11 @@ if __name__ == "__main__":
     sig = class_counts[1]
     total = bkg + sig
     
-    print('Training distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
-        total, bkg, 100 * sig / total))
+    print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
+        total, bkg, 100 * bkg / total))
+    
+    print('Training bsignal distribution:\n    Total: {}\n    Signal: {} ({:.5f}% of total)\n'.format(
+        total, sig, 100 * sig / total))
     
     weight_for_0 = (1 / bkg) * (total / 2.0)
     weight_for_1 = (1 / sig) * (total / 2.0)
@@ -136,9 +140,7 @@ if __name__ == "__main__":
 
     optimizer = Adam(learning_rate=0.0001)
 
-    metrics = ['accuracy','loss', 'prc', 'precision', 'recall']
-
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=metrics)
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
 
     def scheduler(epoch, lr):
         if epoch < 10:
@@ -194,7 +196,7 @@ if __name__ == "__main__":
     plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots5/feature_importance_{file}.pdf')
     plt.close()
 
-    for metric in ['loss', 'accuracy', 'Precision', 'Recall', 'prc']:
+    for metric in ['loss', 'accuracy', 'precision', 'recall', 'prc']:
         plt.figure()
         plt.plot(history.history[metric], label=f'Training {metric}')
         plt.plot(history.history[f'val_{metric}'], label=f'Validation {metric}')
