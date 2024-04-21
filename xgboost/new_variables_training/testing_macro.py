@@ -8,7 +8,8 @@ import os
 import argparse
 from sklearn.metrics import roc_curve, auc
 import json
-import fcntl
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 
 ##################################################################################################################
 ###################################### INPUTS ####################################################################
@@ -44,12 +45,13 @@ LR significance is used to count from right most to left most bin, and values to
 significance_directions = ["RL", "LR"]
 bdt_thr = 0.9
 
+
 ##################################################################################################################
 ###################################### BDT PREDICTIONS ###########################################################
 ##################################################################################################################
 
 if __name__ == "__main__":
-    
+
     results_dict = {}
 
     parser = argparse.ArgumentParser(description='BDT Training Script')
@@ -142,10 +144,43 @@ if __name__ == "__main__":
     plt.legend(loc='lower right')
     plt.gca().set_aspect('equal', adjustable='box')
     plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/ROC_xgboost_{label}_5.pdf")
-    
+
+    ##################################################################################################################
+    ###################################### BDT OUTPUT PLOT RAW #######################################################
+    ##################################################################################################################
+
+    B = y_pred_np[y_true == 0] #the predictions for the background
+    S = y_pred_np[y_true == 1] #the predictions for the signal
+    # Plot histogram of predicted scores for signal and background events
+    plt.figure()
+    plt.hist(S, bins=50, alpha=0.5, color='b', label='Signal')
+    plt.hist(B, bins=50, alpha=0.5, color='r', label='Background')
+    plt.xlabel('Predicted Score')
+    plt.ylabel('Log MC events')
+    plt.title('Predicted Scores for Signal and Background Events')
+    plt.yscale('log')
+    plt.legend(loc='upper center')
+    plt.grid(True)
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/raw_bdt_classification_{label}.pdf")
+    plt.close()
+
+    ##################################################################################################################
+    ###################################### CONFUSION MATRIX ##########################################################
+    ##################################################################################################################
+
+    # Assuming y_pred_np is the predicted labels and y_true is the actual labels
+    cm = confusion_matrix(y_true, (y_pred_np > 0.5).astype(int))  # Assuming threshold of 0.5 for binary classification
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Background', 'Signal'], yticklabels=['Background', 'Signal'])
+    plt.title('Confusion Matrix')
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/raw_confusion_matrix_{label}.pdf")
+    plt.close()
+
     ##################################################################################################################
     ###################################### BDT OUTPUT PLOTS ##########################################################
     ##################################################################################################################
+    
 
     #### logic for calculating the ideal bin range ###
 

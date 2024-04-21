@@ -146,7 +146,7 @@ background = []
 for bg_dir, bg_xs in raw_background:
     # Loop over each chunk file in the directory
     for chunk_file in os.listdir(bg_dir):
-        if chunk_file.endswith('.root'):
+        if chunk_file.endswith('00.root') or chunk_file.endswith('ejjnu.root'):
             filepath = os.path.join(bg_dir, chunk_file)
             
             if bg_xs == "6654.46":
