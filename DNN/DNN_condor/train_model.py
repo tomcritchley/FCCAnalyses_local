@@ -2,11 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, accuracy_score
 import tensorflow as tf
-"""from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.regularizers import l2"""
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
 from tensorflow.keras.regularizers import l2
@@ -61,10 +56,10 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training4/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training4/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing4/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing4/y_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training3/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training3/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing3/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing3/y_test_{file}.npy', allow_pickle=True)
 
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
@@ -80,20 +75,31 @@ if __name__ == "__main__":
 
     X_train = X_train.astype(np.float32)
     X_test = X_test.astype(np.float32)
-    """
-        model = Sequential([
-            Dense(128, activation='relu', input_shape=(X_train.shape[1],), kernel_regularizer=l2(0.01)),
-            BatchNormalization(),
-            Dropout(0.5),
-            Dense(64, activation='relu', kernel_regularizer=l2(0.01)),
-            BatchNormalization(),
-            Dropout(0.5),
-            Dense(32, activation='relu', kernel_regularizer=l2(0.01)),
-            BatchNormalization(),
-            Dropout(0.5),
-            Dense(1, activation='sigmoid')
-        ])
-    """
+
+    class_counts = np.bincount(y_train.astype(int))
+    bkg = class_counts[0]
+    sig = class_counts[1]
+    total = bkg + sig
+    
+    print('Training distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
+        total, bkg, 100 * sig / total))
+    
+    weight_for_0 = (1 / bkg) * (total / 2.0)
+    weight_for_1 = (1 / sig) * (total / 2.0)
+
+    weights = {0: weight_for_0, 1: weight_for_1}
+
+    print('Weight for class 0 (tensorflow tutorial): {:.2f}'.format(weight_for_0))
+    print('Weight for class 1: (tensorflow tutorial) {:.2f}'.format(weight_for_1))
+        
+    class_counts = np.bincount(y_test.astype(int))
+    bkg_test = class_counts[0]
+    sig_test = class_counts[1]
+    total_test = bkg_test + sig_test
+
+    print('Testing distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
+        total_test, bkg_test, 100 * sig_test / total_test))
+
     """
     model = Sequential([
         Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
@@ -104,12 +110,9 @@ if __name__ == "__main__":
         Dropout(0.5),
         Dense(1, activation='sigmoid')  # Use 'softmax' for multi-class classification
     ])
-
-
     model.compile(optimizer='adam',
                 loss='binary_crossentropy',  # Use 'categorical_crossentropy' for multi-class classification
                 metrics=['accuracy'])
-
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
@@ -118,27 +121,30 @@ if __name__ == "__main__":
     model = Sequential([
     Dense(128, kernel_regularizer=l2(0.01)),
     BatchNormalization(),
-    Activation('relu'),  # This uses the Activation layer explicitly
+    Activation('relu'),
     Dropout(0.3),
     Dense(64, kernel_regularizer=l2(0.01)),
     BatchNormalization(),
-    Activation('relu'),  # Correct usage after BatchNormalization
+    Activation('relu'), 
     Dropout(0.3),
     Dense(32, kernel_regularizer=l2(0.01)),
     BatchNormalization(),
     Activation('relu'),
     Dropout(0.3),
-    Dense(1, activation='sigmoid')  # For the output layer, it's fine to use direct activation
+    Dense(1, activation='sigmoid') 
 ])
 
     optimizer = Adam(learning_rate=0.0001)
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+
+    metrics = ['accuracy','loss', 'prc', 'precision', 'recall']
+
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=metrics)
 
     def scheduler(epoch, lr):
         if epoch < 10:
-            return float(lr)  # Make sure to cast as float
+            return float(lr)
         else:
-            return float(lr * tf.math.exp(-0.1))  # Apply decay and cast as float
+            return float(lr * tf.math.exp(-0.1))
 
     # Update callbacks
     callbacks = [
@@ -147,11 +153,16 @@ if __name__ == "__main__":
         LearningRateScheduler(scheduler)
     ]
 
-    history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks)
+    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    class_weight_dict = dict(enumerate(class_weights))
+
+    print(f"class weights (sklearn automatic): {class_weight_dict}")
+
+    history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
 
     #weight up the minority signal class
-    #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    #class_weight_dict = dict(enumerate(class_weights))
+    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    class_weight_dict = dict(enumerate(class_weights))
     
    # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
@@ -182,17 +193,18 @@ if __name__ == "__main__":
     plt.title('Feature Importance')
     plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots5/feature_importance_{file}.pdf')
     plt.close()
-    
-    ### plot loss function ###
-    plt.plot(history.history['loss'], label='Training Loss')
-    plt.plot(history.history['val_loss'], label='Validation Loss')
-    plt.title('Training and Validation Loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.legend()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/loss_function_{file}.pdf")
-    plt.close()
-    
+
+    for metric in ['loss', 'accuracy', 'Precision', 'Recall', 'prc']:
+        plt.figure()
+        plt.plot(history.history[metric], label=f'Training {metric}')
+        plt.plot(history.history[f'val_{metric}'], label=f'Validation {metric}')
+        plt.title(f'Training and Validation {metric}')
+        plt.xlabel('Epoch')
+        plt.ylabel(metric)
+        plt.legend()
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots5/{metric}_{file}.pdf')
+        plt.close()
+
     print("Loading the best model...")
     model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models4/best_model_{file}.keras')
     print("Model loaded successfully.")
