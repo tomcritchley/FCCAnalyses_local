@@ -89,20 +89,26 @@ def prepare_datasets():
     signal_df['label'] = 1
 
     #background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('0.root') or file.endswith('ejjnu.root')]
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('00.root') or file.endswith('ejjnu.root')]
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
     #Balancing the datasets
     n_signal = len(signal_df)
     n_background = len(background_df)
 
-    #50/50 split for training and testing the signal
+
+    #to do 80/20 train test for both signal and background
+    df_train_background, df_test_background = train_test_split(background_df, test_size=0.2, random_state=42)
+
+    #80/20 split for training and testing the signal
     df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.2, random_state=42)
     
     #downsampling for the background to reduce class inequality 
+    """
     df_train_background = background_df.sample(n=min(n_signal, n_background // 2), random_state=42)
     df_test_background = background_df.drop(df_train_background.index)
-    
+    """
+
     print(f"number of training background events surviving filter: {len(df_train_background)}")
     print(f"number of testing background events surviving filter: {len(df_test_background)}")
     print(f"number of training signal events surviving filter: {len(df_train_signal)}")
@@ -110,7 +116,11 @@ def prepare_datasets():
     
     #adjust the weights based on the fraction which is used during testing
     background_weight_scale = len(background_df) / len(df_test_background)
+    print(f"fraction of bkg used in testing = {1/background_weight_scale} ...background weight scale = {background_weight_scale}")
+    
     signal_weight_scale = len(signal_df) / len(df_test_signal)
+    print(f"fraction of sgl used in testing = {1/signal_weight_scale} ... signal weight scale = {signal_weight_scale}")
+    
     df_test_background['weight'] *= background_weight_scale
     df_test_signal['weight'] *= signal_weight_scale
 
