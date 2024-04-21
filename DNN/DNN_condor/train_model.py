@@ -12,6 +12,7 @@ import os
 from sklearn.utils import class_weight
 import argparse
 from tensorflow.keras.metrics import AUC
+from imblearn.over_sampling import SMOTE
 
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
@@ -103,6 +104,22 @@ if __name__ == "__main__":
 
     print('Testing distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
         total_test, bkg_test, 100 * sig_test / total_test))
+    
+    print(f"initialising SMOTE...")
+
+    smote = SMOTE()
+    X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
+
+    class_counts = np.bincount(y_train_smote.astype(int))
+    bkg_smote = class_counts[0]
+    sig_smote = class_counts[1]
+    total = bkg_smote + sig_smote
+    
+    print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
+        total, bkg_smote, 100 * bkg_smote / total))
+    
+    print('Training signal distribution:\n    Total: {}\n    Signal: {} ({:.5f}% of total)\n'.format(
+        total, sig_smote, 100 * sig_smote / total))
 
     """
     model = Sequential([
@@ -160,7 +177,7 @@ if __name__ == "__main__":
 
     print(f"class weights (sklearn automatic): {class_weight_dict}")
 
-    history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
+    history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks) #change batch size to contain background slices
 
     #weight up the minority signal class
     class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
