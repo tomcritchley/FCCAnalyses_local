@@ -115,7 +115,7 @@ def prepare_datasets():
 
     combined_df = pd.concat([signal_df, background_df])
 
-    df_train, df_test = train_test_split(combined_df, test_size=0.2, random_state=42, stratify=combined_df['label'])
+    df_train, df_test = train_test_split(combined_df, test_size=0.2, random_state=22) #stratify=combined_df['label']
 
         # Separate back out into signal and background
     df_train_signal = df_train[df_train['label'] == 1]
