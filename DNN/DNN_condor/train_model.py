@@ -9,6 +9,7 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler
 from tqdm import tqdm
 import os
+import seaborn as sns
 from sklearn.utils import class_weight
 import argparse
 from tensorflow.keras.metrics import AUC
@@ -128,7 +129,17 @@ if __name__ == "__main__":
 
     smote = SMOTE()
     X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
+    
+    #how does smote affect distributions?
 
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+    sns.histplot(X_train[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
+    sns.histplot(X_train_smote[:, 0], ax=axes[1], kde=True, color='red', label='SMOTE')
+    axes[0].set_title('Original Distribution of Feature 1')
+    axes[1].set_title('Distribution of Feature 1 After SMOTE')
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/smote_effect_{file}.pdf")
+    plt.close()
+    
     class_counts = np.bincount(y_train_smote.astype(int))
     bkg_smote = class_counts[0]
     sig_smote = class_counts[1]
@@ -252,7 +263,7 @@ if __name__ == "__main__":
         plt.close()
 
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models4/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras')
     print("Model loaded successfully.")
     model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
