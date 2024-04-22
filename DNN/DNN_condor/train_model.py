@@ -201,7 +201,7 @@ if __name__ == "__main__":
     #print(f"class weights (sklearn automatic): {class_weight_dict}")
 
     #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
-    history = model.fit(X_train, y_train, epochs=100, batch_size=1024, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict)
+    history = model.fit(X_train, y_train, epochs=100, batch_size=2048, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict)
    # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
     print(f"plotting curves")
