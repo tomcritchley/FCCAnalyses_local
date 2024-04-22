@@ -164,11 +164,11 @@ if __name__ == "__main__":
         Dense(128, kernel_regularizer=l2(0.01)),
         BatchNormalization(),
         Activation('relu'),
-        Dropout(0.3),  # consider experimenting with this value
-        Dense(128, kernel_regularizer=l2(0.01)),  # added another layer to deepen the model
+        Dropout(0.3), 
+        Dense(128, kernel_regularizer=l2(0.01)),
         BatchNormalization(),
         Activation('relu'),
-        Dropout(0.4),  # increased dropout
+        Dropout(0.4),
         Dense(64, kernel_regularizer=l2(0.01)),
         BatchNormalization(),
         Activation('relu'), 
@@ -176,7 +176,7 @@ if __name__ == "__main__":
         Dense(32, kernel_regularizer=l2(0.01)),
         BatchNormalization(),
         Activation('relu'),
-        Dropout(0.2),  # slightly reduced dropout
+        Dropout(0.2), 
         Dense(1, activation='sigmoid',bias_initializer=tf.keras.initializers.Constant(initial_bias))
     ])
 
@@ -197,9 +197,9 @@ if __name__ == "__main__":
         LearningRateScheduler(scheduler)
     ]
 
-    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    class_weight_dict = dict(enumerate(class_weights))
-
+    #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    #class_weight_dict = dict(enumerate(class_weights))
+    class_weights = {0: 0.5, 1: 5}
     #print(f"class weights (sklearn automatic): {class_weight_dict}")
 
     #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
