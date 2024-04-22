@@ -50,17 +50,21 @@ for mass in masses:
             print(f"file {signal_file} does not exist, moving to next file")
 
 def simple_oversample(X_train, y_train, scale_factor):
-    # Identify minority class samples
+    
     minority_indices = np.where(y_train == 1)[0]
+    repeat_count = int(scale_factor)  # Ensure each instance is repeated equally
     
-    # Oversample minority class by duplicating samples
-    oversampled_minority_indices = np.random.choice(minority_indices, size=int(len(minority_indices) * scale_factor), replace=True)
+    # Extend minority indices by repeating each exactly `repeat_count` times
+    repeated_minority_indices = np.repeat(minority_indices, repeat_count)
     
-    # Combine oversampled minority class with majority class
-    X_oversampled = np.vstack([X_train, X_train[oversampled_minority_indices]])
-    y_oversampled = np.hstack([y_train, y_train[oversampled_minority_indices]])
+    # Shuffle to mix them up for training
+    np.random.shuffle(repeated_minority_indices)
+    
+    X_oversampled = np.vstack([X_train, X_train[repeated_minority_indices]])
+    y_oversampled = np.hstack([y_train, y_train[repeated_minority_indices]])
     
     return X_oversampled, y_oversampled
+
 
 if __name__ == "__main__":
         

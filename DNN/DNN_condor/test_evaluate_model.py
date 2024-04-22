@@ -84,7 +84,7 @@ if __name__ == "__main__":
 
     # Evaluate the model on the test set
     print("Evaluating the model on the test set...")
-    test_loss, test_acc = model.evaluate(X_test, y_test, verbose=2)
+    test_loss, test_acc, test_prc, test_precision, test_recall = model.evaluate(X_test, y_test, verbose=2)
     print(f'\nTest accuracy: {test_acc*100:.2f}%')
 
     ### ROC curve ###
