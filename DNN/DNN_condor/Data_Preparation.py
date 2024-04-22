@@ -65,7 +65,7 @@ def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
 def basic_filter(df):
     return df[
         (df["n_RecoElectrons"] == 1) & 
-        (df["RecoElectron_lead_e"] > 0) &
+        (df["RecoElectron_lead_e"] > 25) &
         (df["RecoDiJet_angle"] < np.pi) & 
         (df["RecoElectron_DiJet_delta_R"] < 5) &
         (df["RecoDiJet_phi"] < np.pi) & 
@@ -89,7 +89,7 @@ def prepare_datasets():
     signal_df['label'] = 1
 
     #background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('00.root') or file.endswith('ejjnu.root')]
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('0.root') or file.endswith('ejjnu.root')]
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
     #Balancing the datasets
