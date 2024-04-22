@@ -80,7 +80,7 @@ def filter_events(df, label):
         }
     
     # Apply the universal filter criteria to df
-    df_filtered = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 15 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5", "Exactly one electron final state with lead electron energy E > 15 GeV")
+    df_filtered = df.Filter(f"n_RecoElectrons==1 && RecoElectron_lead_e > 25 && RecoDiJet_angle < {np.pi} && RecoElectron_DiJet_delta_R < 5 && RecoDiJet_phi < {np.pi} && RecoDiJet_delta_R < 5", "Exactly one electron final state with lead electron energy E > 15 GeV")
 
     if label == "background_total":
         # Calculate final counts after filtering for each background process
@@ -108,7 +108,7 @@ def filter_events(df, label):
 
         cut_flow_summary.append({
             "Label": label,
-            "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 15 GeV",
+            "Process": "n_RecoElectrons==1 & RecoElectron_lead_e > 25 GeV",
             "Initial Events": initial_count,
             "Final Events": final_count,
             "Efficiency (%)": efficiency
@@ -146,7 +146,7 @@ background = []
 for bg_dir, bg_xs in raw_background:
     # Loop over each chunk file in the directory
     for chunk_file in os.listdir(bg_dir):
-        if chunk_file.endswith('00.root') or chunk_file.endswith('ejjnu.root'):
+        if chunk_file.endswith('0.root') or chunk_file.endswith('ejjnu.root'):
             filepath = os.path.join(bg_dir, chunk_file)
             
             if bg_xs == "6654.46":
