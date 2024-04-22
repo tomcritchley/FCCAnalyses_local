@@ -65,7 +65,7 @@ def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
 def basic_filter(df):
     return df[
         (df["n_RecoElectrons"] == 1) & 
-        (df["RecoElectron_lead_e"] > 15) &
+        (df["RecoElectron_lead_e"] > 0) &
         (df["RecoDiJet_angle"] < np.pi) & 
         (df["RecoElectron_DiJet_delta_R"] < 5) &
         (df["RecoDiJet_phi"] < np.pi) & 
