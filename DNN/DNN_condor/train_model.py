@@ -197,9 +197,9 @@ if __name__ == "__main__":
         LearningRateScheduler(scheduler)
     ]
 
-    #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    #class_weight_dict = dict(enumerate(class_weights))
-    class_weight_dict = {0: 0.5, 1: 12.5}
+    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    class_weight_dict = dict(enumerate(class_weights))
+    #class_weight_dict = {0: 0.5, 1: 12.5}
     #print(f"class weights (sklearn automatic): {class_weight_dict}")
 
     #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
