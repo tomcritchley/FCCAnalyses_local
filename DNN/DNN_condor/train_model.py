@@ -102,7 +102,7 @@ if __name__ == "__main__":
     print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
         total, bkg, 100 * bkg / total))
     
-    print('Training bsignal distribution:\n    Total: {}\n    Signal: {} ({:.5f}% of total)\n'.format(
+    print('Training signal distribution:\n    Total: {}\n    Signal: {} ({:.5f}% of total)\n'.format(
         total, sig, 100 * sig / total))
     
     weight_for_0 = (1 / bkg) * (total / 2.0)
