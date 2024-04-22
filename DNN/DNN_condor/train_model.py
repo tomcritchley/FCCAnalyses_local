@@ -128,9 +128,15 @@ if __name__ == "__main__":
     
     #how does smote affect distributions?
 
+    signal_indices_original = np.where(y_train == 1)[0]
+    signal_indices_smote = np.where(y_train_smote == 1)[0]
+
+    X_train_signal = X_train[signal_indices_original, :]
+    X_train_smote_signal = X_train_smote[signal_indices_smote, :]
+
     fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-    sns.histplot(X_train[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
-    sns.histplot(X_train_smote[:, 0], ax=axes[1], kde=True, color='red', label='SMOTE')
+    sns.histplot(X_train_signal[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
+    sns.histplot(X_train_smote_signal[:, 0], ax=axes[1], kde=True, color='red', label='SMOTE')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After SMOTE')
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/smote_effect_{file}.pdf")
@@ -143,11 +149,14 @@ if __name__ == "__main__":
     
     X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, scale_factor=10.0)
 
+    signal_indices_oversampled = np.where(y_train_oversampled == 1)[0]
+    X_train_oversampled_signal = X_train_oversampled[signal_indices_oversampled, :]
+
     #how does random scale factor affect distrubtions?
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-    sns.histplot(X_train[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
-    sns.histplot(X_train_oversampled[:, 0], ax=axes[1], kde=True, color='red', label='Scale Factor')
+    sns.histplot(X_train_signal[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
+    sns.histplot(X_train_oversampled_signal[:, 0], ax=axes[1], kde=True, color='red', label='Scale Factor')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After Scale factor')
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/scale_factor_effect_{file}.pdf")
