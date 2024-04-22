@@ -158,6 +158,8 @@ if __name__ == "__main__":
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
     ]
     """
+    initial_bias = np.log([sig/bkg])
+
     model = Sequential([
         Dense(128, kernel_regularizer=l2(0.01)),
         BatchNormalization(),
@@ -175,7 +177,7 @@ if __name__ == "__main__":
         BatchNormalization(),
         Activation('relu'),
         Dropout(0.2),  # slightly reduced dropout
-        Dense(1, activation='sigmoid')
+        Dense(1, activation='sigmoid',bias_initializer=tf.keras.initializers.Constant(initial_bias))
     ])
 
     optimizer = Adam(learning_rate=0.0001)
