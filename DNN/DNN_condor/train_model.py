@@ -147,7 +147,7 @@ if __name__ == "__main__":
     sig_smote = class_counts[1]
     total = bkg_smote + sig_smote
     
-    X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, scale_factor=10.0)
+    X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, scale_factor=15.0)
 
     signal_indices_oversampled = np.where(y_train_oversampled == 1)[0]
     X_train_oversampled_signal = X_train_oversampled[signal_indices_oversampled, :]
