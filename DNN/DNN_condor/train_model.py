@@ -15,25 +15,6 @@ import argparse
 from tensorflow.keras.metrics import AUC
 from imblearn.over_sampling import SMOTE
 
-class F1Score(tf.keras.metrics.Metric):
-    def __init__(self, name='f1_score', **kwargs):
-        super(F1Score, self).__init__(name=name, **kwargs)
-        self.precision = tf.keras.metrics.Precision()
-        self.recall = tf.keras.metrics.Recall()
-
-    def update_state(self, y_true, y_pred, sample_weight=None):
-        self.precision.update_state(y_true, y_pred, sample_weight)
-        self.recall.update_state(y_true, y_pred, sample_weight)
-
-    def result(self):
-        p = self.precision.result()
-        r = self.recall.result()
-        return 2 * ((p * r) / (p + r + tf.keras.backend.epsilon()))
-
-    def reset_states(self):
-        self.precision.reset_states()
-        self.recall.reset_states()
-
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
 masses = [
@@ -217,7 +198,7 @@ if __name__ == "__main__":
 
     optimizer = Adam(learning_rate=0.0001)
 
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR'), F1Score()])
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
 
     def scheduler(epoch, lr):
         if epoch < 10:
