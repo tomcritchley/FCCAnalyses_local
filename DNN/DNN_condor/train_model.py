@@ -68,7 +68,18 @@ for mass in masses:
         else:
             print(f"file {signal_file} does not exist, moving to next file")
 
-print(signal_filenames)
+def simple_oversample(X_train, y_train, scale_factor):
+    # Identify minority class samples
+    minority_indices = np.where(y_train == 1)[0]
+    
+    # Oversample minority class by duplicating samples
+    oversampled_minority_indices = np.random.choice(minority_indices, size=int(len(minority_indices) * scale_factor), replace=True)
+    
+    # Combine oversampled minority class with majority class
+    X_oversampled = np.vstack([X_train, X_train[oversampled_minority_indices]])
+    y_oversampled = np.hstack([y_train, y_train[oversampled_minority_indices]])
+    
+    return X_oversampled, y_oversampled
 
 if __name__ == "__main__":
         
@@ -139,12 +150,25 @@ if __name__ == "__main__":
     axes[1].set_title('Distribution of Feature 1 After SMOTE')
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/smote_effect_{file}.pdf")
     plt.close()
-    
+
     class_counts = np.bincount(y_train_smote.astype(int))
     bkg_smote = class_counts[0]
     sig_smote = class_counts[1]
     total = bkg_smote + sig_smote
     
+    X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, scale_factor=10.0)
+
+    #how does random scale factor affect distrubtions?
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+    sns.histplot(X_train[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
+    sns.histplot(X_train_oversampled[:, 0], ax=axes[1], kde=True, color='red', label='Scale Factor')
+    axes[0].set_title('Original Distribution of Feature 1')
+    axes[1].set_title('Distribution of Feature 1 After Scale factor')
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/scale_factor_effect_{file}.pdf")
+    plt.close()
+
+
     print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
         total, bkg_smote, 100 * bkg_smote / total))
     
@@ -208,8 +232,8 @@ if __name__ == "__main__":
         LearningRateScheduler(scheduler)
     ]
 
-    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    class_weight_dict = dict(enumerate(class_weights))
+    #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    #class_weight_dict = dict(enumerate(class_weights))
     #class_weight_dict = {0: 0.5, 1: 12.5}
     #print(f"class weights (sklearn automatic): {class_weight_dict}")
     val_start_index = int(len(y_train) * (1 - 0.2))
@@ -220,7 +244,7 @@ if __name__ == "__main__":
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
 
     #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
-    history = model.fit(X_train, y_train, epochs=100, batch_size=256, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict)
+    history = model.fit(X_train_oversampled, y_train_oversampled, epochs=100, batch_size=256, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict)
    # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
     print(f"plotting curves")
