@@ -169,7 +169,9 @@ if __name__ == "__main__":
     ##################################################################################################################
 
     # Assuming y_pred_np is the predicted labels and y_true is the actual labels
-    cm = confusion_matrix(y_true, (y_pred_np > 0.5).astype(int))  # Assuming threshold of 0.5 for binary classification
+    cm = confusion_matrix(y_true, (y_pred_np > 0.5).astype(int))
+    plt.clf()
+    plt.figure(figsize=(8, 6))  # Assuming threshold of 0.5 for binary classification
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Background', 'Signal'], yticklabels=['Background', 'Signal'])
     plt.title('Confusion Matrix')
     plt.ylabel('True Label')
