@@ -14,6 +14,25 @@ import argparse
 from tensorflow.keras.metrics import AUC
 from imblearn.over_sampling import SMOTE
 
+class F1Score(tf.keras.metrics.Metric):
+    def __init__(self, name='f1_score', **kwargs):
+        super(F1Score, self).__init__(name=name, **kwargs)
+        self.precision = tf.keras.metrics.Precision()
+        self.recall = tf.keras.metrics.Recall()
+
+    def update_state(self, y_true, y_pred, sample_weight=None):
+        self.precision.update_state(y_true, y_pred, sample_weight)
+        self.recall.update_state(y_true, y_pred, sample_weight)
+
+    def result(self):
+        p = self.precision.result()
+        r = self.recall.result()
+        return 2 * ((p * r) / (p + r + tf.keras.backend.epsilon()))
+
+    def reset_states(self):
+        self.precision.reset_states()
+        self.recall.reset_states()
+
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
 masses = [
@@ -140,24 +159,28 @@ if __name__ == "__main__":
     ]
     """
     model = Sequential([
-    Dense(128, kernel_regularizer=l2(0.01)),
-    BatchNormalization(),
-    Activation('relu'),
-    Dropout(0.3),
-    Dense(64, kernel_regularizer=l2(0.01)),
-    BatchNormalization(),
-    Activation('relu'), 
-    Dropout(0.3),
-    Dense(32, kernel_regularizer=l2(0.01)),
-    BatchNormalization(),
-    Activation('relu'),
-    Dropout(0.3),
-    Dense(1, activation='sigmoid') 
-])
+        Dense(128, kernel_regularizer=l2(0.01)),
+        BatchNormalization(),
+        Activation('relu'),
+        Dropout(0.3),  # consider experimenting with this value
+        Dense(128, kernel_regularizer=l2(0.01)),  # added another layer to deepen the model
+        BatchNormalization(),
+        Activation('relu'),
+        Dropout(0.4),  # increased dropout
+        Dense(64, kernel_regularizer=l2(0.01)),
+        BatchNormalization(),
+        Activation('relu'), 
+        Dropout(0.3),
+        Dense(32, kernel_regularizer=l2(0.01)),
+        BatchNormalization(),
+        Activation('relu'),
+        Dropout(0.2),  # slightly reduced dropout
+        Dense(1, activation='sigmoid')
+    ])
 
     optimizer = Adam(learning_rate=0.0001)
 
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR'), F1Score()])
 
     def scheduler(epoch, lr):
         if epoch < 10:
@@ -172,16 +195,12 @@ if __name__ == "__main__":
         LearningRateScheduler(scheduler)
     ]
 
-    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    class_weight_dict = dict(enumerate(class_weights))
+    #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+    #class_weight_dict = dict(enumerate(class_weights))
 
-    print(f"class weights (sklearn automatic): {class_weight_dict}")
+    #print(f"class weights (sklearn automatic): {class_weight_dict}")
 
     history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks) #change batch size to contain background slices
-
-    #weight up the minority signal class
-    class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    class_weight_dict = dict(enumerate(class_weights))
     
    # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
