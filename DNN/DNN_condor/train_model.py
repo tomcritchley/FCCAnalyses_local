@@ -148,8 +148,21 @@ if __name__ == "__main__":
     total = bkg_smote + sig_smote
     
     ratio = bkg / sig
-    print(f"ratio of background to signal = {ratio}")
+    print(f"YOUR RATIO! ratio of background to signal = {ratio}")
     X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, scale_factor=ratio)
+
+    class_counts = np.bincount(y_train_oversampled.astype(int))
+    bkg_oversampled = class_counts[0]
+    sig_oversampled = class_counts[1]
+    total = bkg_oversampled + sig_oversampled
+
+    print(f"""
+    Some statistics after oversampling:
+    - Oversampled background: {bkg_oversampled}
+    - Oversampled signal: {sig_oversampled}
+    - Total events before oversampling: {total_test}
+    - Total oversampled events in training: {total}
+    """)
 
     signal_indices_oversampled = np.where(y_train_oversampled == 1)[0]
     X_train_oversampled_signal = X_train_oversampled[signal_indices_oversampled, :]
