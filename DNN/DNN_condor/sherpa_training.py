@@ -5,19 +5,12 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.regularizers import l2
-from tensorflow.keras import backend as K
+from tensorflow.keras.metrics import AUC
 import argparse
 
-def f1_score(y_true, y_pred):
-    """Define the F1 score for model evaluation."""
-    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
-    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
-    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
-    precision = true_positives / (predicted_positives + K.epsilon())
-    recall = true_positives / (possible_positives + K.epsilon())
-    return 2*((precision*recall)/(precision+recall+K.epsilon()))
-
 def create_model(input_dim, layers, dropout_rate, learning_rate):
+    
+    metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')]
     model = Sequential()
     for index, layer in enumerate(layers):
         if index == 0:
@@ -28,7 +21,7 @@ def create_model(input_dim, layers, dropout_rate, learning_rate):
         model.add(BatchNormalization())
     model.add(Dense(1, activation='sigmoid'))
     optimizer = Adam(learning_rate=learning_rate)
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=[tf.keras.metrics.F1Score(threshold=0.5,name='f1_score')])
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=metrics)
     return model
 
 def main():
@@ -53,7 +46,7 @@ def main():
     study = sherpa.Study(parameters=parameters, algorithm=algorithm, lower_is_better=False)
 
     best_model = None
-    best_f1 = -1
+    best_recall = -1
 
     for trial in study:
         print(f"Testing parameters: {trial.parameters}")
@@ -61,12 +54,12 @@ def main():
         history = model.fit(X_train, y_train, epochs=50, batch_size=256, validation_split=0.2, verbose=1)
         
         # Evaluate the model
-        loss, f1 = model.evaluate(X_train, y_train, verbose=1)
-        print(f"Trial F1 score: {f1}")
-        study.add_observation(trial, objective=f1)
+        loss, recall, accuracy, precision, prc  = model.evaluate(X_train, y_train, verbose=1)
+        print(f"Trial recall score: {recall}")
+        study.add_observation(trial, objective=recall)
         
-        if f1 > best_f1:
-            best_f1 = f1
+        if recall > best_recall:
+            best_recall = recall
             best_model = model
             model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.h5')
             print("Best model updated and saved.")
