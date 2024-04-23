@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, accuracy_score
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
+from tensorflow.keras.layers import Dense, Dropout, LeakyReLU
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler
@@ -207,15 +207,15 @@ if __name__ == "__main__":
     initial_bias = np.log([sig/bkg])
 
     model = Sequential([
-        Dense(500, activation='LeakyReLU', input_shape=(X_train.shape[1],)),
+        Dense(500, activation=LeakyReLU(), input_shape=(X_train.shape[1],)),
         Dropout(0.21), 
-        Dense(500,activation='LeakyReLU'),
+        Dense(500,activation=LeakyReLU()),
         Dropout(0.21),
-        Dense(250,activation='LeakyReLU'),
+        Dense(250,activation=LeakyReLU()),
         Dropout(0.21),
-        Dense(100,activation='LeakyReLU'),
+        Dense(100,activation=LeakyReLU()),
         Dropout(0.21),
-        Dense(50,activation='LeakyReLU'),
+        Dense(50,activation=LeakyReLU()),
         Dropout(0.21),
         Dense(1, activation='sigmoid')
     ])
