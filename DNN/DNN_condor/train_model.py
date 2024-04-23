@@ -207,26 +207,20 @@ if __name__ == "__main__":
     initial_bias = np.log([sig/bkg])
 
     model = Sequential([
-        Dense(128, kernel_regularizer=l2(0.01)),
-        BatchNormalization(),
-        Activation('relu'),
-        Dropout(0.3), 
-        Dense(128, kernel_regularizer=l2(0.01)),
-        BatchNormalization(),
-        Activation('relu'),
-        Dropout(0.4),
-        Dense(64, kernel_regularizer=l2(0.01)),
-        BatchNormalization(),
-        Activation('relu'), 
-        Dropout(0.3),
-        Dense(32, kernel_regularizer=l2(0.01)),
-        BatchNormalization(),
-        Activation('relu'),
-        Dropout(0.2), 
-        Dense(1, activation='sigmoid',bias_initializer=tf.keras.initializers.Constant(initial_bias))
+        Dense(500, activation='LeakyRelu', input_shape=(X_train.shape[1],)),
+        Dropout(0.21), 
+        Dense(500,activation='LeakyRelu'),
+        Dropout(0.21),
+        Dense(250,activation='LeakyRelu'),
+        Dropout(0.21),
+        Dense(100,activation='LeakyRelu'),
+        Dropout(0.21),
+        Dense(50,activation='LeakyRelu'),
+        Dropout(0.21),
+        Dense(1, activation='sigmoid')
     ])
 
-    optimizer = Adam(learning_rate=0.0001)
+    optimizer = Adam(learning_rate=0.001)
 
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
 
@@ -238,7 +232,7 @@ if __name__ == "__main__":
 
     # Update callbacks
     callbacks = [
-        EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True),
+        EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
         LearningRateScheduler(scheduler)
     ]
@@ -255,7 +249,7 @@ if __name__ == "__main__":
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
 
     #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
-    history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=256, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
+    history = model.fit(X_train, y_train, epochs=100, batch_size=50, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
    # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
     print(f"plotting curves")

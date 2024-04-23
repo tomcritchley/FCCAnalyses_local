@@ -51,10 +51,10 @@ def main():
     for trial in study:
         print(f"Testing parameters: {trial.parameters}")
         model = create_model(input_dim, [trial.parameters['layers']] * 5, trial.parameters['dropout_rate'], trial.parameters['learning_rate'])
-        history = model.fit(X_train, y_train, epochs=50, batch_size=256, validation_split=0.2, verbose=1)
+        history = model.fit(X_train, y_train, epochs=20, batch_size=256, validation_split=0.2, verbose=1)
         
         # Evaluate the model
-        loss, recall, accuracy, precision, prc  = model.evaluate(X_train, y_train, verbose=1)
+        loss, recall = model.evaluate(X_train, y_train, verbose=1)
         print(f"Trial recall score: {recall}")
         study.add_observation(trial, objective=recall)
         
