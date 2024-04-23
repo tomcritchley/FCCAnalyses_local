@@ -94,7 +94,7 @@ def main():
     }
     print(f"performing grid search...")
     grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3, verbose=1)
-    grid_result = grid.fit(X_train, y_train, epochs=50, batch_size=256)
+    grid_result = grid.fit(X_train, y_train)
     print(f"grid search complete...")
     best_params = grid.best_params_
     print("Best parameters found:", best_params)
