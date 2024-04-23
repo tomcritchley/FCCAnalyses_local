@@ -5,7 +5,17 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.regularizers import l2
+from tensorflow.keras import backend as K
 import argparse
+
+def f1_score(y_true, y_pred):
+    """Define the F1 score for model evaluation."""
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    recall = true_positives / (possible_positives + K.epsilon())
+    return 2*((precision*recall)/(precision+recall+K.epsilon()))
 
 def create_model(input_dim, layers, dropout_rate, learning_rate):
     model = Sequential()
@@ -18,7 +28,7 @@ def create_model(input_dim, layers, dropout_rate, learning_rate):
         model.add(BatchNormalization())
     model.add(Dense(1, activation='sigmoid'))
     optimizer = Adam(learning_rate=learning_rate)
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=[f1_score])
     return model
 
 def main():
@@ -31,21 +41,19 @@ def main():
     X_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/X_train_{file}.npy', allow_pickle=True)
     y_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/y_train_{file}.npy', allow_pickle=True)
     X_train = X_train.astype(np.float32)
+
     input_dim = X_train.shape[1]
-    
-    # Define the parameter space
     parameters = [
         sherpa.Discrete('layers', [300, 500]),
         sherpa.Continuous('dropout_rate', [0.1, 0.5]),
         sherpa.Continuous('learning_rate', [0.0001, 0.001])
     ]
-    
-    # Set up Sherpa experiment
+
     algorithm = sherpa.algorithms.GridSearch()
     study = sherpa.Study(parameters=parameters, algorithm=algorithm, lower_is_better=False)
 
     best_model = None
-    best_accuracy = -1
+    best_f1 = -1
 
     for trial in study:
         print(f"Testing parameters: {trial.parameters}")
@@ -53,12 +61,12 @@ def main():
         history = model.fit(X_train, y_train, epochs=50, batch_size=256, validation_split=0.2, verbose=1)
         
         # Evaluate the model
-        loss, accuracy = model.evaluate(X_train, y_train, verbose=1)
-        print(f"Trial accuracy: {accuracy}")
-        study.add_observation(trial, objective=accuracy)
+        loss, f1 = model.evaluate(X_train, y_train, verbose=1)
+        print(f"Trial F1 score: {f1}")
+        study.add_observation(trial, objective=f1)
         
-        if accuracy > best_accuracy:
-            best_accuracy = accuracy
+        if f1 > best_f1:
+            best_f1 = f1
             best_model = model
             model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.h5')
             print("Best model updated and saved.")
