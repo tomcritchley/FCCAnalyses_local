@@ -28,7 +28,7 @@ def create_model(input_dim, layers, dropout_rate, learning_rate):
         model.add(BatchNormalization())
     model.add(Dense(1, activation='sigmoid'))
     optimizer = Adam(learning_rate=learning_rate)
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=[tf.keras.metrics.F1Score(num_classes=1, threshold=0.5)])
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=[tf.keras.metrics.F1Score(threshold=0.5,name='f1_score')])
     return model
 
 def main():
