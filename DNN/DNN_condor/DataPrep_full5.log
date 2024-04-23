@@ -1,0 +1,58 @@
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:2: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:138: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_test_background['weight'] *= background_weight_scale
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:139: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_test_signal['weight'] *= signal_weight_scale
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1189.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1189.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1204.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1204.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_122.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_122.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1267.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1267.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1437.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_1437.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_144.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_144.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_2161.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_2161.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_2833.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_2833.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_2998.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_2998.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_3188.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_3188.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_4360.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_4360.root'
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_990.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_990.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_1155.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_1155.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_1344.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_1344.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_286.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_286.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_3337.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_3337.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_3640.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_3640.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_3812.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_3812.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_4240.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_4240.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_487.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_487.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_719.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_719.root'
+Error processing file /eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_793.root: [Errno 2] No such file or directory: '/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/chunk_793.root'
+number of training background events surviving filter: 1025480
+number of testing background events surviving filter: 256297
+number of training signal events surviving filter: 25335
+number of testing signal events surviving filter: 6407
+fraction of bkg used in testing = 0.19995443825251974 ...background weight scale = 5.001139303230237
+fraction of sgl used in testing = 0.2018461344590763 ... signal weight scale = 4.954268768534416
+Fraction of background used in training: 0.80005
+Converting RecoElectronTrack_absD0 to a numpy array...
+Converting RecoElectronTrack_absD0sig to a numpy array...
+Converting RecoMissingEnergy_theta to a numpy array...
+Converting RecoMissingEnergy_e to a numpy array...
+Converting RecoElectronTrack_absD0 to a numpy array...
+Converting RecoElectronTrack_absD0sig to a numpy array...
+Converting RecoMissingEnergy_theta to a numpy array...
+Converting RecoMissingEnergy_e to a numpy array...
+Data preparation complete for label: 70GeV_1e-3
