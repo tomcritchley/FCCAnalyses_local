@@ -207,15 +207,15 @@ if __name__ == "__main__":
     initial_bias = np.log([sig/bkg])
 
     model = Sequential([
-        Dense(500, activation='LeakyRelu', input_shape=(X_train.shape[1],)),
+        Dense(500, activation='LeakyReLU', input_shape=(X_train.shape[1],)),
         Dropout(0.21), 
-        Dense(500,activation='LeakyRelu'),
+        Dense(500,activation='LeakyReLU'),
         Dropout(0.21),
-        Dense(250,activation='LeakyRelu'),
+        Dense(250,activation='LeakyReLU'),
         Dropout(0.21),
-        Dense(100,activation='LeakyRelu'),
+        Dense(100,activation='LeakyReLU'),
         Dropout(0.21),
-        Dense(50,activation='LeakyRelu'),
+        Dense(50,activation='LeakyReLU'),
         Dropout(0.21),
         Dense(1, activation='sigmoid')
     ])
