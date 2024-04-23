@@ -22,7 +22,7 @@ def simple_oversample(X_train, y_train, scale_factor):
     y_oversampled = np.hstack([y_train, y_train[repeated_minority_indices]])
     return X_oversampled, y_oversampled
 
-def create_model(input_dim, layers, dropout_rate, learning_rate):
+def create_model(layers, dropout_rate, learning_rate, input_dim):
     model = Sequential()
     for index, layer in enumerate(layers):
         if index == 0:
@@ -32,8 +32,7 @@ def create_model(input_dim, layers, dropout_rate, learning_rate):
         model.add(Dropout(dropout_rate))
         model.add(BatchNormalization())
     model.add(Dense(1, activation='sigmoid'))
-    optimizer = Adam(learning_rate=learning_rate)
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer=Adam(learning_rate=learning_rate), loss='binary_crossentropy', metrics=['accuracy'])
     return model
 
 def plot_grid_search(file, cv_results, grid_param_1, grid_param_2, name_param_1, name_param_2):
@@ -87,15 +86,18 @@ def main():
     input_dim = X_train.shape[1]
     print(f"making keras classifier...")
     model = KerasClassifier(model=create_model, model__input_dim=input_dim, verbose=1)
-
-    # Set up the parameter grid
+    
+    # Model setup for GridSearchCV
+    input_dim = X_train.shape[1]
+    model = KerasClassifier(model=create_model, model__input_dim=input_dim, verbose=1)
+    
     param_grid = {
         'model__layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
         'model__dropout_rate': [0.1, 0.5],
         'model__learning_rate': [0.001, 0.0001],
     }
     print(f"performing grid search...")
-    grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3, verbose=1)
+    grid = GridSearchCV(estimator=model, param_grid=param_grid, cv=3, verbose=1)
     grid_result = grid.fit(X_train, y_train)
     print(f"grid search complete...")
     best_params = grid.best_params_
