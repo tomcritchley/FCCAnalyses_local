@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization, Activation
-from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+#from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+from scikeras.wrappers import KerasClassifier 
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler
 from tensorflow.keras.regularizers import l2
