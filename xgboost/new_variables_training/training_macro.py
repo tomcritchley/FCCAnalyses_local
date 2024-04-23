@@ -168,6 +168,8 @@ if __name__ == "__main__":
         bdt = XGBClassifier(max_depth=3, n_estimators=500)
 
         best_params = grid_search.best_params_
+        print("Best parameters found: ", best_params)
+        print("Best score: {:.2f}".format(grid_search.best_score_))
         bdt = XGBClassifier(**best_params)
         bdt.fit(x, y, sample_weight=w_training)
         sorted_idx = np.argsort(bdt.feature_importances_)[::-1]
