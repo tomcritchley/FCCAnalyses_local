@@ -22,7 +22,7 @@ def simple_oversample(X_train, y_train, scale_factor):
     y_oversampled = np.hstack([y_train, y_train[repeated_minority_indices]])
     return X_oversampled, y_oversampled
 
-def create_model(input_dim, layers=[500, 500, 250, 100, 50], dropout_rate=[0.1, 0.5], learning_rate=0.001):
+def create_model(input_dim, layers, dropout_rate, learning_rate):
     model = Sequential()
     for index, layer in enumerate(layers):
         if index == 0:
