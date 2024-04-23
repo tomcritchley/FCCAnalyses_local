@@ -33,8 +33,7 @@ def create_model(input_dim, layers=[500, 500, 250, 100, 50], dropout_rate=0.21, 
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
     return model
 
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser(description='DNN Training Script')
     parser.add_argument('--label', help='Label for the data', metavar='label')
     args = parser.parse_args()
@@ -48,10 +47,11 @@ if __name__ == "__main__":
     X_train = X_train.astype(np.float32)
     bkg, sig = np.bincount(y_train.astype(int))
     ratio = bkg / sig
-    X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, scale_factor=ratio)
+    X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, ratio)
 
     # Model setup for GridSearchCV
-    model = KerasClassifier(build_fn=lambda: create_model(input_dim=X_train.shape[1]), verbose=1, epochs=50, batch_size=100)
+    input_dim = X_train.shape[1]
+    model = KerasClassifier(build_fn=lambda: create_model(input_dim=input_dim), epochs=50, batch_size=100, verbose=1)
     param_grid = {
         'layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
         'dropout_rate': [0.2, 0.3],
@@ -60,68 +60,22 @@ if __name__ == "__main__":
     }
     grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3, verbose=1)
     grid_result = grid.fit(X_train_oversampled, y_train_oversampled)
+    
+    best_params = grid.best_params_
+    print("Best parameters found:", best_params)
 
     # Results
     print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
     for mean, stdev, param in zip(grid_result.cv_results_['mean_test_score'], grid_result.cv_results_['std_test_score'], grid_result.cv_results_['params']):
         print("%f (%f) with: %r" % (mean, stdev, param))
     
-    # Optionally save the best model
-    grid.best_estimator_.model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.h5')
-    
-    def scheduler(epoch, lr):
-        if epoch < 10:
-            return float(lr)
-        else:
-            return float(lr * tf.math.exp(-0.1))
+    # Final training with best parameters
+    final_model = create_model(input_dim=input_dim, **grid_result.best_params_)
+    final_model.fit(X_train_oversampled, y_train_oversampled, epochs=best_params.get('epochs', 100), batch_size=best_params['batch_size'], validation_split=0.2)
 
-    callbacks = [
-        EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
-        LearningRateScheduler(scheduler)
-    ]
-    
-    history = model.fit(X_train_oversampled, y_train_oversampled, epochs=100, batch_size=256, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
-    
-    def permutation_feature_importance(model, X, y, metric=accuracy_score):
-       
-        original_score = metric(y, model.predict(X).round())
-        feature_importance = np.zeros(X.shape[1])
-        
-        for i in range(X.shape[1]):
-            X_permuted = X.copy()
-            np.random.shuffle(X_permuted[:, i])
-            
-            permuted_score = metric(y, model.predict(X_permuted).round())
-            
-            feature_importance[i] = original_score - permuted_score
+    # Save the final trained model
+    final_model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.h5')
+    print("Model training completed and saved.")
 
-        return feature_importance
-    importances = permutation_feature_importance(model, X_train, y_train)
-    print("Feature importances:", importances)
-
-    ### plotting feature importance ###
-    plt.figure()
-    plt.bar(range(X_train.shape[1]), importances)
-    plt.xlabel('Features')
-    plt.ylabel('Importance')
-    plt.title('Feature Importance')
-    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots5/feature_importance_{file}.pdf')
-    plt.close()
-
-    for metric in ['loss', 'accuracy', 'precision', 'recall', 'prc']:
-        plt.figure()
-        plt.plot(history.history[metric], label=f'Training {metric}')
-        plt.plot(history.history[f'val_{metric}'], label=f'Validation {metric}')
-        plt.title(f'Training and Validation {metric}')
-        plt.xlabel('Epoch')
-        plt.ylabel(metric)
-        plt.legend()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots5/{metric}_{file}.pdf')
-        plt.close()
-
-    print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras')
-    print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
-    print(f"model saved successfully for {file}")
+if __name__ == "__main__":
+    main()
