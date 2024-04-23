@@ -1,7 +1,8 @@
 import numpy as np
 import sherpa
 import shap
-import matplotlib.pylot as plt
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import tensorflow as tf
