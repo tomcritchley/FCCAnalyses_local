@@ -22,7 +22,7 @@ def simple_oversample(X_train, y_train, scale_factor):
     y_oversampled = np.hstack([y_train, y_train[repeated_minority_indices]])
     return X_oversampled, y_oversampled
 
-def create_model(input_dim, layers, dropout_rate, learning_rate):
+def create_model(input_dim, layers=[500, 500, 250, 100, 50], dropout_rate=0.21, learning_rate=0.001):
     model = Sequential()
     for index, layer in enumerate(layers):
         if index == 0:
@@ -86,16 +86,15 @@ def main():
     # Model setup for GridSearchCV
     input_dim = X_train.shape[1]
     print(f"making keras classifier...")
-    model = KerasClassifier(build_fn=create_model(input_dim), verbose=1)
+    model = KerasClassifier(build_fn=lambda: create_model(input_dim=input_dim), verbose=1)
     param_grid = {
         'layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
         'dropout_rate': [0.1, 0.5],
         'learning_rate': [0.001, 0.0001],
-        'batch_size': [28, 1048],
     }
     print(f"performing grid search...")
     grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3, verbose=1)
-    grid_result = grid.fit(X_train, y_train)
+    grid_result = grid.fit(X_train, y_train, epochs=50, batch_size=256)
     print(f"grid search complete...")
     best_params = grid.best_params_
     print("Best parameters found:", best_params)
@@ -105,15 +104,15 @@ def main():
     for mean, stdev, param in zip(grid_result.cv_results_['mean_test_score'], grid_result.cv_results_['std_test_score'], grid_result.cv_results_['params']):
         print("%f (%f) with: %r" % (mean, stdev, param))
     
-    batch_size_range = [28, 1048]
+    dropout_rate_range = [0.1, 0.5]
     learning_rate_range = [0.001, 0.0001]
 
-    plot_grid_search(grid_result.cv_results_, batch_size_range, learning_rate_range, 'Batch Size', 'Learning Rate')
+    plot_grid_search(grid_result.cv_results_, dropout_rate_range, learning_rate_range, 'Dropout rate', 'Learning Rate')
 
     # Final training with best parameters
     print(f"final model being trained...")
     final_model = create_model(input_dim=input_dim, **grid_result.best_params_)
-    final_model.fit(X_train, y_train, epochs=50, batch_size=best_params['batch_size'], validation_split=0.2)
+    final_model.fit(X_train, y_train, epochs=50, batch_size=256, validation_split=0.2)
 
     # Save the final trained model
     final_model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.h5')
