@@ -52,7 +52,6 @@ def main():
 
     input_dim = X_train.shape[1]
     parameters = [
-        sherpa.Discrete('layers', [300, 500]),
         sherpa.Discrete('num_layers', [2, 3, 4, 5]),  # Number of layers
         sherpa.Discrete('nodes_per_layer', [100, 200, 300]),  # Nodes per layer
         sherpa.Continuous('dropout_rate', [0.1, 0.5]),
