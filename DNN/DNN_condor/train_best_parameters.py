@@ -21,7 +21,7 @@ def simple_oversample(X_train, y_train, scale_factor):
     y_oversampled = np.hstack([y_train, y_train[repeated_minority_indices]])
     return X_oversampled, y_oversampled
 
-def create_model(input_dim, layers=[500, 500, 250, 100, 50], dropout_rate=0.21, learning_rate=0.001):
+def create_model(input_dim, layers, dropout_rate, learning_rate):
     model = Sequential()
     for index, layer in enumerate(layers):
         if index == 0:
@@ -63,7 +63,7 @@ def shap_feature_importance(file,model, X_train):
     # Using matplotlib to save the figure
     plt.figure()
     shap.summary_plot(shap_values, X_train[:1000], feature_names=["Feature_" + str(i) for i in range(X_train.shape[1])])
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/best_parameters_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/shapley_{file}.pdf")
     plt.close()
 
 def main():
@@ -84,8 +84,7 @@ def main():
 
     # Model setup for GridSearchCV
     input_dim = X_train.shape[1]
-    model = KerasClassifier(build_fn=lambda: create_model(input_dim=input_dim), epochs=50, batch_size=100, verbose=1)
-    param_grid = {
+    model = KerasClassifier(build_fn=lambda layers, dropout_rate, learning_rate: create_model(input_dim=input_dim, layers=layers, dropout_rate=dropout_rate, learning_rate=learning_rate), verbose=1)    param_grid = {
         'layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
         'dropout_rate': [0.1, 0.5],
         'learning_rate': [0.001, 0.0001],
