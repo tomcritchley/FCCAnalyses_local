@@ -14,6 +14,8 @@ from sklearn.utils import class_weight
 import argparse
 from tensorflow.keras.metrics import AUC
 from imblearn.over_sampling import SMOTE
+import pandas as pd
+import shap
 
 base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 
