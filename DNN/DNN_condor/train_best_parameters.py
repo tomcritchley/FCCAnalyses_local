@@ -92,9 +92,9 @@ def main():
     model = KerasClassifier(model=create_model, model__input_dim=input_dim, verbose=1)
     
     param_grid = {
-        'estimator__layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
-        'estimator__dropout_rate': [0.1, 0.5],
-        'estimator__learning_rate': [0.001, 0.0001],
+        'model__layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
+        'model__dropout_rate': [0.1, 0.5],
+        'model__learning_rate': [0.001, 0.0001],
     }
     print(f"performing grid search...")
     grid = GridSearchCV(estimator=model, param_grid=param_grid, cv=3, verbose=1)
