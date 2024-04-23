@@ -207,15 +207,15 @@ if __name__ == "__main__":
     initial_bias = np.log([sig/bkg])
 
     model = Sequential([
-        Dense(500, activation=LeakyReLU(), input_shape=(X_train.shape[1],)),
+        Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
         Dropout(0.21), 
-        Dense(500,activation=LeakyReLU()),
+        Dense(500,activation='relu'),
         Dropout(0.21),
-        Dense(250,activation=LeakyReLU()),
+        Dense(250,activation='relu'),
         Dropout(0.21),
-        Dense(100,activation=LeakyReLU()),
+        Dense(100,activation='relu'),
         Dropout(0.21),
-        Dense(50,activation=LeakyReLU()),
+        Dense(50,activation='relu'),
         Dropout(0.21),
         Dense(1, activation='sigmoid')
     ])
@@ -232,7 +232,7 @@ if __name__ == "__main__":
 
     # Update callbacks
     callbacks = [
-        EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
+        EarlyStopping(monitor='val_loss', patience=6, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
         LearningRateScheduler(scheduler)
     ]
