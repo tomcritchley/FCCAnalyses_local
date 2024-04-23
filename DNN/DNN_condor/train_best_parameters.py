@@ -84,15 +84,18 @@ def main():
 
     # Model setup for GridSearchCV
     input_dim = X_train.shape[1]
-    model = KerasClassifier(build_fn=lambda layers, dropout_rate, learning_rate: create_model(input_dim=input_dim, layers=layers, dropout_rate=dropout_rate, learning_rate=learning_rate), verbose=1)    param_grid = {
+    print(f"making keras classifier...")
+    model = KerasClassifier(build_fn=lambda layers, dropout_rate, learning_rate: create_model(input_dim=input_dim, layers=layers, dropout_rate=dropout_rate, learning_rate=learning_rate), verbose=1)
+    param_grid = {
         'layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
         'dropout_rate': [0.1, 0.5],
         'learning_rate': [0.001, 0.0001],
         'batch_size': [28, 1048],
     }
+    print(f"performing grid search...")
     grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3, verbose=1)
     grid_result = grid.fit(X_train, y_train)
-    
+    print(f"grid search complete...")
     best_params = grid.best_params_
     print("Best parameters found:", best_params)
 
@@ -107,8 +110,9 @@ def main():
     plot_grid_search(grid_result.cv_results_, batch_size_range, learning_rate_range, 'Batch Size', 'Learning Rate')
 
     # Final training with best parameters
+    print(f"final model being trained...")
     final_model = create_model(input_dim=input_dim, **grid_result.best_params_)
-    final_model.fit(X_train, y_train, epochs=best_params.get('epochs', 100), batch_size=best_params['batch_size'], validation_split=0.2)
+    final_model.fit(X_train, y_train, epochs=50, batch_size=best_params['batch_size'], validation_split=0.2)
 
     # Save the final trained model
     final_model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.h5')
