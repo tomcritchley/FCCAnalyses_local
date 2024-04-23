@@ -86,12 +86,13 @@ def main():
     # Model setup for GridSearchCV
     input_dim = X_train.shape[1]
     print(f"making keras classifier...")
-    model = KerasClassifier(build_fn=lambda: create_model(input_dim=input_dim), verbose=1)
-    param_grid = {
-        'layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
-        'dropout_rate': [0.1, 0.5],
-        'learning_rate': [0.001, 0.0001],
-    }
+    model = KerasClassifier(build_fn=lambda: create_model(input_dim=input_dim), verbose=1, layers= [[500, 500, 250, 100, 50], [300, 300, 150]],dropout_rate=[0.1, 0.5],learning_rate=[0.001, 0.0001])
+    
+    layers= [[500, 500, 250, 100, 50], [300, 300, 150]]
+    dropout_rate=[0.1, 0.5]
+    learning_rate=[0.001, 0.0001]
+    param_grid = dict(layers = layers,dropout_rate=dropout_rate,learning_rate=learning_rate)
+   
     print(f"performing grid search...")
     grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=1, cv=3, verbose=1)
     grid_result = grid.fit(X_train, y_train)
