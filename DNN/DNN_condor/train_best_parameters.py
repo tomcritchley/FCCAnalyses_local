@@ -86,7 +86,7 @@ def main():
     # Model setup for GridSearchCV
     input_dim = X_train.shape[1]
     print(f"making keras classifier...")
-    model = KerasClassifier(build_fn=lambda layers, dropout_rate, learning_rate: create_model(input_dim=input_dim, layers=layers, dropout_rate=dropout_rate, learning_rate=learning_rate), verbose=1)
+    model = KerasClassifier(build_fn=create_model(input_dim), verbose=1)
     param_grid = {
         'layers': [[500, 500, 250, 100, 50], [300, 300, 150]],
         'dropout_rate': [0.1, 0.5],
