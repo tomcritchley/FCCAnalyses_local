@@ -74,7 +74,7 @@ def main():
         batch_size = trial.parameters['batch_size']
         
         model = create_model(input_dim, layers, trial.parameters['dropout_rate'], trial.parameters['learning_rate'])
-        history = model.fit(X_train, y_train, epochs=20, batch_size=batch_size, validation_split=0.2, verbose=1)
+        history = model.fit(X_train, y_train, epochs=12, batch_size=batch_size, validation_split=0.2, verbose=1)
         
         # Evaluate the model
         results = model.evaluate(X_train, y_train, verbose=1)
