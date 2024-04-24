@@ -10,6 +10,7 @@ from  matplotlib import  pyplot
 from DataPreparation_macro import masses, couplings, variables
 import ROOT
 import argparse
+import matplotlib.pyplot as plt
 
 with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/configuration.json') as config_file:
     config = json.load(config_file)
@@ -49,7 +50,6 @@ for mass in masses:
 
 print(labels) #list of labels for the data prepared thing..
 
-# in order to start TMVA                                                                                                          
 ROOT.TMVA.Tools.Instance()
 
 def load_data(signal_filename, background_filename):
@@ -70,14 +70,12 @@ def load_data(signal_filename, background_filename):
             if isinstance(x[i, j], ROOT.VecOps.RVec('float')):
                 x[i, j] = np.array([element for element in x[i, j]])
         
-    # Create labels
     num_sig = x_sig.shape[0]
     num_bkg = x_bkg.shape[0]
     y = np.hstack([np.ones(num_sig), np.zeros(num_bkg)])
  
     cross_sections = data_bkg["cross_section"]
 
-    # Compute weights based on cross-sections
     weights = []
     num_bb = 0
     num_cc = 0
@@ -171,20 +169,49 @@ if __name__ == "__main__":
         print("Best parameters found: ", best_params)
         print("Best score: {:.2f}".format(grid_search.best_score_))
         bdt = XGBClassifier(**best_params)
-        bdt.fit(x, y, sample_weight=w_training)
-        sorted_idx = np.argsort(bdt.feature_importances_)[::-1]
-        plot_importance(bdt, max_num_features = 15)
-        pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/feature_importance_plot_{label}.pdf")
-        pyplot.show()
-        # Save model in TMVA format
+
+        bdt.fit(x, y, sample_weight=w_training, verbose=1)
+        try:
+            feature_names = [
+            r'$\Delta R_{jj}$',
+            r'Dijet $\Psi$',
+            r'$\Delta R_{ejj}$',
+            r'$\sigma_{D_0}$',
+            r'$D_0$',
+            r'Dijet $\phi$',
+            r'Missing Energy $\theta$',
+            r'$E_{\text{miss}}$',
+            r'$E_{e}$',
+            r'Vertex $\chi^2$',
+            r'$n_{\text{Primary Tracks}}$',
+            r'$n_{\text{Tracks}}$'
+            ]
+
+            bdt.get_booster().feature_names = feature_names
+
+            fig, ax = plt.subplots(figsize=(10, 8))
+            plot_importance(bdt.get_booster(), ax=ax, height=0.4, max_num_features=15, show_values=True, importance_type='weight', grid=False)
+
+            ax.set_title('Feature Importance', fontsize=14)
+            ax.set_xlabel('F Score', fontsize=12)
+            ax.set_ylabel('Features', fontsize=12)
+
+            plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/feature_importance_plot_{label}.pdf")
+        except Exception as e:
+            print(f"failed to plot feature importance: {e}")
+
         print("Training done on ",x.shape[0],f"events. Saving model in tmva_{label}.root")
         ROOT.TMVA.Experimental.SaveXGBoost(bdt, "myBDT", f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root", num_inputs=x.shape[1])
-        
-        plot_tree(bdt, num_trees=5, rankdir='LR')  # Adjust num_trees as needed
-        pyplot.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/decision_tree_plot_{label}.pdf")
+        try:
+            plot_tree(bdt, num_trees=3, rankdir='LR')
+            fig = plt.gcf() 
+            fig.set_size_inches(150, 100)
+            fig.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/decision_tree_plot_{label}.pdf")
+        except Exception as e:
+            print(f"something went wrong plotting trees: {e}")
 
         feature_importances = bdt.feature_importances_
-        features = variables  # Assuming 'variables' list is the same order as training data
+        features = variables
         try:
             feature_importance_dict = {f"{feature}": f"{importance}" for feature, importance in zip(features, feature_importances)}
             results_dict = {}
