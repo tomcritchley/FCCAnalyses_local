@@ -98,7 +98,7 @@ def prepare_datasets():
 
 
     #to do 80/20 train test for both signal and background
-    df_train_background, df_test_background = train_test_split(background_df, test_size=0.2, random_state=42)
+    df_train_background, df_test_background = train_test_split(background_df, test_size=0.67, random_state=42)
 
     #80/20 split for training and testing the signal
     df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.2, random_state=42)
