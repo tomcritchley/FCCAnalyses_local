@@ -109,9 +109,14 @@ def prepare_datasets():
     df_test_background = background_df.drop(df_train_background.index)
     """
 
-    df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True)
+    #df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True)
 
-    df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True)
+    #df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True)
+
+    # Concatenate and then shuffle
+    df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True).sample(frac=1).reset_index(drop=True)
+    df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True).sample(frac=1).reset_index(drop=True)
+
     """
     combined_df = pd.concat([signal_df, background_df])
 
