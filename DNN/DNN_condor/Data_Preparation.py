@@ -89,7 +89,7 @@ def prepare_datasets():
     signal_df['label'] = 1
 
     #background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('.root')] #or file.endswith('ejjnu.root')
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('00.root') or file.endswith('ejjnu.root')] #or file.endswith('ejjnu.root')
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
     #Balancing the datasets
@@ -98,10 +98,10 @@ def prepare_datasets():
 
 
     #to do 80/20 train test for both signal and background
-    #df_train_background, df_test_background = train_test_split(background_df, test_size=0.2, random_state=42)
+    df_train_background, df_test_background = train_test_split(background_df, test_size=0.67, random_state=42)
 
     #80/20 split for training and testing the signal
-    #df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.2, random_state=42)
+    df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.2, random_state=42)
     
     #downsampling for the background to reduce class inequality 
     """
@@ -109,14 +109,14 @@ def prepare_datasets():
     df_test_background = background_df.drop(df_train_background.index)
     """
 
-    #df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True)
+    df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True)
 
-    #df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True)
-
+    df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True)
+    """
     combined_df = pd.concat([signal_df, background_df])
 
     df_train, df_test = train_test_split(combined_df, test_size=0.2, random_state=22) #stratify=combined_df['label']
-
+    """
         # Separate back out into signal and background
     df_train_signal = df_train[df_train['label'] == 1]
     df_train_background = df_train[df_train['label'] == 0]
