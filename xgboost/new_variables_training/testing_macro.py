@@ -45,6 +45,15 @@ LR significance is used to count from right most to left most bin, and values to
 significance_directions = ["RL", "LR"]
 bdt_thr = 0.9
 
+def plot_confusion_matrix(y_true, y_pred, threshold=0.5):
+
+    y_pred_labels = (y_pred > threshold).astype(int)
+    cm = confusion_matrix(y_true, y_pred_labels)
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Background', 'Signal'], yticklabels=['Background', 'Signal'])
+    plt.xlabel('Predicted Label')
+    plt.ylabel('True Label')
+    plt.title('Confusion Matrix')
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/CM_{file}.pdf")
 
 ##################################################################################################################
 ###################################### BDT PREDICTIONS ###########################################################
@@ -164,20 +173,24 @@ if __name__ == "__main__":
     plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/raw_bdt_classification_{label}.pdf")
     plt.close()
 
+    plt.clf()
+    plt.figure()
+    plt.hist(S, bins=50, alpha=0.5, color='b', label='Signal',weights=weightsSIG)
+    plt.hist(B, bins=50, alpha=0.5, color='r', label='Background',weights=weightsBKG)
+    plt.xlabel('Predicted Score')
+    plt.ylabel('Log MC events')
+    plt.title('Predicted Scores for Signal and Background Events')
+    plt.yscale('log')
+    plt.legend(loc='upper center')
+    plt.grid(True)
+    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/scaled_bdt_classification_{label}.pdf")
+    plt.close()
+    
     ##################################################################################################################
     ###################################### CONFUSION MATRIX ##########################################################
     ##################################################################################################################
 
-    # Assuming y_pred_np is the predicted labels and y_true is the actual labels
-    cm = confusion_matrix(y_true, (y_pred_np > 0.5).astype(int))
-    plt.clf()
-    plt.figure(figsize=(8, 6))  # Assuming threshold of 0.5 for binary classification
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Background', 'Signal'], yticklabels=['Background', 'Signal'])
-    plt.title('Confusion Matrix')
-    plt.ylabel('True Label')
-    plt.xlabel('Predicted Label')
-    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/raw_confusion_matrix_{label}.pdf")
-    plt.close()
+    plot_confusion_matrix(y_true, y_pred_np, threshold=0.5)
 
     ##################################################################################################################
     ###################################### BDT OUTPUT PLOTS ##########################################################
