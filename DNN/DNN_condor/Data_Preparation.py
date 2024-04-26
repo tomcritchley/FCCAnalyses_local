@@ -65,7 +65,7 @@ def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
 def basic_filter(df):
     return df[
         (df["n_RecoElectrons"] == 1) & 
-        #(df["RecoElectron_lead_e"] > 25) &
+        (df["RecoElectron_lead_e"] > 25) &
         (df["RecoDiJet_angle"] < np.pi) & 
         (df["RecoElectron_DiJet_delta_R"] < 5) &
         (df["RecoDiJet_phi"] < np.pi) & 
@@ -98,26 +98,27 @@ def prepare_datasets():
 
 
     #to do 80/20 train test for both signal and background
+    """
     df_train_background, df_test_background = train_test_split(background_df, test_size=0.67, random_state=42)
 
     #80/20 split for training and testing the signal
     df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.2, random_state=42)
-    
+    """
     #downsampling for the background to reduce class inequality 
     """
     df_train_background = background_df.sample(n=min(n_signal, n_background // 2), random_state=42)
     df_test_background = background_df.drop(df_train_background.index)
     """
 
-    df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True)
+    #df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True)
 
-    df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True)
-    """
+    #df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True)
+
     combined_df = pd.concat([signal_df, background_df])
 
     df_train, df_test = train_test_split(combined_df, test_size=0.2, random_state=22) #stratify=combined_df['label']
-    """
-        # Separate back out into signal and background
+
+    # Separate back out into signal and background
     df_train_signal = df_train[df_train['label'] == 1]
     df_train_background = df_train[df_train['label'] == 0]
     df_test_signal = df_test[df_test['label'] == 1]
