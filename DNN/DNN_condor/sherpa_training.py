@@ -52,9 +52,9 @@ def main():
     input_dim = X_train.shape[1]
 
     parameters = [
-        sherpa.Discrete('num_layers', [2, 3, 4]),  # Number of layers
-        sherpa.Continuous('learning_rate', lower=0.0001, upper=0.001),  # Define bounds clearly
-        sherpa.Discrete('batch_size', [32, 64, 128])  # Batch size
+        sherpa.Discrete('num_layers', range=[2, 3, 4]),  # Number of layers
+        sherpa.Continuous('learning_rate', range=[0.0001, 0.001]),  # Learning rate
+        sherpa.Discrete('batch_size', range=[32, 64, 128])  # Batch size
     ]
 
     algorithm = sherpa.algorithms.GridSearch()
