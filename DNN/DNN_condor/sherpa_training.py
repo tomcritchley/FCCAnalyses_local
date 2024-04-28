@@ -1,4 +1,4 @@
-import numpy as np
+"""import numpy as np
 import sherpa
 import shap
 import matplotlib as mpl
@@ -189,3 +189,62 @@ def main():
 if __name__ == "__main__":
     main()
 
+"""
+
+import numpy as np
+import sherpa
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, BatchNormalization
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.metrics import AUC
+from sklearn.metrics import confusion_matrix
+import argparse
+
+def create_model(input_dim, num_layers, learning_rate):
+    model = Sequential()
+    metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')]
+    for i in range(num_layers):
+        model.add(Dense(50, input_dim=input_dim if i == 0 else None, activation='relu', kernel_regularizer=l2(0.01)))
+        model.add(Dropout(0.2))
+        model.add(BatchNormalization())
+    model.add(Dense(1, activation='sigmoid'))
+    model.compile(optimizer=Adam(learning_rate=learning_rate), loss='binary_crossentropy', metrics=metrics)
+    return model
+
+def main():
+    parser = argparse.ArgumentParser(description='DNN Training Script')
+    parser.add_argument('--label', required=True, help='Label for the data', metavar='label')
+    args = parser.parse_args()
+
+    file = args.label
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/X_train_{file}.npy')
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/y_train_{file}.npy')
+    input_dim = X_train.shape[1]
+
+    parameters = [
+        sherpa.Continuous('learning_rate', [0.0001, 0.001]),
+        sherpa.Discrete('num_layers', [2, 3, 4]),
+        sherpa.Discrete('batch_size', [32, 64, 128])
+    ]
+
+    algorithm = sherpa.algorithms.GridSearch()
+    study = sherpa.Study(parameters=parameters, algorithm=algorithm, lower_is_better=False)
+
+    for trial in study:
+        model = create_model(input_dim, trial.parameters['num_layers'], trial.parameters['learning_rate'])
+        model.fit(X_train, y_train, epochs=12, batch_size=trial.parameters['batch_size'], validation_split=0.2, verbose=1)
+        prc_auc = model.evaluate(X_train, y_train, verbose=0)[model.metrics_names.index('prc')]
+
+        study.add_observation(trial, objective=prc_auc)
+        if prc_auc > study.best_result:
+            model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.h5')
+        study.finalize(trial)
+
+    print(f"Best trial parameters: {study.best_trial.parameters}")
+    print(f"Best trial objective value: {study.best_result}")
+
+if __name__ == "__main__":
+    main()
