@@ -7,7 +7,7 @@ from tensorflow.keras.layers import Dense, Dropout, LeakyReLU, BatchNormalizatio
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.metrics import AUC
-from keras_tuner import RandomSearch, HyperParameters
+from keras_tuner import RandomSearch, HyperParameters, Objective
 import argparse
 import shap
 
@@ -70,16 +70,14 @@ if __name__ == "__main__":
     X_test = X_test.astype(np.float32)
 
     # Assume the loading code for data and other setups are already here
-
     tuner = RandomSearch(
         build_model,
-        objective='val_prc',  # Assuming you're focusing on precision-recall curve
-        max_trials=10,  # Number of variations on hyperparameters
-        executions_per_trial=1,  # Number of models to train for each trial
-        directory='model_tuning',
-        project_name=f'tuning_{args.label}'
+        objective=Objective("val_prc", direction="max"),  # Specify the objective explicitly
+        max_trials=10,  # Number of different hyperparameter combinations to try
+        executions_per_trial=1,  # Number of models that should be constructed for each trial
+        directory='model_tuning',  # Directory where the hyperparameters will be stored
+        project_name='tuning_results'
     )
-
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
     ]
