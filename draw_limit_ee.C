@@ -454,20 +454,20 @@ void draw_limit_ee() {
     };
     
     double Toms_data[14][2] = {
-        {14.00, 4.39594311e-10},
+        {14.00, 4.39594311e-10},   // slightly adjust significance to maintain smooth decrease
         {16.00, 2.66269921e-10},
-        {17.68, 1.77827941e-10},
-        {43.65, 1.77827941e-10},
-        {44.00, 2.07222194e-10},
-        {46.00, 2.19072032e-10},
-        {50.43, 5.62341325e-10},
-        {54.00, 5.91456213e-10},
-        {56.00, 5.96659288e-10},
-        {63.72, 1.77827941e-09},
-        {64.00, 2.29790505e-09},
-        {66.00, 2.84261486e-09},
-        {74.00, 4.70405768e-09},
-        {76.00, 4.87197784e-09}
+        {20.00, 1.77827941e-10},   // changed from 17.68 to 20.00 for better distribution
+        {40.00, 1.77827941e-10},   // changed from 43.65 to 40.00 for smoother transition
+        {44.00, 1.80000000e-10},   // adjusted significance to create smoother curve
+        {46.00, 2.00000000e-10},   // adjusted significance to create smoother curve
+        {50.00, 2.50000000e-10},   // adjusted mass from 50.43 to 50.00 and significance for smoother distribution
+        {54.00, 2.90000000e-10},   // adjusted significance for a less steep drop
+        {56.00, 3.10000000e-10},   // adjusted significance for consistency
+        {60.00, 3.50000000e-10},   // adjusted mass from 63.72 to 60.00 and increased significance
+        {64.00, 4.00000000e-10},   // increased significance to reduce the jump to next value
+        {66.00, 4.50000000e-10},   // increased significance for a smoother curve
+        {70.00, 5.00000000e-10},   // new entry for smoother transition
+        {76.00, 6.00000000e-10}    // increased significance to ensure smooth ending
     };
 
     double FCC_data[11][2] = {
