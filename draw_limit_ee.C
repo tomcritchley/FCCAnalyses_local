@@ -432,7 +432,7 @@ void draw_limit_ee() {
     {20.003023646206795, 0.00022453194817335833}
     };
 
-    double Toms_data[18][2] = {
+    double Toms_data_10[18][2] = {
         {1.40000000e+01, 1.53671173e-08},
         {1.60000000e+01, 1.53681360e-08},
         {1.81827135e+01, 1.77827941e-08},
@@ -451,6 +451,23 @@ void draw_limit_ee() {
         {6.60000000e+01, 6.64141888e-07},
         {7.40000000e+01, 1.01443401e-06},
         {7.60000000e+01, 1.03666213e-06}
+    };
+    
+    double Toms_data[14][2] = {
+        {14.00, 4.39594311e-10},
+        {16.00, 2.66269921e-10},
+        {17.68, 1.77827941e-10},
+        {43.65, 1.77827941e-10},
+        {44.00, 2.07222194e-10},
+        {46.00, 2.19072032e-10},
+        {50.43, 5.62341325e-10},
+        {54.00, 5.91456213e-10},
+        {56.00, 5.96659288e-10},
+        {63.72, 1.77827941e-09},
+        {64.00, 2.29790505e-09},
+        {66.00, 2.84261486e-09},
+        {74.00, 4.70405768e-09},
+        {76.00, 4.87197784e-09}
     };
 
     double FCC_data[11][2] = {
@@ -549,7 +566,7 @@ void draw_limit_ee() {
     TGraph ATLAS_schan_8tev_gr(rows4);
     TGraph ATLAS_ttbar_gr(rows5);
 
-    TGraph Toms_data_gr(18);
+    TGraph Toms_data_gr(14);
     TGraph seesaw_data_gr(11);
     TGraph FCC_data_gr(11);
 
@@ -571,7 +588,7 @@ void draw_limit_ee() {
     }
     
     // Fill the TGraphs with data from the arrays
-    for (int i = 0; i < 18; ++i) {
+    for (int i = 0; i < 14; ++i) {
         Toms_data_gr.SetPoint(i, Toms_data[i][0], Toms_data[i][1]);
     }
     for (int i = 0; i < 11; ++i) {
@@ -683,8 +700,8 @@ void draw_limit_ee() {
     legend.SetNColumns(1);
     
     legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
-    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 240 ab^{-1}}}}", "l");
-    legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 10 fb^{-1}}", "l");
+    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 150 ab^{-1}}}}", "l");
+    legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
     legend.AddEntry(&seesaw_data_gr, "#splitline{Type I seesaw limit}{arXiv:2307.01190}", "l");
 
     
@@ -718,6 +735,6 @@ void draw_limit_ee() {
 
     canvas.Update();
 
-    canvas.SaveAs("LimitSummary_ee_cms_bdt_fcc.pdf");
+    canvas.SaveAs("LimitSummary_ee_cms_bdt_fcc_150ab.pdf");
 
 }
