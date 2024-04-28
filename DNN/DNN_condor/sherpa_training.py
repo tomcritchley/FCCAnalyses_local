@@ -100,3 +100,92 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+import numpy as np
+import sherpa
+import shap
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout, BatchNormalization
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.metrics import AUC
+from sklearn.metrics import confusion_matrix
+import argparse
+
+# Define the model creation function
+def create_model(input_dim, num_layers, learning_rate):
+    model = Sequential()
+    metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')]
+    for i in range(num_layers):
+        model.add(Dense(50, input_dim=input_dim if i == 0 else None, activation='relu', kernel_regularizer=l2(0.01)))
+        model.add(Dropout(0.2))
+        model.add(BatchNormalization())
+    model.add(Dense(1, activation='sigmoid'))
+    model.compile(optimizer=Adam(learning_rate=learning_rate), loss='binary_crossentropy', metrics=metrics)
+    return model
+
+# Define the SHAP feature importance function
+def shap_feature_importance(file, model, X_train):
+    explainer = shap.DeepExplainer(model, X_train[:1000])
+    shap_values = explainer.shap_values(X_train[:1000])
+    plt.figure()
+    shap.summary_plot(shap_values, X_train[:1000], feature_names=["Feature_" + str(i) for i in range(X_train.shape[1])])
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/shapley_{file}.pdf")
+    plt.close()
+
+def main():
+    parser = argparse.ArgumentParser(description='DNN Training Script')
+    parser.add_argument('--label', required=True, help='Label for the data', metavar='label')
+    args = parser.parse_args()
+
+    # Load data
+    file = args.label
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/X_train_{file}.npy')
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/y_train_{file}.npy')
+    input_dim = X_train.shape[1]
+
+    # Define hyperparameter space using the sherpa.Parameter.grid() method
+    hp_space = {'num_layers': [2, 3, 4],
+                'learning_rate': [0.0001, 0.001],
+                'batch_size': [32, 64, 128]}
+    parameters = sherpa.Parameter.grid(hp_space)
+    
+    # Create the GridSearch algorithm instance
+    alg = sherpa.algorithms.GridSearch()
+
+    # Initialize the Sherpa study
+    study = sherpa.Study(parameters=parameters, algorithm=alg, lower_is_better=False)
+
+    best_prc_auc = 0
+    best_model = None
+
+    for trial in study:
+        print(f"Testing parameters: {trial.parameters}")
+        model = create_model(input_dim, trial.parameters['num_layers'], trial.parameters['learning_rate'])
+        history = model.fit(X_train, y_train, epochs=12, batch_size=trial.parameters['batch_size'], validation_split=0.2, verbose=1)
+        results = model.evaluate(X_train, y_train, verbose=1)
+        prc_auc = results[model.metrics_names.index('prc')]
+
+        study.add_observation(trial, objective=prc_auc)
+        if prc_auc > best_prc_auc:
+            best_prc_auc = prc_auc
+            best_model = model
+            model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
+            print("Best model updated and saved.")
+
+        study.finalize_trial(trial)
+
+    study.finalize_study()
+
+    best_trial = study.get_best_result()
+    print(f"Best trial parameters: {best_trial.parameters}")
+    print(f"Best trial objective value: {best_trial.objective}")
+
+    shap_feature_importance(file, best_model, X_train)
+
+if __name__ == "__main__":
+    main()
+
