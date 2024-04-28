@@ -454,22 +454,22 @@ void draw_limit_ee() {
     };
     
     double Toms_data[14][2] = {
-        {14.00, 4.39594311e-10},   // keep as it provides baseline continuity
-        {16.00, 2.66269921e-10},   // keep as it provides baseline continuity
-        {20.00, 1.77827941e-10},   // adjusted for smoother distribution
-        {40.00, 1.77827941e-10},   // smoothed transition
-        {44.00, 1.80000000e-10},   // minor adjustment for smoother curve
-        {46.00, 2.00000000e-10},   // minor adjustment for smoother curve
-        {50.00, 2.50000000e-10},   // smoother distribution
-        {54.00, 2.90000000e-10},   // consistent minor increase
-        {56.00, 3.10000000e-10},   // preparing for inflection point
-        {60.00, 3.00000000e-10},   // slightly lower to create a noticeable trend reversal
-        {64.00, 3.20000000e-10},   // starting to increase again
-        {66.00, 3.40000000e-10},   // continuation of increase
-        {70.00, 3.70000000e-10},   // further increase
-        {76.00, 4.00000000e-10}    // continued increase to show a clear upward trend
+        {14.00, 4.39594311e-10},
+        {16.00, 2.66269921e-10},
+        {17.68, 1.77827941e-10},
+        {43.65, 1.77827941e-10},
+        {44.00, 2.07222194e-10},
+        {46.00, 2.19072032e-10},
+        {50.43, 5.62341325e-10},
+        {54.00, 5.91456213e-10},
+        {56.00, 5.96659288e-10},
+        {63.72, 1.77827941e-09},
+        {64.00, 2.29790505e-09},
+        {66.00, 2.84261486e-09},
+        {74.00, 4.70405768e-09},
+        {76.00, 6.87197784e-09}
     };
-    
+
     double FCC_data[11][2] = {
         {2.061048259467534, 4.6735624598e-06},
         {2.911086125854431, 1.3458936601e-06},
