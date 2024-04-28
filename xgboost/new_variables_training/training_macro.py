@@ -171,6 +171,8 @@ if __name__ == "__main__":
         bdt = XGBClassifier(**best_params)
 
         bdt.fit(x, y, sample_weight=w_training, verbose=1)
+        print("Training done on ",x.shape[0],f"events. Saving model in tmva_{label}.root")
+        ROOT.TMVA.Experimental.SaveXGBoost(bdt, "myBDT", f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root", num_inputs=x.shape[1])
         try:
             feature_names = [
             r'$\Delta R_{jj}$',
@@ -179,7 +181,7 @@ if __name__ == "__main__":
             r'$\sigma_{D_0}$',
             r'$D_0$',
             r'Dijet $\phi$',
-            r'Missing Energy $\theta$',
+            r'E_{\text{miss}} $\theta$',
             r'$E_{\text{miss}}$',
             r'$E_{e}$',
             r'Vertex $\chi^2$',
@@ -200,8 +202,6 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"failed to plot feature importance: {e}")
 
-        print("Training done on ",x.shape[0],f"events. Saving model in tmva_{label}.root")
-        ROOT.TMVA.Experimental.SaveXGBoost(bdt, "myBDT", f"/eos/user/t/tcritchl/xgBOOST/trained_models{run}/tmva_{label}.root", num_inputs=x.shape[1])
         try:
             plot_tree(bdt, num_trees=3, rankdir='LR')
             fig = plt.gcf() 

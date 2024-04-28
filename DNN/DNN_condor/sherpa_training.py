@@ -14,6 +14,94 @@ from tensorflow.keras.metrics import AUC
 from sklearn.metrics import confusion_matrix, roc_curve, auc
 import argparse
 
+def create_model(input_dim, num_layers, learning_rate):
+    model = Sequential()
+    metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')]
+    # Initialize layers based on the number of layers
+    for i in range(num_layers):
+        # Add Dense layers
+        if i == 0:
+            model.add(Dense(50, input_dim=input_dim, activation='relu', kernel_regularizer=l2(0.01)))  # Using a fixed number of nodes
+        else:
+            model.add(Dense(50, activation='relu', kernel_regularizer=l2(0.01)))  # Using a fixed number of nodes
+        model.add(Dropout(0.2))  # Using a fixed dropout rate
+        model.add(BatchNormalization())
+    model.add(Dense(1, activation='sigmoid'))
+    optimizer = Adam(learning_rate=learning_rate)
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=metrics)
+    return model
+
+def shap_feature_importance(file,model, X_train):
+    explainer = shap.DeepExplainer(model, X_train[:1000])  # Using 100 samples as the background dataset for approximation
+    shap_values = explainer.shap_values(X_train[:1000])
+    # Using matplotlib to save the figure
+    plt.figure()
+    shap.summary_plot(shap_values, X_train[:1000], feature_names=["Feature_" + str(i) for i in range(X_train.shape[1])])
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/shapley_{file}.pdf")
+    plt.close()
+
+def main():
+    parser = argparse.ArgumentParser(description='DNN Training Script')
+    parser.add_argument('--label', required=True, help='Label for the data', metavar='label')
+    args = parser.parse_args()
+
+    # Load data
+    file = args.label
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/X_train_{file}.npy')
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training5/y_train_{file}.npy')
+    input_dim = X_train.shape[1]
+
+    parameters = [
+        sherpa.Discrete('num_layers', [2, 3, 4]),  # Number of layers
+        sherpa.Continuous('learning_rate', [0.0001, 0.001]),  # Learning rate
+        sherpa.Discrete('batch_size', [32, 64, 128])  # Batch size
+    ]
+
+    algorithm = sherpa.algorithms.GridSearch()
+    study = sherpa.Study(parameters=parameters, algorithm=algorithm, lower_is_better=False)
+
+    for trial in study:
+        print(f"Testing parameters: {trial.parameters}")
+        model = create_model(input_dim, trial.parameters['num_layers'], trial.parameters['learning_rate'])
+        history = model.fit(X_train, y_train, epochs=12, batch_size=trial.parameters['batch_size'], validation_split=0.2, verbose=1)
+
+        # Evaluate model to find the best one
+        results = model.evaluate(X_train, y_train, verbose=1)
+        metric_index = model.metrics_names.index('prc')  # Assuming 'prc' (Precision-Recall curve AUC) is used as the primary metric
+        prc_auc = results[metric_index]
+        study.add_observation(trial, objective=prc_auc)
+
+        if study.should_trial_stop(trial):
+            study.finalize(trial)
+
+            y_pred = model.predict_classes(X_train)
+            cm = confusion_matrix(y_train, y_pred)
+            plt.clf()
+            plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+            plt.title('Confusion Matrix')
+            plt.colorbar()
+            plt.xlabel('Predicted label')
+            plt.ylabel('True label')
+            plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/conf_training_{file}.pdf")
+            plt.close()
+            model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
+            break
+
+        study.finalize(trial)
+
+    best_trial = study.get_best_result()
+    print(f"Best trial parameters: {best_trial.parameters}")
+    print(f"Best trial objective value: {best_trial.objective}")
+
+    print(f"shapley feature importance...")
+
+    shap_feature_importance(file, model, X_train)
+
+if __name__ == "__main__":
+    main()
+
+
+
 def create_model(input_dim, layers, dropout_rate, learning_rate):
     
     metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')]
