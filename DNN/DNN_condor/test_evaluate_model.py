@@ -77,7 +77,8 @@ if __name__ == "__main__":
     weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing5/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
+    #model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
