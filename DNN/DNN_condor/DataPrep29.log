@@ -1,0 +1,37 @@
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:2: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:143: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_test_background['weight'] *= background_weight_scale
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Data_Preparation.py:144: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_test_signal['weight'] *= signal_weight_scale
+Error processing file /eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_3900.root: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91/chunk_3900.root'
+number of training background events surviving filter: 458056
+number of testing background events surviving filter: 114515
+number of training signal events surviving filter: 38320
+number of testing signal events surviving filter: 9581
+fraction of bkg used in testing = 0.20000139720663465 ...background weight scale = 4.999965070078155
+fraction of sgl used in testing = 0.20001670111271164 ... signal weight scale = 4.999582507045194
+Fraction of background used in training: 0.80000
+Converting RecoElectronTrack_absD0 to a numpy array...
+Converting RecoElectronTrack_absD0sig to a numpy array...
+Converting RecoMissingEnergy_theta to a numpy array...
+Converting RecoMissingEnergy_e to a numpy array...
+Converting RecoElectronTrack_absD0 to a numpy array...
+Converting RecoElectronTrack_absD0sig to a numpy array...
+Converting RecoMissingEnergy_theta to a numpy array...
+Converting RecoMissingEnergy_e to a numpy array...
+Data preparation complete for label: 70GeV_1e-3

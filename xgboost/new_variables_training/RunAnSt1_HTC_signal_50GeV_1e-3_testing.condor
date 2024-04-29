@@ -1,0 +1,13 @@
+#!/bin/bash
+executable     = ./RunAnSt1_HTC_signal_50GeV_1e-3_testing.sh
+universe       = vanilla
+arguments      = $(ClusterId) $(ProcId)
+output         = bdt_testing_signal_50GeV_1e-3.$(ClusterId).$(ProcId).out
+error          = bdt_testing_signal_50GeV_1e-3.$(ClusterId).$(ProcId).error
+log            = bdt_testing_signal_50GeV_1e-3.$(ClusterId).$(ProcId).log
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
+requirements   = (OpSysAndVer =?= "CentOS7")
++JobFlavour    = "workday"
+queue
