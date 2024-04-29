@@ -78,7 +78,7 @@ if __name__ == "__main__":
     print(f"data loaded for {file}!")
     print(f"loading model....")
     #model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
