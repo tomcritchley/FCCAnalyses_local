@@ -17,7 +17,7 @@ def build_model(hp):
                     input_dim=X_train.shape[1], activation='relu'))
     model.add(Dropout(0.2))
     
-    for i in range(hp.Int('num_layers', 1, 3)):
+    for i in range(hp.Int('num_layers', 1, 5)):
         model.add(Dense(units=hp.Int(f'units_{i}', min_value=32, max_value=512, step=32),
                         activation='relu'))
         model.add(Dropout(0.2))
@@ -25,7 +25,7 @@ def build_model(hp):
     model.add(Dense(1, activation='sigmoid'))
     
     model.compile(optimizer=keras.optimizers.Adam(
-                  hp.Float('learning_rate', min_value=1e-4, max_value=1e-2, sampling='log')),
+                  hp.Float('learning_rate', min_value=1e-5, max_value=1e-2, sampling='log')),
                   loss='binary_crossentropy',
                   metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
     
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     tuner = RandomSearch(
         build_model,
         objective=Objective("val_prc", direction="max"),  # Specify the objective explicitly
-        max_trials=10,  # Number of different hyperparameter combinations to try
+        max_trials=15,  # Number of different hyperparameter combinations to try
         executions_per_trial=1,  # Number of models that should be constructed for each trial
         directory='model_tuning',  # Directory where the hyperparameters will be stored
         project_name='tuning_results'
@@ -112,9 +112,8 @@ if __name__ == "__main__":
     best_model = tuner.get_best_models(num_models=1)[0]
     
     # Save the best model
-    best_model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{args.label}.keras')
+    best_model.save(f'/eos/user/t/tcritchl/DNN/trained_models5/gridsearch_best_model_{args.label}.keras')
     
     print("Best model saved successfully.")
-    # Evaluate the best model on the test set, plot results, etc.
 
     shap_feature_importance(file, best_model, X_train) 
