@@ -151,12 +151,43 @@ if __name__ == "__main__":
     plt.hist(y_pred_signal, bins=50, alpha=0.5, color='b', label='Signal')
     plt.hist(y_pred_background, bins=50, alpha=0.5, color='r', label='Background')
     plt.xlabel('Predicted Score')
-    plt.ylabel('Log MC events')
-    plt.title('Predicted Scores for Signal and Background Events')
+    plt.ylabel('MC events')
+    plt.title('Raw Predicted Scores for Signal and Background Events')
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/raw_dnn_classification_{file}.pdf")
+
+
+    weightsSIG = weights_test[y_test == 1] 
+    weightsBKG = weights_test[y_test == 0]
+    # Plot histogram of predicted scores for signal and background events WEIGHTED 10fb^-1 ##
+    plt.figure()
+    plt.clf()
+    plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=weightsSIG)
+    plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=weightsBKG)
+    plt.xlabel('Predicted Score')
+    plt.ylabel('Weighted MC events')
+    plt.title('Weighted Predicted Scores for Signal and Background Events at 10 fb')
+    plt.yscale('log')
+    plt.legend(loc='upper center')
+    plt.grid(True)
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/scaled_dnn10fb_{file}.pdf")
+    plt.close()
+
+    # Plot histogram of predicted scores for signal and background events WEIGHTED 150 ab^-1 ##
+    plt.figure()
+    plt.clf()
+    plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=(weightsSIG*15000))
+    plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=(weightsBKG*15000))
+    plt.xlabel('Predicted Score')
+    plt.ylabel('Weighted MC events')
+    plt.title('Weighted Predicted Scores for Signal and Background Events at 150 ab')
+    plt.yscale('log')
+    plt.legend(loc='upper center')
+    plt.grid(True)
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/scaled_dnn_150ab_{file}.pdf")
+    plt.close()
 
     bin_width = 0.0001 #in the region of interest, binning resolution
     
@@ -168,9 +199,6 @@ if __name__ == "__main__":
 
     S = y_pred_signal
     B = y_pred_background
-
-    weightsSIG = weights_test[y_test == 1] #previously was *5 -> now weights column should dynmaically account for fraction used 
-    weightsBKG = weights_test[y_test == 0] #previously was *5 -> now weights column should dynmaically account for fraction used 
 
     target_luminosity = 10000
 
@@ -299,7 +327,7 @@ if __name__ == "__main__":
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run5_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_Run5_10fb_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:
