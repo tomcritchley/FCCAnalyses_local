@@ -1,0 +1,81 @@
+2024-04-29 07:41:58.233072: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-04-29 07:42:01.054932: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-04-29 07:42:10.753670: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-04-29 07:42:30.372571: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/keras/src/layers/core/dense.py:88: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/keras/src/saving/saving_lib.py:396: UserWarning: Skipping variable loading for optimizer 'adam', because it has 2 variables whereas the saved optimizer has 18 variables. 
+  trackable.load_own_variables(weights_store.get(inner_path))
+Data types and shapes:
+X_train: float64 (657881, 10)
+y_train: int64 (657881,)
+X_test: float64 (1202319, 10)
+y_test: int64 (1202319,)
+
+Sample of the data:
+X_train sample: [[-1.85365969e-01  3.76184074e-01  1.09439751e-01 -7.69871280e-01
+   6.70028593e-01  1.71188833e+00 -9.41595177e-01 -1.24921640e-03
+   4.46099213e-01  7.85280473e-01]
+ [-7.32750890e-01 -1.76355715e+00 -7.52892354e-02 -1.17269503e+00
+   4.49965025e-01  1.65148206e-01 -6.05092575e-01 -1.24921640e-03
+  -1.57898896e+00 -5.40202579e-01]
+ [ 1.40361766e+00  5.40264390e-01 -1.64489310e-02 -6.86303964e-01
+  -1.38901651e+00 -3.56556972e-02 -9.42686753e-01 -1.24921640e-03
+   7.79013634e-02 -7.05887960e-01]
+ [ 4.33647198e-01  1.26798342e-01  8.05073099e-02  1.02610507e+00
+  -7.66524206e-01 -5.54500201e-01 -5.95753903e-01 -1.24921640e-03
+  -2.90296486e-01  6.19595091e-01]
+ [ 7.95994254e-01 -1.41495955e+00 -8.12845311e-02  1.30157012e-01
+   1.93698674e+00  5.78312309e-01 -4.93123425e-01 -1.24921640e-03
+   6.30198138e-01 -5.40202579e-01]]
+y_train sample: [0 0 0 0 0]
+X_test sample: [[-3.50208051e-01 -2.69547447e+00 -8.40147336e-02  1.00353466e+00
+  -2.45554159e-01  1.54048956e+00  5.84126772e-01 -1.24921640e-03
+   7.79013634e-02 -8.71573342e-01]
+ [-2.51368673e-01 -3.77554058e+00 -8.20618725e-02  1.14143604e+00
+   6.99200269e-02  1.13247744e-02 -7.64512446e-01 -1.24921605e-03
+  -1.21079111e+00 -2.08831816e-01]
+ [-3.57401948e-01 -1.28950466e-01 -4.25040692e-02  1.53178886e+00
+  -3.92863661e-01 -5.40158672e-01  9.34946839e-01 -1.24921640e-03
+  -1.57898896e+00 -8.71573342e-01]
+ [ 1.95512347e+00  1.24563634e+00  1.13128956e-01 -4.99029154e-02
+   1.46873723e+00  4.49506277e-01 -5.12710260e-01 -1.24921640e-03
+  -1.02669219e+00 -1.20294410e+00]
+ [-5.82203861e-01 -1.22596786e-01  1.97168784e-01 -4.49825229e-01
+  -4.31787022e-01  2.44992667e-01  1.21876011e+00 -1.24921640e-03
+   4.46099213e-01  6.19595091e-01]]
+y_test sample: [1 0 0 0 0]
+Reloading Tuner from model_tuning/tuning_results/tuner0.json
+Average class probability in training set:   0.1139
+Average class probability in validation set: 0.1146
+Average class probability in test set:       0.0156
+Best model saved successfully.
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/hyperparameter.py", line 120, in <module>
+    shap_feature_importance(file, best_model, X_train) 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/hyperparameter.py", line 54, in shap_feature_importance
+    shap_values = explainer.shap_values(background)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/shap/explainers/_gradient.py", line 158, in shap_values
+    return self.explainer.shap_values(X, nsamples, ranked_outputs, output_rank_order, rseed, return_variances)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/shap/explainers/_gradient.py", line 322, in shap_values
+    grads.append(self.run(self.gradient(find), self.model_inputs, batch))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/shap/explainers/_gradient.py", line 395, in run
+    return out(inputs)
+           ^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/tensorflow/python/util/traceback_utils.py", line 153, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/tmp/tcritchl/__autograph_generated_file9773uq5e.py", line 12, in tf__grad_graph
+    phase = ag__.converted_call(ag__.ld(tf).keras.backend.learning_phase, (), None, fscope)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: in user code:
+
+    File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/shap/explainers/_gradient.py", line 231, in grad_graph  *
+        phase = tf.keras.backend.learning_phase()
+
+    AttributeError: module 'keras._tf_keras.keras.backend' has no attribute 'learning_phase'
+
