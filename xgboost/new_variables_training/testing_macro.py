@@ -386,7 +386,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"An error occurred: {e}")
 
-    json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/LLP_study/xgboost_run{run}_{args.label}.json"
+    json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/xgboost_run{run}_{args.label}.json"
 
     try:
         with open(json_file_path, 'w') as json_file:
