@@ -48,6 +48,13 @@ bdt_thr = 0.9
 def plot_confusion_matrix(y_true, y_pred, threshold=0.5):
 
     y_pred_labels = (y_pred > threshold).astype(int)
+    print(f"Number of signal samples: {np.sum(y_true == 1)}")
+    print(f"Number of background samples: {np.sum(y_true == 0)}")
+    print(f"Number of signal samples predicted correctly: {np.sum(y_pred > 0.5)}")
+    print(f"Number of signal samples falsely labelled as background: {np.sum((y_pred < 0.5) & (y_true == 1))}")
+    print(f"Number of background samples pedcited correctly: {np.sum(y_pred < 0.5)}")
+    print(f"Number of background samples falsely labelled as signal: {np.sum((y_pred > 0.5) & (y_true == 0))}")
+
     cm = confusion_matrix(y_true, y_pred_labels)
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Background', 'Signal'], yticklabels=['Background', 'Signal'])
     plt.xlabel('Predicted Label')
