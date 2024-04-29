@@ -32,14 +32,32 @@ def build_model(hp):
     return model
 
 
-def shap_feature_importance(file,model, X_train):
-    explainer = shap.DeepExplainer(model, X_train[:1000])  # Using 100 samples as the background dataset for approximation
-    shap_values = explainer.shap_values(X_train[:1000])
-    # Using matplotlib to save the figure
+def shap_feature_importance(file, model, X_train):
+
+    feature_names = [
+        r'$\Delta R_{jj}$',
+        r'$\Delta R_{ejj}$',
+        r'$D_0$',
+        r'Dijet $\phi$',
+        r'E_{\text{miss}} $\theta$',
+        r'$E_{\text{miss}}$',
+        r'$E_{e}$',
+        r'Vertex $\chi^2$',
+        r'$n_{\text{Primary Tracks}}$',
+        r'$n_{\text{Tracks}}$'
+    ]
+
+    background = X_train[:1000].astype(np.float32)
+    
+    explainer = shap.GradientExplainer(model, background)
+    
+    shap_values = explainer.shap_values(background)
+    
     plt.figure()
-    shap.summary_plot(shap_values, X_train[:1000], feature_names=["Feature_" + str(i) for i in range(X_train.shape[1])])
+    shap.summary_plot(shap_values, background, feature_names=feature_names)
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots5/shapley_{file}.pdf")
     plt.close()
+
 
 if __name__ == "__main__":
 
