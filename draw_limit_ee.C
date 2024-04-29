@@ -733,7 +733,7 @@ void draw_limit_ee() {
     
     legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
     legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 150 ab^{-1}}}}", "l");
-    legend.AddEntry(&Toms_data_gr, "#splitline{Cut and Count}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
+    legend.AddEntry(&cut_count_data_gr, "#splitline{Cut and Count}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
     legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
     legend.AddEntry(&seesaw_data_gr, "#splitline{Type I seesaw limit}{arXiv:2307.01190}", "l");
 
