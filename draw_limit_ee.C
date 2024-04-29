@@ -617,7 +617,7 @@ void draw_limit_ee() {
     }
     // Fill the TGraphs with data from the arrays
     for (int i = 0; i < 19; ++i) {
-        cut_count_data_gr.SetPoint(i, Toms_data[i][0], Toms_data[i][1]);
+        cut_count_data_gr.SetPoint(i, cut_count_data[i][0], cut_count_data[i][1]);
     }
     for (int i = 0; i < 11; ++i) {
         FCC_data_gr.SetPoint(i, FCC_data[i][0], FCC_data[i][1]);
