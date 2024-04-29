@@ -489,6 +489,29 @@ void draw_limit_ee() {
         //{72.81714642744059, 2.6133786460e-03}
     };
 
+    double cut_count_data[19][2] = {
+        {14.110535405872199, 3.125531339246461e-9},
+        {15.803108808290158, 5.445535694844776e-9},
+        {19.430051813471508, 1.0663966736201697e-8},
+        {22.089810017271162, 1.6054018398003585e-8},
+        {23.66148531951641, 3.746313013548914e-8},
+        {26.079447322970637, 5.477453258234018e-8},
+        {29.101899827288428, 5.017733762379897e-8},
+        {32.72884283246977, 4.0895462761051756e-8},
+        {36.476683937823836, 3.053314735139863e-8},
+        {41.07081174438687, 2.6382733889318648e-8},
+        {47.35751295336787, 2.4885082581475827e-8},
+        {51.83074265975821, 3.237071441245475e-8},
+        {55.33678756476683, 4.596598258922372e-8},
+        {59.56822107081175, 5.97929177133309e-8},
+        {65.49222797927462, 7.553923613064711e-8},
+        {68.99827288428324, 1.2413911057216107e-7},
+        {71.7789291882556, 1.9242609181034384e-7},
+        {73.71329879101899, 3.256044677068579e-7},
+        {75.76856649395509, 6.37629685555402e-7}
+    };
+
+
     double seesaw_data[11][2] = {
         {10,3.2576539150477266e-12},
         {11.878630004490203,2.815571801077394e-12},
@@ -567,6 +590,7 @@ void draw_limit_ee() {
     TGraph ATLAS_ttbar_gr(rows5);
 
     TGraph Toms_data_gr(14);
+    TGraph cut_count_data_gr(19);
     TGraph seesaw_data_gr(11);
     TGraph FCC_data_gr(11);
 
@@ -590,6 +614,10 @@ void draw_limit_ee() {
     // Fill the TGraphs with data from the arrays
     for (int i = 0; i < 14; ++i) {
         Toms_data_gr.SetPoint(i, Toms_data[i][0], Toms_data[i][1]);
+    }
+    // Fill the TGraphs with data from the arrays
+    for (int i = 0; i < 19; ++i) {
+        cut_count_data_gr.SetPoint(i, Toms_data[i][0], Toms_data[i][1]);
     }
     for (int i = 0; i < 11; ++i) {
         FCC_data_gr.SetPoint(i, FCC_data[i][0], FCC_data[i][1]);
@@ -655,6 +683,9 @@ void draw_limit_ee() {
     Toms_data_gr.SetLineColor(kRed);  
     Toms_data_gr.SetLineWidth(2);
     Toms_data_gr.SetLineStyle(1);
+    cut_count_data_gr.SetLineColor(kGreen);  
+    cut_count_data_gr.SetLineWidth(2);
+    cut_count_data_gr.SetLineStyle(1);
     FCC_data_gr.SetLineColor(kMagenta); 
     FCC_data_gr.SetLineWidth(2);
     FCC_data_gr.SetLineStyle(1);
@@ -673,6 +704,7 @@ void draw_limit_ee() {
     // Draw the graphs
 
     Toms_data_gr.Draw("AL"); 
+    cut_count_data_gr.Draw("L SAME");
     seesaw_data_gr.Draw("L SAME"); 
     FCC_data_gr.Draw("L SAME"); 
     for (int i = 0; i < num_segments; ++i) {
@@ -690,7 +722,7 @@ void draw_limit_ee() {
     Toms_data_gr.SetTitle("");
 
     // Create a legend
-    TLegend legend(0.71, 0.26, 0.95, 0.65); // for tchan
+    TLegend legend(0.71, 0.12, 0.95, 0.65); // for tchan
     legend.SetFillColor(0);
     legend.SetBorderSize(0);
     legend.SetTextSize(0.027);
@@ -701,6 +733,7 @@ void draw_limit_ee() {
     
     legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
     legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 150 ab^{-1}}}}", "l");
+    legend.AddEntry(&Toms_data_gr, "#splitline{Cut and Count}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
     legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
     legend.AddEntry(&seesaw_data_gr, "#splitline{Type I seesaw limit}{arXiv:2307.01190}", "l");
 
@@ -735,6 +768,6 @@ void draw_limit_ee() {
 
     canvas.Update();
 
-    canvas.SaveAs("LimitSummary_ee_cms_bdt_fcc_150ab.pdf");
+    canvas.SaveAs("LimitSummary_ee_cms_bdt_fcc_150ab_cc.pdf");
 
 }
