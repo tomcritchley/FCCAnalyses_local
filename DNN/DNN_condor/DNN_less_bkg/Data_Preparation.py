@@ -131,7 +131,7 @@ def prepare_datasets():
     
     background_weight_scales = {}
     for x_sec, df in bg_df_groups.items():
-        total_count = len(background_df)
+        total_count = len(df)
         training_count = len(training_bg_df[training_bg_df['cross_section'] == x_sec])
         testing_count = len(testing_bg_df[testing_bg_df['cross_section'] == x_sec])
 
