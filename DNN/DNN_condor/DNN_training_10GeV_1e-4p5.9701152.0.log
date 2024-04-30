@@ -1,2 +1,94 @@
 000 (9701152.000.000) 04/30 12:33:37 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_2138_1192>
 ...
+040 (9701152.000.000) 04/30 14:19:26 Started transferring input files
+	Transferring to host: <128.142.60.150:9618?addrs=128.142.60.150-9618+[2001-1458-301-22--100-95]-9618&alias=b9s05p7087.cern.ch&noUDP&sock=slot1_21_7010_edd6_14415>
+...
+040 (9701152.000.000) 04/30 14:19:26 Finished transferring input files
+...
+001 (9701152.000.000) 04/30 14:19:27 Job executing on host: <128.142.60.150:9618?addrs=128.142.60.150-9618+[2001-1458-301-22--100-95]-9618&alias=b9s05p7087.cern.ch&noUDP&sock=startd_5286_55b5>
+...
+006 (9701152.000.000) 04/30 14:19:35 Image size of job updated: 28436
+	28  -  MemoryUsage of job (MB)
+	28436  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:24:35 Image size of job updated: 352852
+	345  -  MemoryUsage of job (MB)
+	352612  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:29:37 Image size of job updated: 548900
+	536  -  MemoryUsage of job (MB)
+	548684  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:34:37 Image size of job updated: 675132
+	659  -  MemoryUsage of job (MB)
+	674624  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:39:37 Image size of job updated: 861552
+	842  -  MemoryUsage of job (MB)
+	861428  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:44:38 Image size of job updated: 3786044
+	3697  -  MemoryUsage of job (MB)
+	3785608  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:49:39 Image size of job updated: 3972768
+	3876  -  MemoryUsage of job (MB)
+	3968464  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:54:39 Image size of job updated: 4125424
+	4026  -  MemoryUsage of job (MB)
+	4121704  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 14:59:39 Image size of job updated: 4372160
+	4266  -  MemoryUsage of job (MB)
+	4368140  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 15:04:40 Image size of job updated: 4475328
+	4370  -  MemoryUsage of job (MB)
+	4474776  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 15:09:40 Image size of job updated: 4630672
+	4520  -  MemoryUsage of job (MB)
+	4627792  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 15:14:40 Image size of job updated: 4765200
+	4652  -  MemoryUsage of job (MB)
+	4763480  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 15:19:41 Image size of job updated: 4878540
+	4762  -  MemoryUsage of job (MB)
+	4875592  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 15:24:41 Image size of job updated: 4908556
+	4775  -  MemoryUsage of job (MB)
+	4889404  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 15:29:41 Image size of job updated: 5235804
+	5069  -  MemoryUsage of job (MB)
+	5190452  -  ResidentSetSize of job (KB)
+...
+006 (9701152.000.000) 04/30 15:34:42 Image size of job updated: 5330596
+	5161  -  MemoryUsage of job (MB)
+	5284508  -  ResidentSetSize of job (KB)
+...
+040 (9701152.000.000) 04/30 15:37:32 Started transferring output files
+...
+040 (9701152.000.000) 04/30 15:37:34 Finished transferring output files
+...
+005 (9701152.000.000) 04/30 15:37:34 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 03:47:55, Sys 0 01:15:37  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 03:47:55, Sys 0 01:15:37  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	17633706  -  Run Bytes Sent By Job
+	199  -  Run Bytes Received By Job
+	17633706  -  Total Bytes Sent By Job
+	199  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.68        1         1 
+	   Disk (KB)            : 17242           1   2956458 
+	   Memory (MB)          :  5161        2000      2000 
+
+	Job terminated of its own accord at 2024-04-30T13:37:32Z.
+...
