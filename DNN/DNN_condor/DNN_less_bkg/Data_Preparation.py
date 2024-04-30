@@ -128,12 +128,23 @@ def prepare_datasets():
 
     print(f"Training set: Signal: {len(df_train_signal)}, Background: {len(training_bg_df)}")
     print(f"Testing set: Signal: {len(df_test_signal)}, Background: {len(testing_bg_df)}")
-
-    # Adjust weights for used fraction in testing
-    background_weight_scale = len(background_df) / len(testing_bg_df)
-    signal_weight_scale = len(signal_df) / len(df_test_signal)
     
-    testing_bg_df['weight'] *= background_weight_scale
+    background_weight_scales = {}
+    for x_sec, df in bg_df_groups.items():
+        total_count = len(background_df)
+        training_count = len(training_bg_df[training_bg_df['cross_section'] == x_sec])
+        testing_count = len(testing_bg_df[testing_bg_df['cross_section'] == x_sec])
+
+    if testing_count > 0:
+        background_weight_scales[x_sec] = total_count / testing_count
+    else:
+        background_weight_scales[x_sec] = 0
+
+    for index, row in testing_bg_df.iterrows():
+        testing_bg_df.at[index, 'weight'] *= background_weight_scales[row['cross_section']]
+    
+    ## different weight scale for each process inside of the training and testing ###
+    signal_weight_scale = len(signal_df) / len(df_test_signal)
     df_test_signal['weight'] *= signal_weight_scale
 
     print(f"Train signal count: {len(df_train_signal)}, Test signal count: {len(df_test_signal)}")
