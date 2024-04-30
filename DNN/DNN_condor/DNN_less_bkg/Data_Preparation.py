@@ -140,9 +140,15 @@ def prepare_datasets():
     else:
         background_weight_scales[x_sec] = 0
 
+    # Apply calculated weight scales to the testing background dataset
     for index, row in testing_bg_df.iterrows():
-        testing_bg_df.at[index, 'weight'] *= background_weight_scales[row['cross_section']]
-    
+        cross_section = row['cross_section']
+        if cross_section in background_weight_scales:
+            testing_bg_df.at[index, 'weight'] *= background_weight_scales[cross_section]
+        else:
+            # Log or handle the case where a cross-section is missing if necessary
+            print(f"Warning: No weight scale for cross section {cross_section}")
+
     ## different weight scale for each process inside of the training and testing ###
     signal_weight_scale = len(signal_df) / len(df_test_signal)
     df_test_signal['weight'] *= signal_weight_scale
