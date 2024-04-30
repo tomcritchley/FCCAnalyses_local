@@ -130,12 +130,13 @@ def prepare_datasets():
     print(f"Training set: Signal: {len(df_train_signal)}, Background: {len(training_bg_df)}")
     print(f"Testing set: Signal: {len(df_test_signal)}, Background: {len(testing_bg_df)}")
     
+    #necessary to convert to have the dynamic weights
     convert_to_str = lambda x: f"{x:.5f}"
     background_df['cross_section'] = background_df['cross_section'].apply(convert_to_str)
     training_bg_df['cross_section'] = training_bg_df['cross_section'].apply(convert_to_str)
     testing_bg_df['cross_section'] = testing_bg_df['cross_section'].apply(convert_to_str)
 
-    # Rebuild bg_df_groups with the newly formatted 'cross_section'
+    #rebuild with string cross sections for dict consistency
     bg_df_groups = {x_sec: df for x_sec, df in background_df.groupby('cross_section')}
 
     background_weight_scales = {}
@@ -151,6 +152,12 @@ def prepare_datasets():
 
     print("Weight scales available for cross-sections:", background_weight_scales.keys())
     print("Cross-sections in testing data:", testing_bg_df['cross_section'].unique())
+    for index, row in testing_bg_df.iterrows():
+        cross_section = row['cross_section']
+    if cross_section in background_weight_scales:
+        print(f"yay entering loop!")
+        testing_bg_df.at[index, 'weight'] *= background_weight_scales[cross_section]
+
 
     ## different weight scale for each process inside of the training and testing ###
     signal_weight_scale = len(signal_df) / len(df_test_signal)
