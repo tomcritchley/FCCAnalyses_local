@@ -8,12 +8,12 @@ uncertainty_count_factor = 0.1 #10% background uncertainty for the significance
 #variable = "RecoDiJet_delta_R"
 variable_list = [
     ["RecoElectron_lead_e", "Reco lead electron energy [GeV]"], #variable name in histo[0], axis title[1]
-    ["RecoDiJet_delta_R", "Reco di-jet #Delta R [Rad.]"], #1
+    ["RecoDiJet_delta_R", "Reco di-jet #Delta R"], #1
     ["RecoDiJet_angle", "Reco di-jet #Psi [Rad.]"], #2
-    ["RecoElectron_LeadJet_delta_R", "Reco lead jet #DeltaR [Rad.]"], #3
-    ["RecoElectron_SecondJet_delta_R", "Reco second jet #Delta R [Rad.]"], #4
-    ["RecoElectron_DiJet_delta_R","Reco electron di-jet #Delta R [Rad.]"], #5
-    ["RecoLeadElectron_Pmiss_delta_theta", "Reconstructed electron missing momentum angle #theta [Rad.]"], #6
+    ["RecoElectron_LeadJet_delta_R", "Reco lead jet #DeltaR"], #3
+    ["RecoElectron_SecondJet_delta_R", "Reco second jet #Delta R"], #4
+    ["RecoElectron_DiJet_delta_R","Reco electron di-jet #Delta R"], #5
+    ["RecoLeadElectron_Pmiss_delta_theta", "Reconstructed electron missing momentum #theta [Rad.]"], #6
     ["RecoElectronTrack_absD0sig", "Reco electron |d_{0}| [mm] sig"], #7
     ["RecoElectronTrack_absD0cov", "Reco electron |d_{0}| [mm] cov"], #8
     ["RecoElectronTrack_absD0", "Reco electron |d_{0}| [mm]"], #9
@@ -26,7 +26,7 @@ variable_list = [
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 
-chosen_variable = variable_list[5] 
+chosen_variable = variable_list[7] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
