@@ -92,6 +92,8 @@ def prepare_datasets():
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
     ###group the bkgs by cross section###
+
+    background_df['cross_section'] = background_df['cross_section'].astype(float).round(3)
     bg_df_groups = {x_sec: df for x_sec, df in background_df.groupby('cross_section')}
 
     print("Number of events per cross section:")
