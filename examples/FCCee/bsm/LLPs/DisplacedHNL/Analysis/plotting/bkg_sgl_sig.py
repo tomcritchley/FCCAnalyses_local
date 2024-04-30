@@ -25,7 +25,8 @@ variable_list = [
     ["n_primt", "Number of primary tracks"], #15
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
-chosen_variable = variable_list[1] 
+
+chosen_variable = variable_list[5] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
