@@ -88,71 +88,63 @@ def prepare_datasets():
     signal_df = load_and_filter_data(signal_file, signal_x_sec, tree_name, variables, basic_filter)
     signal_df['label'] = 1
 
-    #background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('102.root') or file.endswith('ejjnu.root')]
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('.root')] #or file.endswith('ejjnu.root')
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('00.root') or file.endswith('ejjnu.root')]
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
-    #Balancing the datasets
-    n_signal = len(signal_df)
-    n_background = len(background_df)
+    ###group the bkgs by cross section###
+    bg_df_groups = {x_sec: df for x_sec, df in background_df.groupby('cross_section')}
 
+    print("Number of events per cross section:")
+    for x_sec, df in bg_df_groups.items():
+        print(f"Cross section {x_sec}: {len(df)} events (training+testing)")
 
-    #to do 80/20 train test for both signal and background
-    df_train_background, df_test_background = train_test_split(background_df, test_size=0.2, random_state=42)
+    # Determine the minimum size for equal representation in training
+    min_size = min(len(df) for df in bg_df_groups.values())
+    print(f"Minimum size for balanced backgrounds in training: {min_size}")
 
-    #80/20 split for training and testing the signal
-    df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.2, random_state=42)
+    # Sample the minimum size for the training set from each background group
+    training_bg_dfs = []
+    training_indexes = []
+    for x_sec, df in bg_df_groups.items():
+        sampled_df = df.sample(min_size, random_state=42)
+        training_bg_dfs.append(sampled_df)
+        training_indexes.extend(sampled_df.index.tolist())
+        print(f"Sampled {len(sampled_df)} events for training from cross section {x_sec}")
 
-    #downsampling for the background to reduce class inequality 
-    """
-    df_train_background = background_df.sample(n=min(n_signal, n_background // 2), random_state=42)
-    df_test_background = background_df.drop(df_train_background.index)
-    """
+    training_bg_df = pd.concat(training_bg_dfs, ignore_index=True)
 
-    #df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True)
+    # Create testing background dataset by excluding the training samples
+    testing_bg_dfs = []
+    for x_sec, df in bg_df_groups.items():
+        remaining_df = df.drop(training_indexes)
+        testing_bg_dfs.append(remaining_df)
+        print(f"Remaining {len(remaining_df)} events for testing from cross section {x_sec}")
 
-    #df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True)
+    testing_bg_df = pd.concat(testing_bg_dfs, ignore_index=True)
+    print(f"Total testing events: {len(testing_bg_df)}")
 
-    # Concatenate and then shuffle
-    df_train = pd.concat([df_train_signal, df_train_background], ignore_index=True).sample(frac=1).reset_index(drop=True)
-    df_test = pd.concat([df_test_signal, df_test_background], ignore_index=True).sample(frac=1).reset_index(drop=True)
+    ####### 50/50 split for training/testing on the signal ######
+    df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.5, random_state=42)
 
-    """
-    combined_df = pd.concat([signal_df, background_df])
+    # Prepare the final training and testing sets
+    df_train = pd.concat([df_train_signal, training_bg_df], ignore_index=True).sample(frac=1).reset_index(drop=True)
+    df_test = pd.concat([df_test_signal, testing_bg_df], ignore_index=True).sample(frac=1).reset_index(drop=True)
 
-    df_train, df_test = train_test_split(combined_df, test_size=0.2, random_state=22) #stratify=combined_df['label']
-    """
-    # Separate back out into signal and background
-    df_train_signal = df_train[df_train['label'] == 1]
-    df_train_background = df_train[df_train['label'] == 0]
-    df_test_signal = df_test[df_test['label'] == 1]
-    df_test_background = df_test[df_test['label'] == 0]
+    print(f"Training set: Signal: {len(df_train_signal)}, Background: {len(training_bg_df)}")
+    print(f"Testing set: Signal: {len(df_test_signal)}, Background: {len(testing_bg_df)}")
 
-    print(f"number of training background events surviving filter: {len(df_train_background)}")
-    print(f"number of testing background events surviving filter: {len(df_test_background)}")
-    print(f"number of training signal events surviving filter: {len(df_train_signal)}")
-    print(f"number of testing signal events surviving filter: {len(df_test_signal)}")
-    
-    #adjust the weights based on the fraction which is used during testing
-    background_weight_scale = len(background_df) / len(df_test_background)
-    print(f"fraction of bkg used in testing = {1/background_weight_scale} ...background weight scale = {background_weight_scale}")
-    
+    # Adjust weights for used fraction in testing
+    background_weight_scale = len(background_df) / len(testing_bg_df)
     signal_weight_scale = len(signal_df) / len(df_test_signal)
-    print(f"fraction of sgl used in testing = {1/signal_weight_scale} ... signal weight scale = {signal_weight_scale}")
     
-    df_test_background['weight'] *= background_weight_scale
+    testing_bg_df['weight'] *= background_weight_scale
     df_test_signal['weight'] *= signal_weight_scale
 
-    n_background_train = len(df_train_background)
-    fraction_background_used_in_training = n_background_train / n_background
-    print(f"Fraction of background used in training: {fraction_background_used_in_training:.5f}") #needed for understanding the split to normalise correctly
+    print(f"Train signal count: {len(df_train_signal)}, Test signal count: {len(df_test_signal)}")
+    print(f"Train background count: {len(training_bg_df)}, Test background count: {len(testing_bg_df)}")
 
     convert_to_numpy(df_train, ['RecoElectronTrack_absD0', 'RecoElectronTrack_absD0sig', 'RecoMissingEnergy_theta', 'RecoMissingEnergy_e'])
     convert_to_numpy(df_test, ['RecoElectronTrack_absD0', 'RecoElectronTrack_absD0sig', 'RecoMissingEnergy_theta', 'RecoMissingEnergy_e'])
-
-    #shuffling datasets
-    #df_train = df_train.sample(frac=1, random_state=42).reset_index(drop=True)
-    #df_test = df_test.sample(frac=1, random_state=42).reset_index(drop=True)
 
     #omitted D0 sig (0.98), n_electrons, and dijet angle (0.9)
     training_variables = [
@@ -175,7 +167,7 @@ def prepare_datasets():
         plt.yticks(rotation=0)
         plt.title(f"Correlation Matrix")
         plt.tight_layout()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots6/correlation_matrix_{args.label}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots7/correlation_matrix_{args.label}.pdf')
     except Exception as e:
         print(f"something went wrong with the correlation matrix...: {e}")
 
@@ -187,11 +179,11 @@ def prepare_datasets():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    np.save(f'/eos/user/t/tcritchl/DNN/training6/X_train_{args.label}.npy', X_train_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing6/X_test_{args.label}.npy', X_test_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/training6/y_train_{args.label}.npy', y_train)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing6/y_test_{args.label}.npy', y_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing6/weights_test_{args.label}.npy', weights_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/training7/X_train_{args.label}.npy', X_train_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing7/X_test_{args.label}.npy', X_test_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/training7/y_train_{args.label}.npy', y_train)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{args.label}.npy', y_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing7/weights_test_{args.label}.npy', weights_test)
 
     print(f"Data preparation complete for label: {args.label}")
 
