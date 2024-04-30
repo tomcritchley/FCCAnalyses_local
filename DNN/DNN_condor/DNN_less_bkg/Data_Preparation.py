@@ -102,25 +102,21 @@ def prepare_datasets():
     min_size = min(len(df) for df in bg_df_groups.values())
     print(f"Minimum size for balanced backgrounds in training: {min_size}")
 
-    # Sample the minimum size for the training set from each background group
     training_bg_dfs = []
-    training_indexes = []
+    training_mask = pd.Series(False, index=background_df.index)  # Create a mask for training entries
+
     for x_sec, df in bg_df_groups.items():
         sampled_df = df.sample(min_size, random_state=42)
-        training_bg_dfs.append(sampled_df)
-        training_indexes.extend(sampled_df.index.tolist())
         print(f"Sampled {len(sampled_df)} events for training from cross section {x_sec}")
+        sampled_indices = df.sample(min_size, random_state=42).index
+        training_bg_dfs.append(df.loc[sampled_indices])
+        training_mask.loc[sampled_indices] = True  # Mark these indices as used for training
 
     training_bg_df = pd.concat(training_bg_dfs, ignore_index=True)
 
-    # Create testing background dataset by excluding the training samples
-    testing_bg_dfs = []
-    for x_sec, df in bg_df_groups.items():
-        remaining_df = df.drop(training_indexes)
-        testing_bg_dfs.append(remaining_df)
-        print(f"Remaining {len(remaining_df)} events for testing from cross section {x_sec}")
+    testing_bg_df = background_df.loc[~training_mask]  #use index mask to filter out training data
 
-    testing_bg_df = pd.concat(testing_bg_dfs, ignore_index=True)
+    print(f"Total training events: {len(training_bg_df)}")
     print(f"Total testing events: {len(testing_bg_df)}")
 
     ####### 50/50 split for training/testing on the signal ######
