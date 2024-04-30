@@ -93,7 +93,6 @@ def prepare_datasets():
 
     ###group the bkgs by cross section###
 
-    background_df['cross_section'] = background_df['cross_section'].astype(float).round(3)
     bg_df_groups = {x_sec: df for x_sec, df in background_df.groupby('cross_section')}
 
     print("Number of events per cross section:")
@@ -134,13 +133,13 @@ def prepare_datasets():
     background_weight_scales = {}
     for x_sec, df in bg_df_groups.items():
         total_count = len(df)
-        training_count = len(training_bg_df[training_bg_df['cross_section'] == x_sec])
-        testing_count = len(testing_bg_df[testing_bg_df['cross_section'] == x_sec])
+        training_count = len(training_bg_df[training_bg_df['cross_section'] == float(x_sec)])
+        testing_count = len(testing_bg_df[testing_bg_df['cross_section'] == float(x_sec)])
 
     if testing_count > 0:
-        background_weight_scales[x_sec] = total_count / testing_count
+        background_weight_scales[float(x_sec)] = total_count / testing_count
     else:
-        background_weight_scales[x_sec] = 0
+        background_weight_scales[float(x_sec)] = 0
 
     print("Weight scales available for cross-sections:", background_weight_scales.keys())
     print("Cross-sections in testing data:", testing_bg_df['cross_section'].unique())
