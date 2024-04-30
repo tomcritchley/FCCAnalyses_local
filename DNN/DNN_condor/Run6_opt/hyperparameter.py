@@ -30,22 +30,22 @@ def build_model(hp):
     
     return model
 
-def plot_metrics(history):
+def plot_metrics(history,label):
     plt.figure(figsize=(12, 5))
     plt.subplot(1, 2, 1)
     plt.plot(history.history['loss'], label='Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
     plt.title('Loss Over Epochs')
-    plt.legend()
-
+    plt.savefig(f"")
+    plt.clf()
     plt.subplot(1, 2, 2)
     plt.plot(history.history['prc'], label='Precision-Recall Curve')
     plt.plot(history.history['val_prc'], label='Validation PR')
     plt.title('Precision-Recall Curve')
     plt.legend()
-    plt.show()
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/prec_recall_{label}.pdf")
 
-def permutation_feature_importance(model, X, y, feature_names):
+def permutation_feature_importance(model, X, y, feature_names,label):
     from sklearn.metrics import accuracy_score
     original_score = accuracy_score(y, model.predict(X).round())
     feature_importance = np.zeros(X.shape[1])
@@ -64,7 +64,7 @@ def permutation_feature_importance(model, X, y, feature_names):
     plt.xticks(rotation=45, ha="right")
     plt.title('Permutation Feature Importance')
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/feature_importance_{label}.pdf")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='DNN Training Script')
@@ -101,5 +101,6 @@ if __name__ == "__main__":
     print("Best model saved successfully.")
 
     history = best_model.fit(X_train, y_train, epochs=100, validation_split=0.2, callbacks=[EarlyStopping(monitor='val_loss', patience=5)])
-    plot_metrics(history)
-    permutation_feature_importance(best_model, X_test, y_test, feature_names)
+    label = file
+    plot_metrics(history,label)
+    permutation_feature_importance(best_model, X_test, y_test, feature_names,label)
