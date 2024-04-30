@@ -100,7 +100,7 @@ def prepare_datasets():
 
     min_size = min(len(df) for df in bg_df_groups.values())
     print(f"Minimum size for balanced backgrounds in training: {min_size}")
-    min_size = min_size / 2 #(want to maintain some of the 4 body for testing)
+    min_size = min_size // 2 #(want to maintain some of the 4 body for testing)
     
     training_bg_dfs = []
     training_mask = pd.Series(False, index=background_df.index)  # Create a mask for training entries
