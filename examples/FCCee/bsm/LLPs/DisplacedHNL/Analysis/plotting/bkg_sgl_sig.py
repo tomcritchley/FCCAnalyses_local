@@ -110,7 +110,7 @@ def make_hist(files_list):
             my_file.Close()
             continue
         print(f"number of bins is {hist.GetNbinsX()}")
-        hist.GetXaxis().SetRangeUser(0, 2*np.pi)
+        #hist.GetXaxis().SetRangeUser(0, 2*np.pi)
         selected_events = hist.Integral()
         print(f"Selected events for {f[2]} = {selected_events}")
         if normalisation:
