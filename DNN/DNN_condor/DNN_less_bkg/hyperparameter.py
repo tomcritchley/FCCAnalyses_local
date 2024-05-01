@@ -19,7 +19,7 @@ def build_model(hp):
     for i in range(hp.Int('num_layers', 1, 5)):
         model.add(Dense(units=hp.Int(f'units_{i}', min_value=32, max_value=512, step=32),
                         activation='relu'))
-        model.add(Dropout(0.2))
+        model.add(Dropout(0.5))
     
     model.add(Dense(1, activation='sigmoid'))
     
@@ -43,7 +43,7 @@ def plot_metrics(history,label):
     plt.plot(history.history['val_prc'], label='Validation PR')
     plt.title('Precision-Recall Curve')
     plt.legend()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/prec_recall_{label}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/prec_recall_{label}.pdf")
 
 def permutation_feature_importance(model, X, y, feature_names,label):
     from sklearn.metrics import accuracy_score
@@ -64,7 +64,7 @@ def permutation_feature_importance(model, X, y, feature_names,label):
     plt.xticks(rotation=45, ha="right")
     plt.title('Permutation Feature Importance')
     plt.tight_layout()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/feature_importance_{label}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/feature_importance_{label}.pdf")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='DNN Training Script')
@@ -72,10 +72,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     file = args.label
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/y_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{file}.npy', allow_pickle=True)
 
     feature_names = [
         r'$\Delta R_{jj}$', r'$\Delta R_{ejj}$', r'$D_0$', r'Dijet $\phi$', r'E_{\text{miss}} $\theta$',
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     tuner.search(X_train, y_train, epochs=50, validation_split=0.2, callbacks=callbacks)
 
     best_model = tuner.get_best_models(num_models=1)[0]
-    best_model.save(f'/eos/user/t/tcritchl/DNN/trained_models6_opt/DNN_HNLs_{args.label}.keras')
+    best_model.save(f'/eos/user/t/tcritchl/DNN/trained_models7/DNN_HNLs_{args.label}.keras')
     print("Best model saved successfully.")
 
     history = best_model.fit(X_train, y_train, epochs=100, validation_split=0.2, callbacks=[EarlyStopping(monitor='val_loss', patience=5)])
