@@ -12,19 +12,19 @@ import argparse
 
 def build_model(hp):
     model = Sequential()
-    model.add(Dense(units=hp.Int('units_input', min_value=32, max_value=512, step=32),
+    model.add(Dense(units=hp.Int('units_input', min_value=128, max_value=512, step=32),
                     input_dim=X_train.shape[1], activation='relu'))
-    model.add(Dropout(0.2))
+    model.add(Dropout(0.5))
     
-    for i in range(hp.Int('num_layers', 1, 5)):
-        model.add(Dense(units=hp.Int(f'units_{i}', min_value=32, max_value=512, step=32),
+    for i in range(hp.Int('num_layers', 3, 5)):
+        model.add(Dense(units=hp.Int(f'units_{i}', min_value=128, max_value=512, step=32),
                         activation='relu'))
         model.add(Dropout(0.5))
     
     model.add(Dense(1, activation='sigmoid'))
     
     model.compile(optimizer=keras.optimizers.Adam(
-                  hp.Float('learning_rate', min_value=1e-5, max_value=1e-2, sampling='log')),
+                  hp.Float('learning_rate', min_value=1e-4, max_value=1e-1, sampling='log')),
                   loss='binary_crossentropy',
                   metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
     
