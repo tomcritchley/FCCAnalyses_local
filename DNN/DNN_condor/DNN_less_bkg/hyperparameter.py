@@ -80,7 +80,7 @@ if __name__ == "__main__":
         r'$E_{\text{miss}}$', r'$E_{e}$', r'Vertex $\chi^2$', r'$n_{\text{Primary Tracks}}$', r'$n_{\text{Tracks}}$'
     ]
     
-    tuner = RandomSearch(build_model, objective=Objective("val_prc", direction="max"), max_trials=15,
+    tuner = RandomSearch(build_model, objective=Objective("val_prc", direction="max"), max_trials=50,
                          executions_per_trial=1, directory='model_tuning', project_name='tuning_results')
     callbacks = [EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)]
 
