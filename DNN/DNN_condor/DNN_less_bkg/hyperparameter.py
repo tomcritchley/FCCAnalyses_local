@@ -36,8 +36,6 @@ def plot_metrics(history,label):
     plt.plot(history.history['loss'], label='Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
     plt.title('Loss Over Epochs')
-    plt.savefig(f"")
-    plt.clf()
     plt.subplot(1, 2, 2)
     plt.plot(history.history['prc'], label='Precision-Recall Curve')
     plt.plot(history.history['val_prc'], label='Validation PR')
