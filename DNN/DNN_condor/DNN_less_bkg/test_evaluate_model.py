@@ -70,15 +70,15 @@ if __name__ == "__main__":
     results_dict = {}
 
     print(f"loading data...")
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/y_test_{file}.npy', allow_pickle=True)
-    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/weights_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{file}.npy', allow_pickle=True)
+    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
     #model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models6_opt/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models7/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     plt.legend(loc="lower left")
 
     plt.tight_layout()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/Precise_ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/Precise_ROC_{file}.pdf")
     plt.close()
 
     ##################################################################################################################
@@ -156,7 +156,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/raw_dnn_classification_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/raw_dnn_classification_{file}.pdf")
 
 
     weightsSIG = weights_test[y_test == 1] 
@@ -172,7 +172,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/scaled_dnn10fb_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/scaled_dnn10fb_{file}.pdf")
     plt.close()
 
     # Plot histogram of predicted scores for signal and background events WEIGHTED 150 ab^-1 ##
@@ -186,7 +186,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/scaled_dnn_150ab_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/scaled_dnn_150ab_{file}.pdf")
     plt.close()
 
     bin_width = 0.0001 #in the region of interest, binning resolution
@@ -321,13 +321,13 @@ if __name__ == "__main__":
     ax[1].legend()
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6_opt/DNN_output_{file}_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/DNN_output_{file}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Run6_opt/DNN_Run6_10fb_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Run7/DNN_Run6_10fb_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:
