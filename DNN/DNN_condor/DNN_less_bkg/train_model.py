@@ -220,7 +220,7 @@ if __name__ == "__main__":
         Dense(1, activation='sigmoid')
     ])
 
-    optimizer = Adam(learning_rate=0.01)
+    optimizer = Adam(learning_rate=0.001)
 
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
 

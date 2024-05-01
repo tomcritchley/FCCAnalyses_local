@@ -100,11 +100,11 @@ def prepare_datasets():
         print(f"Cross section {x_sec}: {len(df)} events (training+testing)")
 
     min_size = min(len(df) for df in bg_df_groups.values())
-    print(f"Minimum size for balanced backgrounds in training: {min_size}")
+    print(f"Minimum size for balanced backgrounds in training: {min_size // 2}")
     min_size = min_size // 2 #(want to maintain some of the 4 body for testing)
     
     training_bg_dfs = []
-    training_mask = pd.Series(False, index=background_df.index)  # Create a mask for training entries
+    training_mask = pd.Series(False, index=background_df.index)
 
     for x_sec, df in bg_df_groups.items():
         sampled_df = df.sample(min_size, random_state=42)
@@ -123,7 +123,6 @@ def prepare_datasets():
     ####### 50/50 split for training/testing on the signal ######
     df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.5, random_state=42)
 
-    # Prepare the final training and testing sets
     df_train = pd.concat([df_train_signal, training_bg_df], ignore_index=True).sample(frac=1).reset_index(drop=True)
     df_test = pd.concat([df_test_signal, testing_bg_df], ignore_index=True).sample(frac=1).reset_index(drop=True)
 
@@ -201,6 +200,7 @@ def prepare_datasets():
     np.save(f'/eos/user/t/tcritchl/DNN/training7/y_train_{args.label}.npy', y_train)
     np.save(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{args.label}.npy', y_test)
     np.save(f'/eos/user/t/tcritchl/DNN/testing7/weights_test_{args.label}.npy', weights_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing7/weights_train_{args.label}.npy', weights_train)
 
     print(f"Data preparation complete for label: {args.label}")
 
