@@ -76,10 +76,10 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/y_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{file}.npy', allow_pickle=True)
 
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     sns.histplot(X_train_smote_signal[:, 0], ax=axes[1], kde=True, color='red', label='SMOTE')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After SMOTE')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6/smote_effect_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/smote_effect_{file}.pdf")
     plt.close()
 
     class_counts = np.bincount(y_train_smote.astype(int))
@@ -176,7 +176,7 @@ if __name__ == "__main__":
     sns.histplot(X_train_oversampled_signal[:, 0], ax=axes[1], kde=True, color='red', label='Scale Factor')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After Scale factor')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots6/scale_factor_effect_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/scale_factor_effect_{file}.pdf")
     plt.close()
 
 
@@ -208,19 +208,19 @@ if __name__ == "__main__":
 
     model = Sequential([
         Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
-        Dropout(0.21), 
+        Dropout(0.2), 
         Dense(500,activation='relu'),
-        Dropout(0.21),
+        Dropout(0.5),
         Dense(250,activation='relu'),
-        Dropout(0.21),
+        Dropout(0.5),
         Dense(100,activation='relu'),
-        Dropout(0.21),
+        Dropout(0.5),
         Dense(50,activation='relu'),
-        Dropout(0.21),
+        Dropout(0.5),
         Dense(1, activation='sigmoid')
     ])
 
-    optimizer = Adam(learning_rate=0.001)
+    optimizer = Adam(learning_rate=0.01)
 
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
 
@@ -232,8 +232,8 @@ if __name__ == "__main__":
 
     # Update callbacks
     callbacks = [
-        EarlyStopping(monitor='val_loss', patience=6, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models6/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
+        EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models8/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
         LearningRateScheduler(scheduler)
     ]
 
@@ -277,7 +277,7 @@ if __name__ == "__main__":
     plt.xlabel('Features')
     plt.ylabel('Importance')
     plt.title('Feature Importance')
-    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots6/feature_importance_{file}.pdf')
+    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots8/feature_importance_{file}.pdf')
     plt.close()
 
     for metric in ['loss', 'accuracy', 'precision', 'recall', 'prc']:
@@ -288,11 +288,11 @@ if __name__ == "__main__":
         plt.xlabel('Epoch')
         plt.ylabel(metric)
         plt.legend()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots6/{metric}_{file}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots8/{metric}_{file}.pdf')
         plt.close()
 
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models6/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models8/best_model_{file}.keras')
     print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models6/DNN_HNLs_{file}.keras')
+    model.save(f'/eos/user/t/tcritchl/DNN/trained_models8/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
