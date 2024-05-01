@@ -98,11 +98,31 @@ def prepare_datasets():
     print("Number of events per cross section:")
     for x_sec, df in bg_df_groups.items():
         print(f"Cross section {x_sec}: {len(df)} events (training+testing)")
-
+    
+    """
     min_size = min(len(df) for df in bg_df_groups.values())
     print(f"Minimum size for balanced backgrounds in training: {min_size // 2}")
     min_size = min_size // 2 #(want to maintain some of the 4 body for testing)
+    """
+
+    # Find the maximum number of events we can sample equally from each group
+    equal_sample_size = min(len(df) for df in bg_df_groups.values()) // 2  # Using //2 if you still want a 50% split for training
+
+    training_bg_dfs = []
+    training_mask = pd.Series(False, index=background_df.index)
+
+    for x_sec, df in bg_df_groups.items():
+        sampled_df = df.sample(equal_sample_size, random_state=42)
+        print(f"Sampled {len(sampled_df)} events for training from cross section {x_sec}")
+        sampled_indices = df.sample(equal_sample_size, random_state=42).index
+        training_bg_dfs.append(df.loc[sampled_indices])
+        training_mask.loc[sampled_indices] = True 
+
+    # Concatenate all the samples into a single training dataframe
+    training_bg_df = pd.concat(training_bg_dfs, ignore_index=True)
+    testing_bg_df = background_df.loc[~training_mask]
     
+    """
     training_bg_dfs = []
     training_mask = pd.Series(False, index=background_df.index)
 
@@ -116,7 +136,8 @@ def prepare_datasets():
     training_bg_df = pd.concat(training_bg_dfs, ignore_index=True)
 
     testing_bg_df = background_df.loc[~training_mask]  #use index mask to filter out training data
-
+    """
+    
     print(f"Total training events: {len(training_bg_df)}")
     print(f"Total testing events: {len(testing_bg_df)}")
 
@@ -183,7 +204,7 @@ def prepare_datasets():
         plt.yticks(rotation=0)
         plt.title(f"Correlation Matrix")
         plt.tight_layout()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots7/correlation_matrix_{args.label}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots10/correlation_matrix_{args.label}.pdf')
     except Exception as e:
         print(f"something went wrong with the correlation matrix...: {e}")
 
@@ -195,12 +216,12 @@ def prepare_datasets():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    np.save(f'/eos/user/t/tcritchl/DNN/training7/X_train_{args.label}.npy', X_train_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing7/X_test_{args.label}.npy', X_test_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/training7/y_train_{args.label}.npy', y_train)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{args.label}.npy', y_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing7/weights_test_{args.label}.npy', weights_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing7/weights_train_{args.label}.npy', weights_train)
+    np.save(f'/eos/user/t/tcritchl/DNN/training10/X_train_{args.label}.npy', X_train_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing10/X_test_{args.label}.npy', X_test_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/training10/y_train_{args.label}.npy', y_train)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing10/y_test_{args.label}.npy', y_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing10/weights_test_{args.label}.npy', weights_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing10/weights_train_{args.label}.npy', weights_train)
 
     print(f"Data preparation complete for label: {args.label}")
 
