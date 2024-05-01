@@ -98,3 +98,31 @@
 	   Disk (KB)            : 28830           1   2916742 
 	   Memory (MB)          :  5415        2000      2000 
 ...
+040 (9701143.000.000) 04/30 16:14:00 Started transferring input files
+	Transferring to host: <128.142.33.203:9618?addrs=128.142.33.203-9618+[2001-1458-301-39--100-8]-9618&alias=b9g24p0512.cern.ch&noUDP&sock=slot1_12_3630_69cd_148853>
+...
+040 (9701143.000.000) 04/30 16:14:00 Finished transferring input files
+...
+001 (9701143.000.000) 04/30 16:14:01 Job executing on host: <128.142.33.203:9618?addrs=128.142.33.203-9618+[2001-1458-301-39--100-8]-9618&alias=b9g24p0512.cern.ch&noUDP&sock=startd_3165_8156>
+...
+040 (9701143.000.000) 04/30 17:19:11 Started transferring output files
+...
+040 (9701143.000.000) 04/30 17:19:12 Finished transferring output files
+...
+005 (9701143.000.000) 04/30 17:19:12 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 05:00:50, Sys 0 01:19:13  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 11:22:26, Sys 0 03:36:05  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	20146432  -  Run Bytes Sent By Job
+	29496728  -  Run Bytes Received By Job
+	49642960  -  Total Bytes Sent By Job
+	29496928  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.80        1         1 
+	   Disk (KB)            : 19703       30000   1806911 
+	   Memory (MB)          :  7325        2000      2000 
+
+	Job terminated of its own accord at 2024-04-30T15:19:11Z.
+...

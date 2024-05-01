@@ -45,7 +45,7 @@ LR significance is used to count from right most to left most bin, and values to
 significance_directions = ["RL", "LR"]
 bdt_thr = 0.9
 
-def plot_confusion_matrix(y_true, y_pred, threshold=0.5):
+def plot_confusion_matrix(y_true, y_pred, threshold=0.5, file):
 
     y_pred_labels = (y_pred > threshold).astype(int)
     print(f"Number of signal samples: {np.sum(y_true == 1)}")
@@ -197,7 +197,7 @@ if __name__ == "__main__":
     ###################################### CONFUSION MATRIX ##########################################################
     ##################################################################################################################
 
-    plot_confusion_matrix(y_true, y_pred_np, threshold=0.5)
+    plot_confusion_matrix(y_true, y_pred_np, threshold=0.5, label)
 
     ##################################################################################################################
     ###################################### BDT OUTPUT PLOTS ##########################################################
