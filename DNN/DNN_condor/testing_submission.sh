@@ -12,7 +12,7 @@ echo "Masses: $masses"
 couplings=$(python3 -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/testing4"
+base_path="/eos/user/t/tcritchl/DNN/testing6"
 
 labels=()
 for mass in $masses; do
@@ -62,5 +62,4 @@ EOF
     # Submit a Condor job for the current signal point and label
     condor_submit "RunAnSt1_HTC_${label}_testing.condor"
     
-    sleep 5
 done
