@@ -74,7 +74,8 @@ if __name__ == "__main__":
     y_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/y_train_{file}.npy', allow_pickle=True)
     X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/X_test_{file}.npy', allow_pickle=True)
     y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{file}.npy', allow_pickle=True)
-
+    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing10/weights_train_{file}.npy', allow_pickle=True)
+    
     feature_names = [
         r'$\Delta R_{jj}$', r'$\Delta R_{ejj}$', r'$D_0$', r'Dijet $\phi$', r'E_{\text{miss}} $\theta$',
         r'$E_{\text{miss}}$', r'$E_{e}$', r'Vertex $\chi^2$', r'$n_{\text{Primary Tracks}}$', r'$n_{\text{Tracks}}$'
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     best_model.save(f'/eos/user/t/tcritchl/DNN/trained_models7/DNN_HNLs_{args.label}.keras')
     print("Best model saved successfully.")
 
-    history = best_model.fit(X_train, y_train, epochs=100, validation_split=0.2, callbacks=[EarlyStopping(monitor='val_loss', patience=5)])
+    history = best_model.fit(X_train, y_train, sample_weight=weights_train, epochs=100, validation_split=0.2, callbacks=[EarlyStopping(monitor='val_loss', patience=5)])
     label = file
     plot_metrics(history,label)
     permutation_feature_importance(best_model, X_test, y_test, feature_names,label)

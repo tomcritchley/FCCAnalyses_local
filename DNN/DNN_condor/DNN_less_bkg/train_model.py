@@ -76,11 +76,11 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training7/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing7/y_test_{file}.npy', allow_pickle=True)
-
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training10/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training10/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing10/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing10/y_test_{file}.npy', allow_pickle=True)
+    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing10/weights_train_{file}.npy', allow_pickle=True)
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
     print("y_train:", y_train.dtype, y_train.shape)
@@ -249,7 +249,7 @@ if __name__ == "__main__":
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
 
     #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
-    history = model.fit(X_train, y_train, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
+    history = model.fit(X_train, y_train,sample_weight=weights_train, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
    # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
     print(f"plotting curves")
