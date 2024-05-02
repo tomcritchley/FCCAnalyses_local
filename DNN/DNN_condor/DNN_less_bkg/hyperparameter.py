@@ -86,7 +86,7 @@ if __name__ == "__main__":
     callbacks = [EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)]
 
 
-    val_start_index = int(len(y_train) * (1 - 0.3))
+   val_start_index = int(len(y_train) * (1 - 0.3))
     y_val = y_train[val_start_index:]
 
     print(f'Average class probability in training set:   {y_train.mean():.4f}')
