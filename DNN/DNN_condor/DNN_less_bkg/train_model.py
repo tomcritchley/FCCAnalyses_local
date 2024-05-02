@@ -93,6 +93,8 @@ if __name__ == "__main__":
     print("X_test sample:", X_test[:5])
     print("y_test sample:", y_test[:5])
 
+    print(f"first few entries of weights for training: {weights_train[:10]}")
+
     X_train = X_train.astype(np.float32)
     X_test = X_test.astype(np.float32)
 
@@ -141,7 +143,7 @@ if __name__ == "__main__":
     sns.histplot(X_train_smote_signal[:, 0], ax=axes[1], kde=True, color='red', label='SMOTE')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After SMOTE')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/smote_effect_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots10/smote_effect_{file}.pdf")
     plt.close()
 
     class_counts = np.bincount(y_train_smote.astype(int))
@@ -176,7 +178,7 @@ if __name__ == "__main__":
     sns.histplot(X_train_oversampled_signal[:, 0], ax=axes[1], kde=True, color='red', label='Scale Factor')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After Scale factor')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/scale_factor_effect_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots10/scale_factor_effect_{file}.pdf")
     plt.close()
 
 
@@ -233,7 +235,7 @@ if __name__ == "__main__":
     # Update callbacks
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models8/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models10/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
         LearningRateScheduler(scheduler)
     ]
 
@@ -277,7 +279,7 @@ if __name__ == "__main__":
     plt.xlabel('Features')
     plt.ylabel('Importance')
     plt.title('Feature Importance')
-    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots8/feature_importance_{file}.pdf')
+    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots10/feature_importance_{file}.pdf')
     plt.close()
 
     for metric in ['loss', 'accuracy', 'precision', 'recall', 'prc']:
@@ -288,11 +290,11 @@ if __name__ == "__main__":
         plt.xlabel('Epoch')
         plt.ylabel(metric)
         plt.legend()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots8/{metric}_{file}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots10/{metric}_{file}.pdf')
         plt.close()
 
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models8/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models10/best_model_{file}.keras')
     print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models8/DNN_HNLs_{file}.keras')
+    model.save(f'/eos/user/t/tcritchl/DNN/trained_models10/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
