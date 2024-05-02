@@ -63,7 +63,7 @@ if __name__ == "__main__":
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
         plt.title('Confusion Matrix')
-        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/CM_{file}.pdf")
+        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/CM_{file}.pdf")
 
     significance_direction = significance_directions[1]
 
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     print(f"data loaded for {file}!")
     print(f"loading model....")
     #model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models8/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models7/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     ### testing the model ###
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/ROC_{file}.pdf")
 
     ### Precision ROC ###
 
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     plt.legend(loc="lower left")
 
     plt.tight_layout()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/Precise_ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/Precise_ROC_{file}.pdf")
     plt.close()
 
     ##################################################################################################################
@@ -156,7 +156,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/raw_dnn_classification_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/raw_dnn_classification_{file}.pdf")
 
 
     weightsSIG = weights_test[y_test == 1] 
@@ -172,7 +172,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/scaled_dnn10fb_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/scaled_dnn10fb_{file}.pdf")
     plt.close()
 
     # Plot histogram of predicted scores for signal and background events WEIGHTED 150 ab^-1 ##
@@ -186,7 +186,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/scaled_dnn_150ab_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/scaled_dnn_150ab_{file}.pdf")
     plt.close()
 
     bin_width = 0.0001 #in the region of interest, binning resolution
@@ -321,7 +321,7 @@ if __name__ == "__main__":
     ax[1].legend()
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots8/DNN_output_{file}_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots7/DNN_output_{file}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################

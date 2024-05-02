@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/testing_macro.py", line 200, in <module>
-    plot_confusion_matrix(y_true, y_pred_np, threshold=0.5, label)
-  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/testing_macro.py", line 63, in plot_confusion_matrix
-    plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/CM_{file}.pdf")
-NameError: name 'file' is not defined
