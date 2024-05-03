@@ -143,7 +143,7 @@ if __name__ == "__main__":
     sns.histplot(X_train_smote_signal[:, 0], ax=axes[1], kde=True, color='red', label='SMOTE')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After SMOTE')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots10/smote_effect_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/smote_effect_{file}.pdf")
     plt.close()
 
     class_counts = np.bincount(y_train_smote.astype(int))
@@ -178,7 +178,7 @@ if __name__ == "__main__":
     sns.histplot(X_train_oversampled_signal[:, 0], ax=axes[1], kde=True, color='red', label='Scale Factor')
     axes[0].set_title('Original Distribution of Feature 1')
     axes[1].set_title('Distribution of Feature 1 After Scale factor')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots10/scale_factor_effect_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/scale_factor_effect_{file}.pdf")
     plt.close()
 
 
@@ -235,7 +235,7 @@ if __name__ == "__main__":
     # Update callbacks
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models10/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
         LearningRateScheduler(scheduler)
     ]
 
@@ -250,8 +250,21 @@ if __name__ == "__main__":
     print(f'Average class probability in validation set: {y_val.mean():.4f}')
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
 
+    #sample weights!!
+
+    #weights_train is the cross section weigths, something less extreme which oversamples the background and slightly undersamples the signal woudl be appropriate 
+
+    signal_weight_factor = 5
+    background_weight_factor = 0.1  # Making it smaller as you suggested
+
+    # Adjust the weights
+    adjusted_weights = np.where(y_train == 1, 
+                                weights_train * signal_weight_factor, 
+                                weights_train * background_weight_factor)
+
+
     #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
-    history = model.fit(X_train, y_train,sample_weight=weights_train, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
+    history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
    # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
     print("Training completed.")
     print(f"plotting curves")
@@ -279,7 +292,7 @@ if __name__ == "__main__":
     plt.xlabel('Features')
     plt.ylabel('Importance')
     plt.title('Feature Importance')
-    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots10/feature_importance_{file}.pdf')
+    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots11/feature_importance_{file}.pdf')
     plt.close()
 
     for metric in ['loss', 'accuracy', 'precision', 'recall', 'prc']:
@@ -290,11 +303,11 @@ if __name__ == "__main__":
         plt.xlabel('Epoch')
         plt.ylabel(metric)
         plt.legend()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots10/{metric}_{file}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots11/{metric}_{file}.pdf')
         plt.close()
 
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models10/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras')
     print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models10/DNN_HNLs_{file}.keras')
+    model.save(f'/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
