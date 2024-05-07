@@ -1,0 +1,18 @@
+2024-04-30 14:29:14.446028: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-04-30 14:30:05.395597: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-04-30 14:32:52.745607: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-04-30 14:35:49.962006: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/keras/src/layers/core/dense.py:88: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/keras/src/saving/saving_lib.py:396: UserWarning: Skipping variable loading for optimizer 'adam', because it has 2 variables whereas the saved optimizer has 18 variables. 
+  trackable.load_own_variables(weights_store.get(inner_path))
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Run6_opt/hyperparameter.py", line 100, in <module>
+    best_model.save(f'/eos/user/t/tcritchl/DNN/trained_models6_opt/DNN_HNLs_{args.label}.keras')
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/keras/src/utils/traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/usr/lib64/python3.11/zipfile.py", line 1284, in __init__
+    self.fp = io.open(file, filemode)
+    ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/DNN/trained_models6_opt/DNN_HNLs_80GeV_1e-3.keras'

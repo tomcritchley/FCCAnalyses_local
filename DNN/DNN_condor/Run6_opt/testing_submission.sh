@@ -39,7 +39,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}_testing.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/bin/activate" >> "$script_file"
-    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/test_evaluate_model.py --label \"$label\"" >> "$script_file"
+    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Run6_opt/test_evaluate_model.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     # Create a unique Condor submission script for the current signal point
@@ -62,5 +62,4 @@ EOF
     # Submit a Condor job for the current signal point and label
     condor_submit "RunAnSt1_HTC_${label}_testing.condor"
     
-    sleep 5
 done
