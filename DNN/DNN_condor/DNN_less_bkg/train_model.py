@@ -142,9 +142,14 @@ if __name__ == "__main__":
     sig = class_counts[1]
     total = bkg + sig
     
+    print("Initial X_train shape:", X_train.shape)
+    print("Initial y_train shape:", y_train.shape)
     #defining validation data for more control
     X_val = X_train[:int(len(X_train) * 0.2)] 
     y_val = y_train[:int(len(y_train) * 0.2)]
+    
+    print("Initial X_train shape:", X_val.shape)
+    print("Initial y_train shape:", y_val.shape)  
     
     print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
         total, bkg, 100 * bkg / total))
