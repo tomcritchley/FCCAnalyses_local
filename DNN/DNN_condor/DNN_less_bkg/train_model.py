@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc, accuracy_score
+from sklearn.metrics import roc_curve, auc, accuracy_score, recall_score, precision_score
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, LeakyReLU
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler, Callback
 from tqdm import tqdm
 import os
 import seaborn as sns
@@ -67,7 +67,46 @@ def simple_oversample(X_train, y_train, scale_factor):
     
     return X_oversampled, y_oversampled
 
+class DynamicWeightsCallback(Callback):
+    def __init__(self, validation_data, initial_weights, increase_factor=1.5, decrease_factor=0.75, patience=3, min_delta=0.01):
+        super().__init__()
+        self.validation_data = validation_data
+        self.weights = initial_weights
+        self.increase_factor = increase_factor
+        self.decrease_factor = decrease_factor
+        self.patience = patience
+        self.min_delta = min_delta
+        self.wait = 0
+        self.best_recall = 0
+        self.best_precision = 0
 
+    def on_epoch_end(self, epoch, logs=None):
+        X_val, y_val = self.validation_data
+        predictions = self.model.predict(X_val)
+        val_recall = recall_score(y_val, predictions.round())
+        val_precision = precision_score(y_val, predictions.round())
+
+        # Check for improvements
+        if (val_recall - self.best_recall) < self.min_delta and (val_precision - self.best_precision) < self.min_delta:
+            self.wait += 1
+        else:
+            self.wait = 0
+            self.best_recall = max(val_recall, self.best_recall)
+            self.best_precision = max(val_precision, self.best_precision)
+
+        # If no improvement for 'patience' epochs, adjust weights
+        if self.wait >= self.patience:
+            if val_recall < 0.98:
+                self.weights[1] *= self.increase_factor
+            if val_precision < 0.98:
+                self.weights[1] *= self.decrease_factor
+
+            # Reset wait counter after adjusting
+            self.wait = 0
+
+        # Log the updated weights
+        print(f"Updated weights: {self.weights}")
+        
 if __name__ == "__main__":
         
     parser = argparse.ArgumentParser(description='BDT Training Script')
@@ -102,6 +141,10 @@ if __name__ == "__main__":
     bkg = class_counts[0]
     sig = class_counts[1]
     total = bkg + sig
+    
+    #defining validation data for more control
+    X_val = X_train[:int(len(X_train) * 0.2)] 
+    y_val = y_train[:int(len(y_train) * 0.2)]
     
     print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
         total, bkg, 100 * bkg / total))
@@ -231,10 +274,10 @@ if __name__ == "__main__":
             return float(lr)
         else:
             return float(lr * tf.math.exp(-0.1))
-
+    
     # Update callbacks
     callbacks = [
-        EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
+        EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
         LearningRateScheduler(scheduler)
     ]
@@ -250,22 +293,24 @@ if __name__ == "__main__":
     print(f'Average class probability in validation set: {y_val.mean():.4f}')
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
 
-    #sample weights!!
+    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=weights_train)
 
-    #weights_train is the cross section weigths, something less extreme which oversamples the background and slightly undersamples the signal woudl be appropriate 
+    callbacks = [
+        EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
+        LearningRateScheduler(scheduler)
+    ]
 
     signal_weight_factor = 10
-    background_weight_factor = 1  # Making it smaller as you suggested
+    background_weight_factor = 1 
 
-    # Adjust the weights
     adjusted_weights = np.where(y_train == 1, 
                                 weights_train * signal_weight_factor, 
                                 weights_train * background_weight_factor)
 
 
-    #history = model.fit(X_train_smote, y_train_smote, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks,class_weight=class_weight_dict) #change batch size to contain background slices
-    history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
-   # history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.2, callbacks=callbacks, verbose=0) #class_weight=class_weight_dict) #20% of the training data will be used as validation
+    #history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
+    history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #,class_weight=class_weight_dict)
     print("Training completed.")
     print(f"plotting curves")
     
