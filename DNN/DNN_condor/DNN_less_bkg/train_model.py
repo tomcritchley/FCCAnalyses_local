@@ -254,8 +254,8 @@ if __name__ == "__main__":
 
     #weights_train is the cross section weigths, something less extreme which oversamples the background and slightly undersamples the signal woudl be appropriate 
 
-    signal_weight_factor = 5
-    background_weight_factor = 0.1  # Making it smaller as you suggested
+    signal_weight_factor = 10
+    background_weight_factor = 1  # Making it smaller as you suggested
 
     # Adjust the weights
     adjusted_weights = np.where(y_train == 1, 
