@@ -22,7 +22,7 @@ for mass in $masses; do
 
         if [ -f "$x_train_path" ] && [ -f "$y_train_path" ]; then
             labels+=("${mass}_${coupling//Ve/}")
-            echo "Training files for $mass and ${coupling//Ve/} exist, added to labels"
+            echo "Training files for $mass and ${coupling//`Ve/} exist, added to labels"
         else
             echo "One or both training files for $mass and ${coupling//Ve/} do not exist, moving to next file"
         fi
