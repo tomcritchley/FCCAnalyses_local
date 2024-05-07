@@ -147,7 +147,8 @@ if __name__ == "__main__":
     #defining validation data for more control
     X_val = X_train[:int(len(X_train) * 0.2)] 
     y_val = y_train[:int(len(y_train) * 0.2)]
-    
+    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=weights_train)
+
     print("Initial X_train shape:", X_val.shape)
     print("Initial y_train shape:", y_val.shape)  
     
@@ -284,7 +285,8 @@ if __name__ == "__main__":
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
-        LearningRateScheduler(scheduler)
+        LearningRateScheduler(scheduler),
+        dynamic_weights_cb
     ]
 
     #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
@@ -297,13 +299,11 @@ if __name__ == "__main__":
     print(f'Average class probability in training set:   {y_train.mean():.4f}')
     print(f'Average class probability in validation set: {y_val.mean():.4f}')
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
-
-    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=weights_train)
-
     callbacks = [
         EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
-        LearningRateScheduler(scheduler)
+        LearningRateScheduler(scheduler),
+        dynamic_weights_cb
     ]
 
     signal_weight_factor = 10
