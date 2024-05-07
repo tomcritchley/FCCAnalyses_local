@@ -315,7 +315,7 @@ if __name__ == "__main__":
 
 
     #history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
-    history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #,class_weight=class_weight_dict)
+    history = model.fit(X_train, y_train,sample_weight=weights_train, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #,class_weight=class_weight_dict)
     print("Training completed.")
     print(f"plotting curves")
     
