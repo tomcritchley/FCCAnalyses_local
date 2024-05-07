@@ -293,8 +293,8 @@ if __name__ == "__main__":
     #class_weight_dict = dict(enumerate(class_weights))
     #class_weight_dict = {0: 0.5, 1: 12.5}
     #print(f"class weights (sklearn automatic): {class_weight_dict}")
-    val_start_index = int(len(y_train) * (1 - 0.3))
-    y_val = y_train[val_start_index:]
+    #val_start_index = int(len(y_train) * (1 - 0.3))
+    #y_val = y_train[val_start_index:]
 
     print(f'Average class probability in training set:   {y_train.mean():.4f}')
     print(f'Average class probability in validation set: {y_val.mean():.4f}')
