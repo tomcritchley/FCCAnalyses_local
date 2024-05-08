@@ -184,23 +184,33 @@ if __name__ == "__main__":
             Dense(1, activation='sigmoid')
         ])
     """
-
+        
     model = Sequential([
-    Dense(512, activation='LeakyReLU', input_shape=(X_train.shape[1],)),
-    BatchNormalization(),
-    Dropout(0.3), 
-    Dense(512, activation='LeakyReLU'),
-    BatchNormalization(),
-    Dropout(0.3),
-    Dense(256, activation='LeakyReLU'),
-    Dropout(0.3),
-    Dense(128, activation='LeakyReLU'),
-    Dropout(0.3),
-    Dense(64, activation='LeakyReLU'),
-    Dropout(0.3),
-    Dense(1, activation='sigmoid')
+        Dense(512, input_shape=(X_train.shape[1],)),
+        LeakyReLU(alpha=0.01),
+        BatchNormalization(),
+        Dropout(0.3), 
+        
+        Dense(512),
+        LeakyReLU(alpha=0.01),
+        BatchNormalization(),
+        Dropout(0.3),
+        
+        Dense(256),
+        LeakyReLU(alpha=0.01),
+        Dropout(0.3),
+        
+        Dense(128),
+        LeakyReLU(alpha=0.01),
+        Dropout(0.3),
+        
+        Dense(64),
+        LeakyReLU(alpha=0.01),
+        Dropout(0.3),
+        
+        Dense(1, activation='sigmoid')
     ])
-    
+        
     optimizer = Adam(learning_rate=0.001)
 
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', Precision(name='precision'), Recall(name='recall'), AUC(name='auc'), AUC(name='prc', curve='PR')])
