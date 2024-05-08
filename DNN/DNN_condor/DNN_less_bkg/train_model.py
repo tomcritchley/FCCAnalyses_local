@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, accuracy_score, recall_score, precision_score
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, LeakyReLU
+from tensorflow.keras.layers import Dense, Dropout, LeakyReLU, BatchNormalization
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.metrics import Precision, Recall, AUC
@@ -169,21 +169,38 @@ if __name__ == "__main__":
 
     print('Testing distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
         total_test, bkg_test, 100 * sig_test / total_test))
+    """
+        model = Sequential([
+            Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
+            Dropout(0.2), 
+            Dense(500,activation='relu'),
+            Dropout(0.5),
+            Dense(250,activation='relu'),
+            Dropout(0.5),
+            Dense(100,activation='relu'),
+            Dropout(0.5),
+            Dense(50,activation='relu'),
+            Dropout(0.5),
+            Dense(1, activation='sigmoid')
+        ])
+    """
 
     model = Sequential([
-        Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
-        Dropout(0.2), 
-        Dense(500,activation='relu'),
-        Dropout(0.5),
-        Dense(250,activation='relu'),
-        Dropout(0.5),
-        Dense(100,activation='relu'),
-        Dropout(0.5),
-        Dense(50,activation='relu'),
-        Dropout(0.5),
-        Dense(1, activation='sigmoid')
+    Dense(512, activation='LeakyReLU', input_shape=(X_train.shape[1],)),
+    BatchNormalization(),
+    Dropout(0.3), 
+    Dense(512, activation='LeakyReLU'),
+    BatchNormalization(),
+    Dropout(0.3),
+    Dense(256, activation='LeakyReLU'),
+    Dropout(0.3),
+    Dense(128, activation='LeakyReLU'),
+    Dropout(0.3),
+    Dense(64, activation='LeakyReLU'),
+    Dropout(0.3),
+    Dense(1, activation='sigmoid')
     ])
-
+    
     optimizer = Adam(learning_rate=0.001)
 
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', Precision(name='precision'), Recall(name='recall'), AUC(name='auc'), AUC(name='prc', curve='PR')])
