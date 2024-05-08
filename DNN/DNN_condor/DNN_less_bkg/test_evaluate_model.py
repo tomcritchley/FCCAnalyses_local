@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, precision_recall_curve, confusion_matrix
+from tensorflow.keras.metrics import Precision, Recall, AUC
 import tensorflow as tf
 import seaborn as sns
 from tqdm import tqdm
