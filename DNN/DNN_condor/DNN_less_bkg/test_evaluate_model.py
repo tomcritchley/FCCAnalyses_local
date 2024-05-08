@@ -64,7 +64,7 @@ if __name__ == "__main__":
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
         plt.title('Confusion Matrix')
-        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots10_opt/CM_{file}.pdf")
+        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/CM_{file}.pdf")
 
     significance_direction = significance_directions[1]
 
@@ -88,9 +88,11 @@ if __name__ == "__main__":
 
     # Evaluate the model on the test set
     print("Evaluating the model on the test set...")
-    test_loss, test_acc, test_prc, test_precision, test_recall = model.evaluate(X_test, y_test, verbose=2)
-    print(f'\nTest accuracy: {test_acc*100:.2f}%')
+    #test_loss, test_acc, test_prc, test_precision, test_recall = model.evaluate(X_test, y_test, verbose=2)
+    test_loss, metrics = model.evaluate(X_test, y_test, verbose=2)
 
+    for metric in metrics:
+        print(metric)
     ### ROC curve ###
 
     y_pred = model.predict(X_test).ravel()
