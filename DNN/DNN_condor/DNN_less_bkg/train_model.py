@@ -228,11 +228,11 @@ if __name__ == "__main__":
     callbacks = [
         EarlyStopping(monitor='val_prc', mode='max', patience=15, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
-        LearningRateScheduler(scheduler),
-        dynamic_weights_cb
+        LearningRateScheduler(scheduler)
+        #dynamic_weights_cb
     ]
 
-    history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks)
+    history = model.fit(X_train, y_train, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
     
