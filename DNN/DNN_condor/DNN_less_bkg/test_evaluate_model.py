@@ -160,6 +160,29 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/raw_dnn_classification_{file}.pdf")
 
+    background_weights = weights_test[y_test == 0]
+    unique_weights = np.unique(background_weights)
+
+    # Plot histogram of predicted scores for signal and each background type
+    plt.clf()
+    plt.figure(figsize=(10, 6))
+    plt.hist(y_pred_signal, bins=50, alpha=0.7, color='blue', label='Signal')
+
+    # Colors for each background type
+    colors = ['red', 'green', 'purple']
+    labels = ['Background Type 1', 'Background Type 2', 'Background Type 3']
+
+    for weight, color, label in zip(unique_weights, colors, labels):
+        mask = background_weights == weight
+        plt.hist(y_pred_background[mask], bins=50, alpha=0.5, color=color, label=label)
+
+    plt.xlabel('Predicted Score')
+    plt.ylabel('MC events')
+    plt.title('Raw Predicted Scores for Signal and Background Events')
+    plt.yscale('log')
+    plt.legend(loc='upper right')
+    plt.grid(True)
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/raw_bkg_seperated_{file}.pdf")
 
     weightsSIG = weights_test[y_test == 1] 
     weightsBKG = weights_test[y_test == 0]
