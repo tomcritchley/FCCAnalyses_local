@@ -249,9 +249,10 @@ if __name__ == "__main__":
         #dynamic_weights_cb
     ]
    
-    #weights = {0: 1, 1: (1 - (5596249 / 5572298))}
-
-    history = model.fit(X_train, y_train, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
+    weights = {0: 1, 1: (1 - (5596249 / 5572298))}
+    
+    #weights = {0: 1, 1: (0.001)}
+    history = model.fit(X_train, y_train, epochs=100, sample_weight=weights, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
     """
