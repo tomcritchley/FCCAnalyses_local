@@ -6,6 +6,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, LeakyReLU
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.metrics import Precision, Recall, AUC
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler, Callback
 from tqdm import tqdm
 import os
@@ -51,22 +52,6 @@ for mass in masses:
         else:
             print(f"file {signal_file} does not exist, moving to next file")
 
-def simple_oversample(X_train, y_train, scale_factor):
-    
-    minority_indices = np.where(y_train == 1)[0]
-    repeat_count = int(scale_factor)  # Ensure each instance is repeated equally
-    
-    # Extend minority indices by repeating each exactly `repeat_count` times
-    repeated_minority_indices = np.repeat(minority_indices, repeat_count)
-    
-    # Shuffle to mix them up for training
-    np.random.shuffle(repeated_minority_indices)
-    
-    X_oversampled = np.vstack([X_train, X_train[repeated_minority_indices]])
-    y_oversampled = np.hstack([y_train, y_train[repeated_minority_indices]])
-    
-    return X_oversampled, y_oversampled
-
 class DynamicWeightsCallback(Callback):
     def __init__(self, validation_data, initial_weights, increase_factor=1.5, decrease_factor=0.75, patience=3, min_delta=0.01):
         super().__init__()
@@ -96,9 +81,9 @@ class DynamicWeightsCallback(Callback):
 
         # If no improvement for 'patience' epochs, adjust weights
         if self.wait >= self.patience:
-            if val_recall < 0.98:
+            if val_recall < 0.95:
                 self.weights[1] *= self.increase_factor
-            if val_precision < 0.98:
+            if val_precision < 0.95:
                 self.weights[1] *= self.decrease_factor
 
             # Reset wait counter after adjusting
@@ -120,6 +105,7 @@ if __name__ == "__main__":
     X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing10/X_test_{file}.npy', allow_pickle=True)
     y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing10/y_test_{file}.npy', allow_pickle=True)
     weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing10/weights_train_{file}.npy', allow_pickle=True)
+    
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
     print("y_train:", y_train.dtype, y_train.shape)
@@ -137,20 +123,30 @@ if __name__ == "__main__":
     X_train = X_train.astype(np.float32)
     X_test = X_test.astype(np.float32)
 
+    #adjust weights from just cross section
+    signal_weight_factor = 5
+    background_weight_factor = 1
+
+    adjusted_weights = np.where(y_train == 1, 
+                                weights_train * signal_weight_factor, 
+                                weights_train * background_weight_factor)
+
     class_counts = np.bincount(y_train.astype(int))
     bkg = class_counts[0]
     sig = class_counts[1]
     total = bkg + sig
     
-    print("Initial X_train shape:", X_train.shape)
-    print("Initial y_train shape:", y_train.shape)
+    print("X_train shape:", X_train.shape)
+    print("y_train shape:", y_train.shape)
+
     #defining validation data for more control
     X_val = X_train[:int(len(X_train) * 0.2)] 
     y_val = y_train[:int(len(y_train) * 0.2)]
-    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=weights_train)
+    
+    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=adjusted_weights)
 
-    print("Initial X_train shape:", X_val.shape)
-    print("Initial y_train shape:", y_val.shape)  
+    print("X_validation shape:", X_val.shape)
+    print("y_validation shape:", y_val.shape)  
     
     print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
         total, bkg, 100 * bkg / total))
@@ -173,89 +169,6 @@ if __name__ == "__main__":
 
     print('Testing distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
         total_test, bkg_test, 100 * sig_test / total_test))
-    
-    print(f"initialising SMOTE...")
-
-    smote = SMOTE()
-    X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
-    
-    #how does smote affect distributions?
-
-    signal_indices_original = np.where(y_train == 1)[0]
-    signal_indices_smote = np.where(y_train_smote == 1)[0]
-
-    X_train_signal = X_train[signal_indices_original, :]
-    X_train_smote_signal = X_train_smote[signal_indices_smote, :]
-
-    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-    sns.histplot(X_train_signal[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
-    sns.histplot(X_train_smote_signal[:, 0], ax=axes[1], kde=True, color='red', label='SMOTE')
-    axes[0].set_title('Original Distribution of Feature 1')
-    axes[1].set_title('Distribution of Feature 1 After SMOTE')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/smote_effect_{file}.pdf")
-    plt.close()
-
-    class_counts = np.bincount(y_train_smote.astype(int))
-    bkg_smote = class_counts[0]
-    sig_smote = class_counts[1]
-    total = bkg_smote + sig_smote
-    
-    ratio = bkg / sig
-    print(f"YOUR RATIO! ratio of background to signal = {ratio}")
-    X_train_oversampled, y_train_oversampled = simple_oversample(X_train, y_train, scale_factor=ratio)
-
-    class_counts = np.bincount(y_train_oversampled.astype(int))
-    bkg_oversampled = class_counts[0]
-    sig_oversampled = class_counts[1]
-    total = bkg_oversampled + sig_oversampled
-
-    print(f"""
-    Some statistics after oversampling:
-    - Oversampled background: {bkg_oversampled}
-    - Oversampled signal: {sig_oversampled}
-    - Total events before oversampling: {total_test}
-    - Total oversampled events in training: {total}
-    """)
-
-    signal_indices_oversampled = np.where(y_train_oversampled == 1)[0]
-    X_train_oversampled_signal = X_train_oversampled[signal_indices_oversampled, :]
-
-    #how does random scale factor affect distrubtions?
-
-    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-    sns.histplot(X_train_signal[:, 0], ax=axes[0], kde=True, color='blue', label='Original')  # Replace 0 with the feature index you are interested in
-    sns.histplot(X_train_oversampled_signal[:, 0], ax=axes[1], kde=True, color='red', label='Scale Factor')
-    axes[0].set_title('Original Distribution of Feature 1')
-    axes[1].set_title('Distribution of Feature 1 After Scale factor')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/scale_factor_effect_{file}.pdf")
-    plt.close()
-
-
-    print('Training background distribution:\n    Total: {}\n    Background: {} ({:.5f}% of total)\n'.format(
-        total, bkg_smote, 100 * bkg_smote / total))
-    
-    print('Training signal distribution:\n    Total: {}\n    Signal: {} ({:.5f}% of total)\n'.format(
-        total, sig_smote, 100 * sig_smote / total))
-
-    """
-    model = Sequential([
-        Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
-        Dropout(0.5),
-        Dense(64, activation='relu'),
-        Dropout(0.5),
-        Dense(32, activation='relu'),
-        Dropout(0.5),
-        Dense(1, activation='sigmoid')  # Use 'softmax' for multi-class classification
-    ])
-    model.compile(optimizer='adam',
-                loss='binary_crossentropy',  # Use 'categorical_crossentropy' for multi-class classification
-                metrics=['accuracy'])
-    callbacks = [
-        EarlyStopping(monitor='val_loss', patience=15, verbose=1, mode='min', restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models5/best_model_{file}.keras', monitor='val_loss', save_best_only=True, mode='min', verbose=1)
-    ]
-    """
-    initial_bias = np.log([sig/bkg])
 
     model = Sequential([
         Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
@@ -273,49 +186,26 @@ if __name__ == "__main__":
 
     optimizer = Adam(learning_rate=0.001)
 
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', 'precision', 'recall', AUC(name='prc', curve='PR')])
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', Precision(name='precision'), Recall(name='recall'), AUC(name='auc'), AUC(name='prc', curve='PR')])
 
     def scheduler(epoch, lr):
         if epoch < 10:
             return float(lr)
         else:
             return float(lr * tf.math.exp(-0.1))
-    
-    # Update callbacks
-    callbacks = [
-        EarlyStopping(monitor='val_loss', patience=15, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
-        LearningRateScheduler(scheduler),
-        dynamic_weights_cb
-    ]
-
-    #class_weights = class_weight.compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
-    #class_weight_dict = dict(enumerate(class_weights))
-    #class_weight_dict = {0: 0.5, 1: 12.5}
-    #print(f"class weights (sklearn automatic): {class_weight_dict}")
-    #val_start_index = int(len(y_train) * (1 - 0.3))
-    #y_val = y_train[val_start_index:]
 
     print(f'Average class probability in training set:   {y_train.mean():.4f}')
     print(f'Average class probability in validation set: {y_val.mean():.4f}')
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
+    
     callbacks = [
-        EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_loss', mode='min'),
+        EarlyStopping(monitor='val_prc', mode='max', patience=15, restore_best_weights=True),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
         LearningRateScheduler(scheduler),
         dynamic_weights_cb
     ]
 
-    signal_weight_factor = 10
-    background_weight_factor = 1 
-
-    adjusted_weights = np.where(y_train == 1, 
-                                weights_train * signal_weight_factor, 
-                                weights_train * background_weight_factor)
-
-
-    #history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_split=0.2, callbacks=callbacks) #,class_weight=class_weight_dict)
-    history = model.fit(X_train, y_train,sample_weight=weights_train, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks)
+    history = model.fit(X_train, y_train,sample_weight=adjusted_weights, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks)
     print("Training completed.")
     print(f"plotting curves")
     
