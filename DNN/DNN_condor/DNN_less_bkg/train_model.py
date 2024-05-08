@@ -254,7 +254,7 @@ if __name__ == "__main__":
     history = model.fit(X_train, y_train, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
-    
+    """
     def permutation_feature_importance(model, X, y, metric=accuracy_score):
        
         original_score = metric(y, model.predict(X).round())
@@ -280,7 +280,7 @@ if __name__ == "__main__":
     plt.title('Feature Importance')
     plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots11/feature_importance_{file}.pdf')
     plt.close()
-
+    """
     for metric in ['loss', 'accuracy', 'precision', 'recall', 'prc']:
         plt.figure()
         plt.plot(history.history[metric], label=f'Training {metric}')
