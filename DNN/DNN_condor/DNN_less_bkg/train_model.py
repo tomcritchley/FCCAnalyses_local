@@ -139,9 +139,27 @@ if __name__ == "__main__":
     print("X_train shape:", X_train.shape)
     print("y_train shape:", y_train.shape)
 
-    #defining validation data for more control
-    X_val = X_train[:int(len(X_train) * 0.2)] 
-    y_val = y_train[:int(len(y_train) * 0.2)]
+    """    #defining validation data for more control
+        X_val = X_train[:int(len(X_train) * 0.2)] 
+        y_val = y_train[:int(len(y_train) * 0.2)]"""
+    total_validation_samples = int(len(X_train) * 0.2)  # 20% of the training data for validation
+    num_positive_val = int(total_validation_samples * 0.0042798)  # 0.42798% are positive
+    num_negative_val = total_validation_samples - num_positive_val  # Remaining are negative
+    positive_indices = np.where(y_train == 1)[0]
+    negative_indices = np.where(y_train == 0)[0]
+    np.random.shuffle(positive_indices)
+    np.random.shuffle(negative_indices)
+
+    val_indices = np.concatenate([
+        np.random.choice(positive_indices, num_positive_val, replace=False),
+        np.random.choice(negative_indices, num_negative_val, replace=False)
+    ])
+    np.random.shuffle(val_indices)
+    X_val = X_train[val_indices]
+    y_val = y_train[val_indices]
+    train_indices = np.setdiff1d(np.arange(len(X_train)), val_indices)
+    X_train = X_train[train_indices]
+    y_train = y_train[train_indices]
     
     dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=adjusted_weights)
 
