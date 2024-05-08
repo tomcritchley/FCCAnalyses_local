@@ -250,9 +250,7 @@ if __name__ == "__main__":
     ]
    
     weights = {0: 1, 1: 0.004}
-    
-    #weights = {0: 1, 1: (0.001)}
-    history = model.fit(X_train, y_train, epochs=100, sample_weight=weights, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
+    history = model.fit(X_train, y_train, epochs=100, class_weight=weights, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
     """
