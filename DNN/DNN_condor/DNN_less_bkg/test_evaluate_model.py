@@ -81,6 +81,8 @@ if __name__ == "__main__":
     model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
+    print(model.metrics_names)
+
     ### testing the model ###
 
     # Evaluate the model on the test set
