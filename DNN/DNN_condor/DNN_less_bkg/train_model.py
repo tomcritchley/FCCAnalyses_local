@@ -139,28 +139,28 @@ if __name__ == "__main__":
     print("X_train shape:", X_train.shape)
     print("y_train shape:", y_train.shape)
 
-    """    #defining validation data for more control
-        X_val = X_train[:int(len(X_train) * 0.2)] 
-        y_val = y_train[:int(len(y_train) * 0.2)]"""
-    total_validation_samples = int(len(X_train) * 0.2)  # 20% of the training data for validation
-    num_positive_val = int(total_validation_samples * 0.0042798)  # 0.42798% are positive
-    num_negative_val = total_validation_samples - num_positive_val  # Remaining are negative
-    positive_indices = np.where(y_train == 1)[0]
-    negative_indices = np.where(y_train == 0)[0]
-    np.random.shuffle(positive_indices)
-    np.random.shuffle(negative_indices)
+    #defining validation data for more control
+    X_val = X_train[:int(len(X_train) * 0.2)] 
+    y_val = y_train[:int(len(y_train) * 0.2)]
+    """ total_validation_samples = int(len(X_train) * 0.2)  # 20% of the training data for validation
+        num_positive_val = int(total_validation_samples * 0.0042798)  # 0.42798% are positive
+        num_negative_val = total_validation_samples - num_positive_val  # Remaining are negative
+        positive_indices = np.where(y_train == 1)[0]
+        negative_indices = np.where(y_train == 0)[0]
+        np.random.shuffle(positive_indices)
+        np.random.shuffle(negative_indices)
 
-    val_indices = np.concatenate([
-        np.random.choice(positive_indices, num_positive_val, replace=False),
-        np.random.choice(negative_indices, num_negative_val, replace=False)
-    ])
-    np.random.shuffle(val_indices)
-    X_val = X_train[val_indices]
-    y_val = y_train[val_indices]
-    train_indices = np.setdiff1d(np.arange(len(X_train)), val_indices)
-    X_train = X_train[train_indices]
-    y_train = y_train[train_indices]
-    
+        val_indices = np.concatenate([
+            np.random.choice(positive_indices, num_positive_val, replace=False),
+            np.random.choice(negative_indices, num_negative_val, replace=False)
+        ])
+        np.random.shuffle(val_indices)
+        X_val = X_train[val_indices]
+        y_val = y_train[val_indices]
+        train_indices = np.setdiff1d(np.arange(len(X_train)), val_indices)
+        X_train = X_train[train_indices]
+        y_train = y_train[train_indices]
+        """
     dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=adjusted_weights)
 
     print("X_validation shape:", X_val.shape)
@@ -172,14 +172,6 @@ if __name__ == "__main__":
     print('Training signal distribution:\n    Total: {}\n    Signal: {} ({:.5f}% of total)\n'.format(
         total, sig, 100 * sig / total))
     
-    weight_for_0 = (1 / bkg) * (total / 2.0)
-    weight_for_1 = (1 / sig) * (total / 2.0)
-
-    weights = {0: weight_for_0, 1: weight_for_1}
-
-    print('Weight for class 0 (tensorflow tutorial): {:.2f}'.format(weight_for_0))
-    print('Weight for class 1: (tensorflow tutorial) {:.2f}'.format(weight_for_1))
-        
     class_counts = np.bincount(y_test.astype(int))
     bkg_test = class_counts[0]
     sig_test = class_counts[1]
