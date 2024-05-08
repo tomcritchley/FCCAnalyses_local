@@ -169,47 +169,46 @@ if __name__ == "__main__":
 
     print('Testing distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
         total_test, bkg_test, 100 * sig_test / total_test))
-    """
-        model = Sequential([
-            Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
-            Dropout(0.2), 
-            Dense(500,activation='relu'),
-            Dropout(0.5),
-            Dense(250,activation='relu'),
-            Dropout(0.5),
-            Dense(100,activation='relu'),
-            Dropout(0.5),
-            Dense(50,activation='relu'),
-            Dropout(0.5),
-            Dense(1, activation='sigmoid')
-        ])
-    """
-        
+
     model = Sequential([
-        Dense(512, input_shape=(X_train.shape[1],)),
-        LeakyReLU(alpha=0.01),
-        BatchNormalization(),
-        Dropout(0.3), 
-        
-        Dense(512),
-        LeakyReLU(alpha=0.01),
-        BatchNormalization(),
-        Dropout(0.3),
-        
-        Dense(256),
-        LeakyReLU(alpha=0.01),
-        Dropout(0.3),
-        
-        Dense(128),
-        LeakyReLU(alpha=0.01),
-        Dropout(0.3),
-        
-        Dense(64),
-        LeakyReLU(alpha=0.01),
-        Dropout(0.3),
-        
+        Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
+        Dropout(0.2), 
+        Dense(500,activation='relu'),
+        Dropout(0.5),
+        Dense(250,activation='relu'),
+        Dropout(0.5),
+        Dense(100,activation='relu'),
+        Dropout(0.5),
+        Dense(50,activation='relu'),
+        Dropout(0.5),
         Dense(1, activation='sigmoid')
     ])
+    """        
+        model = Sequential([
+            Dense(512, input_shape=(X_train.shape[1],)),
+            LeakyReLU(alpha=0.01),
+            BatchNormalization(),
+            Dropout(0.3), 
+            
+            Dense(512),
+            LeakyReLU(alpha=0.01),
+            BatchNormalization(),
+            Dropout(0.3),
+            
+            Dense(256),
+            LeakyReLU(alpha=0.01),
+            Dropout(0.3),
+            
+            Dense(128),
+            LeakyReLU(alpha=0.01),
+            Dropout(0.3),
+            
+            Dense(64),
+            LeakyReLU(alpha=0.01),
+            Dropout(0.3),
+            
+            Dense(1, activation='sigmoid')
+        ])"""
         
     optimizer = Adam(learning_rate=0.001)
 
@@ -231,8 +230,10 @@ if __name__ == "__main__":
         LearningRateScheduler(scheduler)
         #dynamic_weights_cb
     ]
+   
+    weights = {0: 1, 1: (1 - (5596249 / 5572298))}
 
-    history = model.fit(X_train, y_train, epochs=100, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
+    history = model.fit(X_train, y_train, epochs=100, batch_size=156, validation_data=(X_val, y_val), sample_weight=weights, callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
     
