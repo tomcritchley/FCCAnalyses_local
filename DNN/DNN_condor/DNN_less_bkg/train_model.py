@@ -179,20 +179,31 @@ if __name__ == "__main__":
 
     print('Testing distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
         total_test, bkg_test, 100 * sig_test / total_test))
-
+    
     model = Sequential([
-        Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
-        Dropout(0.2), 
-        Dense(500,activation='relu'),
-        Dropout(0.5),
-        Dense(250,activation='relu'),
-        Dropout(0.5),
-        Dense(100,activation='relu'),
-        Dropout(0.5),
-        Dense(50,activation='relu'),
-        Dropout(0.5),
-        Dense(1, activation='sigmoid')
+    Dense(256, activation='relu', input_shape=(X_train.shape[1],)),  # Reduced from 500 to 256 neurons
+    Dropout(0.2),  # Slightly lower dropout for less complex model
+    Dense(128, activation='relu'),  # Reduced layer size
+    Dropout(0.2),  # Adjusted dropout
+    Dense(1, activation='sigmoid')  # Output layer remains the same
     ])
+   
+    ##model for test 4,5,6###
+    """
+        model = Sequential([
+            Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
+            Dropout(0.2), 
+            Dense(500,activation='relu'),
+            Dropout(0.5),
+            Dense(250,activation='relu'),
+            Dropout(0.5),
+            Dense(100,activation='relu'),
+            Dropout(0.5),
+            Dense(50,activation='relu'),
+            Dropout(0.5),
+            Dense(1, activation='sigmoid')
+        ])"""
+    ### model for test 1, 2, 3###
     """        
         model = Sequential([
             Dense(512, input_shape=(X_train.shape[1],)),
@@ -235,14 +246,14 @@ if __name__ == "__main__":
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
     
     callbacks = [
-        EarlyStopping(monitor='val_prc', mode='max', patience=15, restore_best_weights=True),
+        EarlyStopping(monitor='val_loss', mode='max', patience=15, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
         LearningRateScheduler(scheduler)
         #dynamic_weights_cb
     ]
    
     weights = {0: 1, 1: 1}
-    history = model.fit(X_train, y_train, epochs=100, sample_weight=weights_train, batch_size=156, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
+    history = model.fit(X_train, y_train, epochs=100, sample_weight=weights_train, batch_size=128, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
     """
