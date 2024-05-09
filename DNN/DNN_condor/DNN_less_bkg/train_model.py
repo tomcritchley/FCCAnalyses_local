@@ -189,9 +189,9 @@ if __name__ == "__main__":
 
     model = Sequential([
     Dense(128, activation='relu', input_shape=(X_train.shape[1],)),  # First hidden layer with 128 neurons
-    Dropout(0.1),  # Slightly lower dropout to prevent overfitting
+    #Dropout(0.1),  # Slightly lower dropout to prevent overfitting
     Dense(64, activation='relu'),  # Additional layer with 64 neurons for more capacity
-    Dropout(0.1),  # Consistent dropout rate to maintain regularization
+    #Dropout(0.1),  # Consistent dropout rate to maintain regularization
     Dense(1, activation='sigmoid')  # Output layer remains the same
     ])
 
