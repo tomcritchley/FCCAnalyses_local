@@ -179,7 +179,13 @@ if __name__ == "__main__":
 
     print('Testing distribution:\n    Total: {}\n    Positive: {} ({:.5f}% of total)\n'.format(
         total_test, bkg_test, 100 * sig_test / total_test))
-    
+    ##model for 12,
+    model = Sequential([
+    Dense(128, activation='relu', input_shape=(X_train.shape[1],)),  # Reduced from 256 to 128 neurons
+    Dropout(0.1),  # Lower dropout rate to maintain some regularization
+    Dense(1, activation='sigmoid')  # Output layer remains the same
+    ])
+    ## model for 7,8,9,10 ###
     """    model = Sequential([
         Dense(256, activation='relu', input_shape=(X_train.shape[1],)),  # Reduced from 500 to 256 neurons
         Dropout(0.2),  # Slightly lower dropout for less complex model
@@ -188,20 +194,20 @@ if __name__ == "__main__":
         Dense(1, activation='sigmoid')  # Output layer remains the same
         ])
     """
-    ##model for test 4,5,6###
-    model = Sequential([
-        Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
-        Dropout(0.2), 
-        Dense(500,activation='relu'),
-        Dropout(0.5),
-        Dense(250,activation='relu'),
-        Dropout(0.5),
-        Dense(100,activation='relu'),
-        Dropout(0.5),
-        Dense(50,activation='relu'),
-        Dropout(0.5),
-        Dense(1, activation='sigmoid')
-    ])
+    ##model for test 4,5,6, 11###
+    """    model = Sequential([
+            Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
+            Dropout(0.2), 
+            Dense(500,activation='relu'),
+            Dropout(0.5),
+            Dense(250,activation='relu'),
+            Dropout(0.5),
+            Dense(100,activation='relu'),
+            Dropout(0.5),
+            Dense(50,activation='relu'),
+            Dropout(0.5),
+            Dense(1, activation='sigmoid')
+        ])"""
     ### model for test 1, 2, 3###
     """        
         model = Sequential([
