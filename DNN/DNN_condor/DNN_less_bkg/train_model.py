@@ -124,7 +124,7 @@ if __name__ == "__main__":
     X_test = X_test.astype(np.float32)
 
     #adjust weights from just cross section
-    signal_weight_factor = 2
+    signal_weight_factor = 3
     background_weight_factor = 1
 
     adjusted_weights = np.where(y_train == 1, 
