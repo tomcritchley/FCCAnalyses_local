@@ -161,7 +161,7 @@ if __name__ == "__main__":
         X_train = X_train[train_indices]
         y_train = y_train[train_indices]
         """
-    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=adjusted_weights)
+    #dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=adjusted_weights)
 
     print("X_validation shape:", X_val.shape)
     print("y_validation shape:", y_val.shape)  
