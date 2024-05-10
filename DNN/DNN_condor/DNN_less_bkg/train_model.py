@@ -161,7 +161,8 @@ if __name__ == "__main__":
         X_train = X_train[train_indices]
         y_train = y_train[train_indices]
         """
-    #dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=adjusted_weights)
+    initial_weights = {0: 1, 1: 1}
+    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=initial_weights)
 
     print("X_validation shape:", X_val.shape)
     print("y_validation shape:", y_val.shape)  
@@ -264,8 +265,8 @@ if __name__ == "__main__":
     callbacks = [
         EarlyStopping(monitor='val_loss', mode='max', patience=15, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
-        LearningRateScheduler(scheduler)
-        #dynamic_weights_cb
+        LearningRateScheduler(scheduler),
+        dynamic_weights_cb
     ]
    
     weights = {0: 1, 1: 1}
