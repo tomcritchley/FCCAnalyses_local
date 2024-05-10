@@ -100,11 +100,11 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training10/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training10/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing10/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing10/y_test_{file}.npy', allow_pickle=True)
-    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing10/weights_train_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/y_test_{file}.npy', allow_pickle=True)
+    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/weights_train_{file}.npy', allow_pickle=True)
     
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
