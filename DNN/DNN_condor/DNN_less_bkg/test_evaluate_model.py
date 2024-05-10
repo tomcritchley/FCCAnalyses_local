@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     file = args.label
 
-    def plot_confusion_matrix(y_true, y_pred, threshold=0.5):
+    def plot_confusion_matrix(y_true, y_pred, threshold=0.5): #threshold for confusion!
 
         y_pred_labels = (y_pred > threshold).astype(int)
         cm = confusion_matrix(y_true, y_pred_labels)
