@@ -118,7 +118,7 @@ if __name__ == "__main__":
     print("X_test sample:", X_test[:5])
     print("y_test sample:", y_test[:5])
 
-    p#rint(f"first few entries of weights for training: {weights_train[:10]}")
+    #print(f"first few entries of weights for training: {weights_train[:10]}")
 
     X_train = X_train.astype(np.float32)
     X_test = X_test.astype(np.float32)
