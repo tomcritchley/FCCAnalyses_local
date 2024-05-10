@@ -181,18 +181,18 @@ if __name__ == "__main__":
         total_test, bkg_test, 100 * sig_test / total_test))
     ##model for 12,
     """model = Sequential([
-    Dense(128, activation='relu', input_shape=(X_train.shape[1],)),  # Reduced from 256 to 128 neurons
-    Dropout(0.1),  # Lower dropout rate to maintain some regularization
-    Dense(1, activation='sigmoid')  # Output layer remains the same
+    Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
+    Dropout(0.1),  
+    Dense(1, activation='sigmoid') 
     ])"""
     ## model for 13 ##
 
     model = Sequential([
-    Dense(128, activation='relu', input_shape=(X_train.shape[1],)),  # First hidden layer with 128 neurons
-    Dropout(0.1),  # Slightly lower dropout to prevent overfitting
-    Dense(64, activation='relu'),  # Additional layer with 64 neurons for more capacity
-    #Dropout(0.1),  # Consistent dropout rate to maintain regularization
-    Dense(1, activation='sigmoid')  # Output layer remains the same
+    Dense(128, activation='relu', input_shape=(X_train.shape[1],)), 
+    Dropout(0.1),
+    Dense(64, activation='relu'),  
+    #Dropout(0.1),  
+    Dense(1, activation='sigmoid')  
     ])
 
 
