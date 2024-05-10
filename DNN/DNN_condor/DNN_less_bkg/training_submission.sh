@@ -10,7 +10,7 @@ echo "Masses: $masses"
 couplings=$(python3 -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/training6"
+base_path="/eos/user/t/tcritchl/DNN/training10"
 
 labels=()
 for mass in $masses; do
@@ -22,7 +22,7 @@ for mass in $masses; do
 
         if [ -f "$x_train_path" ] && [ -f "$y_train_path" ]; then
             labels+=("${mass}_${coupling//Ve/}")
-            echo "Training files for $mass and ${coupling//`Ve/} exist, added to labels"
+            echo "Training files for $mass and ${coupling//Ve/} exist, added to labels"
         else
             echo "One or both training files for $mass and ${coupling//Ve/} do not exist, moving to next file"
         fi
@@ -36,7 +36,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/bin/activate" >> "$script_file"
-    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/Run6_opt/hyperparameter.py --label \"$label\"" >> "$script_file"
+    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/train_model.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     cat <<EOF > "RunAnSt1_HTC_${label}.condor"
@@ -56,7 +56,5 @@ queue
 EOF
 
     condor_submit "RunAnSt1_HTC_${label}.condor"
-
-sleep 5
 
 done
