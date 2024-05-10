@@ -1,0 +1,23 @@
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/Data_Preparation.py:2: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/Data_Preparation.py:159: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  testing_bg_df['cross_section'] = testing_bg_df['cross_section'].apply(convert_to_str)
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/Data_Preparation.py", line 231, in <module>
+    prepare_datasets()
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/Data_Preparation.py", line 221, in prepare_datasets
+    np.save(f'/eos/user/t/tcritchl/DNN/training11/X_train_{args.label}.npy', X_train_scaled)
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/numpy/lib/npyio.py", line 542, in save
+    file_ctx = open(file, "wb")
+               ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/eos/user/t/tcritchl/DNN/training11/X_train_40GeV_1e-4.npy'
