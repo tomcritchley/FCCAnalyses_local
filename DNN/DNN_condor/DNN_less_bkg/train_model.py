@@ -81,9 +81,9 @@ class DynamicWeightsCallback(Callback):
 
         # If no improvement for 'patience' epochs, adjust weights
         if self.wait >= self.patience:
-            if val_recall < 0.95:
+            if val_recall < 0.96:
                 self.weights[1] *= self.increase_factor
-            if val_precision < 0.95:
+            if val_precision < 0.96:
                 self.weights[1] *= self.decrease_factor
 
             # Reset wait counter after adjusting
