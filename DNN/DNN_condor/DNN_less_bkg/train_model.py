@@ -124,7 +124,7 @@ if __name__ == "__main__":
     X_test = X_test.astype(np.float32)
 
     #adjust weights from just cross section
-    signal_weight_factor = 3
+    signal_weight_factor = 4
     background_weight_factor = 1
 
     adjusted_weights = np.where(y_train == 1, 
@@ -191,7 +191,7 @@ if __name__ == "__main__":
     Dense(128, activation='relu', input_shape=(X_train.shape[1],)), 
     Dropout(0.1),
     Dense(64, activation='relu'),  
-    #Dropout(0.1),  
+    Dropout(0.1),  
     Dense(1, activation='sigmoid')  
     ])
 
