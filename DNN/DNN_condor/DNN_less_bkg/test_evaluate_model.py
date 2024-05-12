@@ -218,7 +218,7 @@ if __name__ == "__main__":
 
     bin_width = 0.0001 #in the region of interest, binning resolution
     
-    full_range_bins = np.linspace(np.min(y_pred), np.max(y_pred), 1000) #scan over full range with 1000 bins
+    full_range_bins = np.linspace(np.min(y_pred), np.max(y_pred), 2000) #scan over full range with 1000 bins
     
     print(f"scanning over all bins for mass point {file}")
 
