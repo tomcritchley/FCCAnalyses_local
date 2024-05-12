@@ -124,12 +124,12 @@ if __name__ == "__main__":
     X_test = X_test.astype(np.float32)
 
     #adjust weights from just cross section
-    signal_weight_factor = 3
-    background_weight_factor = 1
+    #signal_weight_factor = 3
+    #background_weight_factor = 1
 
-    adjusted_weights = np.where(y_train == 1, 
-                                weights_train * signal_weight_factor, 
-                                weights_train * background_weight_factor)
+    #adjusted_weights = np.where(y_train == 1, 
+                                #weights_train * signal_weight_factor, 
+                                #weights_train * background_weight_factor)
 
     class_counts = np.bincount(y_train.astype(int))
     bkg = class_counts[0]
@@ -269,9 +269,9 @@ if __name__ == "__main__":
         #dynamic_weights_cb
     ]
    
-    weights = {0: 1, 1: 1}
+    weights = {0: 1, 1: (1/0.0076)}
     #sample_weight=weights_train
-    history = model.fit(X_train, y_train, epochs=100,sample_weight=adjusted_weights, batch_size=256, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
+    history = model.fit(X_train, y_train, epochs=100,class_weight=weights, batch_size=256, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
     """
