@@ -64,7 +64,7 @@ if __name__ == "__main__":
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
         plt.title('Confusion Matrix')
-        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/CM_{file}.pdf")
+        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots12/CM_{file}.pdf")
 
     significance_direction = significance_directions[1]
 
