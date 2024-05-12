@@ -100,10 +100,10 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training6/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing6/y_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/y_test_{file}.npy', allow_pickle=True)
     #weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing6/weights_train_{file}.npy', allow_pickle=True)
     
     print("Data types and shapes:")
@@ -264,7 +264,7 @@ if __name__ == "__main__":
     
     callbacks = [
         EarlyStopping(monitor='val_loss', mode='max', patience=15, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models12/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
         LearningRateScheduler(scheduler),
         dynamic_weights_cb
     ]
@@ -309,11 +309,11 @@ if __name__ == "__main__":
         plt.xlabel('Epoch')
         plt.ylabel(metric)
         plt.legend()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots11/{metric}_{file}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots12/{metric}_{file}.pdf')
         plt.close()
 
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models11/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models12/best_model_{file}.keras')
     print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_{file}.keras')
+    model.save(f'/eos/user/t/tcritchl/DNN/trained_models12/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
