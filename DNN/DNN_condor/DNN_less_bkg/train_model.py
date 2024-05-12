@@ -104,7 +104,7 @@ if __name__ == "__main__":
     y_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/y_train_{file}.npy', allow_pickle=True)
     X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/X_test_{file}.npy', allow_pickle=True)
     y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/y_test_{file}.npy', allow_pickle=True)
-    #weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing6/weights_train_{file}.npy', allow_pickle=True)
+    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing11/weights_train_{file}.npy', allow_pickle=True)
     
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
@@ -127,9 +127,9 @@ if __name__ == "__main__":
     signal_weight_factor = 3
     background_weight_factor = 1
 
-    #adjusted_weights = np.where(y_train == 1, 
-                                #weights_train * signal_weight_factor, 
-                                #weights_train * background_weight_factor)
+    adjusted_weights = np.where(y_train == 1, 
+                                weights_train * signal_weight_factor, 
+                                weights_train * background_weight_factor)
 
     class_counts = np.bincount(y_train.astype(int))
     bkg = class_counts[0]
@@ -162,7 +162,7 @@ if __name__ == "__main__":
         y_train = y_train[train_indices]
         """
     initial_weights = {0: 1, 1: 1}
-    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=initial_weights)
+    #dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=initial_weights)
 
     print("X_validation shape:", X_val.shape)
     print("y_validation shape:", y_val.shape)  
@@ -265,13 +265,13 @@ if __name__ == "__main__":
     callbacks = [
         EarlyStopping(monitor='val_loss', mode='max', patience=15, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models12/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
-        LearningRateScheduler(scheduler),
-        dynamic_weights_cb
+        LearningRateScheduler(scheduler)
+        #dynamic_weights_cb
     ]
    
     weights = {0: 1, 1: 1}
     #sample_weight=weights_train
-    history = model.fit(X_train, y_train, epochs=100, batch_size=256, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
+    history = model.fit(X_train, y_train, epochs=100,sample_weight=adjusted_weights, batch_size=256, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
     """
