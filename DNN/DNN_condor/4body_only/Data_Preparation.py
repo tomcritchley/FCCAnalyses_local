@@ -88,7 +88,7 @@ def prepare_datasets():
     signal_df = load_and_filter_data(signal_file, signal_x_sec, tree_name, variables, basic_filter)
     signal_df['label'] = 1
 
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('000.root') or file.endswith('ejjnu.root')]
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('.root')]
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
     # Filter for specific background using the cross section 0.014 and splitting data
