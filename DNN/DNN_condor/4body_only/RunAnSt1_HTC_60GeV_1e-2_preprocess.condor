@@ -1,0 +1,13 @@
+#!/bin/bash
+executable     = ./RunAnSt1_HTC_60GeV_1e-2_preprocess.sh
+universe       = vanilla
+arguments      = $(ClusterId) $(ProcId)
+output         = DNN_preprocess_60GeV_1e-2.$(ClusterId).$(ProcId).out
+error          = DNN_preprocess_60GeV_1e-2.$(ClusterId).$(ProcId).error
+log            = DNN_preprocess_60GeV_1e-2.$(ClusterId).$(ProcId).log
+should_transfer_files   = YES
+when_to_transfer_output = ON_EXIT
+environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
+requirements = (OpSysAndVer =?= "AlmaLinux9")
++JobFlavour    = "testmatch"
+queue

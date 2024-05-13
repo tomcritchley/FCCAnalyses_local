@@ -12,13 +12,22 @@ echo "Masses: $masses"
 couplings=$(python3 -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/testing13"
+base_path="/eos/user/t/tcritchl/DNN/testing10"
 
 labels=()
-
 for mass in $masses; do
     for coupling in $couplings; do
-        labels+=("${mass}_${coupling//Ve/}")
+        x_test_file="X_test_${mass}_${coupling//Ve/}.npy"
+        y_test_file="y_test_${mass}_${coupling//Ve/}.npy"
+        x_test_path="${base_path}/${x_test_file}"
+        y_test_path="${base_path}/${y_test_file}"
+
+        if [ -f "$x_test_path" ] && [ -f "$y_test_path" ]; then
+            labels+=("${mass}_${coupling//Ve/}")
+            echo "Testing files for $mass and ${coupling//Ve/} exist, added to labels"
+        else
+            echo "One or both testing files for $mass and ${coupling//Ve/} do not exist, moving to next file"
+        fi
     done
 done
 
@@ -27,22 +36,22 @@ echo "labels: ${labels[@]}"
 for label in "${labels[@]}"; do
     echo "label: $label" 
     # Create a unique shell script for the current signal point
-    script_file="RunAnSt1_HTC_${label}_preprocess.sh"
+    script_file="RunAnSt1_HTC_${label}_testing.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/bin/activate" >> "$script_file"
-    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/4body_only/Data_Preparation.py --label \"$label\"" >> "$script_file"
+    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/test_evaluate_model.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     # Create a unique Condor submission script for the current signal point
-    cat <<EOF > "RunAnSt1_HTC_${label}_preprocess.condor"
+    cat <<EOF > "RunAnSt1_HTC_${label}_testing.condor"
 #!/bin/bash
 executable     = ./$script_file
 universe       = vanilla
 arguments      = \$(ClusterId) \$(ProcId)
-output         = DNN_preprocess_${label}.\$(ClusterId).\$(ProcId).out
-error          = DNN_preprocess_${label}.\$(ClusterId).\$(ProcId).error
-log            = DNN_preprocess_${label}.\$(ClusterId).\$(ProcId).log
-should_transfer_files   = YES
+output         = DNN_testing_${label}.\$(ClusterId).\$(ProcId).out
+error          = DNN_testing_${label}.\$(ClusterId).\$(ProcId).error
+log            = DNN_testing_${label}.\$(ClusterId).\$(ProcId).log
+should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
 requirements = (OpSysAndVer =?= "AlmaLinux9")
@@ -51,6 +60,6 @@ queue
 EOF
 
     # Submit a Condor job for the current signal point and label
-    condor_submit "RunAnSt1_HTC_${label}_preprocess.condor"
-    
+    condor_submit "RunAnSt1_HTC_${label}_testing.condor"
+
 done
