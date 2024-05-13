@@ -78,7 +78,7 @@ def convert_to_numpy(df, fields):
         df[field] = ak.to_numpy(df[field])
 
 def prepare_datasets():
-
+    
     parser = argparse.ArgumentParser(description='Prepare datasets for DNN Training')
     parser.add_argument('--label', required=True, help='Signal label, e.g., 10GeV_1e-2')
     args = parser.parse_args()
@@ -88,81 +88,39 @@ def prepare_datasets():
     signal_df = load_and_filter_data(signal_file, signal_x_sec, tree_name, variables, basic_filter)
     signal_df['label'] = 1
 
-    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('.root')] #or file.endswith('ejjnu.root')]
+    background_files = [(os.path.join(dir, file), x_sec) for dir, x_sec in background_dirs for file in os.listdir(dir) if file.endswith('000.root') or file.endswith('ejjnu.root')]
     background_df = load_and_preprocess_bkg(background_files, basic_filter, 0)
 
-    ###group the bkgs by cross section###
+    # Filter for specific background using the cross section 0.014 and splitting data
 
-    bg_df_groups = {x_sec: df for x_sec, df in background_df.groupby('cross_section')}
-
-    print("Number of events per cross section:")
-    for x_sec, df in bg_df_groups.items():
-        print(f"Cross section {x_sec}: {len(df)} events (training+testing)")
+    #only 4 body in training just to test what happens...
+    specific_bg_df = background_df[background_df['cross_section'] == 0.014]
+    training_specific_bg_df, testing_specific_bg_df = train_test_split(specific_bg_df, test_size=0.1, random_state=42)
     
-    """
-    min_size = min(len(df) for df in bg_df_groups.values())
-    print(f"Minimum size for balanced backgrounds in training: {min_size // 2}")
-    min_size = min_size // 2 #(want to maintain some of the 4 body for testing)
-    """
-
-    # Find the maximum number of events we can sample equally from each group
-    #equal_sample_size = min(len(df) for df in bg_df_groups.values()) // 2  # Using //2 if you still want a 50% split for training
-
-    training_bg_dfs = []
-    training_mask = pd.Series(False, index=background_df.index)
-
-    for x_sec, df in bg_df_groups.items():
-        equal_sample_size = len(df) // 2  # Calculate half size of each group
-        sampled_indices = df.sample(equal_sample_size, random_state=42).index  # Sample indices for training
-        training_bg_dfs.append(df.loc[sampled_indices])  # Add the sampled df to the training list
-        training_mask.loc[sampled_indices] = True  # Mark these indices as used for training
-
-    # Concatenate all the samples into a single training dataframe
-    training_bg_df = pd.concat(training_bg_dfs, ignore_index=True)
-    testing_bg_df = background_df.loc[~training_mask]  # Ensure testing data is exactly the complement of training data
-
-    print(f"Total training events: {len(training_bg_df)}")
-    print(f"Total testing events: {len(testing_bg_df)}")
-        
-    """
-    training_bg_dfs = []
-    training_mask = pd.Series(False, index=background_df.index)
-
-    for x_sec, df in bg_df_groups.items():
-        sampled_df = df.sample(min_size, random_state=42)
-        print(f"Sampled {len(sampled_df)} events for training from cross section {x_sec}")
-        sampled_indices = df.sample(min_size, random_state=42).index
-        training_bg_dfs.append(df.loc[sampled_indices])
-        training_mask.loc[sampled_indices] = True  # Mark these indices as used for training
-
-    training_bg_df = pd.concat(training_bg_dfs, ignore_index=True)
-
-    testing_bg_df = background_df.loc[~training_mask]  #use index mask to filter out training data
-    """
-
-    print(f"Total training events: {len(training_bg_df)}")
-    print(f"Total testing events: {len(testing_bg_df)}")
-
-    ####### 50/50 split for training/testing on the signal ######
+    # Append the rest of the backgrounds to the testing dataset
+    other_bg_df = background_df[background_df['cross_section'] != 0.014]
+    testing_bg_df = pd.concat([other_bg_df, testing_specific_bg_df], ignore_index=True)
+    
+    # Combine the signal and specific background data for training
     df_train_signal, df_test_signal = train_test_split(signal_df, test_size=0.5, random_state=42)
-
-    df_train = pd.concat([df_train_signal, training_bg_df], ignore_index=True).sample(frac=1).reset_index(drop=True)
+    df_train = pd.concat([df_train_signal, training_specific_bg_df], ignore_index=True).sample(frac=1).reset_index(drop=True)
     df_test = pd.concat([df_test_signal, testing_bg_df], ignore_index=True).sample(frac=1).reset_index(drop=True)
 
-    print(f"Training set: Signal: {len(df_train_signal)}, Background: {len(training_bg_df)}")
+    print(f"Training set: Signal: {len(df_train_signal)}, Background: {len(training_specific_bg_df)}")
     print(f"Testing set: Signal: {len(df_test_signal)}, Background: {len(testing_bg_df)}")
+
     
     #necessary to convert to have the dynamic weights (need dictionary key consistency)
     convert_to_str = lambda x: f"{x:.5f}"
     background_df['cross_section'] = background_df['cross_section'].apply(convert_to_str)
-    training_bg_df['cross_section'] = training_bg_df['cross_section'].apply(convert_to_str)
+    training_specific_bg_df['cross_section'] = training_specific_bg_df['cross_section'].apply(convert_to_str)
     testing_bg_df['cross_section'] = testing_bg_df['cross_section'].apply(convert_to_str)
     bg_df_groups = {x_sec: df for x_sec, df in background_df.groupby('cross_section')}
 
     background_weight_scales = {}
     for x_sec, df in bg_df_groups.items():
         total_count = len(df)
-        training_count = len(training_bg_df[training_bg_df['cross_section'] == x_sec])
+        training_count = len(training_specific_bg_df[training_specific_bg_df['cross_section'] == x_sec])
         testing_count = len(testing_bg_df[testing_bg_df['cross_section'] == x_sec])
 
         if testing_count > 0:
@@ -180,7 +138,7 @@ def prepare_datasets():
     df_test_signal['weight'] *= signal_weight_scale
 
     print(f"Train signal count: {len(df_train_signal)}, Test signal count: {len(df_test_signal)}")
-    print(f"Train background count: {len(training_bg_df)}, Test background count: {len(testing_bg_df)}")
+    print(f"Train background count: {len(training_specific_bg_df)}, Test background count: {len(testing_bg_df)}")
 
     convert_to_numpy(df_train, ['RecoElectronTrack_absD0', 'RecoElectronTrack_absD0sig', 'RecoMissingEnergy_theta', 'RecoMissingEnergy_e'])
     convert_to_numpy(df_test, ['RecoElectronTrack_absD0', 'RecoElectronTrack_absD0sig', 'RecoMissingEnergy_theta', 'RecoMissingEnergy_e'])
@@ -206,7 +164,7 @@ def prepare_datasets():
         plt.yticks(rotation=0)
         plt.title(f"Correlation Matrix")
         plt.tight_layout()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots11/correlation_matrix_{args.label}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots13/correlation_matrix_{args.label}.pdf')
     except Exception as e:
         print(f"something went wrong with the correlation matrix...: {e}")
 
@@ -218,12 +176,12 @@ def prepare_datasets():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    np.save(f'/eos/user/t/tcritchl/DNN/training11/X_train_{args.label}.npy', X_train_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing11/X_test_{args.label}.npy', X_test_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/training11/y_train_{args.label}.npy', y_train)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing11/y_test_{args.label}.npy', y_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing11/weights_test_{args.label}.npy', weights_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing11/weights_train_{args.label}.npy', weights_train)
+    np.save(f'/eos/user/t/tcritchl/DNN/training13/X_train_{args.label}.npy', X_train_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing13/X_test_{args.label}.npy', X_test_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/training13/y_train_{args.label}.npy', y_train)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing13/y_test_{args.label}.npy', y_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing13/weights_test_{args.label}.npy', weights_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing13/weights_train_{args.label}.npy', weights_train)
 
     print(f"Data preparation complete for label: {args.label}")
 
