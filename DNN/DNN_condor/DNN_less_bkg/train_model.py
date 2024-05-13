@@ -265,7 +265,7 @@ if __name__ == "__main__":
     callbacks = [
         EarlyStopping(monitor='val_loss', mode='max', patience=15, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models12/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
-        LearningRateScheduler(scheduler)
+        LearningRateScheduler(scheduler),
         dynamic_weights_cb
     ]
    
