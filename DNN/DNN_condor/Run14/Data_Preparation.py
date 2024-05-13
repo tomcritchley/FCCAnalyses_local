@@ -115,7 +115,7 @@ def prepare_datasets():
         print(f"x-sec is {x_sec} with type {type(x_sec)}")
         if x_sec == 0.014:
             # For cross section 0.014, use 80% of the events for training
-            sample_size = int(len(df) * 0.8)
+            sample_size = int(len(df) * 0.9)
         else:
             # For other cross sections, use 30% of the events for training
             sample_size = int(len(df) * 0.3)
