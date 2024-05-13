@@ -112,7 +112,8 @@ def prepare_datasets():
     training_mask = pd.Series(False, index=background_df.index)
 
     for x_sec, df in bg_df_groups.items():
-        if x_sec == "0.014":
+        print(f"x-sec is {x_sec} with type {type(x_sec)}")
+        if x_sec == 0.014:
             # For cross section 0.014, use 80% of the events for training
             sample_size = int(len(df) * 0.8)
         else:
