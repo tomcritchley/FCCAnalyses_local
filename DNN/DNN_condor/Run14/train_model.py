@@ -62,16 +62,17 @@ def calculate_significance(n, b_cumulative, sigma_cumulative):
     except ValueError:
         significance = 0  # Handle math domain error in log
     return significance
-
 class SignificanceCallback(Callback):
-    def __init__(self, validation_data, bins=1000, uncertainty_count_factor=0.1):
+    def __init__(self, validation_data, validation_weights, bins=1000, uncertainty_count_factor=0.1):
         super().__init__()
         self.validation_data = validation_data
+        self.validation_weights = validation_weights
         self.bins = bins
         self.uncertainty_count_factor = uncertainty_count_factor
 
     def on_epoch_end(self, epoch, logs=None):
         X_val, y_val = self.validation_data
+        val_weights = self.validation_weights
         predictions = self.model.predict(X_val).flatten()
 
         # Bin the predictions
@@ -81,8 +82,9 @@ class SignificanceCallback(Callback):
         significances = []
 
         for bin_idx in range(1, self.bins + 1):
-            b_cumulative = np.sum(y_val[binned_indices == bin_idx] == 0)
-            s_cumulative = np.sum(y_val[binned_indices == bin_idx] == 1)
+            bin_mask = binned_indices == bin_idx
+            b_cumulative = np.sum(val_weights[bin_mask] * (y_val[bin_mask] == 0))
+            s_cumulative = np.sum(val_weights[bin_mask] * (y_val[bin_mask] == 1))
             sigma_cumulative = b_cumulative * self.uncertainty_count_factor
             n = s_cumulative + b_cumulative
 
@@ -180,6 +182,7 @@ if __name__ == "__main__":
     #defining validation data for more control
     X_val = X_train[:int(len(X_train) * 0.2)] 
     y_val = y_train[:int(len(y_train) * 0.2)]
+    weights_val = weights_train[:int(len(weights_train) * 0.2)]
 
     initial_weights = {0: 1, 1: 1}
     dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=initial_weights)
