@@ -48,9 +48,9 @@ for label in "${labels[@]}"; do
 executable     = ./$script_file
 universe       = vanilla
 arguments      = \$(ClusterId) \$(ProcId)
-output         = DNN_testing_${label}.\$(ClusterId).\$(ProcId).out
-error          = DNN_testing_${label}.\$(ClusterId).\$(ProcId).error
-log            = DNN_testing_${label}.\$(ClusterId).\$(ProcId).log
+output         = DNN12_testing_${label}.\$(ClusterId).\$(ProcId).out
+error          = DNN12_testing_${label}.\$(ClusterId).\$(ProcId).error
+log            = DNN12_testing_${label}.\$(ClusterId).\$(ProcId).log
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"

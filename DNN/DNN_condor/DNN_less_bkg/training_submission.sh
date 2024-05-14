@@ -10,7 +10,7 @@ echo "Masses: $masses"
 couplings=$(python3 -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/training10"
+base_path="/eos/user/t/tcritchl/DNN/training11"
 
 labels=()
 for mass in $masses; do
@@ -36,7 +36,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/bin/activate" >> "$script_file"
-    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/train_model.py --label \"$label\"" >> "$script_file"
+    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/hyperparameter.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     cat <<EOF > "RunAnSt1_HTC_${label}.condor"
@@ -44,9 +44,9 @@ for label in "${labels[@]}"; do
 executable     = ./$script_file
 universe       = vanilla
 arguments      = \$(ClusterId) \$(ProcId)
-output         = DNN_training_${label}.\$(ClusterId).\$(ProcId).out
-error          = DNN_training_${label}.\$(ClusterId).\$(ProcId).error
-log            = DNN_training_${label}.\$(ClusterId).\$(ProcId).log
+output         = 1_DNN_opt_training_${label}.\$(ClusterId).\$(ProcId).out
+error          = 1_DNN_opt_training_${label}.\$(ClusterId).\$(ProcId).error
+log            = 1_DNN_opt_training_${label}.\$(ClusterId).\$(ProcId).log
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"

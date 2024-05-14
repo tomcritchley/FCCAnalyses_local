@@ -1,0 +1,49 @@
+000 (9810920.000.000) 05/14 14:40:19 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_25162_9e1a>
+...
+040 (9810920.000.000) 05/14 15:19:34 Started transferring input files
+	Transferring to host: <188.185.208.71:9618?addrs=188.185.208.71-9618+[2001-1458-303-f--100-44]-9618&alias=b9p09p5977.cern.ch&noUDP&sock=slot1_18_5472_44d8_67894>
+...
+040 (9810920.000.000) 05/14 15:19:34 Finished transferring input files
+...
+001 (9810920.000.000) 05/14 15:19:35 Job executing on host: <188.185.208.71:9618?addrs=188.185.208.71-9618+[2001-1458-303-f--100-44]-9618&alias=b9p09p5977.cern.ch&noUDP&sock=startd_4471_5006>
+	SlotName: slot1_18@b9p09p5977.cern.ch
+	CondorScratchDir = "/pool/condor/dir_3857648"
+	Cpus = 1
+	Disk = 2684062
+	Memory = 2000
+...
+006 (9810920.000.000) 05/14 15:19:43 Image size of job updated: 956028
+	934  -  MemoryUsage of job (MB)
+	955784  -  ResidentSetSize of job (KB)
+...
+006 (9810920.000.000) 05/14 15:24:43 Image size of job updated: 2155268
+	2103  -  MemoryUsage of job (MB)
+	2152692  -  ResidentSetSize of job (KB)
+...
+006 (9810920.000.000) 05/14 15:29:44 Image size of job updated: 2581692
+	2381  -  MemoryUsage of job (MB)
+	2437372  -  ResidentSetSize of job (KB)
+...
+040 (9810920.000.000) 05/14 15:30:49 Entered queue to transfer output files
+...
+040 (9810920.000.000) 05/14 15:38:22 Started transferring output files
+...
+040 (9810920.000.000) 05/14 15:38:23 Finished transferring output files
+...
+005 (9810920.000.000) 05/14 15:38:23 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:17:48, Sys 0 00:03:45  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:17:48, Sys 0 00:03:45  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	3094282  -  Run Bytes Sent By Job
+	210  -  Run Bytes Received By Job
+	3094282  -  Total Bytes Sent By Job
+	210  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :     3044        1   2684062 
+	   Memory (MB)          :     2381     2000      2000 
+
+	Job terminated of its own accord at 2024-05-14T13:30:44Z with exit-code 0.
+...

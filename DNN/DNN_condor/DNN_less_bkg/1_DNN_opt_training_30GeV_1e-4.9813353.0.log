@@ -1,0 +1,38 @@
+000 (9813353.000.000) 05/14 17:50:47 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_25162_9e1a>
+...
+040 (9813353.000.000) 05/14 19:11:29 Started transferring input files
+	Transferring to host: <128.142.137.61:9618?addrs=128.142.137.61-9618+[2001-1458-301-5e--100-31]-9618&alias=b9g19p6692.cern.ch&noUDP&sock=slot1_9_2744_2569_89486>
+...
+040 (9813353.000.000) 05/14 19:11:29 Finished transferring input files
+...
+001 (9813353.000.000) 05/14 19:11:30 Job executing on host: <128.142.137.61:9618?addrs=128.142.137.61-9618+[2001-1458-301-5e--100-31]-9618&alias=b9g19p6692.cern.ch&noUDP&sock=startd_2408_4424>
+	SlotName: slot1_9@b9g19p6692.cern.ch
+	CondorScratchDir = "/pool/condor/dir_2708281"
+	Cpus = 1
+	Disk = 1805728
+	Memory = 2000
+...
+006 (9813353.000.000) 05/14 19:11:38 Image size of job updated: 15020
+	15  -  MemoryUsage of job (MB)
+	15020  -  ResidentSetSize of job (KB)
+...
+006 (9813353.000.000) 05/14 19:16:38 Image size of job updated: 261764
+	256  -  MemoryUsage of job (MB)
+	261764  -  ResidentSetSize of job (KB)
+...
+006 (9813353.000.000) 05/14 19:21:39 Image size of job updated: 425516
+	416  -  MemoryUsage of job (MB)
+	425516  -  ResidentSetSize of job (KB)
+...
+006 (9813353.000.000) 05/14 19:26:39 Image size of job updated: 660892
+	646  -  MemoryUsage of job (MB)
+	660892  -  ResidentSetSize of job (KB)
+...
+006 (9813353.000.000) 05/14 19:31:40 Image size of job updated: 2236996
+	2185  -  MemoryUsage of job (MB)
+	2236996  -  ResidentSetSize of job (KB)
+...
+006 (9813353.000.000) 05/14 19:36:41 Image size of job updated: 2404152
+	2348  -  MemoryUsage of job (MB)
+	2404152  -  ResidentSetSize of job (KB)
+...
