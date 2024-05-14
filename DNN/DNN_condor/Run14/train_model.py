@@ -71,7 +71,6 @@ class DynamicWeightsCallback(Callback):
         val_recall = recall_score(y_val, predictions.round())
         val_precision = precision_score(y_val, predictions.round())
 
-        # Check for improvements
         if (val_recall - self.best_recall) < self.min_delta and (val_precision - self.best_precision) < self.min_delta:
             self.wait += 1
         else:
@@ -79,17 +78,14 @@ class DynamicWeightsCallback(Callback):
             self.best_recall = max(val_recall, self.best_recall)
             self.best_precision = max(val_precision, self.best_precision)
 
-        # If no improvement for 'patience' epochs, adjust weights
         if self.wait >= self.patience:
             if val_recall < 0.96:
                 self.weights[1] *= self.increase_factor
             if val_precision < 0.96:
                 self.weights[1] *= self.decrease_factor
 
-            # Reset wait counter after adjusting
             self.wait = 0
 
-        # Log the updated weights
         print(f"Updated weights: {self.weights}")
         
 if __name__ == "__main__":
