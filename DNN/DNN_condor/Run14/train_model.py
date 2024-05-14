@@ -238,7 +238,7 @@ if __name__ == "__main__":
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models14/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
         LearningRateScheduler(scheduler),
         dynamic_weights_cb,
-        SignificanceCallback(validation_data=(X_val, y_val), bins=1000, uncertainty_count_factor=0.1)
+        SignificanceCallback(validation_data=(X_val, y_val), validation_weights=weights_val, bins=1000, uncertainty_count_factor=0.1)
     ]
 
    
