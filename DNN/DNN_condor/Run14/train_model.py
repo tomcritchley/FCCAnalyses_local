@@ -51,6 +51,48 @@ for mass in masses:
             signal_filenames.append(signal_file)
         else:
             print(f"file {signal_file} does not exist, moving to next file")
+import numpy as np
+import math
+
+def calculate_significance(n, b_cumulative, sigma_cumulative):
+    try:
+        term1 = n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2))
+        term2 = (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
+        significance = math.sqrt(abs(2 * (term1 - term2)))
+    except ValueError:
+        significance = 0  # Handle math domain error in log
+    return significance
+
+class SignificanceCallback(Callback):
+    def __init__(self, validation_data, bins=1000, uncertainty_count_factor=0.1):
+        super().__init__()
+        self.validation_data = validation_data
+        self.bins = bins
+        self.uncertainty_count_factor = uncertainty_count_factor
+
+    def on_epoch_end(self, epoch, logs=None):
+        X_val, y_val = self.validation_data
+        predictions = self.model.predict(X_val).flatten()
+
+        # Bin the predictions
+        bin_edges = np.linspace(0, 1, self.bins + 1)
+        binned_indices = np.digitize(predictions, bins=bin_edges)
+
+        significances = []
+
+        for bin_idx in range(1, self.bins + 1):
+            b_cumulative = np.sum(y_val[binned_indices == bin_idx] == 0)
+            s_cumulative = np.sum(y_val[binned_indices == bin_idx] == 1)
+            sigma_cumulative = b_cumulative * self.uncertainty_count_factor
+            n = s_cumulative + b_cumulative
+
+            if b_cumulative > 0 and sigma_cumulative > 0:
+                significance = calculate_significance(n, b_cumulative, sigma_cumulative)
+                significances.append(significance)
+
+        max_significance = max(significances) if significances else 0
+        logs['val_significance'] = max_significance
+        print(f' - val_significance: {max_significance:.4f}')
 
 class DynamicWeightsCallback(Callback):
     def __init__(self, validation_data, initial_weights, increase_factor=1.5, decrease_factor=0.75, patience=3, min_delta=0.01):
@@ -96,11 +138,11 @@ if __name__ == "__main__":
 
     file = args.label
 
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/y_test_{file}.npy', allow_pickle=True)
-    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing11/weights_train_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training14/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training14/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing14/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing14/y_test_{file}.npy', allow_pickle=True)
+    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing14/weights_train_{file}.npy', allow_pickle=True)
     
     print("Data types and shapes:")
     print("X_train:", X_train.dtype, X_train.shape)
@@ -138,27 +180,9 @@ if __name__ == "__main__":
     #defining validation data for more control
     X_val = X_train[:int(len(X_train) * 0.2)] 
     y_val = y_train[:int(len(y_train) * 0.2)]
-    """ total_validation_samples = int(len(X_train) * 0.2)  # 20% of the training data for validation
-        num_positive_val = int(total_validation_samples * 0.0042798)  # 0.42798% are positive
-        num_negative_val = total_validation_samples - num_positive_val  # Remaining are negative
-        positive_indices = np.where(y_train == 1)[0]
-        negative_indices = np.where(y_train == 0)[0]
-        np.random.shuffle(positive_indices)
-        np.random.shuffle(negative_indices)
 
-        val_indices = np.concatenate([
-            np.random.choice(positive_indices, num_positive_val, replace=False),
-            np.random.choice(negative_indices, num_negative_val, replace=False)
-        ])
-        np.random.shuffle(val_indices)
-        X_val = X_train[val_indices]
-        y_val = y_train[val_indices]
-        train_indices = np.setdiff1d(np.arange(len(X_train)), val_indices)
-        X_train = X_train[train_indices]
-        y_train = y_train[train_indices]
-        """
     initial_weights = {0: 1, 1: 1}
-    #dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=initial_weights)
+    dynamic_weights_cb = DynamicWeightsCallback(validation_data=(X_val, y_val), initial_weights=initial_weights)
 
     print("X_validation shape:", X_val.shape)
     print("y_validation shape:", y_val.shape)  
@@ -192,58 +216,6 @@ if __name__ == "__main__":
     Dense(1, activation='sigmoid')  
     ])
 
-
-    ## model for 7,8,9,10 ###
-    """    model = Sequential([
-        Dense(256, activation='relu', input_shape=(X_train.shape[1],)),  # Reduced from 500 to 256 neurons
-        Dropout(0.2),  # Slightly lower dropout for less complex model
-        Dense(128, activation='relu'),  # Reduced layer size
-        Dropout(0.2),  # Adjusted dropout
-        Dense(1, activation='sigmoid')  # Output layer remains the same
-        ])
-    """
-    ##model for test 4,5,6, 11###
-    """    model = Sequential([
-            Dense(500, activation='relu', input_shape=(X_train.shape[1],)),
-            Dropout(0.2), 
-            Dense(500,activation='relu'),
-            Dropout(0.5),
-            Dense(250,activation='relu'),
-            Dropout(0.5),
-            Dense(100,activation='relu'),
-            Dropout(0.5),
-            Dense(50,activation='relu'),
-            Dropout(0.5),
-            Dense(1, activation='sigmoid')
-        ])"""
-    ### model for test 1, 2, 3###
-    """        
-        model = Sequential([
-            Dense(512, input_shape=(X_train.shape[1],)),
-            LeakyReLU(alpha=0.01),
-            BatchNormalization(),
-            Dropout(0.3), 
-            
-            Dense(512),
-            LeakyReLU(alpha=0.01),
-            BatchNormalization(),
-            Dropout(0.3),
-            
-            Dense(256),
-            LeakyReLU(alpha=0.01),
-            Dropout(0.3),
-            
-            Dense(128),
-            LeakyReLU(alpha=0.01),
-            Dropout(0.3),
-            
-            Dense(64),
-            LeakyReLU(alpha=0.01),
-            Dropout(0.3),
-            
-            Dense(1, activation='sigmoid')
-        ])"""
-        
     optimizer = Adam(learning_rate=0.001)
 
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', Precision(name='precision'), Recall(name='recall'), AUC(name='auc'), AUC(name='prc', curve='PR')])
@@ -259,44 +231,20 @@ if __name__ == "__main__":
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
     
     callbacks = [
-        EarlyStopping(monitor='val_loss', mode='max', patience=15, restore_best_weights=True),
-        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models12/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
-        LearningRateScheduler(scheduler)
-        #dynamic_weights_cb
+        EarlyStopping(monitor='val_loss', mode='max', patience=30, restore_best_weights=True),
+        ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models14/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
+        LearningRateScheduler(scheduler),
+        dynamic_weights_cb,
+        SignificanceCallback(validation_data=(X_val, y_val), bins=1000, uncertainty_count_factor=0.1)
     ]
+
    
     #weights = {0: 1, 1: 2}
     #sample_weight=weights_train
-    history = model.fit(X_train, y_train, epochs=100,sample_weight=adjusted_weights, batch_size=256, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
+    history = model.fit(X_train, y_train, epochs=100, batch_size=256, validation_data=(X_val, y_val), callbacks=callbacks) #sample_weight=adjusted_weights
     print("Training completed.")
     print(f"plotting curves")
-    """
-    def permutation_feature_importance(model, X, y, metric=accuracy_score):
-       
-        original_score = metric(y, model.predict(X).round())
-        feature_importance = np.zeros(X.shape[1])
-        
-        for i in range(X.shape[1]):
-            X_permuted = X.copy()
-            np.random.shuffle(X_permuted[:, i])
-            
-            permuted_score = metric(y, model.predict(X_permuted).round())
-            
-            feature_importance[i] = original_score - permuted_score
 
-        return feature_importance
-    importances = permutation_feature_importance(model, X_test, y_test)
-    print("Feature importances:", importances)
-
-    ### plotting feature importance ###
-    plt.figure()
-    plt.bar(range(X_test.shape[1]), importances)
-    plt.xlabel('Features')
-    plt.ylabel('Importance')
-    plt.title('Feature Importance')
-    plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots11/feature_importance_{file}.pdf')
-    plt.close()
-    """
     for metric in ['loss', 'accuracy', 'precision', 'recall', 'prc']:
         plt.figure()
         plt.plot(history.history[metric], label=f'Training {metric}')
@@ -305,11 +253,11 @@ if __name__ == "__main__":
         plt.xlabel('Epoch')
         plt.ylabel(metric)
         plt.legend()
-        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots12/{metric}_{file}.pdf')
+        plt.savefig(f'/eos/user/t/tcritchl/DNN/DNN_plots14/{metric}_{file}.pdf')
         plt.close()
 
     print("Loading the best model...")
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models12/best_model_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models14/best_model_{file}.keras')
     print("Model loaded successfully.")
-    model.save(f'/eos/user/t/tcritchl/DNN/trained_models12/DNN_HNLs_{file}.keras')
+    model.save(f'/eos/user/t/tcritchl/DNN/trained_models14/DNN_HNLs_{file}.keras')
     print(f"model saved successfully for {file}")
