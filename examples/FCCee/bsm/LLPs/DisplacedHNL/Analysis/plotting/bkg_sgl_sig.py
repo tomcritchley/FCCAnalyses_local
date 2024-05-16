@@ -31,7 +31,7 @@ chosen_variable = variable_list[0]
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
 
-normalisation = True 
+normalisation = False 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 #luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
 
@@ -40,7 +40,8 @@ log_scale = True
 #pick your selection
 #selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
 selection = "selNone"
-input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
+#input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
+input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/"
 input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
 
 output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/plots16may/"
@@ -71,8 +72,8 @@ files_list_signal = [
 
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.014] #pb
-#total_events_bg = [5215.46,6654.46,1]
-total_events_bg = [774.4585504116911, 1933.5556038636116, 0.3399800000000002]
+total_events_bg = [5215.46,6654.46,1]
+#total_events_bg = [774.4585504116911, 1933.5556038636116, 0.3399800000000002]
 #total_events_bg = [1,1,1]
 #total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
 #selection_scale_bg = [2/(499786495),1/(438538637),2620/100000]
