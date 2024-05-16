@@ -26,7 +26,7 @@ variable_list = [
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 
-chosen_variable = variable_list[10] 
+chosen_variable = variable_list[12] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
@@ -174,7 +174,6 @@ n_bins = h_list_bg[0].GetNbinsX()
 x_min = h_list_bg[0].GetXaxis().GetXmin()
 x_max = h_list_bg[0].GetXaxis().GetXmax()
 h_list_significance = make_significance(h_list_signal, n_bins, x_min, x_max, h_list_bg) #change
-
 
 ##just some statistics:
 
