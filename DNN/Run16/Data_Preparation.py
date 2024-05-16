@@ -112,13 +112,13 @@ def prepare_datasets():
     testing_bg_dfs = []
 
     for x_sec, df in bg_df_groups.items():
-        if x_sec == "0.014":
+        if x_sec == 0.014:
             training_bg_dfs.append(df.sample(5, random_state=42))
             testing_bg_dfs.append(df.drop(training_bg_dfs[-1].index).sample(187, random_state=42))
-        elif x_sec == "6654.46":
+        elif x_sec == 6654.46:
             training_bg_dfs.append(df.sample(17650, random_state=42))
             testing_bg_dfs.append(df.drop(training_bg_dfs[-1].index).sample(688000, random_state=42))
-        elif x_sec == "5215.46":
+        elif x_sec == 5215.46:
             training_bg_dfs.append(df.sample(2342, random_state=42))
             testing_bg_dfs.append(df.drop(training_bg_dfs[-1].index).sample(88700, random_state=42))
 
