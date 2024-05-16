@@ -26,7 +26,7 @@ variable_list = [
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 
-chosen_variable = variable_list[7] 
+chosen_variable = variable_list[1] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
@@ -43,7 +43,7 @@ selection = "selNone"
 input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
 input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
 
-output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/plots30april/"
+output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/plots16may/"
 
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
