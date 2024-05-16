@@ -18,7 +18,7 @@ variable_list = [
     ["RecoElectronTrack_absD0cov", "Reco electron |d_{0}| [mm] cov"], #8
     ["RecoElectronTrack_absD0", "Reco electron |d_{0}| [mm]"], #9
     ["RecoDiJet_phi", "Reco DiJet #phi [Rad.]"], #10
-    ["RecoMissingEnergy_theta", "Reco Missing Energy #theta [Rad.]"], #11
+    ["RecoMissingEnergy_theta", "Reco Missing Energy   #theta [Rad.]"], #11
     ["RecoMissingEnergy_e", "Reco missing energy [GeV]"], #12
     ["RecoDiJetElectron_invMass", "Mass [GeV]"], #for invmass of the HNL #13
     ["ntracks", "Number of tracks"], #14
@@ -214,13 +214,13 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     
     # Background Legend
     #leg_bg = ROOT.TLegend(0.67, 0.52, 0.87, 0.67)\
-    leg_bg = ROOT.TLegend(0.15, 0.55, 0.35, 0.7)
+    leg_bg = ROOT.TLegend(0.15, 0.65, 0.35, 0.9)
     leg_bg.SetFillStyle(0)
     leg_bg.SetLineWidth(0)
 
     # Signal Legend
     #leg_sig = ROOT.TLegend(0.67, 0.32, 0.87, 0.47)
-    leg_sig = ROOT.TLegend(0.15, 0.35, 0.35, 0.5)
+    leg_sig = ROOT.TLegend(0.15, 0.45, 0.35, 0.6)
     leg_sig.SetFillStyle(0)
     leg_sig.SetLineWidth(0)
 
@@ -298,12 +298,12 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     text_selection = ROOT.TLatex()
     text_selection.SetTextSize(0.03)
     text_selection.SetTextFont(42)
-    text_selection.DrawLatexNDC(0.60,  0.7, "#font[52]{No Selection}")
+    text_selection.DrawLatexNDC(0.60,  0.9, "#font[52]{No Selection}")
 
     text_lumi = ROOT.TLatex()
     text_lumi.SetTextSize(0.03)
     text_lumi.SetTextFont(42)
-    text_lumi.DrawLatexNDC(0.60, 0.65, "#font[52]{#sqrt{s} = 91 GeV , #int L dt = 10 fb^{-1}}")
+    text_lumi.DrawLatexNDC(0.60, 0.85, "#font[52]{#sqrt{s} = 91 GeV , #int L dt = 10 fb^{-1}}")
 
     pad1.RedrawAxis()
 
