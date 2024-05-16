@@ -26,7 +26,7 @@ variable_list = [
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 
-chosen_variable = variable_list[2] 
+chosen_variable = variable_list[16] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
@@ -192,12 +192,12 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     pad2.Draw()
     
     # Background Legend
-    leg_bg = ROOT.TLegend(0.58, 0.70, 0.78, 0.85)
+    leg_bg = ROOT.TLegend(0.67, 0.55, 0.87, 0.70)
     leg_bg.SetFillStyle(0)
     leg_bg.SetLineWidth(0)
 
     # Signal Legend
-    leg_sig = ROOT.TLegend(0.58, 0.36, 0.78, 0.51)
+    leg_sig = ROOT.TLegend(0.67, 0.35, 0.87, 0.50)
     leg_sig.SetFillStyle(0)
     leg_sig.SetLineWidth(0)
 
