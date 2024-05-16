@@ -275,12 +275,12 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     text_selection = ROOT.TLatex()
     text_selection.SetTextSize(0.03)
     text_selection.SetTextFont(42)
-    text_selection.DrawLatexNDC(0.15, 0.52, "#font[52]{No Selection}")
+    text_selection.DrawLatexNDC(0.15,  0.67, "#font[52]{No Selection}")
 
     text_lumi = ROOT.TLatex()
     text_lumi.SetTextSize(0.03)
     text_lumi.SetTextFont(42)
-    text_lumi.DrawLatexNDC(0.15, 0.47, "#font[52]{#sqrt{s} = 91 GeV , #int L dt = 10 fb^{-1}}")
+    text_lumi.DrawLatexNDC(0.15, 0.62, "#font[52]{#sqrt{s} = 91 GeV , #int L dt = 10 fb^{-1}}")
 
     pad1.RedrawAxis()
 
