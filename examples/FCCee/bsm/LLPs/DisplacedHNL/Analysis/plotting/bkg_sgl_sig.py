@@ -192,12 +192,12 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     pad2.Draw()
     
     # Background Legend
-    leg_bg = ROOT.TLegend(0.67, 0.55, 0.87, 0.70)
+    leg_bg = ROOT.TLegend(0.60, 0.60, 0.80, 0.75)
     leg_bg.SetFillStyle(0)
     leg_bg.SetLineWidth(0)
 
     # Signal Legend
-    leg_sig = ROOT.TLegend(0.67, 0.35, 0.87, 0.50)
+    leg_sig = ROOT.TLegend(0.60, 0.31, 0.80, 0.51)
     leg_sig.SetFillStyle(0)
     leg_sig.SetLineWidth(0)
 
