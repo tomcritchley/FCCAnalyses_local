@@ -26,12 +26,12 @@ variable_list = [
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 
-chosen_variable = variable_list[12] 
+chosen_variable = variable_list[11] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[0]
 
-normalisation = False 
+normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 #luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
 
@@ -72,7 +72,8 @@ files_list_signal = [
 
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.014] #pb
-total_events_bg = [5215.46,6654.46,1]
+#total_events_bg = [5215.46,6654.46,1]
+total_events_bg = [6598.0141114996995, 2915620062638.0225,0.014]
 #total_events_bg = [774.4585504116911, 1933.5556038636116, 0.3399800000000002]
 #total_events_bg = [1,1,1]
 #total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
