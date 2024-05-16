@@ -214,7 +214,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     
     # Background Legend
     #leg_bg = ROOT.TLegend(0.67, 0.52, 0.87, 0.67)\
-    leg_bg = ROOT.TLegend(0.15, 0.65, 0.35, 0.9)
+    leg_bg = ROOT.TLegend(0.15, 0.65, 0.35, 0.8)
     leg_bg.SetFillStyle(0)
     leg_bg.SetLineWidth(0)
 
@@ -298,12 +298,12 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     text_selection = ROOT.TLatex()
     text_selection.SetTextSize(0.03)
     text_selection.SetTextFont(42)
-    text_selection.DrawLatexNDC(0.60,  0.9, "#font[52]{No Selection}")
+    text_selection.DrawLatexNDC(0.60,  0.8, "#font[52]{No Selection}")
 
     text_lumi = ROOT.TLatex()
     text_lumi.SetTextSize(0.03)
     text_lumi.SetTextFont(42)
-    text_lumi.DrawLatexNDC(0.60, 0.85, "#font[52]{#sqrt{s} = 91 GeV , #int L dt = 10 fb^{-1}}")
+    text_lumi.DrawLatexNDC(0.60, 0.75, "#font[52]{#sqrt{s} = 91 GeV , #int L dt = 10 fb^{-1}}")
 
     pad1.RedrawAxis()
 
