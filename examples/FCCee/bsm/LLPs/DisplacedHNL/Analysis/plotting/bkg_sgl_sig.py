@@ -131,13 +131,31 @@ def make_hist(files_list):
     return h_list
 
     
-def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
+"""def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
     sig_list = []
     for h in files_list:
         sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
         for bin_idx in range(1, n_bins + 1):
             s = h.Integral(bin_idx, bin_idx)
             b = sum(bg_hist.Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
+            sigma = b * uncertainty_count_factor
+            significance = 0
+            if s + b > 0 and b > 1 and s != 0 and sigma != 0:
+                n = s + b
+                significance = math.sqrt(abs(
+                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
+                )))
+            sig_hist.SetBinContent(bin_idx, significance)
+        sig_list.append(sig_hist)
+    return sig_list"""
+
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3):
+    sig_list = []
+    for h in files_list:
+        sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
+        for bin_idx in range(1, n_bins + 1):
+            s = sum(h.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins)
+            b = sum(sum(bg_hist.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins) for bg_hist in h_list_bg)
             sigma = b * uncertainty_count_factor
             significance = 0
             if s + b > 0 and b > 1 and s != 0 and sigma != 0:
