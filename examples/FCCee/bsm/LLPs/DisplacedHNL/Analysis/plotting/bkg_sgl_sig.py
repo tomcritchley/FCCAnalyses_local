@@ -40,8 +40,8 @@ log_scale = True
 #pick your selection
 #selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
 selection = "selNone"
-#input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
-input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/"
+input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
+#input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/"
 input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
 
 output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/plots16may/"
