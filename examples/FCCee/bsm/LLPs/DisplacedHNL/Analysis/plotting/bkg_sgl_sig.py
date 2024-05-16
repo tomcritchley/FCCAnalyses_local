@@ -120,6 +120,7 @@ def make_hist(files_list):
             cross_section = f[3]  # Cross section in pb
             events_generated = f[4]  # Total events generated
             scaling_factor = (cross_section * luminosity) / events_generated * (selected_events/events_generated)
+            print(f"Scale factor for {f[2]} = {scaling_factor}, with selection efficiency = {selected_events/events_generated} and expected events total as {(cross_section * luminosity) / events_generated}")
             hist.Scale(scaling_factor)
 
         hist.SetDirectory(0)  # Make the chosen histogram independent of the directory
