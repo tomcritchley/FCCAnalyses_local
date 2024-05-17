@@ -75,7 +75,7 @@ text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
 text_selection = ROOT.TLatex()
-text_selection.SetTextSize(0.03)
+text_selection.SetTextSize(0.025)
 text_selection.SetTextFont(42)
 text_selection.DrawLatexNDC(0.13,  0.82,  r"E_{electron} #geq 2.0 GeV, p_{T} #geq 0.1 GeV, | #eta| #leq 2.56")
 
