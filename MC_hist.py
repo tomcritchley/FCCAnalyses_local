@@ -39,7 +39,7 @@ signal_files = [
 
 tree_name = "events"
 variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("eta", "Eta distribution;Energy (rad);Events", 50,0,50)#-ROOT.TMath.Pi(),#ROOT.TMath.Pi())
+hist_params = ("Electron Energy", "Electron energy;Energy (GeV);Events", 50,0,50)#-ROOT.TMath.Pi(),#ROOT.TMath.Pi())
 
 histograms = []
 for file_path, label, color in background_files + signal_files:
@@ -79,4 +79,4 @@ text_lumi.SetTextSize(0.03)
 text_lumi.SetTextFont(42)
 text_lumi.DrawLatexNDC(0.70, 0.72, "#font[52]{#sqrt{s} = 91 GeV}") #, #int L dt = 10 fb^{-1}}
 
-c.SaveAs("comparison_plot_variables_eta.pdf")
+c.SaveAs("comparison_plot_variables_energy.pdf")
