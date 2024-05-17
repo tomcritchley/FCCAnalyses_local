@@ -75,9 +75,9 @@ text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
 
 text_selection = ROOT.TLatex()
-text_selection.SetTextSize(0.03)
+text_selection.SetTextSize(0.02)
 text_selection.SetTextFont(42)
-text_selection.DrawLatexNDC(0.20,  0.82,  r"{E_{electron} #geq 2.0 GeV, p_{T} #geq 0.1 GeV, |#eta| #leq 2.56}")
+text_selection.DrawLatexNDC(0.12,  0.82,  r"E_{electron} #geq 2.0 GeV, p_{T} #geq 0.1 GeV, |#eta| #leq 2.56")
 
 
 c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/Zbb_eta_selection_applied.pdf")
