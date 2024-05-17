@@ -17,10 +17,10 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
                 value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
                 value2_attr = getattr(event, variable_names[1], None)
                 value2 = value2_attr[0] if value2_attr.size() > 0 else float('nan')
-                if value1 >= 2.0 and value2 >= 2.0 and energy >= 2.0 and pt >= 0.1 and eta <= 2.56:
+                if abs(value1) <= 2.56 and abs(value2) <= 2.56 and energy >= 2.0 and pt >= 0.1 and eta <= 2.56:
                     if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
                     if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
-                    if value1 <= 2.0 or value2 <= 2.0:
+                    if abs(value1) <= 2.56 or abs(value2) <= 2.56:
                         print(f"Filling histograms with: value1={value1}, value2={value2}, for energy is {energy} pT is {pt} and eta is {eta}")
     f.Close()
 
