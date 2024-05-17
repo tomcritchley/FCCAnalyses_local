@@ -2,8 +2,8 @@ import ROOT
 
 def create_histogram(file_path, tree_name, variable_names, hist_params, label, color, color2):
     # Creating histograms with more descriptive names
-    hist1 = ROOT.TH1F(f"{hist_params[0]}_{label}_truth", f"{label}", hist_params[2], hist_params[3], hist_params[4])
-    hist2 = ROOT.TH1F(f"{hist_params[0]}_{label}_reco", f"Reco: {label}", hist_params[2], hist_params[3], hist_params[4])
+    hist1 = ROOT.TH1F(f"{hist_params[0]}_{label}_truth","", hist_params[2], hist_params[3], hist_params[4])
+    hist2 = ROOT.TH1F(f"{hist_params[0]}_{label}_reco","", hist_params[2], hist_params[3], hist_params[4])
 
     f = ROOT.TFile.Open(file_path)
     tree = f.Get(tree_name)
@@ -46,21 +46,24 @@ hist_params = ("pt", "Energy distribution;Energy (GeV);Events", 100, 0, 50)  # U
 hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_params, label, color, color2)
 
 # Create canvas and draw histograms
-c = ROOT.TCanvas("c", "canvas", 1200, 800)
+c = ROOT.TCanvas("c", "canvas", 1400, 1000)
+c.SetLogy()  # Enable log scale for y-axis
+
 hist1.Draw("HIST")
 hist2.Draw("HISTSAME")
 
-legend = ROOT.TLegend(0.6, 0.7, 0.85, 0.85)
+legend = ROOT.TLegend(0.6, 0.75, 0.8, 0.85)
 legend.SetFillStyle(0)
 legend.SetLineWidth(0)
-legend.AddEntry(hist1, "Truth Zbb", "l")
-legend.AddEntry(hist2, "Reco Zbb", "l")
+legend.SetTextSize(0.03) 
+legend.AddEntry(hist1, r"Truth Z #rightarrow bb", "l")
+legend.AddEntry(hist2, r"Reconstructed Z #rightarrow bb", "l")
 legend.Draw()
 
 hist1.GetXaxis().SetTitle("Energy (GeV)")
-hist1.GetYaxis().SetTitle("Events")
-hist1.GetXaxis().SetTitleSize(0.04)
-hist1.GetYaxis().SetTitleSize(0.04)
+hist1.GetYaxis().SetTitle("Log Entries")
+hist1.GetXaxis().SetTitleSize(0.03)
+hist1.GetYaxis().SetTitleSize(0.03)
 hist1.GetXaxis().SetLabelSize(0.03)
 hist1.GetYaxis().SetLabelSize(0.03)
 
