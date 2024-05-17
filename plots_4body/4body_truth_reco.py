@@ -14,14 +14,14 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
                 energy = event.FSGenElectron_e[i]
                 pt = event.FSGenElectron_pt[i]
                 # Apply the DELPHES efficiency conditions
-                if energy >= 2.0 and pt >= 0.1 and eta <= 2.56: #--> the DELPHES condition
-                    value1_attr = getattr(event, variable_names[0], None)
-                    value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
-                    value2_attr = getattr(event, variable_names[1], None)
-                    value2 = value2_attr[0] if value2_attr.size() > 0 else float('nan')
-                    
-                    if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
-                    if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
+                #if energy >= 2.0 and pt >= 0.1 and eta <= 2.56: #--> the DELPHES condition
+                value1_attr = getattr(event, variable_names[0], None)
+                value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
+                value2_attr = getattr(event, variable_names[1], None)
+                value2 = value2_attr[0] if value2_attr.size() > 0 else float('nan')
+                
+                if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
+                if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
     f.Close()
 
     hist1.SetLineColor(color)
@@ -78,6 +78,7 @@ text_selection = ROOT.TLatex()
 text_selection.SetTextSize(0.025)
 text_selection.SetTextFont(42)
 text_selection.DrawLatexNDC(0.13,  0.82,  r"E_{electron} #geq 2.0 GeV, p_{T} #geq 0.1 GeV, | #eta| #leq 2.56")
+text_selection.DrawLatexNDC(0.13,  0.82,  "#font[52]{No Selection}")
 
 
-c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/Zbb_eta_selection_applied.pdf")
+c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/Zbb_eta_NoSel.pdf")
