@@ -2,8 +2,8 @@ import ROOT
 
 def create_histogram(file_path, tree_name, variable_names, hist_params, label, color, color2):
     # Creating histograms with more descriptive names
-    hist1 = ROOT.TH1F(f"{hist_params[0]}_{label}_truth","", hist_params[2], hist_params[3], hist_params[4])
-    hist2 = ROOT.TH1F(f"{hist_params[0]}_{label}_reco","", hist_params[2], hist_params[3], hist_params[4])
+    hist1 = ROOT.TH1F(f"{hist_params[0]}_{label}_truth", "", hist_params[2], hist_params[3], hist_params[4])
+    hist2 = ROOT.TH1F(f"{hist_params[0]}_{label}_reco", "", hist_params[2], hist_params[3], hist_params[4])
 
     f = ROOT.TFile.Open(file_path)
     tree = f.Get(tree_name)
@@ -14,17 +14,22 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
                 energy = event.FSGenElectron_e[i]
                 pt = event.FSGenElectron_pt[i]
                 # Apply the DELPHES efficiency conditions
-                if energy >= 2.0 and pt >= 0.1 and eta <= 2.56: #--> the DELPHES condition
+                if energy >= 2.0 and pt >= 0.1 and eta <= 2.56:  # Apply the DELPHES condition
                     value1_attr = getattr(event, variable_names[0], None)
-                    value1 = value1_attr[i] if value1_attr.size() > 0 else float('nan')
+                    value1 = value1_attr[i] if value1_attr.size() > i else float('nan')
                     value2_attr = getattr(event, variable_names[1], None)
-                    value2 = value2_attr[i] if value2_attr.size() > 0 else float('nan')
+                    value2 = value2_attr[i] if value2_attr.size() > i else float('nan')
                     
+                    # Debug: Print values to ensure correct values are being filled
+                    print(f"Filling histograms with: value1={value1}, value2={value2}, for energy is {energy}, pT is {pt}, and eta is {eta}")
+
                     if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
                     if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
+                    
                     if value1 <= 2.0 or value2 <= 2.0:
-                        print(f"Filling histograms with: value1={value1}, value2={value2}, for energy is {energy} pT is {pt} and eta is {eta}")
+                        print(f"*** ALERT: Value1 or Value2 below threshold! *** value1={value1}, value2={value2}, for energy is {energy}, pT is {pt}, and eta is {eta}")
     f.Close()
+
 
     hist1.SetLineColor(color)
     hist1.SetStats(0)
