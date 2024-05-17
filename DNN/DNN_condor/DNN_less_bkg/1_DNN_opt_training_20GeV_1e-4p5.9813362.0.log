@@ -2045,3 +2045,8 @@
 	Transfer output files failure at access point bigbird13 while receiving files from execution point slot1_21@b9s07p0019.cern.ch. Details: Error from slot1_21@b9s07p0019.cern.ch: STARTER at 128.142.62.38 failed to send file(s) to <137.138.156.150:9618>; SHADOW at 137.138.156.150 - |Error: writing to file /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/1_DNN_opt_training_20GeV_1e-4p5.9813362.0.out: (errno 122) Disk quota exceeded
 	Code 12 Subcode 122
 ...
+009 (9813362.000.000) 05/17 13:33:17 Job was aborted.
+	Job removed by SYSTEM_PERIODIC_REMOVE due to job was held for more than 24 hours.
+
+	Job terminated by itself at 2024-05-16T11:32:13Z (using method 0: OF_ITS_OWN_ACCORD).
+...
