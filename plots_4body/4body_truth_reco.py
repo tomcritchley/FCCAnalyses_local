@@ -61,7 +61,7 @@ legend.AddEntry(hist1, r"Truth Z #rightarrow bb", "l")
 legend.AddEntry(hist2, r"Reconstructed Z #rightarrow bb", "l")
 legend.Draw()
 
-hist1.GetXaxis().SetTitle(r"Electron    #eta")
+hist1.GetXaxis().SetTitle(r"Electron  #eta")
 hist1.GetYaxis().SetTitle("Entries")
 hist1.GetXaxis().SetTitleSize(0.04)
 hist1.GetYaxis().SetTitleSize(0.04)
@@ -73,5 +73,11 @@ text_title = ROOT.TLatex()
 text_title.SetTextSize(0.04)
 text_title.SetTextFont(42)
 text_title.DrawLatexNDC(0.1, 0.92, "#font[72]{FCCee} Simulation (DELPHES)")
+
+text_selection = ROOT.TLatex()
+text_selection.SetTextSize(0.03)
+text_selection.SetTextFont(42)
+text_selection.DrawLatexNDC(0.20,  0.82,  r"{E_{electron} #geq 2.0 GeV, p_{T} #geq 0.1 GeV, |#eta| #leq 2.56}")
+
 
 c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/Zbb_eta_selection_applied.pdf")
