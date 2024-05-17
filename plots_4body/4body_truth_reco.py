@@ -16,9 +16,9 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
                 # Apply the DELPHES efficiency conditions
                 if energy >= 2.0 and pt >= 0.1 and eta <= 2.56: #--> the DELPHES condition
                     value1_attr = getattr(event, variable_names[0], None)
-                    value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
+                    value1 = value1_attr[i] if value1_attr.size() > 0 else float('nan')
                     value2_attr = getattr(event, variable_names[1], None)
-                    value2 = value2_attr[0] if value2_attr.size() > 0 else float('nan')
+                    value2 = value2_attr[i] if value2_attr.size() > 0 else float('nan')
                     
                     if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
                     if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
