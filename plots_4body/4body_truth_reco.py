@@ -40,8 +40,8 @@ color = ROOT.kBlue  # Color for truth data
 color2 = ROOT.kRed  # Color for reco data
 
 tree_name = "events"
-variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("energy", "Energy distribution;Energy;Events", 100, 0, 50)  # Updated axis labels and range
+variable_names = ("FSGenElectron_eta", "RecoElectron_eta")
+hist_params = ("energy", "Energy distribution;Energy;Events", 100, -ROOT.TMath.Pi(), ROOT.TMath.Pi())  # Updated axis labels and range
 #hist_params = ("pt", "pt distribution;pt;Events", 100, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
 
 # Create histograms for Zbb truth and reco
@@ -61,7 +61,7 @@ legend.AddEntry(hist1, r"Truth Z #rightarrow bb", "l")
 legend.AddEntry(hist2, r"Reconstructed Z #rightarrow bb", "l")
 legend.Draw()
 
-hist1.GetXaxis().SetTitle(r"Electron  Energy [GeV]")
+hist1.GetXaxis().SetTitle(r"Electron   #eta")
 hist1.GetYaxis().SetTitle("Entries")
 hist1.GetXaxis().SetTitleSize(0.04)
 hist1.GetYaxis().SetTitleSize(0.04)
@@ -81,4 +81,4 @@ text_selection.DrawLatexNDC(0.6,  0.92,  r"E_{electron} #geq 2.0 GeV, p_{T} #geq
 #text_selection.DrawLatexNDC(0.61,  0.72,  "#font[52]{No Selection}")
 
 
-c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/Zbb_energy_Selection.pdf")
+c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/Zbb_eta_generator.pdf")
