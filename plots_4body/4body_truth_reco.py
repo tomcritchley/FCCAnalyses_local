@@ -22,6 +22,8 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
                     
                     if not ROOT.TMath.IsNaN(value1): hist1.Fill(value1)
                     if not ROOT.TMath.IsNaN(value2): hist2.Fill(value2)
+                    if value1 <= 2.0 or value2 <= 2.0:
+                        print(f"Filling histograms with: value1={value1}, value2={value2}, for energy is {energy} pT is {pt} and eta is {eta}")
     f.Close()
 
     hist1.SetLineColor(color)
