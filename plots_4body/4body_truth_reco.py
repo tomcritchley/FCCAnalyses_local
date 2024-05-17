@@ -41,7 +41,7 @@ color2 = ROOT.kRed  # Color for reco data
 
 tree_name = "events"
 variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("pt", "Energy distribution;Eta;Events", 100, 2, 50)  # Updated axis labels and range
+hist_params = ("pt", "Energy distribution;Eta;Events", 100, 0, 50)  # Updated axis labels and range
 #hist_params = ("pt", "pt distribution;pt;Events", 100, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
 
 # Create histograms for Zbb truth and reco
