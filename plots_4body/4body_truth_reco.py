@@ -26,9 +26,11 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
 
     hist1.SetLineColor(color)
     hist1.SetStats(0)
+    hist1.SetLineWidth(2)
     hist2.SetLineColor(color2)
     hist2.SetLineStyle(1)  # Solid line for reconstructed data
     hist2.SetStats(0)
+    hist2.SetLineWidth(2)
     return hist1, hist2
 
 # File and parameters for Zbb
@@ -47,7 +49,6 @@ hist1, hist2 = create_histogram(file_path, tree_name, variable_names, hist_param
 
 # Create canvas and draw histograms
 c = ROOT.TCanvas("c", "canvas", 1400, 1000)
-c.SetLogy()  # Enable log scale for y-axis
 
 hist1.Draw("HIST")
 hist2.Draw("HISTSAME")
@@ -61,7 +62,7 @@ legend.AddEntry(hist2, r"Reconstructed Z #rightarrow bb", "l")
 legend.Draw()
 
 hist1.GetXaxis().SetTitle("Energy (GeV)")
-hist1.GetYaxis().SetTitle("Log Entries")
+hist1.GetYaxis().SetTitle("Entries")
 hist1.GetXaxis().SetTitleSize(0.03)
 hist1.GetYaxis().SetTitleSize(0.03)
 hist1.GetXaxis().SetLabelSize(0.03)
