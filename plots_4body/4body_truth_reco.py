@@ -14,7 +14,7 @@ def create_histogram(file_path, tree_name, variable_names, hist_params, label, c
                 energy = event.FSGenElectron_e[i]
                 pt = event.FSGenElectron_pt[i]
                 # Apply the DELPHES efficiency conditions
-                if energy >= 2.0 and pt >= 0.1 and eta <= 2.56: #--> the DELPHES condition
+                if energy > 2.0 and pt >= 0.1 and eta <= 2.56: #--> the DELPHES condition
                     value1_attr = getattr(event, variable_names[0], None)
                     value1 = value1_attr[0] if value1_attr.size() > 0 else float('nan')
                     value2_attr = getattr(event, variable_names[1], None)
