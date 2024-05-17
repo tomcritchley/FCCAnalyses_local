@@ -41,7 +41,7 @@ color2 = ROOT.kRed  # Color for reco data
 
 tree_name = "events"
 variable_names = ("FSGenElectron_e", "RecoElectron_e")
-hist_params = ("pt", "Energy distribution;Eta;Events", 100, -ROOT.TMath.Pi(), ROOT.TMath.Pi())  # Updated axis labels and range
+hist_params = ("pt", "Energy distribution;Eta;Events", 100, 0, 50)  # Updated axis labels and range
 #hist_params = ("pt", "pt distribution;pt;Events", 100, -ROOT.TMath.Pi(), ROOT.TMath.Pi())
 
 # Create histograms for Zbb truth and reco
@@ -78,7 +78,7 @@ text_selection = ROOT.TLatex()
 text_selection.SetTextSize(0.025)
 text_selection.SetTextFont(42)
 #text_selection.DrawLatexNDC(0.13,  0.82,  r"E_{electron} #geq 2.0 GeV, p_{T} #geq 0.1 GeV, | #eta| #leq 2.56")
-text_selection.DrawLatexNDC(0.6,  0.72,  "#font[52]{No Selection}")
+text_selection.DrawLatexNDC(0.62,  0.72,  "#font[52]{No Selection}")
 
 
 c.SaveAs(f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/generator_plots/Zbb_energy_NoSel.pdf")
