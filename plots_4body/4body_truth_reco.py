@@ -61,7 +61,7 @@ legend.AddEntry(hist1, r"Truth Z #rightarrow bb", "l")
 legend.AddEntry(hist2, r"Reconstructed Z #rightarrow bb", "l")
 legend.Draw()
 
-hist1.GetXaxis().SetTitle("Energy (GeV)")
+hist1.GetXaxis().SetTitle(r"Electron #eta")
 hist1.GetYaxis().SetTitle("Entries")
 hist1.GetXaxis().SetTitleSize(0.03)
 hist1.GetYaxis().SetTitleSize(0.03)
