@@ -188,6 +188,9 @@ if __name__ == "__main__":
    
     weightsSIG = weights_test[y_test == 1] 
     weightsBKG = weights_test[y_test == 0]
+
+    print(f"The weights for the signal are: {weightsSIG}")
+
     # Plot histogram of predicted scores for signal and background events WEIGHTED 10fb^-1 ##
     plt.figure()
     plt.clf()
@@ -354,7 +357,7 @@ if __name__ == "__main__":
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/DNN_Run12_10fb_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/DNN_Run15_10fb_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:
