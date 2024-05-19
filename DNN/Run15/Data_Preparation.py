@@ -116,7 +116,7 @@ def prepare_datasets():
         if x_sec == 0.014:
             training_bg_dfs.append(df.sample(1028, random_state=42))
             testing_bg_dfs.append(df.drop(training_bg_dfs[-1].index).sample(187, random_state=42))
-        elif x_sec == 6645.46:
+        elif x_sec == 6654.46:
             training_bg_dfs.append(df.sample(3995709, random_state=42))
             testing_bg_dfs.append(df.drop(training_bg_dfs[-1].index).sample(688000, random_state=42))
         elif x_sec == 5215.46:
