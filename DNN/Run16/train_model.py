@@ -263,7 +263,7 @@ if __name__ == "__main__":
     print(f'Average class probability in test set:       {y_test.mean():.4f}')
     
     callbacks = [
-        EarlyStopping(monitor='val_loss', mode='max', patience=15, restore_best_weights=True),
+        EarlyStopping(monitor='val_loss', mode='max', patience=50, restore_best_weights=True),
         ModelCheckpoint(f'/eos/user/t/tcritchl/DNN/trained_models16/best_model_{file}.keras', save_best_only=True, monitor='val_prc', mode='max'),
         LearningRateScheduler(scheduler)
         #dynamic_weights_cb
