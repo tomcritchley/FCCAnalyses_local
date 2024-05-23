@@ -29,7 +29,7 @@ variable_list = [
 chosen_variable = variable_list[0] 
 
 significance_directions = ["LR", "RL"]
-significance_direction = significance_directions[1]
+significance_direction = significance_directions[0]
 
 normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
@@ -135,11 +135,19 @@ def make_hist(files_list):
     return h_list
 
     
-"""def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
     sig_list = []
     for h in files_list:
         sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
-        for bin_idx in range(1, n_bins + 1):
+
+        if significance_direction == "LR":
+            bin_range = range(1, n_bins + 1)
+        elif significance_direction == "RL":
+            bin_range = range(n_bins, 0, -1)
+        else:
+            raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
+
+        for bin_idx in bin_range:
             s = h.Integral(bin_idx, bin_idx)
             b = sum(bg_hist.Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
             sigma = b * uncertainty_count_factor
@@ -151,14 +159,13 @@ def make_hist(files_list):
                 )))
             sig_hist.SetBinContent(bin_idx, significance)
         sig_list.append(sig_hist)
-    return sig_list"""
-
-def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3, significance_direction="LR"):
+    return sig_list
+"""
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3):
     sig_list = []
-    
     for h in files_list:
         sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
-        
+
         if significance_direction == "LR":
             bin_range = range(1, n_bins + 1)
         elif significance_direction == "RL":
@@ -166,30 +173,20 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3
         else:
             raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
 
-        # Cumulative sums for signal and background
-        cumulative_s = [0] * (n_bins + 1)
-        cumulative_b = [0] * (n_bins + 1)
-
         for bin_idx in bin_range:
-            cumulative_s[bin_idx] = sum(h.GetBinContent(i) for i in bin_range if 0 < i <= n_bins)
-            cumulative_b[bin_idx] = sum(sum(bg_hist.GetBinContent(i) for i in bin_range if 0 < i <= n_bins) for bg_hist in h_list_bg)
-
-        for bin_idx in bin_range:
-            s = cumulative_s[bin_idx]
-            b = cumulative_b[bin_idx]
+            s = sum(h.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins)
+            b = sum(sum(bg_hist.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins) for bg_hist in h_list_bg)
             sigma = b * uncertainty_count_factor
             significance = 0
             if s + b > 0 and b > 1 and s != 0 and sigma != 0:
                 n = s + b
                 significance = math.sqrt(abs(
-                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2)))))
-                ))
+                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
+                )))
             sig_hist.SetBinContent(bin_idx, significance)
-        
         sig_list.append(sig_hist)
-    
     return sig_list
-
+"""
 h_list_signal = make_hist(files_list_signal)
 h_list_bg = make_hist(files_list_bg)
 n_bins = h_list_bg[0].GetNbinsX()
@@ -352,7 +349,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
 
     if log_scale and normalisation:
         c.SetLogy(log_scale)
-        c.SaveAs(output_dir + "LR_BackgroundVSignal_" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
+        c.SaveAs(output_dir + "RL_BackgroundVSignal_" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
     elif log_scale and not normalisation:
         c.SetLogy(log_scale)
         c.SaveAs(output_dir + "BackgroundVSignal_" + selection + chosen_variable[0] + "log" + ".pdf", "R")
