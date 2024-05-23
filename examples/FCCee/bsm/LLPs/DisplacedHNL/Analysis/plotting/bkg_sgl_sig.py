@@ -134,7 +134,38 @@ def make_hist(files_list):
         print("-----------------------")
     return h_list
 
-    
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_direction="LR"):
+    sig_list = []
+    for h in files_list:
+        sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
+
+        if significance_direction == "LR":
+            bin_range = range(1, n_bins + 1)
+        elif significance_direction == "RL":
+            bin_range = range(n_bins, 0, -1)
+        else:
+            raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
+
+        cumulative_signal = 0
+        cumulative_background = 0
+
+        for bin_idx in bin_range:
+            cumulative_signal += h.Integral(bin_idx, bin_idx)
+            cumulative_background += sum(bg_hist.Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
+            sigma = cumulative_background * uncertainty_count_factor
+            significance = 0
+            if cumulative_signal + cumulative_background > 0 and cumulative_background > 1 and cumulative_signal != 0 and sigma != 0:
+                n = cumulative_signal + cumulative_background
+                significance = math.sqrt(abs(
+                    2 * (n * math.log((n * (cumulative_background + sigma**2)) / (cumulative_background**2 + n * sigma**2)) - 
+                         (cumulative_background**2 / sigma**2) * math.log((1 + (sigma**2 * (n - cumulative_background)) / 
+                                                                          (cumulative_background * (cumulative_background + sigma**2))))
+                )))
+            sig_hist.SetBinContent(bin_idx, significance)
+        sig_list.append(sig_hist)
+    return sig_list
+
+"""    
 def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
     sig_list = []
     for h in files_list:
@@ -159,7 +190,7 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
                 )))
             sig_hist.SetBinContent(bin_idx, significance)
         sig_list.append(sig_hist)
-    return sig_list
+    return sig_list"""
 """
 def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3):
     sig_list = []
@@ -349,7 +380,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
 
     if log_scale and normalisation:
         c.SetLogy(log_scale)
-        c.SaveAs(output_dir + "RL_BackgroundVSignal_" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
+        c.SaveAs(output_dir + "LR" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
     elif log_scale and not normalisation:
         c.SetLogy(log_scale)
         c.SaveAs(output_dir + "BackgroundVSignal_" + selection + chosen_variable[0] + "log" + ".pdf", "R")
