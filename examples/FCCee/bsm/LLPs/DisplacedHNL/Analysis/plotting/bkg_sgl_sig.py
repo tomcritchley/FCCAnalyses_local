@@ -29,7 +29,7 @@ variable_list = [
 chosen_variable = variable_list[0] 
 
 significance_directions = ["LR", "RL"]
-significance_direction = significance_directions[0]
+significance_direction = significance_directions[1]
 
 normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
@@ -380,7 +380,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
 
     if log_scale and normalisation:
         c.SetLogy(log_scale)
-        c.SaveAs(output_dir + "LR" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
+        c.SaveAs(output_dir + "RL" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
     elif log_scale and not normalisation:
         c.SetLogy(log_scale)
         c.SaveAs(output_dir + "BackgroundVSignal_" + selection + chosen_variable[0] + "log" + ".pdf", "R")
