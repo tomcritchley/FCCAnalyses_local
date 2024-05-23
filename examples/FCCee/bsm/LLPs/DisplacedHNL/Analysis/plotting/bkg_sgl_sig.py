@@ -139,9 +139,9 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_
     for h in files_list:
         sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
 
-        if significance_direction == "LR":
+        if significance_direction == "RL":
             bin_range = range(1, n_bins + 1)
-        elif significance_direction == "RL":
+        elif significance_direction == "LR":
             bin_range = range(n_bins, 0, -1)
         else:
             raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
@@ -381,7 +381,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
 
     if log_scale and normalisation:
         c.SetLogy(log_scale)
-        c.SaveAs(output_dir + "EnergyLR" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
+        c.SaveAs(output_dir + "Real_RL" + selection + chosen_variable[0] + "log_" + "norm" + ".pdf", "R")
     elif log_scale and not normalisation:
         c.SetLogy(log_scale)
         c.SaveAs(output_dir + "BackgroundVSignal_" + selection + chosen_variable[0] + "log" + ".pdf", "R")
