@@ -134,7 +134,7 @@ def make_hist(files_list):
         print("-----------------------")
     return h_list
 
-def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_direction="LR"):
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_direction):
     sig_list = []
     for h in files_list:
         sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
@@ -224,7 +224,7 @@ h_list_bg = make_hist(files_list_bg)
 n_bins = h_list_bg[0].GetNbinsX()
 x_min = h_list_bg[0].GetXaxis().GetXmin()
 x_max = h_list_bg[0].GetXaxis().GetXmax()
-h_list_significance = make_significance(h_list_signal, n_bins, x_min, x_max, h_list_bg) #change
+h_list_significance = make_significance(h_list_signal, n_bins, x_min, x_max, h_list_bg, significance_direction) #change
 
 ##just some statistics:
 
