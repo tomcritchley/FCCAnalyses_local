@@ -153,11 +153,12 @@ def make_hist(files_list):
         sig_list.append(sig_hist)
     return sig_list"""
 
-def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3):
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3, significance_direction="LR"):
     sig_list = []
+    
     for h in files_list:
         sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
-
+        
         if significance_direction == "LR":
             bin_range = range(1, n_bins + 1)
         elif significance_direction == "RL":
@@ -165,18 +166,28 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3
         else:
             raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
 
+        # Cumulative sums for signal and background
+        cumulative_s = [0] * (n_bins + 1)
+        cumulative_b = [0] * (n_bins + 1)
+
         for bin_idx in bin_range:
-            s = sum(h.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins)
-            b = sum(sum(bg_hist.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins) for bg_hist in h_list_bg)
+            cumulative_s[bin_idx] = sum(h.GetBinContent(i) for i in bin_range if 0 < i <= n_bins)
+            cumulative_b[bin_idx] = sum(sum(bg_hist.GetBinContent(i) for i in bin_range if 0 < i <= n_bins) for bg_hist in h_list_bg)
+
+        for bin_idx in bin_range:
+            s = cumulative_s[bin_idx]
+            b = cumulative_b[bin_idx]
             sigma = b * uncertainty_count_factor
             significance = 0
             if s + b > 0 and b > 1 and s != 0 and sigma != 0:
                 n = s + b
                 significance = math.sqrt(abs(
-                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
-                )))
+                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2)))))
+                ))
             sig_hist.SetBinContent(bin_idx, significance)
+        
         sig_list.append(sig_hist)
+    
     return sig_list
 
 h_list_signal = make_hist(files_list_signal)
