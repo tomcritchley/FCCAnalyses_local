@@ -157,7 +157,15 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3
     sig_list = []
     for h in files_list:
         sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
-        for bin_idx in range(1, n_bins + 1):
+
+        if significance_direction == "LR":
+            bin_range = range(1, n_bins + 1)
+        elif significance_direction == "RL":
+            bin_range = range(n_bins, 0, -1)
+        else:
+            raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
+
+        for bin_idx in bin_range:
             s = sum(h.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins)
             b = sum(sum(bg_hist.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins) for bg_hist in h_list_bg)
             sigma = b * uncertainty_count_factor
