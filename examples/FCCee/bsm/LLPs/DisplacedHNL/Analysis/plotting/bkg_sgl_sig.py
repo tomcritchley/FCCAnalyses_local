@@ -155,7 +155,7 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_
             print(f"sig direction is {significance_direction} ; idx is {bin_idx} sig is {cumulative_signal}, bkg is {cumulative_background}")
             sigma = cumulative_background * uncertainty_count_factor
             significance = 0
-            if cumulative_signal + cumulative_background > 0 and cumulative_background > 1 and cumulative_signal != 0 and sigma != 0:
+            if cumulative_signal + cumulative_background > 0 and cumulative_background > 0 and cumulative_signal != 0 and sigma != 0:
                 n = cumulative_signal + cumulative_background
                 significance = math.sqrt(abs(
                     2 * (n * math.log((n * (cumulative_background + sigma**2)) / (cumulative_background**2 + n * sigma**2)) - 
