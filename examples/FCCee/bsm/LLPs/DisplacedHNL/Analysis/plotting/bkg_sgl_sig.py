@@ -152,6 +152,7 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_
         for bin_idx in bin_range:
             cumulative_signal += h.Integral(bin_idx, bin_idx)
             cumulative_background += sum(bg_hist.Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
+            print(f"sig direction is {significance_direction} ; idx is {bin_idx} sig is {cumulative_signal}, bkg is {cumulative_background}")
             sigma = cumulative_background * uncertainty_count_factor
             significance = 0
             if cumulative_signal + cumulative_background > 0 and cumulative_background > 1 and cumulative_signal != 0 and sigma != 0:
