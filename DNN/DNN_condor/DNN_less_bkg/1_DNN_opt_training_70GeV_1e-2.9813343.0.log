@@ -3036,3 +3036,19 @@
 	Disk = 3312454
 	Memory = 2000
 ...
+040 (9813343.000.000) 05/20 13:53:51 Started transferring output files
+...
+040 (9813343.000.000) 05/20 13:54:00 Finished transferring output files
+...
+007 (9813343.000.000) 05/20 13:54:00 Shadow exception!
+	Error from slot1_4@b9g11p1285.cern.ch: STARTER at 128.142.131.78 failed to send file(s) to <137.138.156.150:9618>: |Error: sending file /pool/condor/dir_2008956/_condor_stdout: max total download bytes exceeded (max=1024 MB, this file=1432 MB); SHADOW failed to receive file(s) from <128.142.131.78:40253>
+	1073741824  -  Run Bytes Sent By Job
+	213  -  Run Bytes Received By Job
+...
+012 (9813343.000.000) 05/20 13:54:01 Job was held.
+	Error from slot1_4@b9g11p1285.cern.ch: STARTER at 128.142.131.78 failed to send file(s) to <137.138.156.150:9618>: |Error: sending file /pool/condor/dir_2008956/_condor_stdout: max total download bytes exceeded (max=1024 MB, this file=1432 MB); SHADOW failed to receive file(s) from <128.142.131.78:40253>
+	Code 33 Subcode 0
+...
+009 (9813343.000.000) 05/20 13:54:13 Job was aborted.
+	Job removed by SYSTEM_PERIODIC_REMOVE due to wall time exceeded allowed max.
+...

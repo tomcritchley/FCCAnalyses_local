@@ -1,0 +1,43 @@
+000 (9868244.000.000) 05/19 18:03:39 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_25162_9e1a>
+...
+040 (9868244.000.000) 05/19 19:03:06 Started transferring input files
+	Transferring to host: <128.142.62.120:9618?addrs=128.142.62.120-9618+[2001-1458-301-37--100-77]-9618&alias=b9s07p5153.cern.ch&noUDP&sock=slot1_31_8607_28f7_105714>
+...
+040 (9868244.000.000) 05/19 19:03:06 Finished transferring input files
+...
+001 (9868244.000.000) 05/19 19:03:07 Job executing on host: <128.142.62.120:9618?addrs=128.142.62.120-9618+[2001-1458-301-37--100-77]-9618&alias=b9s07p5153.cern.ch&noUDP&sock=startd_7368_69e3>
+	SlotName: slot1_31@b9s07p5153.cern.ch
+	CondorScratchDir = "/pool/condor/dir_48757"
+	Cpus = 1
+	Disk = 2783247
+	Memory = 2000
+...
+006 (9868244.000.000) 05/19 19:03:16 Image size of job updated: 28880
+	29  -  MemoryUsage of job (MB)
+	28728  -  ResidentSetSize of job (KB)
+...
+006 (9868244.000.000) 05/19 19:05:06 Image size of job updated: 244072
+	123  -  MemoryUsage of job (MB)
+	125700  -  ResidentSetSize of job (KB)
+...
+040 (9868244.000.000) 05/19 19:05:06 Started transferring output files
+...
+040 (9868244.000.000) 05/19 19:05:07 Finished transferring output files
+...
+005 (9868244.000.000) 05/19 19:05:07 Job terminated.
+	(1) Normal termination (return value 1)
+		Usr 0 00:00:02, Sys 0 00:00:01  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:02, Sys 0 00:00:01  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	8615  -  Run Bytes Sent By Job
+	197  -  Run Bytes Received By Job
+	8615  -  Total Bytes Sent By Job
+	197  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :       30        1   2783247 
+	   Memory (MB)          :      123     2000      2000 
+
+	Job terminated of its own accord at 2024-05-19T17:05:06Z with exit-code 1.
+...
