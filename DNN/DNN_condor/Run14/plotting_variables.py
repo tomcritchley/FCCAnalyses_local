@@ -14,6 +14,13 @@ def plot_signal_vs_background(variable, label, variable_index):
     background = X_train[y_train == 0][:, variable_index]
     signal_weights = weights_train[y_train == 1]
     background_weights = weights_train[y_train == 0]
+
+    print("Mean and standard deviation of the scaled training data:")
+    print(f"Mean of signal: {np.mean(signal, axis=0)}")
+    print(f"Mean of background: {np.mean(background, axis=0)}")
+    print(f"Standard Deviation of signal: {np.std(signal, axis=0)}")
+    print(f"Standard Deviation of background: {np.std(background, axis=0)}")
+
     
     # Plotting the signal vs background
     plt.figure(figsize=(10, 6))
