@@ -19,8 +19,6 @@ with open('/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_
     config = json.load(config_file)
 
 run = config["run_number"]
-#bkg_norm = config["bkg_normalisation_factor"]
-#sgl_norm = config["signal_normalisation_factor"]
 
 labels = []
 base_path = f"/eos/user/t/tcritchl/xgBOOST/testing{run}/"
@@ -37,24 +35,11 @@ for mass in masses:
 
 print(labels) #list of labels for the data prepared thing..
 
-"""
-RL signficance is used to count the significance from left to right and keep everything to the left of the cut,
-LR significance is used to count from right most to left most bin, and values to the left of the cut are kept
-"""
-
 significance_directions = ["RL", "LR"]
 bdt_thr = 0.9
 
 def plot_confusion_matrix(y_true, y_pred, file, threshold=0.5):
-
     y_pred_labels = (y_pred > threshold).astype(int)
-    print(f"Number of signal samples: {np.sum(y_true == 1)}")
-    print(f"Number of background samples: {np.sum(y_true == 0)}")
-    print(f"Number of signal samples predicted correctly: {np.sum(y_pred > 0.5)}")
-    print(f"Number of signal samples falsely labelled as background: {np.sum((y_pred < 0.5) & (y_true == 1))}")
-    print(f"Number of background samples pedcited correctly: {np.sum(y_pred < 0.5)}")
-    print(f"Number of background samples falsely labelled as signal: {np.sum((y_pred > 0.5) & (y_true == 0))}")
-
     cm = confusion_matrix(y_true, y_pred_labels)
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Background', 'Signal'], yticklabels=['Background', 'Signal'])
     plt.xlabel('Predicted Label')
@@ -256,10 +241,6 @@ if __name__ == "__main__":
     for axis in ax:
         axis.tick_params(axis='both', direction='in', which='both', top=True, right=True)
 
-    ##optimise this to scan over the full range of significances?
-    
-    #bins_a = np.arange(0.8000, 1.0001, bin_width) ##change to 0.8000 -> 1.0001 for most recent plot
-
     bins_a = np.arange(min_bin, max_bin, bin_width)
 
     hB, bins = np.histogram(B, bins=bins_a, weights=weightsBKG)
@@ -268,7 +249,6 @@ if __name__ == "__main__":
     ax[0].hist(B, bins_a, weights=weightsBKG, alpha=0.5, label="Background", color="lightcoral", edgecolor='darkred', hatch='///', histtype='stepfilled', linewidth=2.0, density=False)
     ax[0].hist(S, bins_a, weights=weightsSIG, alpha=0.5, label="Signal", color="skyblue", edgecolor='darkblue', hatch='', linewidth=2.0, histtype='stepfilled', density=False)
     density = False
-    # Add labels and a title
     ax[0].set_yscale('log')
     if density:
         ax[0].set_ylabel('(1/N)dN/dx')
@@ -282,7 +262,6 @@ if __name__ == "__main__":
     fig.text(0.175, 0.77, r"$\sqrt{s} = 91$ GeV, $\int L \, dt = 10 \, \text{fb}^{-1}$", ha='left', va='center', fontsize=8)
 
     def make_cumulative_significance_matplotlib(signal_hist, background_hist, significance_direction, uncertainty_count_factor=0.1):
-        
         sig_list = []
         s_cumulative = 0
         b_cumulative = 0
@@ -313,13 +292,10 @@ if __name__ == "__main__":
                     2 * (n * math.log((n * (b_cumulative + sigma_cumulative**2)) / (b_cumulative**2 + n * sigma_cumulative**2)) - (b_cumulative**2 / sigma_cumulative**2) * math.log((1 + (sigma_cumulative**2 * (n - b_cumulative)) / (b_cumulative * (b_cumulative + sigma_cumulative**2))))
                 )))
             left_edge = bin_edges[bin_idx - 1]
-            print(f"significance {significance} for bin {bin_idx} with BDT threshold {left_edge}, number of signal events {s}, bkg{b}")
-
             sig_list.append((significance, bin_idx, left_edge))
 
         return sig_list
 
-    # Plot cumulative significance on the second subplot
     sig_list = make_cumulative_significance_matplotlib(hS, hB, significance_direction, uncertainty_count_factor=0.1)
     sig_list.sort(key=lambda x: x[1])
     significance_values, bin_index, bdt_output = zip(*sig_list)
@@ -338,9 +314,9 @@ if __name__ == "__main__":
     max_significance_index = np.argmax(significance_values)
     max_significance_bin = bin_index[max_significance_index]
     max_significance_value = significance_values[max_significance_index]
-    ax[1].axvline(x=bins_a[int(max_significance_bin)], linestyle='--', color='red', label=f'Max Significance: {max_significance_value:.2f}')
+    max_significance_cut = bins_a[int(max_significance_bin)]
+    ax[1].axvline(x=max_significance_cut, linestyle='--', color='red', label=f'Max Significance: {max_significance_value:.2f}')
     ax[1].legend()
-
 
     plt.savefig(f"/eos/user/t/tcritchl/xgboost_plots{run}/BDT_output_{label}_10fb.pdf")
 
@@ -401,3 +377,24 @@ if __name__ == "__main__":
         print(f"Results saved to {json_file_path} successfully!")
     except Exception as e:
         print(f"An error occurred while saving results: {e}")
+
+    # Calculate and save yields for the BDT cut chosen to maximize significance
+    maskS_max_sig = (y_true == 1) & (y_pred_np > max_significance_cut)
+    maskB_max_sig = (y_true == 0) & (y_pred_np > max_significance_cut)
+    signal_yield_max_sig = np.sum(w[maskS_max_sig])
+    background_yield_max_sig = np.sum(w[maskB_max_sig])
+
+    yield_dict = {
+        "max_significance_cut": float(max_significance_cut),
+        "signal_yield_max_sig": float(signal_yield_max_sig),
+        "background_yield_max_sig": float(background_yield_max_sig)
+    }
+
+    yield_json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/bdt_yield_{run}_{label}.json"
+
+    try:
+        with open(yield_json_file_path, 'w') as json_file:
+            json.dump(yield_dict, json_file, indent=2)
+        print(f"Yields saved to {yield_json_file_path} successfully!")
+    except Exception as e:
+        print(f"An error occurred while saving yields: {e}")
