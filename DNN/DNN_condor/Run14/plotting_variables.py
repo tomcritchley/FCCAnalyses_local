@@ -7,7 +7,7 @@ def plot_signal_vs_background(variable, label, variable_index):
     # Load the training data
     X_train = np.load(f'/eos/user/t/tcritchl/DNN/training14/X_train_{label}.npy')
     y_train = np.load(f'/eos/user/t/tcritchl/DNN/training14/y_train_{label}.npy')
-    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/training14/weights_train_{label}.npy')
+    weights_train = np.load(f'/eos/user/t/tcritchl/DNN/testing14/weights_train_{label}.npy')
     
     # Separate the signal and background data
     signal = X_train[y_train == 1][:, variable_index]
