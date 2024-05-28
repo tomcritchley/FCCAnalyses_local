@@ -390,7 +390,7 @@ if __name__ == "__main__":
         "background_yield_max_sig": float(background_yield_max_sig)
     }
 
-    yield_json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/bdt_yield_{run}_{label}.json"
+    yield_json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/new_variables_training/bdt_yield_{run}_{args.label}.json"
 
     try:
         with open(yield_json_file_path, 'w') as json_file:
