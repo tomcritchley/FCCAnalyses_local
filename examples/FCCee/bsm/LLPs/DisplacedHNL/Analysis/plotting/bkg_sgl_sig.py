@@ -4,6 +4,8 @@ import numpy as np
 import math
 import os
 
+ROOT.gStyle.SetExponentOffset(-0.05, 0, "y")
+
 uncertainty_count_factor = 0.1 #10% background uncertainty for the significance
 #variable = "RecoDiJet_delta_R"
 variable_list = [
@@ -166,6 +168,59 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_
         sig_list.append(sig_hist)
     return sig_list
 
+"""    
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
+    sig_list = []
+    for h in files_list:
+        sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
+
+        if significance_direction == "LR":
+            bin_range = range(1, n_bins + 1)
+        elif significance_direction == "RL":
+            bin_range = range(n_bins, 0, -1)
+        else:
+            raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
+
+        for bin_idx in bin_range:
+            s = h.Integral(bin_idx, bin_idx)
+            b = sum(bg_hist.Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
+            sigma = b * uncertainty_count_factor
+            significance = 0
+            if s + b > 0 and b > 1 and s != 0 and sigma != 0:
+                n = s + b
+                significance = math.sqrt(abs(
+                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
+                )))
+            sig_hist.SetBinContent(bin_idx, significance)
+        sig_list.append(sig_hist)
+    return sig_list"""
+"""
+def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3):
+    sig_list = []
+    for h in files_list:
+        sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
+
+        if significance_direction == "LR":
+            bin_range = range(1, n_bins + 1)
+        elif significance_direction == "RL":
+            bin_range = range(n_bins, 0, -1)
+        else:
+            raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
+
+        for bin_idx in bin_range:
+            s = sum(h.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins)
+            b = sum(sum(bg_hist.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins) for bg_hist in h_list_bg)
+            sigma = b * uncertainty_count_factor
+            significance = 0
+            if s + b > 0 and b > 1 and s != 0 and sigma != 0:
+                n = s + b
+                significance = math.sqrt(abs(
+                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
+                )))
+            sig_hist.SetBinContent(bin_idx, significance)
+        sig_list.append(sig_hist)
+    return sig_list
+"""
 h_list_signal = make_hist(files_list_signal)
 h_list_bg = make_hist(files_list_bg)
 n_bins = h_list_bg[0].GetNbinsX()
@@ -190,8 +245,8 @@ n_background_bb = h_list_bg[1].Integral()
 def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_list_significance):
 
     c = ROOT.TCanvas("can","can",600,600)   
-    pad1 = ROOT.TPad("pad1", "pad1", 0.0, 0.35, 1.0, 1.0, 21)  # Adjust the top and bottom margins
-    pad2 = ROOT.TPad("pad2", "pad2", 0.0, 0.0, 1.0, 0.35, 22) #the significance panel
+    pad1 = ROOT.TPad("pad1", "pad1", 0.0, 0.25, 1.0, 1.0, 21)  # Adjust the top and bottom margins
+    pad2 = ROOT.TPad("pad2", "pad2", 0.0, 0.0, 1.0, 0.24, 22) #the significance panel
     
     pad1.SetFillColor(0)
     pad1.SetBottomMargin(0.02)
@@ -203,7 +258,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     pad1.Draw()
 
     pad2.SetFillColor(0)
-    pad2.SetTopMargin(0.02)
+    pad2.SetTopMargin(0)
     pad2.SetBottomMargin(0.4)
     pad2.Draw()
     
@@ -310,13 +365,13 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.SetStats(0)
         
         h.GetYaxis().SetTitle("Z")
-        h.GetYaxis().SetTitleSize(0.1)
-        h.GetYaxis().SetTitleOffset(0.4)
+        h.GetYaxis().SetTitleSize(0.8)
+        h.GetYaxis().SetTitleOffset(1.4)
         h.GetYaxis().SetLabelSize(h.GetYaxis().GetLabelSize() * 2)
         h.GetYaxis().SetLabelOffset(0.02)
         
         h.GetXaxis().SetTitle(f"{chosen_variable[1]}")
-        h.GetXaxis().SetTitleSize(0.14)
+        h.GetXaxis().SetTitleSize(0.12)
         h.GetXaxis().SetTitleOffset(1.2)
         h.GetXaxis().SetLabelSize(0.1)
         h.GetXaxis().SetLabelOffset(0.02)
