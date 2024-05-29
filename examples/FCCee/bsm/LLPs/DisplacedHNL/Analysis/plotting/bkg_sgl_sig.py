@@ -73,7 +73,7 @@ files_list_signal = [
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.014] #pb
 #total_events_bg = [5215.46,6654.46,1]
-total_events_bg = [5215.46, 6654.46 ,0.014]
+total_events_bg = [5215.46, 6654.46 ,1]
 #total_events_bg = [774.4585504116911, 1933.5556038636116, 0.3399800000000002]
 #total_events_bg = [1,1,1]
 #total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
