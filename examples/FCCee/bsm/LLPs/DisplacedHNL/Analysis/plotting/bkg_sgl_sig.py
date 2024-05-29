@@ -58,7 +58,7 @@ file_4body = input_dir_bkg + 'ejjnu_' + selection+'_histo'+'.root'
 
 file_HNL_20 = input_dir_sgl+'HNL_Dirac_ejj_20GeV_1e-3Ve_'+selection+'_histo'+'.root'
 file_HNL_50 = input_dir_sgl+'HNL_Dirac_ejj_50GeV_1e-3Ve_'+selection+'_histo'+'.root'
-file_HNL_70 = input_dir_sgl+'HNL_Dirac_ejj_70GeV_1e-4p5Ve_'+selection+'_histo'+'.root'
+file_HNL_70 = input_dir_sgl+'HNL_Dirac_ejj_70GeV_1e-3Ve_'+selection+'_histo'+'.root'
 
 ###signal 
 cross_sections_sgl = [0.003771,0.002268,0.0009058] #cross sections calculated by madgraph
@@ -67,7 +67,7 @@ selection_scale_sgl = [0.826038170925038/1,1,1]
 files_list_signal = [
    [file_HNL_20, chosen_variable[0], "20GeV HNL",cross_sections_sgl[0],total_events_sgl[0], selection_scale_sgl[0]],
    [file_HNL_50, chosen_variable[0], "50GeV HNL",cross_sections_sgl[1],total_events_sgl[1], selection_scale_sgl[1]],
-   [file_HNL_70, chosen_variable[0], "70GeV e-9 HNL",cross_sections_sgl[2],total_events_sgl[2], selection_scale_sgl[2]]
+   [file_HNL_70, chosen_variable[0], "70GeV HNL",cross_sections_sgl[2],total_events_sgl[2], selection_scale_sgl[2]]
 ]
 
 ###background
