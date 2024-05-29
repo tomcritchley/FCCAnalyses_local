@@ -26,10 +26,10 @@ variable_list = [
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 
-chosen_variable = variable_list[11] 
+chosen_variable = variable_list[7] 
 
 significance_directions = ["LR", "RL"]
-significance_direction = significance_directions[0]
+significance_direction = significance_directions[1]
 
 normalisation = True 
 luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
@@ -40,11 +40,11 @@ log_scale = True
 #pick your selection
 #selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
 selection = "selNone"
-#input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
-#input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
-input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/" #bb cc and 4body samples
-input_dir_sgl = "/eos/user/t/tcritchl/HNLs/final/" #signals 
-output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/plots16may/"
+input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
+input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
+#input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/" #bb cc and 4body samples
+#input_dir_sgl = "/eos/user/t/tcritchl/HNLs/final/" #signals 
+output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/vertex/"
 
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
