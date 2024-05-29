@@ -190,8 +190,8 @@ n_background_bb = h_list_bg[1].Integral()
 def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_list_significance):
 
     c = ROOT.TCanvas("can","can",600,600)   
-    pad1 = ROOT.TPad("pad1", "pad1", 0.0, 0.3, 1.0, 1.0, 21)  # Adjust the top and bottom margins
-    pad2 = ROOT.TPad("pad2", "pad2", 0.0, 0.0, 1.0, 0.3, 22) #the significance panel
+    pad1 = ROOT.TPad("pad1", "pad1", 0.0, 0.35, 1.0, 1.0, 21)  # Adjust the top and bottom margins
+    pad2 = ROOT.TPad("pad2", "pad2", 0.0, 0.0, 1.0, 0.35, 22) #the significance panel
     
     pad1.SetFillColor(0)
     pad1.SetBottomMargin(0.02)
@@ -208,14 +208,17 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     pad2.Draw()
     
     # Background Legend
+    #leg_bg = ROOT.TLegend(0.67, 0.52, 0.87, 0.67)\
     leg_bg = ROOT.TLegend(0.15, 0.6, 0.35, 0.75)
     leg_bg.SetFillStyle(0)
     leg_bg.SetLineWidth(0)
 
     # Signal Legend
+    #leg_sig = ROOT.TLegend(0.67, 0.32, 0.87, 0.47)
     leg_sig = ROOT.TLegend(0.15, 0.4, 0.35, 0.55)
     leg_sig.SetFillStyle(0)
     leg_sig.SetLineWidth(0)
+
 
     h_list = h_list_signal + h_list_bg
 
@@ -235,6 +238,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.SetLineColor(colors_signal[ih])
         h.SetLineWidth(3)
         h.SetStats(0)
+        #h.GetXaxis().SetRangeUser(0, 50)  # Rescale x-axis range
         if not log_scale and not normalisation:
             h.GetYaxis().SetTitle("Entries")
         elif log_scale and not normalisation:
@@ -244,10 +248,11 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         elif log_scale and normalisation:
             h.GetYaxis().SetTitle("Log Normalised Entries")
 
-        h.GetXaxis().SetTitleSize(0.03)
-        h.GetYaxis().SetTitleSize(0.03)
+        h.GetXaxis().SetTitleSize(0.03)  # Adjust the text size for X-axis label
+        h.GetYaxis().SetTitleSize(0.03)  # Adjust the text size for Y-axis label
         h.GetXaxis().SetLabelOffset(-1000)
-        h.GetYaxis().SetTitleOffset(1.4)
+        #h.GetXaxis().SetTitleOffset(1.2)  # Adjust the position of the X-axis label
+        h.GetYaxis().SetTitleOffset(1.4)  # Adjust the position of the Y-axis label
         h.SetMaximum(1.25 * h_max)
         h.SetMinimum(0.001)
         h.Draw('hist same')
@@ -256,6 +261,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.SetLineColor(colors_bg[ih])
         h.SetLineWidth(3)
         h.SetStats(0)
+        #h.GetXaxis().SetRangeUser(0, 50)  # Rescale x-axis range
         if not log_scale and not normalisation:
             h.GetYaxis().SetTitle("Entries")
         elif log_scale and not normalisation:
@@ -265,10 +271,12 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         elif log_scale and normalisation:
             h.GetYaxis().SetTitle("Log Normalised Entries")
 
-        h.GetXaxis().SetTitleSize(0.03)
-        h.GetYaxis().SetTitleSize(0.03)
+        h.GetXaxis().SetTitleSize(0.03)  # Adjust the text size for X-axis label
+        h.GetYaxis().SetTitleSize(0.03)  # Adjust the text size for Y-axis label
+        #h.GetXaxis().SetTitleOffset(1.0)  # Adjust the position of the X-axis label
         h.GetXaxis().SetLabelOffset(-1000)
-        h.GetYaxis().SetTitleOffset(1.4)
+        h.GetXaxis().SetLabelOffset(0.02)
+        h.GetYaxis().SetTitleOffset(1.4)  # Adjust the position of the Y-axis label
         h.SetMaximum(1.25 * h_max)
         h.SetMinimum(0.001)
         h.Draw('hist same')
@@ -304,14 +312,14 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.GetYaxis().SetTitle("Z")
         h.GetYaxis().SetTitleSize(0.1)
         h.GetYaxis().SetTitleOffset(0.4)
-        h.GetYaxis().SetLabelSize(0.1)
-        h.GetYaxis().SetLabelOffset(0.01)
+        h.GetYaxis().SetLabelSize(h.GetYaxis().GetLabelSize() * 2)
+        h.GetYaxis().SetLabelOffset(0.02)
         
         h.GetXaxis().SetTitle(f"{chosen_variable[1]}")
         h.GetXaxis().SetTitleSize(0.14)
         h.GetXaxis().SetTitleOffset(1.2)
-        h.GetXaxis().SetLabelSize(0.14)
-        h.GetXaxis().SetLabelOffset(0.05)
+        h.GetXaxis().SetLabelSize(0.1)
+        h.GetXaxis().SetLabelOffset(0.02)
         h.GetXaxis().SetRangeUser(0, 50)
         if i==0:
             h.Draw()
