@@ -330,3 +330,5 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         c.SaveAs(output_dir + "BackgroundVSignal_" + selection + chosen_variable[0] + ".pdf", "R")
     
     return
+
+make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_list_significance)
