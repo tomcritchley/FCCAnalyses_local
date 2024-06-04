@@ -6,81 +6,67 @@ import os
 
 ROOT.gStyle.SetExponentOffset(-0.1, 0.03, "y")
 
-uncertainty_count_factor = 0.1 #10% background uncertainty for the significance
-#variable = "RecoDiJet_delta_R"
+uncertainty_count_factor = 0.1  # 10% background uncertainty for the significance
 variable_list = [
-    ["RecoElectron_lead_e", "Reco lead electron energy [GeV]"], #variable name in histo[0], axis title[1]
-    ["RecoDiJet_delta_R", "Reco di-jet #Delta R"], #1
-    ["RecoDiJet_angle", "Reco di-jet #Psi [Rad.]"], #2
-    ["RecoElectron_LeadJet_delta_R", "Reco lead jet #DeltaR"], #3
-    ["RecoElectron_SecondJet_delta_R", "Reco second jet #Delta R"], #4
-    ["RecoElectron_DiJet_delta_R","Reco electron di-jet #Delta R"], #5
-    ["RecoLeadElectron_Pmiss_delta_theta", "Reconstructed electron missing momentum #theta [Rad.]"], #6
-    ["RecoElectronTrack_absD0sig", "Reco electron |d_{0}| [mm] sig"], #7
-    ["RecoElectronTrack_absD0cov", "Reco electron |d_{0}| [mm] cov"], #8
-    ["RecoElectronTrack_absD0", "Reco electron |d_{0}| [mm]"], #9
-    ["RecoDiJet_phi", "Reco DiJet #phi [Rad.]"], #10
-    ["RecoMissingEnergy_theta", "Reco Missing Energy   #theta [Rad.]"], #11
-    ["RecoMissingEnergy_e", "Reco missing energy [GeV]"], #12
-    ["RecoDiJetElectron_invMass", "Mass [GeV]"], #for invmass of the HNL #13
-    ["ntracks", "Number of tracks"], #14
-    ["n_primt", "Number of primary tracks"], #15
-    ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
+    ["RecoElectron_lead_e", "Reco lead electron energy [GeV]"],
+    ["RecoDiJet_delta_R", "Reco di-jet #Delta R"],
+    ["RecoDiJet_angle", "Reco di-jet #Psi [Rad.]"],
+    ["RecoElectron_LeadJet_delta_R", "Reco lead jet #DeltaR"],
+    ["RecoElectron_SecondJet_delta_R", "Reco second jet #Delta R"],
+    ["RecoElectron_DiJet_delta_R", "Reco electron di-jet #Delta R"],
+    ["RecoLeadElectron_Pmiss_delta_theta", "Reconstructed electron missing momentum #theta [Rad.]"],
+    ["RecoElectronTrack_absD0sig", "Reco electron |d_{0}| [mm] sig"],
+    ["RecoElectronTrack_absD0cov", "Reco electron |d_{0}| [mm] cov"],
+    ["RecoElectronTrack_absD0", "Reco electron |d_{0}| [mm]"],
+    ["RecoDiJet_phi", "Reco DiJet #phi [Rad.]"],
+    ["RecoMissingEnergy_theta", "Reco Missing Energy   #theta [Rad.]"],
+    ["RecoMissingEnergy_e", "Reco missing energy [GeV]"],
+    ["RecoDiJetElectron_invMass", "Mass [GeV]"],
+    ["ntracks", "Number of tracks"],
+    ["n_primt", "Number of primary tracks"],
+    ["Vertex_chi2", "Chi^{2} of the primary vertex"]
 ]
 
-chosen_variable = variable_list[9] 
+chosen_variable = variable_list[16]
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[1]
 
-normalisation = True 
-luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
-#luminosity = 150000000 #150 ab^-1 as 1.5e8 pb^-1
-
+normalisation = True
+luminosity = 10000  # 10 fb^-1 as 1e4 pb^-1
 log_scale = True
 
-#pick your selection
-#selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
 selection = "selNone"
-input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
-input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
-#input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/" #bb cc and 4body samples
-#input_dir_sgl = "/eos/user/t/tcritchl/HNLs/final/" #signals 
-output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/vertex/"
+input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/"  # bb cc and 4body samples
+input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/"  # signals
+output_dir = "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/vertex/"
 
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
-    print("Directory ",output_dir," Created ")
+    print("Directory ", output_dir, " Created ")
 else:
-    print("Directory ",output_dir," already exists")
+    print("Directory ", output_dir, " already exists")
 
-file_Zbb = input_dir_bkg + 'p8_ee_Zbb_ecm91_'+selection+'_histo'+'.root'
-file_Zcc = input_dir_bkg + 'p8_ee_Zcc_ecm91_' + selection+'_histo'+'.root'
-file_4body = input_dir_bkg + 'ejjnu_' + selection+'_histo'+'.root'
+file_Zbb = input_dir_bkg + 'p8_ee_Zbb_ecm91_'+selection+'.root'
+file_Zcc = input_dir_bkg + 'p8_ee_Zcc_ecm91_' + selection+'.root'
+file_4body = input_dir_bkg + 'ejjnu_' + selection+'.root'
 
-file_HNL_20 = input_dir_sgl+'HNL_Dirac_ejj_20GeV_1e-3Ve_'+selection+'_histo'+'.root'
-file_HNL_50 = input_dir_sgl+'HNL_Dirac_ejj_50GeV_1e-3Ve_'+selection+'_histo'+'.root'
-file_HNL_70 = input_dir_sgl+'HNL_Dirac_ejj_70GeV_1e-3Ve_'+selection+'_histo'+'.root'
+file_HNL_20 = input_dir_sgl+'HNL_Dirac_ejj_20GeV_1e-3Ve_'+selection+'.root'
+file_HNL_50 = input_dir_sgl+'HNL_Dirac_ejj_50GeV_1e-3Ve_'+selection+'.root'
+file_HNL_70 = input_dir_sgl+'HNL_Dirac_ejj_70GeV_1e-3Ve_'+selection+'.root'
 
-###signal 
-cross_sections_sgl = [0.003771,0.002268,0.0009058] #cross sections calculated by madgraph
-total_events_sgl =[1,1,1] #events generated by madgraph
-selection_scale_sgl = [0.826038170925038/1,1,1]
+cross_sections_sgl = [0.003771, 0.002268, 0.0009058]  # cross sections calculated by madgraph
+total_events_sgl = [1, 1, 1]  # events generated by madgraph
+selection_scale_sgl = [0.826038170925038/1, 1, 1]
 files_list_signal = [
-   [file_HNL_20, chosen_variable[0], "20GeV HNL",cross_sections_sgl[0],total_events_sgl[0], selection_scale_sgl[0]],
-   [file_HNL_50, chosen_variable[0], "50GeV HNL",cross_sections_sgl[1],total_events_sgl[1], selection_scale_sgl[1]],
-   [file_HNL_70, chosen_variable[0], "70GeV HNL",cross_sections_sgl[2],total_events_sgl[2], selection_scale_sgl[2]]
+    [file_HNL_20, chosen_variable[0], "20GeV HNL", cross_sections_sgl[0], total_events_sgl[0], selection_scale_sgl[0]],
+    [file_HNL_50, chosen_variable[0], "50GeV HNL", cross_sections_sgl[1], total_events_sgl[1], selection_scale_sgl[1]],
+    [file_HNL_70, chosen_variable[0], "70GeV HNL", cross_sections_sgl[2], total_events_sgl[2], selection_scale_sgl[2]]
 ]
 
-###background
-cross_sections_bg = [5215.46, 6654.46,0.014] #pb
-#total_events_bg = [5215.46,6654.46,1]
-total_events_bg = [5215.46, 6654.46 ,1]
-#total_events_bg = [774.4585504116911, 1933.5556038636116, 0.3399800000000002]
-#total_events_bg = [1,1,1]
-#total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
-#selection_scale_bg = [2/(499786495),1/(438538637),2620/100000]
-selection_scale_bg = [749.77/5215.46, 1591.09/6654.46, 1] #put the non normalised events here! we need to know how many we are looking at it in a given range and adjust --> e.g. we go from 6000 to 90 events for cc
+cross_sections_bg = [5215.46, 6654.46, 0.014]  # pb
+total_events_bg = [5215.46, 6654.46, 1]
+selection_scale_bg = [749.77/5215.46, 1591.09/6654.46, 1]
 files_list_bg = [
     [file_Zcc, chosen_variable[0], "Z #rightarrow cc", cross_sections_bg[0], total_events_bg[0], selection_scale_bg[0]],
     [file_Zbb, chosen_variable[0], "Z #rightarrow bb", cross_sections_bg[1], total_events_bg[1], selection_scale_bg[1]],
@@ -96,44 +82,37 @@ ratio_list_signal = [f[2] for f in files_list_signal]
 colors_signal = [ROOT.kMagenta - 7, ROOT.kMagenta - 2, ROOT.kMagenta + 3]
 colors_bg = [856, 410, 801, 629, 879, 602, 921, 622]
 
-
-def make_hist(files_list):
+def make_hist_from_ntuple(files_list):
     h_list = []
     for f in files_list:
         print("Looking at file", f[2])
-        my_file = ROOT.TFile.Open(f[0], "READ")  # Open the root file in read mode
+        my_file = ROOT.TFile.Open(f[0], "READ")
         if not my_file:
             print("Failed to open file:", f[0])
             continue
-        print("Getting histogram for variable", f[1])
-        hist = my_file.Get(f[1])  # Select the chosen variable from the histo root file
-        if not hist:
-            print("Histogram not found for variable", f[1], "in file", f[0])
+        tree = my_file.Get("events")
+        if not tree:
+            print("Tree 'events' not found in file", f[0])
             my_file.Close()
             continue
-        if not isinstance(hist, ROOT.TH1):
-            print("Object is not a histogram:", f[1])
-            my_file.Close()
-            continue
-        print(f"number of bins is {hist.GetNbinsX()}")
-        #hist.GetXaxis().SetRangeUser(0, 2*np.pi)
-        selected_events = hist.Integral()
-        print(f"Selected events for {f[2]} = {selected_events}")
+
+        hist_name = f"hist_{f[2]}"
+        hist = ROOT.TH1F(hist_name, hist_name, 50, 0, 100)  # Adjust the number of bins and range as needed
+        tree.Draw(f"{f[1]}>>{hist_name}")
+        
         if normalisation:
             print("Normalising....")
-            # Apply normalization based on cross section, total events, and luminosity
-            cross_section = f[3]  # Cross section in pb
-            events_generated = f[4]  # Total events generated
-            scaling_factor = (cross_section * luminosity) / events_generated * (selected_events/events_generated)
+            cross_section = f[3]
+            events_generated = f[4]
+            selected_events = hist.Integral()
+            scaling_factor = (cross_section * luminosity) / events_generated * (selected_events / events_generated)
             print(f"Scale factor for {f[2]} = {scaling_factor}, with selection efficiency = {selected_events/events_generated} and expected events total as {(cross_section * luminosity) * selected_events/events_generated}")
             hist.Scale(scaling_factor)
 
-        hist.SetDirectory(0)  # Make the chosen histogram independent of the directory
-
+        hist.SetDirectory(0)
         h_list.append(hist)
-        print("Histogram added to h_list")
         my_file.Close()
-        print("-----------------------")
+        print("Histogram added to h_list")
     return h_list
 
 def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_direction):
@@ -168,68 +147,14 @@ def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, significance_
         sig_list.append(sig_hist)
     return sig_list
 
-"""    
-def make_significance(files_list, n_bins, x_min, x_max, h_list_bg):
-    sig_list = []
-    for h in files_list:
-        sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
-
-        if significance_direction == "LR":
-            bin_range = range(1, n_bins + 1)
-        elif significance_direction == "RL":
-            bin_range = range(n_bins, 0, -1)
-        else:
-            raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
-
-        for bin_idx in bin_range:
-            s = h.Integral(bin_idx, bin_idx)
-            b = sum(bg_hist.Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
-            sigma = b * uncertainty_count_factor
-            significance = 0
-            if s + b > 0 and b > 1 and s != 0 and sigma != 0:
-                n = s + b
-                significance = math.sqrt(abs(
-                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
-                )))
-            sig_hist.SetBinContent(bin_idx, significance)
-        sig_list.append(sig_hist)
-    return sig_list"""
-"""
-def make_significance(files_list, n_bins, x_min, x_max, h_list_bg, window_size=3):
-    sig_list = []
-    for h in files_list:
-        sig_hist = ROOT.TH1F("Significance", "Significance", n_bins, x_min, x_max)
-
-        if significance_direction == "LR":
-            bin_range = range(1, n_bins + 1)
-        elif significance_direction == "RL":
-            bin_range = range(n_bins, 0, -1)
-        else:
-            raise ValueError("Invalid significance direction. Choose 'LR' or 'RL'.")
-
-        for bin_idx in bin_range:
-            s = sum(h.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins)
-            b = sum(sum(bg_hist.GetBinContent(bin_idx + i) for i in range(-window_size, window_size + 1) if 0 < bin_idx + i <= n_bins) for bg_hist in h_list_bg)
-            sigma = b * uncertainty_count_factor
-            significance = 0
-            if s + b > 0 and b > 1 and s != 0 and sigma != 0:
-                n = s + b
-                significance = math.sqrt(abs(
-                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
-                )))
-            sig_hist.SetBinContent(bin_idx, significance)
-        sig_list.append(sig_hist)
-    return sig_list
-"""
-h_list_signal = make_hist(files_list_signal)
-h_list_bg = make_hist(files_list_bg)
+h_list_signal = make_hist_from_ntuple(files_list_signal)
+h_list_bg = make_hist_from_ntuple(files_list_bg)
 n_bins = h_list_bg[0].GetNbinsX()
 x_min = h_list_bg[0].GetXaxis().GetXmin()
 x_max = h_list_bg[0].GetXaxis().GetXmax()
-h_list_significance = make_significance(h_list_signal, n_bins, x_min, x_max, h_list_bg, significance_direction) #change
+h_list_significance = make_significance(h_list_signal, n_bins, x_min, x_max, h_list_bg, significance_direction)
 
-##just some statistics:
-
+## Just some statistics:
 n_signal_20 = h_list_signal[0].Integral()
 n_signal_50 = h_list_signal[1].Integral()
 n_signal_70 = h_list_signal[2].Integral()
@@ -243,7 +168,6 @@ print(h_list_signal[2].Integral(), "Number of 70 GeV events")
 n_background_bb = h_list_bg[1].Integral()
 
 def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_list_significance):
-
     c = ROOT.TCanvas("can","can",600,600)   
     pad1 = ROOT.TPad("pad1", "pad1", 0.0, 0.25, 1.0, 1.0, 21)  # Adjust the top and bottom margins
     pad2 = ROOT.TPad("pad2", "pad2", 0.0, 0.0, 1.0, 0.24, 22) #the significance panel
@@ -263,17 +187,14 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
     pad2.Draw()
     
     # Background Legend
-    #leg_bg = ROOT.TLegend(0.67, 0.52, 0.87, 0.67)\
     leg_bg = ROOT.TLegend(0.15, 0.6, 0.35, 0.75)
     leg_bg.SetFillStyle(0)
     leg_bg.SetLineWidth(0)
 
     # Signal Legend
-    #leg_sig = ROOT.TLegend(0.67, 0.32, 0.87, 0.47)
     leg_sig = ROOT.TLegend(0.15, 0.4, 0.35, 0.55)
     leg_sig.SetFillStyle(0)
     leg_sig.SetLineWidth(0)
-
 
     h_list = h_list_signal + h_list_bg
 
@@ -293,7 +214,6 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.SetLineColor(colors_signal[ih])
         h.SetLineWidth(3)
         h.SetStats(0)
-        #h.GetXaxis().SetRangeUser(0, 50)  # Rescale x-axis range
         if not log_scale and not normalisation:
             h.GetYaxis().SetTitle("Entries")
         elif log_scale and not normalisation:
@@ -303,20 +223,18 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         elif log_scale and normalisation:
             h.GetYaxis().SetTitle("Log Normalised Entries")
 
-        h.GetXaxis().SetTitleSize(0.03)  # Adjust the text size for X-axis label
-        h.GetYaxis().SetTitleSize(0.03)  # Adjust the text size for Y-axis label
+        h.GetXaxis().SetTitleSize(0.03)
+        h.GetYaxis().SetTitleSize(0.03)
         h.GetXaxis().SetLabelOffset(-1000)
-        #h.GetXaxis().SetTitleOffset(1.2)  # Adjust the position of the X-axis label
-        h.GetYaxis().SetTitleOffset(1.4)  # Adjust the position of the Y-axis label
+        h.GetYaxis().SetTitleOffset(1.4)
         h.SetMaximum(1.25 * h_max)
-        h.SetMinimum(0.001)
+        h.SetMinimum(0.1)
         h.Draw('hist same')
 
     for ih,h in enumerate(h_list_bg):   
         h.SetLineColor(colors_bg[ih])
         h.SetLineWidth(3)
         h.SetStats(0)
-        #h.GetXaxis().SetRangeUser(0, 50)  # Rescale x-axis range
         if not log_scale and not normalisation:
             h.GetYaxis().SetTitle("Entries")
         elif log_scale and not normalisation:
@@ -326,12 +244,10 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         elif log_scale and normalisation:
             h.GetYaxis().SetTitle("Log Normalised Entries")
 
-        h.GetXaxis().SetTitleSize(0.03)  # Adjust the text size for X-axis label
-        h.GetYaxis().SetTitleSize(0.03)  # Adjust the text size for Y-axis label
-        #h.GetXaxis().SetTitleOffset(1.0)  # Adjust the position of the X-axis label
+        h.GetXaxis().SetTitleSize(0.03)
+        h.GetYaxis().SetTitleSize(0.03)
         h.GetXaxis().SetLabelOffset(-1000)
-        h.GetXaxis().SetLabelOffset(0.02)
-        h.GetYaxis().SetTitleOffset(1.4)  # Adjust the position of the Y-axis label
+        h.GetYaxis().SetTitleOffset(1.4)
         h.SetMaximum(1.25 * h_max)
         h.SetMinimum(0.1)
         h.Draw('hist same')
@@ -369,7 +285,6 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.GetYaxis().SetTitleOffset(1.4)
         h.GetYaxis().SetLabelSize(h.GetYaxis().GetLabelSize() * 2)
         h.GetYaxis().SetLabelOffset(0.02)
-        h.GetYaxis().SetRangeUser(0, 0.05)
         
         h.GetXaxis().SetTitle(f"{chosen_variable[1]}")
         h.GetXaxis().SetTitleSize(0.12)
