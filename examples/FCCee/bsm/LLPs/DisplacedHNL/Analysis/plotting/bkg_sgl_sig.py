@@ -309,7 +309,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         #h.GetXaxis().SetTitleOffset(1.2)  # Adjust the position of the X-axis label
         h.GetYaxis().SetTitleOffset(1.4)  # Adjust the position of the Y-axis label
         h.SetMaximum(1.25 * h_max)
-        h.SetMinimum(0.1)
+        h.SetMinimum(0.001)
         h.Draw('hist same')
 
     for ih,h in enumerate(h_list_bg):   
@@ -369,7 +369,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.GetYaxis().SetTitleOffset(1.4)
         h.GetYaxis().SetLabelSize(h.GetYaxis().GetLabelSize() * 2)
         h.GetYaxis().SetLabelOffset(0.02)
-        h.GetYaxis().SetRangeUser(0, 0.0005)
+        h.GetYaxis().SetRangeUser(0, 0.05)
         
         h.GetXaxis().SetTitle(f"{chosen_variable[1]}")
         h.GetXaxis().SetTitleSize(0.12)
