@@ -116,16 +116,16 @@ def prepare_datasets():
         X_train, y_train, weights_train = df_train[variables], df_train['label'], df_train['weight']
         X_train_scaled = scaler.fit_transform(X_train)
 
-        np.save(f'/eos/user/t/tcritchl/DNN/training15/X_{key}_{args.label}.npy', X_train_scaled)
-        np.save(f'/eos/user/t/tcritchl/DNN/training15/y_{key}_{args.label}.npy', y_train)
-        np.save(f'/eos/user/t/tcritchl/DNN/training15/weights_{key}_{args.label}.npy', weights_train)
+        np.save(f'/eos/user/t/tcritchl/DNN/training20/X_{key}_{args.label}.npy', X_train_scaled)
+        np.save(f'/eos/user/t/tcritchl/DNN/training20/y_{key}_{args.label}.npy', y_train)
+        np.save(f'/eos/user/t/tcritchl/DNN/training20/weights_{key}_{args.label}.npy', weights_train)
 
     X_test, y_test, weights_test = combined_test[variables], combined_test['label'], combined_test['weight']
     X_test_scaled = scaler.transform(X_test)
 
-    np.save(f'/eos/user/t/tcritchl/DNN/testing15/X_test_{args.label}.npy', X_test_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing15/y_test_{args.label}.npy', y_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing15/weights_test_{args.label}.npy', weights_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing20/X_test_{args.label}.npy', X_test_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing20/y_test_{args.label}.npy', y_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing20/weights_test_{args.label}.npy', weights_test)
 
     print(f"Data preparation complete for label: {args.label}")
 
