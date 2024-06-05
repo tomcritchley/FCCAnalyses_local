@@ -41,35 +41,34 @@ def load_and_filter_data(filepath, x_sec, tree_name, variables, filter_func):
         return filter_func(df)
 
 # Chunks of background with a retry mechanism
-def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
+def load_and_preprocess_bkg(filepath, x_sec, filter_func, label):
     dfs = []
-    for filepath, x_sec in filepaths_and_xsecs:
-        attempt = 0
-        max_attempts = 3
-        success = False
-        
-        while attempt < max_attempts and not success:
-            try:
-                with uproot.open(f"{filepath}:{tree_name}") as tree:
-                    df = tree.arrays(variables, library="pd")
-                    df['cross_section'] = float(x_sec)
-                    df = filter_func(df)
-                    if x_sec == "5215.46":
-                        df['weight'] = (df['cross_section'] * target_luminosity) / 498091935
-                    elif x_sec == "6654.46":
-                        df['weight'] = (df['cross_section'] * target_luminosity) / 438538637
-                    elif x_sec == "0.014":
-                        df['weight'] = (df['cross_section'] * target_luminosity) / 100000
-                    df['label'] = label
-                    dfs.append(df)
-                    success = True
-            except Exception as e:
-                attempt += 1
-                print(f"Error processing file {filepath} on attempt {attempt}: {e}")
-                if attempt < max_attempts:
-                    time.sleep(2)  # wait for 2 seconds before retrying
-                else:
-                    print(f"Failed to process file {filepath} after {max_attempts} attempts.")
+    attempt = 0
+    max_attempts = 3
+    success = False
+    
+    while attempt < max_attempts and not success:
+        try:
+            with uproot.open(f"{filepath}:{tree_name}") as tree:
+                df = tree.arrays(variables, library="pd")
+                df['cross_section'] = float(x_sec)
+                df = filter_func(df)
+                if x_sec == "5215.46":
+                    df['weight'] = (df['cross_section'] * target_luminosity) / 498091935
+                elif x_sec == "6654.46":
+                    df['weight'] = (df['cross_section'] * target_luminosity) / 438538637
+                elif x_sec == "0.014":
+                    df['weight'] = (df['cross_section'] * target_luminosity) / 100000
+                df['label'] = label
+                dfs.append(df)
+                success = True
+        except Exception as e:
+            attempt += 1
+            print(f"Error processing file {filepath} on attempt {attempt}: {e}")
+            if attempt < max_attempts:
+                time.sleep(2)  # wait for 2 seconds before retrying
+            else:
+                print(f"Failed to process file {filepath} after {max_attempts} attempts.")
     return pd.concat(dfs, ignore_index=True)
 
 def basic_filter(df):
@@ -99,7 +98,9 @@ def prepare_datasets():
 
     training_sets = {}
     for i, (background_dir, x_sec) in enumerate(background_dirs):
-        background_files = [os.path.join(background_dir, file) for file in os.listdir(background_dir) if file.endswith('00.root') or file.endswith('ejjnu.root')]
+        print(f"Processing background type {i} with cross section {x_sec} pb")
+
+        background_files = [os.path.join(background_dir, file) for file in os.listdir(background_dir) if file.endswith('.root')]
         background_df = pd.concat([load_and_preprocess_bkg(filepath, x_sec, basic_filter, 0) for filepath in background_files], ignore_index=True)
         
         signal_train, signal_test = train_test_split(signal_df, test_size=0.5, random_state=42)
