@@ -33,25 +33,44 @@ background_dirs = [
     ("/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/ejjnu/", "0.014")
 ]
 
+# For signal
 def load_and_filter_data(filepath, x_sec, tree_name, variables, filter_func):
     with uproot.open(filepath) as file:
         df = file[tree_name].arrays(variables, library="pd")
         df['weight'] = (float(x_sec) * target_luminosity) / len(df)
         return filter_func(df)
 
-def load_and_preprocess_bkg(filepath, x_sec, filter_func, label):
-    with uproot.open(f"{filepath}:{tree_name}") as tree:
-        df = tree.arrays(variables, library="pd")
-        df['cross_section'] = float(x_sec)
-        df = filter_func(df)
-        if x_sec == "5215.46":
-            df['weight'] = (df['cross_section'] * target_luminosity) / 498091935
-        elif x_sec == "6654.46":
-            df['weight'] = (df['cross_section'] * target_luminosity) / 438538637
-        elif x_sec == "0.014":
-            df['weight'] = (df['cross_section'] * target_luminosity) / 100000
-        df['label'] = label
-        return df
+# Chunks of background with a retry mechanism
+def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
+    dfs = []
+    for filepath, x_sec in filepaths_and_xsecs:
+        attempt = 0
+        max_attempts = 3
+        success = False
+        
+        while attempt < max_attempts and not success:
+            try:
+                with uproot.open(f"{filepath}:{tree_name}") as tree:
+                    df = tree.arrays(variables, library="pd")
+                    df['cross_section'] = float(x_sec)
+                    df = filter_func(df)
+                    if x_sec == "5215.46":
+                        df['weight'] = (df['cross_section'] * target_luminosity) / 498091935
+                    elif x_sec == "6654.46":
+                        df['weight'] = (df['cross_section'] * target_luminosity) / 438538637
+                    elif x_sec == "0.014":
+                        df['weight'] = (df['cross_section'] * target_luminosity) / 100000
+                    df['label'] = label
+                    dfs.append(df)
+                    success = True
+            except Exception as e:
+                attempt += 1
+                print(f"Error processing file {filepath} on attempt {attempt}: {e}")
+                if attempt < max_attempts:
+                    time.sleep(2)  # wait for 2 seconds before retrying
+                else:
+                    print(f"Failed to process file {filepath} after {max_attempts} attempts.")
+    return pd.concat(dfs, ignore_index=True)
 
 def basic_filter(df):
     return df[
@@ -62,6 +81,11 @@ def basic_filter(df):
         (df["RecoDiJet_phi"] < np.pi) & 
         (df["RecoDiJet_delta_R"] < 5)
     ]
+
+def convert_to_numpy(df, fields):
+    for field in fields:
+        print(f"Converting {field} to a numpy array...")
+        df[field] = ak.to_numpy(df[field])
 
 def prepare_datasets():
     parser = argparse.ArgumentParser(description='Prepare datasets for DNN Training')
