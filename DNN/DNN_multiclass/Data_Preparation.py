@@ -100,7 +100,7 @@ def prepare_datasets():
     for i, (background_dir, x_sec) in enumerate(background_dirs):
         print(f"Processing background type {i} with cross section {x_sec} pb")
 
-        background_files = [os.path.join(background_dir, file) for file in os.listdir(background_dir) if file.endswith('.root')]
+        background_files = [os.path.join(background_dir, file) for file in os.listdir(background_dir) if file.endswith('00.root') or file.endswith('ejjnu.root')]
         background_df = pd.concat([load_and_preprocess_bkg(filepath, x_sec, basic_filter, 0) for filepath in background_files], ignore_index=True)
         
         signal_train, signal_test = train_test_split(signal_df, test_size=0.5, random_state=42)
