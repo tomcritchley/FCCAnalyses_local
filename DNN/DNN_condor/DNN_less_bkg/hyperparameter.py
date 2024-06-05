@@ -83,7 +83,7 @@ if __name__ == "__main__":
     
     tuner = RandomSearch(build_model, objective=Objective("val_prc", direction="max"), max_trials=25,
                          executions_per_trial=1, directory='model_tuning', project_name=f'tuning_{file}_results')
-    callbacks = [EarlyStopping(monitor='val_loss', patience=40, restore_best_weights=True)]
+    callbacks = [EarlyStopping(monitor='val_loss', patience=60, restore_best_weights=True)]
 
 
     val_start_index = int(len(y_train) * (1 - 0.3))
