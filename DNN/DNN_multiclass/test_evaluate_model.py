@@ -80,6 +80,7 @@ if __name__ == "__main__":
     file = args.label
     models = [f'/eos/user/t/tcritchl/DNN/trained_models20/DNN_HNLs_{file}_train_{i}.keras' for i in range(3)]
     data_dir = '/eos/user/t/tcritchl/DNN/testing20/'
+    cross_sections = [5215.46, 6654.46, 0.014]  # Cross-sections corresponding to each model
 
     X_test = np.load(f'{data_dir}X_test_{file}.npy', allow_pickle=True)
     y_test = np.load(f'{data_dir}y_test_{file}.npy', allow_pickle=True)
@@ -88,6 +89,7 @@ if __name__ == "__main__":
     # Initialize lists for signal and background efficiencies
     signal_efficiencies = []
     background_efficiencies = []
+    specific_background_efficiencies = []
     cuts = []
 
     # Apply models sequentially
@@ -99,11 +101,18 @@ if __name__ == "__main__":
         cut = find_dnn_cut(y_test, y_pred, target_efficiency=0.8)
         signal_eff, background_eff = calculate_efficiency(y_test, y_pred, cut)
         
+        # Calculate specific background efficiency
+        specific_bkg_mask = weights_test == cross_sections[i]
+        specific_y_test = y_test[specific_bkg_mask]
+        specific_y_pred = y_pred[specific_bkg_mask]
+        _, specific_background_eff = calculate_efficiency(specific_y_test, specific_y_pred, cut)
+        
         signal_efficiencies.append(signal_eff)
         background_efficiencies.append(background_eff)
+        specific_background_efficiencies.append(specific_background_eff)
         cuts.append(cut)
         
-        print(f"Model {i} cut: {cut:.4f}, signal efficiency: {signal_eff:.4f}, background efficiency: {background_eff:.4f}")
+        print(f"Model {i} cut: {cut:.4f}, signal efficiency: {signal_eff:.4f}, entire background efficiency: {background_eff:.4f}, specific background efficiency: {specific_background_eff:.4f}")
         
         # Filter test data for the next model
         selected = y_pred > cut
