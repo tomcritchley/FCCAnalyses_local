@@ -4,7 +4,7 @@ import numpy as np
 import math
 import os
 
-ROOT.gStyle.SetExponentOffset(-0.1, 0.03, "y")
+#ROOT.gStyle.SetExponentOffset(-0.1, 0.03, "y")
 
 uncertainty_count_factor = 0.1 #10% background uncertainty for the significance
 #variable = "RecoDiJet_delta_R"
