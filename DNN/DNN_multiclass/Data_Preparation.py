@@ -115,7 +115,7 @@ def prepare_datasets():
     for i, (background_dir, x_sec) in enumerate(background_dirs):
         print(f"Processing background type {i} with cross section {x_sec} pb")
 
-        background_files = [os.path.join(background_dir, file) for file in os.listdir(background_dir) if file.endswith('00.root') or file.endswith('ejjnu.root')]
+        background_files = [os.path.join(background_dir, file) for file in os.listdir(background_dir) if file.endswith('.root')]
         background_dfs = []
         n_bkg_before_filter_total = 0
         n_bkg_after_filter_total = 0
