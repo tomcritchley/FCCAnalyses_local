@@ -369,7 +369,7 @@ def make_plot(h_list_signal, h_list_bg, legend_list_signal, legend_list_bg, h_li
         h.GetYaxis().SetTitleOffset(1.4)
         h.GetYaxis().SetLabelSize(h.GetYaxis().GetLabelSize() * 2)
         h.GetYaxis().SetLabelOffset(0.02)
-        h.GetYaxis().SetRangeUser(0, 0.05)
+        h.GetYaxis().SetRangeUser(0, 0.005)
         
         h.GetXaxis().SetTitle(f"{chosen_variable[1]}")
         h.GetXaxis().SetTitleSize(0.12)
