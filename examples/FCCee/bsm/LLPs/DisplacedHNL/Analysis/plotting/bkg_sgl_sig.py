@@ -28,7 +28,7 @@ variable_list = [
     ["Vertex_chi2", "Chi^{2} of the primary vertex"], #16
 ]
 
-chosen_variable = variable_list[16] 
+chosen_variable = variable_list[1] 
 
 significance_directions = ["LR", "RL"]
 significance_direction = significance_directions[1]
