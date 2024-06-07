@@ -41,6 +41,7 @@ def load_and_filter_data(filepath, x_sec, tree_name, variables, filter_func):
         df = filter_func(df)
         n_events_after_filter = len(df)
         selection_efficiency = n_events_after_filter / n_events_before_filter
+        df['cross_section'] = float(x_sec)
         df['weight'] = ((float(x_sec) * target_luminosity) / n_events_before_filter) * selection_efficiency
         return df, n_events_before_filter, n_events_after_filter
 
@@ -70,6 +71,7 @@ def load_and_preprocess_bkg(filepath, x_sec, filter_func, label):
                     df['weight'] = ((float(x_sec) * target_luminosity) / 100000) * selection_efficiency
 
                 df['label'] = label
+                df['cross_section'] = float(x_sec)
                 dfs.append(df)
                 success = True
                 n_events_before_filter_total += n_events_before_filter
