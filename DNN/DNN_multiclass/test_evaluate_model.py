@@ -69,7 +69,7 @@ def make_cumulative_significance(signal_hist, background_hist, significance_dire
         left_edge = bin_edges[bin_idx - 1]
         print(f"significance {significance} for bin {bin_idx} with DNN threshold {left_edge}, number of signal events {s}, bkg{b}")
 
-        sig_list.append((significance, bin_idx, left_edge))
+        sig_list.append((significance, bin_idx, left_edge, s_cumulative, b_cumulative))
 
     return sig_list
 
@@ -346,8 +346,7 @@ if __name__ == "__main__":
 
     sig_list = make_cumulative_significance(hS, hB, "LR", min_bin, max_bin, bin_width, uncertainty_count_factor=0.1)
     sig_list.sort(key=lambda x: x[1])
-    significance_values, bin_index, bdt_output = zip(*sig_list)
-
+    significance_values, bin_index, bdt_output, s_cumulative_list, b_cumulative_list = zip(*sig_list)
     results_dict = {file: {"significance_list": sig_list}}
 
     ax[1].step(bins_a[:-1], significance_values, where='post', color='green', linewidth=1.5)
@@ -360,6 +359,14 @@ if __name__ == "__main__":
     max_significance_value = significance_values[max_significance_index]
     ax[1].axvline(x=bins_a[int(max_significance_bin)], linestyle='--', color='red', label=f'Max Significance: {max_significance_value:.2f}')
     ax[1].legend()
+
+    max_significance_threshold = bins_a[int(max_significance_bin)]
+    max_s_cumulative = s_cumulative_list[max_significance_index]
+    max_b_cumulative = b_cumulative_list[max_significance_index]
+
+    print(f"Max significance at DNN threshold {max_significance_threshold:.4f} is {max_significance_value:.4f}")
+    print(f"Cumulative signal events: {max_s_cumulative}")
+    print(f"Cumulative background events: {max_b_cumulative}")
 
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots20/DNN_output_{file}_10fb.pdf")
     plt.close()
