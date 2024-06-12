@@ -64,22 +64,22 @@ if __name__ == "__main__":
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
         plt.title('Confusion Matrix')
-        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots12/CM_{file}.pdf")
+        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/CM_{file}.pdf")
 
     significance_direction = significance_directions[1]
 
     results_dict = {}
 
     print(f"loading data...")
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training16/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training16/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing16/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing16/y_test_{file}.npy', allow_pickle=True)
-    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing16/weights_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/y_test_{file}.npy', allow_pickle=True)
+    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
     #model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
-    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models16/DNN_HNLs_{file}.keras')
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
     print(model.metrics_names)
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots16/ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/ROC_{file}.pdf")
 
     ### Precision ROC ###
 
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     plt.legend(loc="lower left")
 
     plt.tight_layout()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots16/Precise_ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/Precise_ROC_{file}.pdf")
     plt.close()
 
     ##################################################################################################################
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots16/raw_dnn_classification_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/raw_dnn_classification_{file}.pdf")
 
     background_weights = weights_test[y_test == 0]
     unique_weights = np.unique(background_weights)
@@ -184,7 +184,7 @@ if __name__ == "__main__":
     plt.title('Raw Predicted Scores for Signal and Background Events')
     plt.yscale('log')
     plt.legend(loc='upper right')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots16/raw_bkg_separated_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/raw_bkg_separated_{file}.pdf")
    
     weightsSIG = weights_test[y_test == 1] 
     weightsBKG = weights_test[y_test == 0]
@@ -199,7 +199,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots16/scaled_dnn10fb_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/scaled_dnn10fb_{file}.pdf")
     plt.close()
 
     # Plot histogram of predicted scores for signal and background events WEIGHTED 150 ab^-1 ##
@@ -213,7 +213,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots16/scaled_dnn_150ab_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/scaled_dnn_150ab_{file}.pdf")
     plt.close()
 
     bin_width = 0.0001 #in the region of interest, binning resolution
@@ -323,17 +323,17 @@ if __name__ == "__main__":
             left_edge = bin_edges[bin_idx - 1]
             print(f"significance {significance} for bin {bin_idx} with DNN threshold {left_edge}, number of signal events {s}, bkg{b}")
 
-            sig_list.append((significance, bin_idx, left_edge))
+            sig_list.append((significance, bin_idx, left_edge, s_cumulative, b_cumulative))
 
         return sig_list
 
     # Plot cumulative significance on the second subplot
     sig_list = make_cumulative_significance_matplotlib(hS, hB, significance_direction, uncertainty_count_factor=0.1)
     sig_list.sort(key=lambda x: x[1])
-    significance_values, bin_index, bdt_output = zip(*sig_list)
+    significance_values, bin_index, bdt_output, s_cumulative_list, b_cumulative_list = zip(*sig_list)
 
     results_dict[file] = {
-        "significance_list": sig_list
+        "significance, idx, dnn_output, signal, bkg": sig_list
     }
 
     ax[1].step(bins_a[:-1], significance_values, where='post', color='green', linewidth=1.5)
@@ -347,14 +347,22 @@ if __name__ == "__main__":
     ax[1].axvline(x=bins_a[int(max_significance_bin)], linestyle='--', color='red', label=f'Max Significance: {max_significance_value:.2f}')
     ax[1].legend()
 
+    max_significance_threshold = bins_a[int(max_significance_bin)]
+    max_s_cumulative = s_cumulative_list[max_significance_index]
+    max_b_cumulative = b_cumulative_list[max_significance_index]
 
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots16/DNN_output_{file}_10fb.pdf")
+    print(f"Max significance at DNN threshold {max_significance_threshold:.4f} is {max_significance_value:.4f}")
+    print(f"Cumulative signal events: {max_s_cumulative}")
+    print(f"Cumulative background events: {max_b_cumulative}")
+
+
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/DNN_output_{file}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/DNN_Run16_10fb_{file}.json"
+json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/DNN_Run11_10fb_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:
