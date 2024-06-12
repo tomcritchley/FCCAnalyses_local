@@ -123,6 +123,32 @@ if __name__ == "__main__":
         plt.grid(True)
         plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots20/raw_dnn_classification_{file}_model_{i}.pdf")
         plt.close()
+
+        # Plot histogram of predicted scores for signal and each background type
+        plt.clf()
+        plt.figure(figsize=(10, 6))
+        # Plot for signal
+        n_signal, bins, _ = plt.hist(y_pred_signal, bins=50, alpha=0.7, color='blue', label='Signal (n={})'.format(len(y_pred_signal)), histtype='step', linewidth=2)
+
+        # Colors for each background type
+        background_weights = weights_test[y_test == 0]
+        unique_weights = np.unique(background_weights)
+
+        colors = ['red', 'green', 'purple']
+        labels = ['Background Type 1', 'Background Type 2', 'Background Type 3']
+
+        # Iterate over each unique weight (background type)
+        for weight, color, label in zip(unique_weights, colors, labels):
+            mask = background_weights == weight
+            y_pred_background_type = y_pred_background[mask]
+            n_background, _, _ = plt.hist(y_pred_background_type, bins=bins, alpha=0.5, color=color, label='{} (n={})'.format(label, len(y_pred_background_type)), histtype='step', linewidth=2)
+
+        plt.xlabel('Predicted Score')
+        plt.ylabel('Number of Events')
+        plt.title('Raw Predicted Scores for Signal and Background Events')
+        plt.yscale('log')
+        plt.legend(loc='upper right')
+        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots20/raw_bkg_separated_{file}_model_{i}.pdf")
         
         # Filter test data for the next model
         selected = y_pred > cut
