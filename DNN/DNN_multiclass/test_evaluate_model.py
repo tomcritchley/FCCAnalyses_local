@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, auc, precision_recall_curve, confusion_matrix
 from tensorflow.keras.metrics import Precision, Recall, AUC
 import tensorflow as tf
+from sklearn.cluster import KMeans
 import seaborn as sns
 from tqdm import tqdm
 import os
@@ -130,20 +131,33 @@ if __name__ == "__main__":
         # Plot for signal
         n_signal, bins, _ = plt.hist(y_pred_signal, bins=50, alpha=0.7, color='blue', label='Signal (n={})'.format(len(y_pred_signal)), histtype='step', linewidth=2)
 
-        # Colors for each background type
+        # Cluster the background weights into 3 clusters
         background_weights = weights_test[y_test == 0]
-        unique_weights = np.unique(background_weights)
-        print(f"unique weights are: {unique_weights}")
+        kmeans = KMeans(n_clusters=3, random_state=0).fit(background_weights.reshape(-1, 1))
+        weight_labels = kmeans.labels_
+
+        # Unique cluster labels (0, 1, 2)
+        unique_labels = np.unique(weight_labels)
+        print(f"Unique cluster labels: {unique_labels}")
 
         colors = ['red', 'green', 'purple']
         labels = ['Background Type 1', 'Background Type 2', 'Background Type 3']
+
         # Debug: Print counts of each background type
-        for weight, label in zip(unique_weights, labels):
-            count = np.sum(background_weights == weight)
-            print(f"Background {label} (weight {weight}): {count}")
-        # Iterate over each unique weight (background type)
-        for weight, color, label in zip(unique_weights, colors, labels):
-            mask = background_weights == weight
+        for cluster_id, label in zip(unique_labels, labels):
+            count = np.sum(weight_labels == cluster_id)
+            print(f"Background {label} (cluster {cluster_id}): {count}")
+
+        # Plot histogram of predicted scores for signal and each background type
+        plt.clf()
+        plt.figure(figsize=(10, 6))
+
+        # Plot for signal
+        n_signal, bins, _ = plt.hist(y_pred_signal, bins=50, alpha=0.7, color='blue', label='Signal (n={})'.format(len(y_pred_signal)), histtype='step', linewidth=2)
+
+        # Iterate over each cluster label (background type)
+        for cluster_id, color, label in zip(unique_labels, colors, labels):
+            mask = (weight_labels == cluster_id)
             y_pred_background_type = y_pred_background[mask]
             n_background, _, _ = plt.hist(y_pred_background_type, bins=bins, alpha=0.5, color=color, label='{} (n={})'.format(label, len(y_pred_background_type)), histtype='step', linewidth=2)
 
@@ -153,7 +167,8 @@ if __name__ == "__main__":
         plt.yscale('log')
         plt.legend(loc='upper right')
         plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots20/raw_bkg_separated_{file}_model_{i}.pdf")
-        
+        plt.close()
+
         # Filter test data for the next model
         selected = y_pred > cut
         X_test = X_test[selected]
