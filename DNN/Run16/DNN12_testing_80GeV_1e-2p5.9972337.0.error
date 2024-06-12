@@ -1,0 +1,12 @@
+2024-06-12 17:24:52.151551: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-06-12 17:25:33.894218: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-06-12 17:28:14.917257: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-12 17:30:28.577178: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/Run16/test_evaluate_model.py", line 82, in <module>
+    model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_{file}.keras')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/keras/src/saving/saving_api.py", line 185, in load_model
+    raise ValueError(
+ValueError: File not found: filepath=/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_80GeV_1e-2p5.keras. Please ensure the file is an accessible `.keras` zip file.

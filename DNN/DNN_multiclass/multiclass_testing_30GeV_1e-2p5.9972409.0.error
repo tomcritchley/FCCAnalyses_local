@@ -1,0 +1,8 @@
+2024-06-12 17:27:30.278114: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-06-12 17:27:30.283000: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-06-12 17:29:22.102931: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-12 17:31:31.073116: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2024-06-12 17:36:33.177906: W external/local_tsl/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 148636436 exceeds 10% of free system memory.
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/sklearn/base.py:1351: ConvergenceWarning: Number of distinct clusters (2) found smaller than n_clusters (3). Possibly due to duplicate points in X.
+  return fit_method(estimator, *args, **kwargs)

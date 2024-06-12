@@ -1,0 +1,55 @@
+000 (9972363.000.000) 06/12 17:13:24 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_3008_d0f7>
+...
+040 (9972363.000.000) 06/12 17:22:27 Started transferring input files
+	Transferring to host: <128.142.61.78:9618?addrs=128.142.61.78-9618+[2001-1458-301-23--100-4d]-9618&alias=b9s06p6008.cern.ch&noUDP&sock=slot1_28_4737_651a_40265>
+...
+040 (9972363.000.000) 06/12 17:22:27 Finished transferring input files
+...
+001 (9972363.000.000) 06/12 17:22:28 Job executing on host: <128.142.61.78:9618?addrs=128.142.61.78-9618+[2001-1458-301-23--100-4d]-9618&alias=b9s06p6008.cern.ch&noUDP&sock=startd_3862_96d9>
+	SlotName: slot1_28@b9s06p6008.cern.ch
+	CondorScratchDir = "/pool/condor/dir_2079582"
+	Cpus = 1
+	Disk = 2892319
+	Memory = 2000
+...
+006 (9972363.000.000) 06/12 17:22:37 Image size of job updated: 32020
+	32  -  MemoryUsage of job (MB)
+	32020  -  ResidentSetSize of job (KB)
+...
+006 (9972363.000.000) 06/12 17:27:38 Image size of job updated: 405384
+	396  -  MemoryUsage of job (MB)
+	405260  -  ResidentSetSize of job (KB)
+...
+006 (9972363.000.000) 06/12 17:32:39 Image size of job updated: 639712
+	625  -  MemoryUsage of job (MB)
+	639496  -  ResidentSetSize of job (KB)
+...
+006 (9972363.000.000) 06/12 17:37:39 Image size of job updated: 2151160
+	1939  -  MemoryUsage of job (MB)
+	1985120  -  ResidentSetSize of job (KB)
+...
+006 (9972363.000.000) 06/12 17:41:37 Image size of job updated: 3923644
+	1939  -  MemoryUsage of job (MB)
+	1985120  -  ResidentSetSize of job (KB)
+...
+040 (9972363.000.000) 06/12 17:41:37 Started transferring output files
+...
+040 (9972363.000.000) 06/12 17:41:37 Finished transferring output files
+...
+005 (9972363.000.000) 06/12 17:41:37 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:22, Sys 0 00:01:29  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:22, Sys 0 00:01:29  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	547552  -  Run Bytes Sent By Job
+	200  -  Run Bytes Received By Job
+	547552  -  Total Bytes Sent By Job
+	200  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.01        1         1 
+	   Disk (KB)            :   556           1   2892319 
+	   Memory (MB)          :  1939        2000      2000 
+
+	Job terminated of its own accord at 2024-06-12T15:41:37Z with exit-code 0.
+...

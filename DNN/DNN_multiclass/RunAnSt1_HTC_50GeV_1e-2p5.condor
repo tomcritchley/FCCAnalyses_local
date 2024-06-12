@@ -1,0 +1,13 @@
+#!/bin/bash
+executable     = ./RunAnSt1_HTC_50GeV_1e-2p5.sh
+universe       = vanilla
+arguments      = $(ClusterId) $(ProcId)
+output         = 1_DNN_opt_training_50GeV_1e-2p5.$(ClusterId).$(ProcId).out
+error          = 1_DNN_opt_training_50GeV_1e-2p5.$(ClusterId).$(ProcId).error
+log            = 1_DNN_opt_training_50GeV_1e-2p5.$(ClusterId).$(ProcId).log
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
+requirements = (OpSysAndVer =?= "AlmaLinux9")
++JobFlavour    = "testmatch"
+queue

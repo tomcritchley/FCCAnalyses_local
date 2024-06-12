@@ -1,0 +1,191 @@
+000 (9965962.000.000) 06/09 13:00:23 Job submitted from host: <137.138.156.150:9618?addrs=137.138.156.150-9618+[2001-1458-d00-14--9a]-9618&alias=bigbird13.cern.ch&noUDP&sock=schedd_25162_9e1a>
+...
+040 (9965962.000.000) 06/09 13:42:17 Started transferring input files
+	Transferring to host: <128.142.52.9:9618?addrs=128.142.52.9-9618+[2001-1458-301-1b--100-6]-9618&alias=b9g02p8111.cern.ch&noUDP&sock=slot1_11_6953_c474_50050>
+...
+040 (9965962.000.000) 06/09 13:42:17 Finished transferring input files
+...
+001 (9965962.000.000) 06/09 13:42:18 Job executing on host: <128.142.52.9:9618?addrs=128.142.52.9-9618+[2001-1458-301-1b--100-6]-9618&alias=b9g02p8111.cern.ch&noUDP&sock=startd_5175_32b2>
+	SlotName: slot1_11@b9g02p8111.cern.ch
+	CondorScratchDir = "/pool/condor/dir_3736478"
+	Cpus = 1
+	Disk = 2989883
+	Memory = 2000
+...
+006 (9965962.000.000) 06/09 13:42:27 Image size of job updated: 51744
+	51  -  MemoryUsage of job (MB)
+	51628  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 13:47:28 Image size of job updated: 536880
+	525  -  MemoryUsage of job (MB)
+	536632  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 13:52:29 Image size of job updated: 1709376
+	1627  -  MemoryUsage of job (MB)
+	1665188  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 13:57:29 Image size of job updated: 1768460
+	1725  -  MemoryUsage of job (MB)
+	1766020  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:02:29 Image size of job updated: 1849572
+	1798  -  MemoryUsage of job (MB)
+	1840172  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:07:30 Image size of job updated: 2690216
+	2442  -  MemoryUsage of job (MB)
+	2500132  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:12:30 Image size of job updated: 2690216
+	2495  -  MemoryUsage of job (MB)
+	2554576  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:17:30 Image size of job updated: 2690216
+	2508  -  MemoryUsage of job (MB)
+	2567276  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:22:32 Image size of job updated: 2690216
+	2557  -  MemoryUsage of job (MB)
+	2618304  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:27:32 Image size of job updated: 2690216
+	2576  -  MemoryUsage of job (MB)
+	2637384  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:32:32 Image size of job updated: 2700824
+	2636  -  MemoryUsage of job (MB)
+	2698532  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:37:33 Image size of job updated: 2777280
+	2705  -  MemoryUsage of job (MB)
+	2769864  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:42:34 Image size of job updated: 2832404
+	2762  -  MemoryUsage of job (MB)
+	2828120  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/09 14:47:34 Image size of job updated: 2882148
+	2813  -  MemoryUsage of job (MB)
+	2879916  -  ResidentSetSize of job (KB)
+...
+022 (9965962.000.000) 06/09 14:53:57 Job disconnected, attempting to reconnect
+    Local schedd and job shadow died, schedd now running again
+    Trying to reconnect to slot1_11@b9g02p8111.cern.ch <128.142.52.9:9618?addrs=128.142.52.9-9618+[2001-1458-301-1b--100-6]-9618&alias=b9g02p8111.cern.ch&noUDP&sock=startd_5175_32b2>
+...
+023 (9965962.000.000) 06/09 15:50:02 Job reconnected to slot1_11@b9g02p8111.cern.ch
+    startd address: <128.142.52.9:9618?addrs=128.142.52.9-9618+[2001-1458-301-1b--100-6]-9618&alias=b9g02p8111.cern.ch&noUDP&sock=startd_5175_32b2>
+    starter address: <128.142.52.9:9618?addrs=128.142.52.9-9618+[2001-1458-301-1b--100-6]-9618&alias=b9g02p8111.cern.ch&noUDP&sock=slot1_11_6953_c474_50050>
+...
+006 (9965962.000.000) 06/09 15:50:02 Image size of job updated: 3345972
+	2976  -  MemoryUsage of job (MB)
+	3046612  -  ResidentSetSize of job (KB)
+...
+007 (9965962.000.000) 06/09 15:50:10 Shadow exception!
+	Error from slot1_11@b9g02p8111.cern.ch: STARTER at 128.142.52.9 failed to send file(s) to <137.138.156.150:9618>; SHADOW at 137.138.156.150 - |Error: writing to file /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/1_DNN_opt_training_30GeV_1e-2p5.9965962.0.out: (errno 122) Disk quota exceeded
+	27424888  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (9965962.000.000) 06/09 15:50:10 Job was held.
+	Transfer output files failure at access point bigbird13 while receiving files from execution point slot1_11@b9g02p8111.cern.ch. Details: Error from slot1_11@b9g02p8111.cern.ch: STARTER at 128.142.52.9 failed to send file(s) to <137.138.156.150:9618>; SHADOW at 137.138.156.150 - |Error: writing to file /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/1_DNN_opt_training_30GeV_1e-2p5.9965962.0.out: (errno 122) Disk quota exceeded
+	Code 12 Subcode 122
+...
+013 (9965962.000.000) 06/10 10:06:57 Job was released.
+	via condor_release (by user tcritchl)
+...
+040 (9965962.000.000) 06/10 10:09:10 Started transferring input files
+	Transferring to host: <128.142.63.17:9618?addrs=128.142.63.17-9618+[2001-1458-301-38--100-e]-9618&alias=b9s08p4745.cern.ch&noUDP&sock=slot1_37_4352_20aa_51683>
+...
+040 (9965962.000.000) 06/10 10:09:10 Finished transferring input files
+...
+001 (9965962.000.000) 06/10 10:09:11 Job executing on host: <128.142.63.17:9618?addrs=128.142.63.17-9618+[2001-1458-301-38--100-e]-9618&alias=b9s08p4745.cern.ch&noUDP&sock=startd_3586_46b5>
+	SlotName: slot1_37@b9s08p4745.cern.ch
+	CondorScratchDir = "/pool/condor/dir_233793"
+	Cpus = 1
+	Disk = 2605750
+	Memory = 2000
+...
+006 (9965962.000.000) 06/10 10:39:23 Image size of job updated: 3505200
+	3422  -  MemoryUsage of job (MB)
+	3504076  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 10:44:23 Image size of job updated: 3910756
+	3817  -  MemoryUsage of job (MB)
+	3908124  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 10:49:24 Image size of job updated: 4077460
+	3978  -  MemoryUsage of job (MB)
+	4072564  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 10:54:25 Image size of job updated: 4280740
+	4176  -  MemoryUsage of job (MB)
+	4275744  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 10:59:25 Image size of job updated: 4467612
+	4363  -  MemoryUsage of job (MB)
+	4466956  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 11:04:26 Image size of job updated: 4652084
+	4537  -  MemoryUsage of job (MB)
+	4645736  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 11:09:27 Image size of job updated: 5002520
+	4886  -  MemoryUsage of job (MB)
+	5002520  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 11:14:27 Image size of job updated: 5244976
+	5105  -  MemoryUsage of job (MB)
+	5226976  -  ResidentSetSize of job (KB)
+...
+006 (9965962.000.000) 06/10 11:16:13 Image size of job updated: 5430112
+	5105  -  MemoryUsage of job (MB)
+	5226976  -  ResidentSetSize of job (KB)
+...
+040 (9965962.000.000) 06/10 11:16:13 Started transferring output files
+...
+040 (9965962.000.000) 06/10 11:16:14 Finished transferring output files
+...
+007 (9965962.000.000) 06/10 11:16:14 Shadow exception!
+	Error from slot1_37@b9s08p4745.cern.ch: STARTER at 128.142.63.17 failed to send file(s) to <137.138.156.150:9618>; SHADOW at 137.138.156.150 - |Error: writing to file /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/1_DNN_opt_training_30GeV_1e-2p5.9965962.0.out: (errno 122) Disk quota exceeded
+	22289096  -  Run Bytes Sent By Job
+	203  -  Run Bytes Received By Job
+...
+012 (9965962.000.000) 06/10 11:16:15 Job was held.
+	Transfer output files failure at access point bigbird13 while receiving files from execution point slot1_37@b9s08p4745.cern.ch. Details: Error from slot1_37@b9s08p4745.cern.ch: STARTER at 128.142.63.17 failed to send file(s) to <137.138.156.150:9618>; SHADOW at 137.138.156.150 - |Error: writing to file /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/1_DNN_opt_training_30GeV_1e-2p5.9965962.0.out: (errno 122) Disk quota exceeded
+	Code 12 Subcode 122
+...
+013 (9965962.000.000) 06/10 11:53:09 Job was released.
+	via condor_release (by user tcritchl)
+...
+040 (9965962.000.000) 06/10 11:57:35 Started transferring input files
+	Transferring to host: <188.185.205.49:9618?addrs=188.185.205.49-9618&alias=b9p03p3850.cern.ch&noUDP&sock=slot1_29_6916_b292_108520>
+...
+040 (9965962.000.000) 06/10 11:57:35 Finished transferring input files
+...
+001 (9965962.000.000) 06/10 11:57:36 Job executing on host: <188.185.205.49:9618?addrs=188.185.205.49-9618&alias=b9p03p3850.cern.ch&noUDP&sock=startd_6846_5d73>
+	SlotName: slot1_29@b9p03p3850.cern.ch
+	CondorScratchDir = "/pool/condor/dir_1477038"
+	Cpus = 1
+	Disk = 2751886
+	Memory = 2000
+...
+040 (9965962.000.000) 06/10 13:08:29 Started transferring output files
+...
+040 (9965962.000.000) 06/10 13:08:30 Finished transferring output files
+...
+005 (9965962.000.000) 06/10 13:08:31 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 01:54:44, Sys 0 00:38:06  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 07:37:48, Sys 0 01:48:58  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	24321648  -  Run Bytes Sent By Job
+	203  -  Run Bytes Received By Job
+	74035632  -  Total Bytes Sent By Job
+	609  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.51        1         1 
+	   Disk (KB)            : 23775       22500   2751886 
+	   Memory (MB)          :  7325        2000      2000 
+
+	Job terminated of its own accord at 2024-06-10T11:08:29Z with exit-code 0.
+...

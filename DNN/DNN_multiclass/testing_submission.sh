@@ -12,7 +12,7 @@ echo "Masses: $masses"
 couplings=$(python3 -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/testing10"
+base_path="/eos/user/t/tcritchl/DNN/testing20"
 
 labels=()
 for mass in $masses; do
@@ -39,7 +39,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}_testing.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/bin/activate" >> "$script_file"
-    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/test_evaluate_model.py --label \"$label\"" >> "$script_file"
+    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/test_evaluate_model.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     # Create a unique Condor submission script for the current signal point
@@ -48,9 +48,9 @@ for label in "${labels[@]}"; do
 executable     = ./$script_file
 universe       = vanilla
 arguments      = \$(ClusterId) \$(ProcId)
-output         = DNN12_testing_${label}.\$(ClusterId).\$(ProcId).out
-error          = DNN12_testing_${label}.\$(ClusterId).\$(ProcId).error
-log            = DNN12_testing_${label}.\$(ClusterId).\$(ProcId).log
+output         = mutliclass_testing_${label}.\$(ClusterId).\$(ProcId).out
+error          = multiclass_testing_${label}.\$(ClusterId).\$(ProcId).error
+log            = multiclass_testing_${label}.\$(ClusterId).\$(ProcId).log
 should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"

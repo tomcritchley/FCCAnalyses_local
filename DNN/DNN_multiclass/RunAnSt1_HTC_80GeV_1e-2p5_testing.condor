@@ -1,0 +1,13 @@
+#!/bin/bash
+executable     = ./RunAnSt1_HTC_80GeV_1e-2p5_testing.sh
+universe       = vanilla
+arguments      = $(ClusterId) $(ProcId)
+output         = mutliclass_testing_80GeV_1e-2p5.$(ClusterId).$(ProcId).out
+error          = multiclass_testing_80GeV_1e-2p5.$(ClusterId).$(ProcId).error
+log            = multiclass_testing_80GeV_1e-2p5.$(ClusterId).$(ProcId).log
+should_transfer_files   = Yes
+when_to_transfer_output = ON_EXIT
+environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
+requirements = (OpSysAndVer =?= "AlmaLinux9")
++JobFlavour    = "testmatch"
+queue
