@@ -12,7 +12,7 @@ echo "Masses: $masses"
 couplings=$(python3 -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/testing10"
+base_path="/eos/user/t/tcritchl/DNN/testing11"
 
 labels=()
 for mass in $masses; do
@@ -39,7 +39,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}_testing.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/bin/activate" >> "$script_file"
-    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/test_evaluate_model.py --label \"$label\"" >> "$script_file"
+    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/Run16/test_evaluate_model.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     # Create a unique Condor submission script for the current signal point

@@ -3,7 +3,7 @@ import os
 from glob import glob
 
 # Define the path where all your individual JSON files are stored
-json_files_path = '/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_condor/DNN_less_bkg/*.json'  # Use *.json to match all JSON files
+json_files_path = '/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/*.json'  # Use *.json to match all JSON files
 
 # Initialize an empty dictionary to store combined results
 combined_results = {}
@@ -19,7 +19,7 @@ for json_file in glob(json_files_path):
         combined_results.update(current_results)
 
 # Define the path for the combined JSON file
-combined_json_path = '/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/DNN_results_run12.json'
+combined_json_path = '/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/xgboost/xgboost_batch/DNN_results_multiclass.json'
 
 # Save the combined results to a new JSON file
 with open(combined_json_path, 'w') as combined_file:
