@@ -164,7 +164,7 @@ if __name__ == "__main__":
     
     fpr, tpr, thresholds = roc_curve(y_test, y_pred)
     roc_auc = auc(fpr, tpr)
-
+    plt.clf()
     plt.figure()
     plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
     plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
@@ -178,7 +178,7 @@ if __name__ == "__main__":
 
     precision, recall, _ = precision_recall_curve(y_test, y_pred)
     pr_auc = auc(recall, precision)
-
+    plt.clf()
     plt.figure(figsize=(10, 5))
     plt.subplot(1, 2, 1)
     plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
@@ -204,7 +204,7 @@ if __name__ == "__main__":
     # Histograms and significance calculation
     y_pred_signal = y_pred[y_test == 1]
     y_pred_background = y_pred[y_test == 0]
-
+    plt.clf()
     plt.figure()
     plt.hist(y_pred_signal, bins=50, alpha=0.5, color='b', label='Signal')
     plt.hist(y_pred_background, bins=50, alpha=0.5, color='r', label='Background')
@@ -242,7 +242,7 @@ if __name__ == "__main__":
 
     weightsSIG = weights_test[y_test == 1] 
     weightsBKG = weights_test[y_test == 0]
-    
+    plt.clf()
     plt.figure()
     plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=weightsSIG)
     plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=weightsBKG)
@@ -254,7 +254,7 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots20/scaled_dnn10fb_{file}.pdf")
     plt.close()
-
+    plt.clf()
     plt.figure()
     plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=(weightsSIG*15000))
     plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=(weightsBKG*15000))
