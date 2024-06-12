@@ -133,10 +133,14 @@ if __name__ == "__main__":
         # Colors for each background type
         background_weights = weights_test[y_test == 0]
         unique_weights = np.unique(background_weights)
+        print(f"unique weights are: {unique_weights}")
 
         colors = ['red', 'green', 'purple']
         labels = ['Background Type 1', 'Background Type 2', 'Background Type 3']
-
+        # Debug: Print counts of each background type
+        for weight, label in zip(unique_weights, labels):
+            count = np.sum(background_weights == weight)
+            print(f"Background {label} (weight {weight}): {count}")
         # Iterate over each unique weight (background type)
         for weight, color, label in zip(unique_weights, colors, labels):
             mask = background_weights == weight
