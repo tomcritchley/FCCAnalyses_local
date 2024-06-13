@@ -34,13 +34,13 @@ cut_flow_summary = [] #trying to book the cutflow to a table
 base_path = input_HNLs
 
 masses = [
-    "10GeV",
-    "20GeV",
-    "30GeV",
-    "40GeV",
-    "50GeV",
-    "60GeV",
-    "70GeV"
+    #"10GeV",
+    #"20GeV",
+    #"30GeV",
+    #"40GeV",
+    #"50GeV",
+    #"60GeV",
+    "70GeV",
     "80GeV",   
 ]
 
