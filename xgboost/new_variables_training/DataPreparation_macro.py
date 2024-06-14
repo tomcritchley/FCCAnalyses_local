@@ -34,12 +34,12 @@ cut_flow_summary = [] #trying to book the cutflow to a table
 base_path = input_HNLs
 
 masses = [
-    #"10GeV",
-    #"20GeV",
-    #"30GeV",
-    #"40GeV",
-    #"50GeV",
-    #"60GeV",
+    "10GeV",
+    "20GeV",
+    "30GeV",
+    "40GeV",
+    "50GeV",
+    "60GeV",
     "70GeV",
     "80GeV",   
 ]
@@ -47,7 +47,7 @@ masses = [
 couplings = [
     "1e-2", 
     "1e-2p5", 
-    "1e-3" 
+    "1e-3",
     "1e-3p5", 
     "1e-4", 
     "1e-4p5", 
