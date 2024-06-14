@@ -45,13 +45,13 @@ masses = [
 ]
 
 couplings = [
-    "1e-2", 
-    "1e-2p5", 
+    #"1e-2", 
+    #"1e-2p5", 
     "1e-3",
     "1e-3p5", 
-    "1e-4", 
-    "1e-4p5", 
-    "1e-5"
+    #"1e-4", 
+    #"1e-4p5", 
+    #"1e-5"
 ]
 
 #initialise list to store the files
