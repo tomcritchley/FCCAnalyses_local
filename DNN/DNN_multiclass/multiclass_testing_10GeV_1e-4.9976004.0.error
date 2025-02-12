@@ -1,0 +1,27 @@
+2024-06-14 10:51:40.791628: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-06-14 10:51:47.212379: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-06-14 10:52:08.647315: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-14 10:52:32.883984: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/sklearn/base.py:1351: ConvergenceWarning: Number of distinct clusters (1) found smaller than n_clusters (3). Possibly due to duplicate points in X.
+  return fit_method(estimator, *args, **kwargs)
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/sklearn/metrics/_ranking.py:1124: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/test_evaluate_model.py:29: RuntimeWarning: invalid value encountered in scalar divide
+  background_efficiency = np.sum((y_true == 0) & (y_pred_labels == 1)) / np.sum(y_true == 0)
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/DNN_multiclass/test_evaluate_model.py", line 136, in <module>
+    kmeans = KMeans(n_clusters=3, random_state=0).fit(background_weights.reshape(-1, 1))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/sklearn/base.py", line 1351, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/sklearn/cluster/_kmeans.py", line 1481, in fit
+    X = self._validate_data(
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/sklearn/base.py", line 633, in _validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/lib64/python3.11/site-packages/sklearn/utils/validation.py", line 1026, in check_array
+    raise ValueError(
+ValueError: Found array with 0 sample(s) (shape=(0, 1)) while a minimum of 1 is required by KMeans.

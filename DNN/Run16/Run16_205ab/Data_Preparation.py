@@ -15,6 +15,10 @@ base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
 json_file = "/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb24.json"
 target_luminosity = 10000  #pb^-1 ---> =10fb^-1
 
+## new target lumi based on z-pole estimations from FCC group ##
+
+target_luminosity = 205000000 #ab^-1 ---> 1000000 pb^-1
+
 variables = [
     "n_RecoElectrons", "RecoDiJet_delta_R", "RecoDiJet_angle",
     "RecoElectron_DiJet_delta_R", "RecoElectronTrack_absD0sig",
@@ -36,7 +40,7 @@ background_dirs = [
 def load_and_filter_data(filepath, x_sec, tree_name, variables, filter_func):
     with uproot.open(filepath) as file:
         df = file[tree_name].arrays(variables, library="pd")
-        df['weight'] = (float(x_sec) * target_luminosity) / len(df)
+        df['weight'] = (float(x_sec) * target_luminosity * 0.49) / len(df)
         return filter_func(df)
     
 #for chunks of background   
@@ -49,11 +53,11 @@ def load_and_preprocess_bkg(filepaths_and_xsecs, filter_func, label):
                 df['cross_section'] = float(x_sec)
                 df = filter_func(df)
                 if x_sec == "5215.46":
-                    df['weight'] = (df['cross_section'] * target_luminosity) / 498091935
+                    df['weight'] = (df['cross_section'] * target_luminosity * 0.49) / 498091935
                 elif x_sec == "6654.46":
-                    df['weight'] = (df['cross_section'] * target_luminosity) / 438538637
+                    df['weight'] = (df['cross_section'] * target_luminosity * 0.49) / 438538637
                 elif x_sec == "0.014":
-                    df['weight'] = (df['cross_section'] * target_luminosity) / 100000
+                    df['weight'] = (df['cross_section'] * target_luminosity) / 100000 # no factor of 0.49 applied to the 4body since it does not run at zpole
                 df['label'] = label
                 dfs.append(df)
         except Exception as e:
@@ -196,11 +200,11 @@ def prepare_datasets():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    np.save(f'/eos/user/t/tcritchl/DNN/training6/X_train_{args.label}.npy', X_train_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing6/X_test_{args.label}.npy', X_test_scaled)
-    np.save(f'/eos/user/t/tcritchl/DNN/training6/y_train_{args.label}.npy', y_train)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing6/y_test_{args.label}.npy', y_test)
-    np.save(f'/eos/user/t/tcritchl/DNN/testing6/weights_test_{args.label}.npy', weights_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/training_205ab/X_train_{args.label}.npy', X_train_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing_205ab/X_test_{args.label}.npy', X_test_scaled)
+    np.save(f'/eos/user/t/tcritchl/DNN/training_205ab/y_train_{args.label}.npy', y_train)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing_205ab/y_test_{args.label}.npy', y_test)
+    np.save(f'/eos/user/t/tcritchl/DNN/testing_205ab/weights_test_{args.label}.npy', weights_test)
 
     print(f"Data preparation complete for label: {args.label}")
 
