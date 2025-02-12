@@ -4,10 +4,21 @@ import numpy as np
 import math
 import os
 
-#ROOT.gStyle.SetExponentOffset(-0.1, 0.03, "y")
+### background directories with the associated cross section ###
+background_dirs = [
+    ("/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/p8_ee_Zcc_ecm91", "5215.46"),
+    ("/eos/user/p/pakontax/FCC_8March2024/p8_ee_Zbb_ecm91/", "6654.46"),
+    ("/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/ejjnu/", "0.014")
+]
+
+### HNL mass point locations and the associated madgraph cross section info ###
+base_HNL = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/"
+json_file = "/afs/cern.ch/work/t/tcritchl/MG5_aMC_v3_5_3/HNL_cross_sections_Feb24.json"
 
 uncertainty_count_factor = 0.1 #10% background uncertainty for the significance
-#variable = "RecoDiJet_delta_R"
+
+
+### variable list, complete with the latest variables including the number of primary tracks and chi2 etc ###
 variable_list = [
     ["RecoElectron_lead_e", "Reco lead electron energy [GeV]"], #variable name in histo[0], axis title[1]
     ["RecoDiJet_delta_R", "Reco di-jet #Delta R"], #1
