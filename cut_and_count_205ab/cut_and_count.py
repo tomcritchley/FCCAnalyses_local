@@ -1,5 +1,4 @@
 import ROOT
-from ROOT import *
 import numpy as np
 import math
 import os
@@ -51,17 +50,18 @@ masses_list = []
 #luminosity = 10000 #10 fb^-1 as 1e4 pb^-1
 luminosity = 205000000 #205 ab^-1 as 1.5e8 pb^-1
 lumi_label = "205ab"
-
+#lumi_label = "10fb"
 # normalise to the lumi chosen 
 normalisation = True
 
 #pick your selection
 selection = "selMissingEGt12_EleEGt35_AngleLt24_DiJetDRLt3" #all selections
 
-input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
-input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
-
-output_dir =  "/afs/cern.ch/user/t/tcritchl/testfinal/FCCAnalyses_local/cut_and_count_205ab/signficance/"
+#input_dir_bkg = "/eos/user/t/tcritchl/xgBOOST/fullstats/withvertex/final/" #bb cc and 4body samples
+input_dir_bkg = "/afs/cern.ch/work/t/tcritchl/full_background_21Nov_2023/"
+#input_dir_sgl = "/eos/user/t/tcritchl/new_variables_HNL_test_March24/final/" #signals 
+input_dir_sgl = "/eos/user/t/tcritchl/HNLs/final/"
+output_dir =  "/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/cut_and_count_205ab/significance"
 
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
@@ -186,14 +186,65 @@ def max_significance(files_list, n_bins, h_list_bg):
 
     return max_sig_list
 
+def max_significance_weighted(files_list, n_bins, h_list_bg):
+    max_sig_list = []
+
+    for file_info in files_list:
+        file_name, hist = file_info
+
+        max_sig_value = 0
+
+        for bin_idx in range(1, n_bins + 1):
+            s = hist.Integral(bin_idx, bin_idx)
+            print(f"signal integral {s}")
+            b = sum(bg_hist[1].Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
+            print(f"b integral {b}")
+            sigma = b * uncertainty_count_factor
+
+            if s + b > 0 and b > 0 and s != 0 and sigma != 0:
+                n = s + b
+                current_significance = math.sqrt(abs(
+                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
+                )))
+
+                if current_significance > max_sig_value:
+                    max_sig_value = current_significance
+                    peak_bin_idx = bin_idx
+
+        # Calculate average significance in the region around the peak
+
+        #number of bins +/- the peak
+        region_width = 5
+        start_bin = max(1, peak_bin_idx - region_width)
+        end_bin = min(n_bins, peak_bin_idx + region_width)
+
+        region_significances = []
+        for idx in range(start_bin, end_bin + 1):
+            s = hist.Integral(idx, idx)
+            b = sum(bg_hist[1].Integral(idx, idx) for bg_hist in h_list_bg)
+            sigma = b * uncertainty_count_factor
+
+            if s + b > 0 and b > 0 and s != 0 and sigma != 0:
+                n = s + b
+                current_significance = math.sqrt(abs(
+                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
+                )))
+                region_significances.append(current_significance)
+
+        avg_significance = sum(region_significances) / len(region_significances) if region_significances else 0
+        max_sig_list.append((avg_significance, file_name))
+
+    return max_sig_list
+
+
 h_list_signal = make_hist(files_list_signal) ## list of signals!
 h_list_bg = make_hist(files_list_bg)
 n_bins = h_list_bg[0][1].GetNbinsX()
 x_min = h_list_bg[0][1].GetXaxis().GetXmin()
 x_max = h_list_bg[0][1].GetXaxis().GetXmax()
 
-max_sig_list = max_significance(h_list_signal, n_bins, h_list_bg)
-
+#max_sig_list = max_significance(h_list_signal, n_bins, h_list_bg)
+max_sig_list = max_significance_weighted(h_list_signal, n_bins, h_list_bg)
 def make_sig(max_sig_list):
 
     print("Building significance")
@@ -245,56 +296,3 @@ def make_sig(max_sig_list):
 
 make_sig(max_sig_list)
 
-"""
-#averaged significance of the most significant bin \pm 2 Gev
-
-def max_significance_weighted(files_list, n_bins, h_list_bg):
-    max_sig_list = []
-
-    for file_info in files_list:
-        file_name, hist = file_info
-
-        max_sig_value = 0
-
-        for bin_idx in range(1, n_bins + 1):
-            s = hist.Integral(bin_idx, bin_idx)
-            print(f"signal integral {s}")
-            b = sum(bg_hist[1].Integral(bin_idx, bin_idx) for bg_hist in h_list_bg)
-            print(f"b integral {b}")
-            sigma = b * uncertainty_count_factor
-
-            if s + b > 0 and b > 0 and s != 0 and sigma != 0:
-                n = s + b
-                current_significance = math.sqrt(abs(
-                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
-                )))
-
-                if current_significance > max_sig_value:
-                    max_sig_value = current_significance
-                    peak_bin_idx = bin_idx
-
-        # Calculate average significance in the region around the peak
-
-        #number of bins +/- the peak
-        region_width = 2
-        start_bin = max(1, peak_bin_idx - region_width)
-        end_bin = min(n_bins, peak_bin_idx + region_width)
-
-        region_significances = []
-        for idx in range(start_bin, end_bin + 1):
-            s = hist.Integral(idx, idx)
-            b = sum(bg_hist[1].Integral(idx, idx) for bg_hist in h_list_bg)
-            sigma = b * uncertainty_count_factor
-
-            if s + b > 0 and b > 0 and s != 0 and sigma != 0:
-                n = s + b
-                current_significance = math.sqrt(abs(
-                    2 * (n * math.log((n * (b + sigma**2)) / (b**2 + n * sigma**2)) - (b**2 / sigma**2) * math.log((1 + (sigma**2 * (n - b)) / (b * (b + sigma**2))))
-                )))
-                region_significances.append(current_significance)
-
-        avg_significance = sum(region_significances) / len(region_significances) if region_significances else 0
-        max_sig_list.append((avg_significance, file_name))
-
-    return max_sig_list
-"""

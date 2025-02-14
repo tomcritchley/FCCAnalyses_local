@@ -453,22 +453,45 @@ void draw_limit_ee() {
         {7.60000000e+01, 1.03666213e-06}
     };
     
-    double Toms_data[14][2] = {
-        {14.00, 4.39594311e-10},
-        {16.00, 2.66269921e-10},
-        {17.68, 1.77827941e-10},
-        {43.65, 1.77827941e-10},
-        {44.00, 2.07222194e-10},
-        {46.00, 2.19072032e-10},
-        {50.43, 5.62341325e-10},
-        {54.00, 5.91456213e-10},
-        {56.00, 5.96659288e-10},
-        {63.72, 1.77827941e-09},
-        {64.00, 2.29790505e-09},
-        {66.00, 2.84261486e-09},
-        {74.00, 4.70405768e-09},
-        {76.00, 6.87197784e-09}
+//    double Toms_data[14][2] = {
+//        {14.00, 4.39594311e-10},
+//        {16.00, 2.66269921e-10},
+//        {17.68, 1.77827941e-10},
+//        {43.65, 1.77827941e-10},
+//        {44.00, 2.07222194e-10},
+//        {46.00, 2.19072032e-10},
+//        {50.43, 5.62341325e-10},
+//        {54.00, 5.91456213e-10},
+//        {56.00, 5.96659288e-10},
+//        {63.72, 1.77827941e-09},
+//        {64.00, 2.29790505e-09},
+//        {66.00, 2.84261486e-09},
+//        {74.00, 4.70405768e-09},
+//        {76.00, 6.87197784e-09}
+//    };
+
+    double Toms_data[19][2] = {
+        { 14.000000, 8.801824e-10 },
+        { 16.000000, 8.800069e-10 },
+        { 21.468653, 1.778279e-09 },
+        { 23.314387, 5.623413e-09 },
+        { 24.000000, 5.797695e-09 },
+        { 26.000000, 5.814131e-09 },
+        { 34.000000, 5.728767e-09 },
+        { 36.000000, 5.670480e-09 },
+        { 44.000000, 6.025329e-09 },
+        { 46.000000, 6.532786e-09 },
+        { 54.000000, 7.906930e-09 },
+        { 56.000000, 8.023151e-09 },
+        { 64.000000, 8.613297e-09 },
+        { 66.000000, 6.447301e-09 },
+        { 68.134645, 5.623413e-09 },
+        { 74.000000, 2.915563e-09 },
+        { 76.000000, 3.140615e-09 },
+        { 79.717062, 5.623413e-09 },
+        { 82.486227, 1.778279e-08 },
     };
+    
 
     double FCC_data[11][2] = {
         {2.061048259467534, 4.6735624598e-06},
@@ -490,27 +513,26 @@ void draw_limit_ee() {
     };
 
     double cut_count_data[19][2] = {
-        {14.110535405872199, 3.125531339246461e-9},
-        {15.803108808290158, 5.445535694844776e-9},
-        {19.430051813471508, 1.0663966736201697e-8},
-        {22.089810017271162, 1.6054018398003585e-8},
-        {23.66148531951641, 3.746313013548914e-8},
-        {26.079447322970637, 5.477453258234018e-8},
-        {29.101899827288428, 5.017733762379897e-8},
-        {32.72884283246977, 4.0895462761051756e-8},
-        {36.476683937823836, 3.053314735139863e-8},
-        {41.07081174438687, 2.6382733889318648e-8},
-        {47.35751295336787, 2.4885082581475827e-8},
-        {51.83074265975821, 3.237071441245475e-8},
-        {55.33678756476683, 4.596598258922372e-8},
-        {59.56822107081175, 5.97929177133309e-8},
-        {65.49222797927462, 7.553923613064711e-8},
-        {68.99827288428324, 1.2413911057216107e-7},
-        {71.7789291882556, 1.9242609181034384e-7},
-        {73.71329879101899, 3.256044677068579e-7},
-        {75.76856649395509, 6.37629685555402e-7}
+        { 14.000000, 1.982630e-08 },
+        { 16.000000, 2.980626e-08 },
+        { 19.105787, 5.623413e-08 },
+        { 23.636032, 1.778279e-07 },
+        { 24.000000, 3.045089e-07 },
+        { 26.000000, 3.926946e-07 },
+        { 34.000000, 5.179220e-07 },
+        { 36.000000, 4.470048e-07 },
+        { 39.192876, 1.778279e-07 },
+        { 44.000000, 9.590469e-08 },
+        { 46.000000, 8.598437e-08 },
+        { 54.000000, 8.431014e-08 },
+        { 56.000000, 8.887396e-08 },
+        { 64.000000, 1.213444e-07 },
+        { 66.000000, 1.366339e-07 },
+        { 70.656967, 1.778279e-07 },
+        { 74.000000, 2.258474e-07 },
+        { 76.000000, 1.891238e-07 },
+        { 80.692565, 5.623413e-07 },
     };
-
 
     double seesaw_data[11][2] = {
         {10,3.2576539150477266e-12},
@@ -612,7 +634,7 @@ void draw_limit_ee() {
     }
     
     // Fill the TGraphs with data from the arrays
-    for (int i = 0; i < 14; ++i) {
+    for (int i = 0; i < 19; ++i) {
         Toms_data_gr.SetPoint(i, Toms_data[i][0], Toms_data[i][1]);
     }
     // Fill the TGraphs with data from the arrays
@@ -706,15 +728,15 @@ void draw_limit_ee() {
     Toms_data_gr.Draw("AL"); 
     cut_count_data_gr.Draw("L SAME");
     seesaw_data_gr.Draw("L SAME"); 
-    FCC_data_gr.Draw("L SAME"); 
-    for (int i = 0; i < num_segments; ++i) {
-        CMS_schan_grs[i]->Draw("L SAME");
-    }
+    //FCC_data_gr.Draw("L SAME"); 
+    //for (int i = 0; i < num_segments; ++i) {
+       // CMS_schan_grs[i]->Draw("L SAME");
+    //}
 
-    Toms_data_gr.GetXaxis()->SetLimits(10, 80);
+    Toms_data_gr.GetXaxis()->SetLimits(10, 85);
     Toms_data_gr.GetYaxis()->SetRangeUser(1E-12, 1);
     Toms_data_gr.GetXaxis()->SetTitle("#it{m}_{N} [GeV]");
-    Toms_data_gr.GetYaxis()->SetTitle("Observed 95\% CL Limits on | #it{V}_{#it{e}N}|^{2}");
+    Toms_data_gr.GetYaxis()->SetTitle("|#it{V}_{#it{e}N}|^{2}");
     Toms_data_gr.GetYaxis()->SetTitleOffset(1.2);
     Toms_data_gr.GetXaxis()->SetLabelOffset(0.005);
     Toms_data_gr.GetXaxis()->SetTitleOffset(1.2);
@@ -731,10 +753,10 @@ void draw_limit_ee() {
     legend.SetTextFont(42);
     legend.SetNColumns(1);
     
-    legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
-    legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 150 ab^{-1}}}}", "l");
-    legend.AddEntry(&cut_count_data_gr, "#splitline{Cut and Count}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
-    legend.AddEntry(&Toms_data_gr, "#splitline{This work}{#sqrt{s} = 91 GeV, 150 ab^{-1}}", "l");
+    //legend.AddEntry(CMS_schan_grs[0], "#splitline{CMS prompt 3l}{#splitline{#lower[-0.1]{arXiv:2403.00100}}{#lower[-0.05]{#sqrt{s} = 13 TeV, 138 fb^{-1}}}}", "l");
+    //legend.AddEntry(&FCC_data_gr, "#splitline{FCCee expected}{#splitline{#lower[-0.1]{arXiv:2203.05502}}{#lower[-0.05]{#sqrt{s} = 91 GeV, 150 ab^{-1}}}}", "l");
+    legend.AddEntry(&cut_count_data_gr, "#splitline{Cut and Count}{#sqrt{s} = 91 GeV, 205 ab^{-1}}", "l");
+    legend.AddEntry(&Toms_data_gr, "#splitline{DNN Result}{#sqrt{s} = 91 GeV, 205 ab^{-1}}", "l");
     legend.AddEntry(&seesaw_data_gr, "#splitline{Type I seesaw limit}{arXiv:2307.01190}", "l");
 
     
@@ -768,6 +790,6 @@ void draw_limit_ee() {
 
     canvas.Update();
 
-    canvas.SaveAs("LimitSummary_ee_cms_bdt_fcc_150ab_cc.pdf");
+    canvas.SaveAs("LimitSummary_ee_cms_bdt_fcc_205ab_cc.pdf");
 
 }

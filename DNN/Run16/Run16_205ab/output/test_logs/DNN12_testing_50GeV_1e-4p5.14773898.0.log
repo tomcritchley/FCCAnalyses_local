@@ -1,0 +1,15 @@
+000 (14773898.000.000) 02/13 09:27:57 Job submitted from host: <137.138.44.75:9618?addrs=137.138.44.75-9618+[2001-1458-d00-1a--b]-9618&alias=bigbird14.cern.ch&noUDP&sock=schedd_3790_3407>
+...
+040 (14773898.000.000) 02/13 09:47:24 Started transferring input files
+	Transferring to host: <128.142.248.218:9618?addrs=128.142.248.218-9618+[2001-1458-301-73--100-d9]-9618&alias=b9g23p2883.cern.ch&noUDP&sock=slot1_33_6644_0c87_767>
+...
+040 (14773898.000.000) 02/13 09:47:24 Finished transferring input files
+...
+001 (14773898.000.000) 02/13 09:47:25 Job executing on host: <128.142.248.218:9618?addrs=128.142.248.218-9618+[2001-1458-301-73--100-d9]-9618&alias=b9g23p2883.cern.ch&noUDP&sock=startd_5065_bf47>
+	SlotName: slot1_33@b9g23p2883.cern.ch
+	CondorScratchDir = "/pool/condor/dir_262363"
+	Cpus = 1
+	Disk = 3642
+	GPUs = 0
+	Memory = 3000
+...

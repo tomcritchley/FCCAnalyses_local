@@ -12,7 +12,7 @@ echo "Masses: $masses"
 couplings=$(python3 -c "import json; data = json.load(open('$json_file')); print(' '.join(set([key.split('_')[-1] for key in data])))")
 echo "Couplings: $couplings"
 
-base_path="/eos/user/t/tcritchl/DNN/testing11"
+base_path="/eos/user/t/tcritchl/DNN/testing_205ab"
 
 labels=()
 for mass in $masses; do
@@ -39,7 +39,7 @@ for label in "${labels[@]}"; do
     script_file="RunAnSt1_HTC_${label}_testing.sh"
     echo "#!/bin/bash" > "$script_file"
     echo "source /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/venv/bin/activate" >> "$script_file"
-    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/Run16/test_evaluate_model.py --label \"$label\"" >> "$script_file"
+    echo "python3.11 /afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/Run16/Run16_205ab/test_evaluate_model.py --label \"$label\"" >> "$script_file"
     chmod +x "$script_file"
 
     # Create a unique Condor submission script for the current signal point
@@ -55,7 +55,7 @@ should_transfer_files   = Yes
 when_to_transfer_output = ON_EXIT
 environment    = "TESTVAR1=1 TESTVAR2='2' TESTVAR3='spacey ''quoted'' value'"
 requirements = (OpSysAndVer =?= "AlmaLinux9")
-+JobFlavour    = "testmatch"
++JobFlavour    = "espresso"
 queue
 EOF
 

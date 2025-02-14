@@ -64,21 +64,23 @@ if __name__ == "__main__":
         plt.xlabel('Predicted Label')
         plt.ylabel('True Label')
         plt.title('Confusion Matrix')
-        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/CM_{file}.pdf")
+        plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/CM_{file}.pdf")
 
     significance_direction = significance_directions[1]
 
     results_dict = {}
 
     print(f"loading data...")
-    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/X_train_{file}.npy', allow_pickle=True)
-    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training11/y_train_{file}.npy', allow_pickle=True)
-    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/X_test_{file}.npy', allow_pickle=True)
-    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/y_test_{file}.npy', allow_pickle=True)
-    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing11/weights_test_{file}.npy', allow_pickle=True)
+    X_train = np.load(f'/eos/user/t/tcritchl/DNN/training_205ab/X_train_{file}.npy', allow_pickle=True)
+    y_train = np.load(f'/eos/user/t/tcritchl/DNN/training_205ab/y_train_{file}.npy', allow_pickle=True)
+    X_test = np.load(f'/eos/user/t/tcritchl/DNN/testing_205ab/X_test_{file}.npy', allow_pickle=True)
+    y_test = np.load(f'/eos/user/t/tcritchl/DNN/testing_205ab/y_test_{file}.npy', allow_pickle=True)
+    weights_test = np.load(f'/eos/user/t/tcritchl/DNN/testing_205ab/weights_test_{file}.npy', allow_pickle=True)
     print(f"data loaded for {file}!")
     print(f"loading model....")
     #model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models5/DNN_HNLs_{file}.keras')
+    #model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_{file}.keras')
+    # need to select a model which has the same state for splitting (42) or else retrain the model (time limited)
     model = tf.keras.models.load_model(f'/eos/user/t/tcritchl/DNN/trained_models11/DNN_HNLs_{file}.keras')
     print(f"model loaded for {file}!")
 
@@ -89,8 +91,8 @@ if __name__ == "__main__":
     # Evaluate the model on the test set
     print("Evaluating the model on the test set...")
     
-    #test_loss, test_acc, test_prc, test_precision, test_recall = model.evaluate(X_test, y_test, verbose=2)
-    test_loss, test_accuracy, test_auc, test_prc, test_precision, test_recall = model.evaluate(X_test, y_test, verbose=2)
+    test_loss, test_acc, test_prc, test_precision, test_recall = model.evaluate(X_test, y_test, verbose=2)
+    #test_loss, test_accuracy, test_auc, test_prc, test_precision, test_recall = model.evaluate(X_test, y_test, verbose=2)
 
     y_pred = model.predict(X_test).ravel()
 
@@ -109,7 +111,7 @@ if __name__ == "__main__":
     plt.ylabel('True Positive Rate')
     plt.title('Receiver Operating Characteristic (ROC) Curve')
     plt.legend(loc="lower right")
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/ROC_{file}.pdf")
 
     ### Precision ROC ###
 
@@ -136,7 +138,7 @@ if __name__ == "__main__":
     plt.legend(loc="lower left")
 
     plt.tight_layout()
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/Precise_ROC_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/Precise_ROC_{file}.pdf")
     plt.close()
 
     ##################################################################################################################
@@ -158,7 +160,7 @@ if __name__ == "__main__":
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/raw_dnn_classification_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/raw_dnn_classification_{file}.pdf")
 
     background_weights = weights_test[y_test == 0]
     unique_weights = np.unique(background_weights)
@@ -184,36 +186,37 @@ if __name__ == "__main__":
     plt.title('Raw Predicted Scores for Signal and Background Events')
     plt.yscale('log')
     plt.legend(loc='upper right')
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/raw_bkg_separated_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/raw_bkg_separated_{file}.pdf")
    
     weightsSIG = weights_test[y_test == 1] 
     weightsBKG = weights_test[y_test == 0]
     # Plot histogram of predicted scores for signal and background events WEIGHTED 10fb^-1 ##
     plt.figure()
     plt.clf()
-    plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=weightsSIG)
-    plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=weightsBKG)
+    ## 205 ab^-1 == 205,000 fb^-1 ==> divide the scale factor by 20,500 in order to see the weights at 10 fb^-1 (problem with the factors of 0.49 ??) 
+    plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=weightsSIG/20500)
+    plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=weightsBKG/20500)
     plt.xlabel('Predicted Score')
     plt.ylabel('Weighted MC events')
     plt.title('Weighted Predicted Scores for Signal and Background Events at 10 fb')
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/scaled_dnn10fb_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/scaled_dnn10fb_{file}.pdf")
     plt.close()
 
     # Plot histogram of predicted scores for signal and background events WEIGHTED 150 ab^-1 ##
     plt.figure()
     plt.clf()
-    plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=(weightsSIG*15000))
-    plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=(weightsBKG*15000))
+    plt.hist(y_pred_signal, bins=50, alpha=0.5, color='blue', label='Signal', weights=(weightsSIG))
+    plt.hist(y_pred_background, bins=50, alpha=0.5, color='red', label='Background', weights=(weightsBKG))
     plt.xlabel('Predicted Score')
     plt.ylabel('Weighted MC events')
-    plt.title('Weighted Predicted Scores for Signal and Background Events at 150 ab')
+    plt.title('Weighted Predicted Scores for Signal and Background Events at 205 ab')
     plt.yscale('log')
     plt.legend(loc='upper center')
     plt.grid(True)
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/scaled_dnn_150ab_{file}.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/scaled_dnn_205ab_{file}.pdf")
     plt.close()
 
     bin_width = 0.0001 #in the region of interest, binning resolution
@@ -356,13 +359,13 @@ if __name__ == "__main__":
     print(f"Cumulative background events: {max_b_cumulative}")
 
 
-    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots11/DNN_output_{file}_10fb.pdf")
+    plt.savefig(f"/eos/user/t/tcritchl/DNN/DNN_plots_205ab/DNN_output_{file}_10fb.pdf")
 
     ##################################################################################################################
     ###################################### SAVING MODEL OUTPUTS ######################################################
     ##################################################################################################################
 
-json_file_path = f"/afs/cern.ch/work/t/tcritchl/FCCAnalyses_local/DNN/Run16/DNN_RunFINAL_10fb_{file}.json"
+json_file_path = f"/eos/user/t/tcritchl/FCCAnalyses_local/DNN/Run16/Run16_205ab/DNN_RunFINAL_205ab_{file}.json"
 
 print(f"attempting to save results to {json_file_path}....!")
 try:

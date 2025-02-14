@@ -91,6 +91,7 @@ for file_name in os.listdir(input_dir_sgl):
 ###background
 cross_sections_bg = [5215.46, 6654.46,0.01399651855102697] #pb
 total_events_bg = [2.640333103799864e-05,6645.46, 0.00036679999999999975] #typically normalised to 1 pb of luminosity
+
 selection_scale_bg = [2/(499786495),1/(438738637),2620/100000]
 files_list_bg = [
     [file_Zcc, chosen_variable[0], "Z #rightarrow cc", cross_sections_bg[0], total_events_bg[0], selection_scale_bg[0]],
